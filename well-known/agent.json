@@ -1,1 +1,92 @@
-
+{
+  "name": "Synergix",
+  "description": "The world's first AI on BNB Greenfield DCellar. Decentralized collective intelligence — every answer is grounded in community knowledge stored permanently on-chain. Ask questions, explore on-chain knowledge, get token info, and interact with the Synergix reputation system.",
+  "version": "2.0.0",
+  "url": "https://www.synergix.lol",
+  "documentationUrl": "https://www.synergix.lol",
+  "iconUrl": "https://www.synergix.lol/logo.png",
+  "provider": {
+    "organization": "Synergix",
+    "url": "https://www.synergix.lol"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": ["text/plain", "application/json"],
+  "defaultOutputModes": ["application/json", "text/plain"],
+  "authentication": {
+    "schemes": ["none"]
+  },
+  "endpoints": {
+    "tasks": "/api/a2a"
+  },
+  "skills": [
+    {
+      "id": "synergix_ask",
+      "name": "Ask Synergix",
+      "description": "Ask a question to Synergix's RAG engine backed by BNB Greenfield collective knowledge. Returns AI-generated answers grounded in community contributions stored on-chain.",
+      "tags": ["rag", "collective-intelligence", "blockchain", "BNB-Greenfield", "knowledge"],
+      "examples": [
+        "What is BNB Greenfield DCellar?",
+        "How does the Synergix rank system work?",
+        "What makes Synergix unique among AI agents?"
+      ],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
+      "id": "synergix_ranks",
+      "name": "Rank System",
+      "description": "Get the complete Synergix 6-tier on-chain reputation system with point thresholds, multipliers, and daily limits.",
+      "tags": ["ranks", "reputation", "on-chain", "gamification"],
+      "examples": [
+        "Show me the Synergix rank table",
+        "What are the ranks in Synergix?",
+        "How many points do I need to reach Oráculo?"
+      ],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
+      "id": "synergix_token",
+      "name": "Token Info",
+      "description": "Get $SYNERGIX token details: contract address on BNB Chain, tax structure, and how 1% buy/sell tax funds Greenfield storage.",
+      "tags": ["token", "BNB-Chain", "tokenomics", "crypto", "DeFi"],
+      "examples": [
+        "What is the $SYNERGIX contract address?",
+        "How does the Synergix tax work?",
+        "Tell me about the SYNERGIX token"
+      ],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
+      "id": "synergix_bucket",
+      "name": "Greenfield Bucket Info",
+      "description": "Explore the Synergix BNB Greenfield bucket — the on-chain storage powering the AI. Shows bucket structure, paths, and the RAG engine architecture.",
+      "tags": ["greenfield", "DCellar", "storage", "decentralized", "bucket"],
+      "examples": [
+        "What is in the Synergix Greenfield bucket?",
+        "How does Synergix store knowledge on-chain?",
+        "Explain the Synergix bucket structure"
+      ],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
+      "id": "synergix_stats",
+      "name": "Network Stats",
+      "description": "Get global Synergix network statistics: RAG engine status, federation loop, supported languages, and system health.",
+      "tags": ["stats", "network", "system", "health"],
+      "examples": [
+        "What are the Synergix network statistics?",
+        "Is Synergix operational?",
+        "How many languages does Synergix support?"
+      ],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    }
+  ]
+}
