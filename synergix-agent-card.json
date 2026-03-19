@@ -1,0 +1,35 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "Synergix",
+  "description": "The world's first AI agent deployed on BNB Greenfield DCellar. Synergix is a decentralized collective intelligence system where every community contribution is immortalized on-chain in the bucket 'synergix'. Uses RAG (Retrieval Augmented Generation) over BNB Greenfield blockchain storage — 80% of every AI response is built from community knowledge stored permanently on-chain. Features: 6-tier on-chain reputation system, weekly AI-generated challenges, Hive Mind validation by top-rank users, passive residual points per contribution use, autonomous federation loop every 8 min, full DB restored from Greenfield on server restart. Supports Español, English, 简体中文, 繁體中文. Token: $SYNERGIX on BNB Chain (CA: 0x6485907278c389e70c572f441ce7052da58effff). Bucket: synergix on DCellar.",
+  "image": "https://www.synergix.lol/logo.png",
+  "url": "https://www.synergix.lol/",
+  "services": [
+    {
+      "name": "web",
+      "endpoint": "https://www.synergix.lol/"
+    },
+    {
+      "name": "telegram",
+      "endpoint": "https://t.me/synergix_ai_bot"
+    },
+    {
+      "name": "twitter",
+      "endpoint": "https://x.com/Synergix_AI"
+    }
+  ],
+  "x402Support": false,
+  "active": true,
+  "tags": [
+    "collective-intelligence",
+    "BNB-Greenfield",
+    "immortal-storage",
+    "RAG",
+    "multilingual",
+    "decentralized-AI",
+    "on-chain-reputation",
+    "Telegram-bot",
+    "DCellar",
+    "BNB-Chain"
+  ]
+}
