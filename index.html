@@ -2216,5 +2216,472 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
   btn.addEventListener('mouseleave',()=>btn.style.transform='');
 });
 </script>
+
+<!-- ══════════════════════════════════════════════════════════
+     SPECTACULAR FX LAYER  (styles + markup + script)
+     Añade: preloader cinemático, red neuronal en canvas,
+     aurora que sigue al cursor, tilt 3D en cartas, contadores
+     animados, scramble-text en títulos, ondas al click,
+     glitch en hover de botones, partículas al scroll.
+═══════════════════════════════════════════════════════════ -->
+<style id="fx-spectacular">
+/* Reduce motion respect */
+@media (prefers-reduced-motion: reduce){
+  #fx-preloader,#fx-net,#fx-aurora,.fx-ripple,.fx-scroll-particle{display:none!important}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+/* ── PRELOADER ── */
+#fx-preloader{
+  position:fixed;inset:0;z-index:99999;background:#060608;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+#fx-preloader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.fx-pl-ring{
+  width:120px;height:120px;position:relative;
+  filter:drop-shadow(0 0 40px rgba(192,57,43,.6));
+}
+.fx-pl-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.fx-pl-ring circle{fill:none;stroke-width:2;stroke-linecap:round}
+.fx-pl-ring .bg-c{stroke:rgba(255,255,255,.06)}
+.fx-pl-ring .fg-c{
+  stroke:url(#fxgrad);
+  stroke-dasharray:339.292;
+  stroke-dashoffset:339.292;
+  animation:fxdash 2.2s cubic-bezier(.65,0,.35,1) forwards;
+}
+@keyframes fxdash{to{stroke-dashoffset:0}}
+.fx-pl-core{
+  position:absolute;inset:28px;border-radius:50%;
+  background:radial-gradient(circle,#C0392B,#7a1a14 70%,transparent);
+  animation:fxpulse 1.4s ease-in-out infinite;
+}
+@keyframes fxpulse{0%,100%{transform:scale(.9);opacity:.9}50%{transform:scale(1.1);opacity:1}}
+.fx-pl-txt{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:8px;color:#F2F0EC;
+  opacity:.85;
+}
+.fx-pl-txt span{display:inline-block;opacity:0;transform:translateY(8px);
+  animation:fxletter .6s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes fxletter{to{opacity:1;transform:translateY(0)}}
+.fx-pl-sub{
+  font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:3px;color:rgba(242,240,236,.5);
+  text-transform:uppercase;
+  animation:fxblink 1.2s ease-in-out infinite;
+}
+@keyframes fxblink{0%,100%{opacity:.3}50%{opacity:.85}}
+
+/* ── NEURAL NETWORK CANVAS ── */
+#fx-net{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:.55;mix-blend-mode:screen;
+}
+
+/* ── AURORA CURSOR FOLLOWER ── */
+#fx-aurora{
+  position:fixed;width:520px;height:520px;border-radius:50%;
+  pointer-events:none;z-index:1;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(192,57,43,.12) 0%,rgba(240,165,0,.05) 30%,transparent 70%);
+  filter:blur(40px);
+  transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .4s;
+  opacity:0;
+}
+body.fx-ready #fx-aurora{opacity:1}
+@media(hover:none){#fx-aurora{display:none}}
+
+/* ── RIPPLE on click ── */
+.fx-ripple{
+  position:fixed;pointer-events:none;z-index:9989;border-radius:50%;
+  border:2px solid rgba(192,57,43,.8);
+  transform:translate(-50%,-50%) scale(0);
+  animation:fxripple .8s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes fxripple{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:1;border-width:2px}
+  100%{transform:translate(-50%,-50%) scale(20);opacity:0;border-width:.5px}
+}
+
+/* ── TILT 3D cards ── */
+.fx-tilt{transform-style:preserve-3d;transition:transform .18s var(--ease,cubic-bezier(.16,1,.3,1))}
+.fx-tilt>*{transform:translateZ(18px)}
+
+/* ── SCRAMBLE TEXT ready state ── */
+.fx-scramble{will-change:contents}
+
+/* ── GLITCH on buttons hover ── */
+.btn-p,.nav-cta{position:relative;isolation:isolate}
+.btn-p::after{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(135deg,#F0A500,#F5C518);
+  filter:blur(12px);opacity:0;transition:opacity .3s ease;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.btn-p:hover::after{opacity:.6}
+
+/* ── FLOATING SCROLL SPARKS ── */
+.fx-scroll-particle{
+  position:fixed;width:3px;height:3px;border-radius:50%;
+  background:#F0A500;box-shadow:0 0 10px #F0A500;
+  pointer-events:none;z-index:9988;
+  animation:fxspark 1.4s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes fxspark{
+  0%{opacity:1;transform:translate(0,0) scale(1)}
+  100%{opacity:0;transform:translate(var(--fx-dx,0),var(--fx-dy,-60px)) scale(0)}
+}
+
+/* ── LOGO SCENE 3D BOOST ── */
+.logo-scene{perspective:1000px}
+.logo-img{transition:transform .15s ease-out,filter 4s ease-in-out!important}
+
+/* ── NUMBER COUNTER ODOMETER ── */
+.fx-count{display:inline-block;min-width:1ch;font-variant-numeric:tabular-nums}
+
+/* ── SECTION TITLE REVEAL LINE ── */
+.sh-title{position:relative}
+.sh-title::before{
+  content:'';position:absolute;left:-16px;top:10%;bottom:10%;width:3px;
+  background:linear-gradient(180deg,transparent,#C0392B 40%,#F0A500 60%,transparent);
+  transform:scaleY(0);transform-origin:center;
+  transition:transform .9s cubic-bezier(.16,1,.3,1);
+}
+.sh.vis .sh-title::before,.sh .sh-title.fx-bar-on::before{transform:scaleY(1)}
+
+/* ── HERO NEON UNDERLINE BOOST ── */
+.h-t2::after{
+  box-shadow:0 0 20px #C0392B,0 0 40px rgba(192,57,43,.4);
+}
+
+/* ── TICKER GRADIENT EDGE MASK ── */
+.ticker-wrap{
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+}
+
+/* ── RANK HOVER AURA ── */
+.rk{will-change:transform,box-shadow}
+.rk:hover{box-shadow:0 18px 60px rgba(0,0,0,.55),0 0 0 1px rgba(240,165,0,.3),0 0 40px rgba(240,165,0,.2)}
+
+/* ── TOKENOMICS TAX CARDS NEON TOP on hover ── */
+.tc{isolation:isolate}
+.tc::before{box-shadow:0 0 0 transparent;transition:box-shadow .4s}
+.tc:hover::before{box-shadow:0 0 18px currentColor}
+
+/* ── STAGGER ANIMATION for .reveal children ── */
+.sh.vis{animation:sh-appear .8s ease both}
+.wc.vis,.hf.vis,.rag-step.vis,.br.vis,.tk-row.vis,.tc.vis,.ca.vis,.rm-card.vis{
+  animation:fx-pop .75s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes fx-pop{
+  0%{opacity:0;transform:translateY(30px) scale(.96)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+.wc.vis:nth-child(2),.hf.vis:nth-child(2),.tc.vis:nth-child(2){animation-delay:.08s}
+.wc.vis:nth-child(3),.hf.vis:nth-child(3),.tc.vis:nth-child(3){animation-delay:.16s}
+.wc.vis:nth-child(4),.hf.vis:nth-child(4),.tc.vis:nth-child(4){animation-delay:.24s}
+.wc.vis:nth-child(5),.tc.vis:nth-child(5){animation-delay:.32s}
+.wc.vis:nth-child(6),.tc.vis:nth-child(6){animation-delay:.40s}
+.tc.vis:nth-child(7){animation-delay:.48s}
+
+/* ── HERO LOGO HALO EXTRA ── */
+#hero .logo-scene::before{
+  content:'';position:absolute;inset:-120px;border-radius:50%;z-index:-1;
+  background:conic-gradient(from 0deg,rgba(192,57,43,.14),rgba(240,165,0,.09),rgba(0,210,160,.10),rgba(192,57,43,.14));
+  filter:blur(40px);animation:fxhalo 14s linear infinite;
+}
+@keyframes fxhalo{to{transform:rotate(360deg)}}
+
+/* ── LIVE BADGE EXTRA RING ── */
+.nav-badge{position:relative}
+.nav-badge::after{
+  content:'';position:absolute;inset:-3px;border-radius:2px;
+  border:1px solid rgba(192,57,43,.6);
+  animation:fxbox 2s ease-in-out infinite;
+}
+@keyframes fxbox{0%,100%{opacity:0;transform:scale(1)}50%{opacity:.8;transform:scale(1.15)}}
+</style>
+
+<!-- Preloader -->
+<div id="fx-preloader" aria-hidden="true">
+  <div class="fx-pl-ring">
+    <svg viewBox="0 0 120 120">
+      <defs>
+        <linearGradient id="fxgrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#C0392B"/>
+          <stop offset="50%" stop-color="#F0A500"/>
+          <stop offset="100%" stop-color="#00D2A0"/>
+        </linearGradient>
+      </defs>
+      <circle class="bg-c" cx="60" cy="60" r="54"/>
+      <circle class="fg-c" cx="60" cy="60" r="54"/>
+    </svg>
+    <div class="fx-pl-core"></div>
+  </div>
+  <div class="fx-pl-txt" id="fxPlTxt">SYNERGIX</div>
+  <div class="fx-pl-sub">BOOTING COLLECTIVE MIND…</div>
+</div>
+
+<!-- Neural network -->
+<canvas id="fx-net"></canvas>
+
+<!-- Aurora cursor -->
+<div id="fx-aurora"></div>
+
+<script>
+(function(){
+  'use strict';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ────────── PRELOADER ────────── */
+  (function preloader(){
+    const pl = document.getElementById('fx-preloader');
+    const txt = document.getElementById('fxPlTxt');
+    if(txt){
+      const s = txt.textContent;
+      txt.innerHTML = s.split('').map((c,i)=>`<span style="animation-delay:${i*60}ms">${c}</span>`).join('');
+    }
+    const hide = ()=>{ pl && pl.classList.add('hide'); document.body.classList.add('fx-ready'); };
+    if(document.readyState === 'complete'){ setTimeout(hide, 900); }
+    else { window.addEventListener('load', ()=>setTimeout(hide, 900), {once:true}); }
+    setTimeout(hide, 3500); // hard fallback
+  })();
+
+  /* ────────── NEURAL NETWORK CANVAS ────────── */
+  (function neural(){
+    if(reduce) return;
+    const cv = document.getElementById('fx-net');
+    if(!cv) return;
+    const ctx = cv.getContext('2d');
+    let W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);
+    const nodes=[]; const mouse={x:-9999,y:-9999};
+    const COUNT = window.innerWidth < 768 ? 32 : 60;
+    const LINK_DIST = 150;
+
+    function resize(){
+      W = cv.width = innerWidth * dpr;
+      H = cv.height = innerHeight * dpr;
+      cv.style.width = innerWidth+'px';
+      cv.style.height = innerHeight+'px';
+    }
+    function seed(){
+      nodes.length=0;
+      for(let i=0;i<COUNT;i++){
+        nodes.push({
+          x:Math.random()*W, y:Math.random()*H,
+          vx:(Math.random()-.5)*0.25*dpr,
+          vy:(Math.random()-.5)*0.25*dpr,
+          r:(Math.random()*1.6+0.6)*dpr
+        });
+      }
+    }
+    resize(); seed();
+    addEventListener('resize',()=>{resize();seed()},{passive:true});
+    addEventListener('mousemove',e=>{mouse.x=e.clientX*dpr;mouse.y=e.clientY*dpr},{passive:true});
+    addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999});
+
+    const LD = LINK_DIST*dpr;
+    function step(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=0;i<nodes.length;i++){
+        const a=nodes[i];
+        a.x+=a.vx; a.y+=a.vy;
+        if(a.x<0||a.x>W) a.vx*=-1;
+        if(a.y<0||a.y>H) a.vy*=-1;
+
+        // mouse attraction
+        const mdx=mouse.x-a.x, mdy=mouse.y-a.y;
+        const md=Math.hypot(mdx,mdy);
+        if(md<240*dpr){
+          a.vx += mdx/md * 0.015;
+          a.vy += mdy/md * 0.015;
+        }
+        // cap velocity
+        const sp=Math.hypot(a.vx,a.vy), MX=0.6*dpr;
+        if(sp>MX){a.vx=a.vx/sp*MX;a.vy=a.vy/sp*MX}
+
+        ctx.beginPath();
+        ctx.arc(a.x,a.y,a.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(240,165,0,.55)';
+        ctx.fill();
+
+        for(let j=i+1;j<nodes.length;j++){
+          const b=nodes[j];
+          const dx=a.x-b.x, dy=a.y-b.y;
+          const d=Math.hypot(dx,dy);
+          if(d<LD){
+            const op = (1-d/LD)*0.35;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+            ctx.strokeStyle=`rgba(192,57,43,${op})`;
+            ctx.lineWidth=dpr*0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    step();
+  })();
+
+  /* ────────── AURORA CURSOR ────────── */
+  (function aurora(){
+    if(reduce) return;
+    const a=document.getElementById('fx-aurora');
+    if(!a) return;
+    let tx=innerWidth/2,ty=innerHeight/2, x=tx, y=ty;
+    addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY},{passive:true});
+    (function loop(){
+      x += (tx-x)*0.08;
+      y += (ty-y)*0.08;
+      a.style.transform=`translate(${x-260}px,${y-260}px)`;
+      requestAnimationFrame(loop);
+    })();
+  })();
+
+  /* ────────── CLICK RIPPLE ────────── */
+  addEventListener('click',e=>{
+    if(reduce) return;
+    const r=document.createElement('div');
+    r.className='fx-ripple';
+    r.style.left=e.clientX+'px';
+    r.style.top=e.clientY+'px';
+    document.body.appendChild(r);
+    setTimeout(()=>r.remove(),820);
+  },{passive:true});
+
+  /* ────────── TILT 3D CARDS ────────── */
+  (function tilt(){
+    if(reduce || matchMedia('(hover:none)').matches) return;
+    const sel='.wc,.tc,.rk,.ca,.dp-card,.rm-card,.hf,.hs';
+    document.querySelectorAll(sel).forEach(el=>{
+      el.classList.add('fx-tilt');
+      let rAF=0;
+      el.addEventListener('mousemove',e=>{
+        const r=el.getBoundingClientRect();
+        const px=(e.clientX-r.left)/r.width - .5;
+        const py=(e.clientY-r.top)/r.height - .5;
+        cancelAnimationFrame(rAF);
+        rAF=requestAnimationFrame(()=>{
+          el.style.transform=`perspective(900px) rotateX(${-py*6}deg) rotateY(${px*6}deg) translateY(-4px)`;
+        });
+      });
+      el.addEventListener('mouseleave',()=>{
+        el.style.transform='';
+      });
+    });
+  })();
+
+  /* ────────── NUMBER COUNTERS ────────── */
+  (function counters(){
+    const fmt = n => n.toLocaleString('en-US');
+    const parse = s => {
+      const m = String(s).replace(/,/g,'').match(/-?\d+(\.\d+)?/);
+      return m ? parseFloat(m[0]) : null;
+    };
+    const run = el => {
+      if(el.dataset.fxCounted) return;
+      const raw = el.textContent.trim();
+      const target = parse(raw);
+      if(target===null || target < 3) return;
+      const prefix = raw.split(String(target))[0] || '';
+      const suffix = raw.split(String(target)).slice(1).join(String(target)) || '';
+      el.dataset.fxCounted='1';
+      const dur = 1400, t0 = performance.now();
+      const isInt = !raw.includes('.');
+      const step = now => {
+        const p = Math.min(1,(now-t0)/dur);
+        const e = 1 - Math.pow(1-p,3);
+        const v = target * e;
+        el.textContent = prefix + (isInt ? fmt(Math.round(v)) : v.toFixed(1)) + suffix;
+        if(p<1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) run(e.target); });
+    },{threshold:.5});
+    document.querySelectorAll('.hs-n,.bc-n,.rr-pct,.tc-pct').forEach(el=>io.observe(el));
+  })();
+
+  /* ────────── SCRAMBLE TEXT on section titles ────────── */
+  (function scramble(){
+    if(reduce) return;
+    const CHARS='!<>-_\\/[]{}—=+*^?#01ABCXYZ';
+    function scrambleOnce(el){
+      const final = el.dataset.fxFinal || el.textContent;
+      el.dataset.fxFinal = final;
+      const len = final.length;
+      let frame = 0;
+      const dur = 22 + len;
+      const step = () => {
+        let out='';
+        for(let i=0;i<len;i++){
+          const start = Math.floor(i*0.6);
+          const end = start + 8;
+          if(frame >= end){ out += final[i]; }
+          else if(frame < start){ out += final[i]===' '?' ':CHARS[Math.floor(Math.random()*CHARS.length)]; }
+          else { out += final[i]===' '?' ':CHARS[Math.floor(Math.random()*CHARS.length)]; }
+        }
+        el.textContent = out;
+        frame++;
+        if(frame < dur) requestAnimationFrame(step);
+        else el.textContent = final;
+      };
+      requestAnimationFrame(step);
+    }
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting && !e.target.dataset.fxScrambled){
+          e.target.dataset.fxScrambled='1';
+          scrambleOnce(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:.6});
+    document.querySelectorAll('.sh-title').forEach(el=>{
+      if(el.children.length===0) io.observe(el);
+    });
+  })();
+
+  /* ────────── SCROLL SPARKS ────────── */
+  (function scrollSparks(){
+    if(reduce) return;
+    let last = performance.now();
+    let lastY = scrollY;
+    addEventListener('scroll',()=>{
+      const now = performance.now();
+      if(now-last < 80) return;
+      const dy = scrollY-lastY; lastY=scrollY;
+      if(Math.abs(dy) < 25) return;
+      last=now;
+      for(let i=0;i<2;i++){
+        const s=document.createElement('div');
+        s.className='fx-scroll-particle';
+        const x = Math.random()*innerWidth;
+        const y = dy>0 ? innerHeight-20 : 20;
+        s.style.left=x+'px'; s.style.top=y+'px';
+        s.style.setProperty('--fx-dx',((Math.random()-.5)*60)+'px');
+        s.style.setProperty('--fx-dy',(dy>0 ? -80 : 80)+'px');
+        const cols=['#C0392B','#F0A500','#00D2A0'];
+        s.style.background=cols[i%3]; s.style.boxShadow='0 0 10px '+cols[i%3];
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),1400);
+      }
+    },{passive:true});
+  })();
+
+  /* ────────── SECTION HEADER REVEAL ── observe .sh as before but add .vis if missing ── */
+  (function fallbackReveal(){
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+    },{threshold:.15});
+    document.querySelectorAll('.sh,.wc,.hf,.rag-step,.rk,.tc,.tk-row,.br,.dp-card,.tk-wallet-row,.rm-card,.ca').forEach(el=>io.observe(el));
+  })();
+
+})();
+</script>
+
 </body>
 </html>
