@@ -16,7 +16,7 @@
  * VARIABLES DE ENTORNO (Vercel → Settings → Environment Variables):
  *   GROQ_API_KEY           — API key de Groq (obligatoria para synergix_ask)
  *   GF_SP_ENDPOINT         — SP de Greenfield (opcional, para datos live)
- *   GF_BUCKET              — Nombre del bucket (default: synergix)
+ *   GF_BUCKET              — Nombre del bucket (default: synergix-v2)
  *   MCP_SECRET             — Token de autorización opcional (recomendado)
  * ─────────────────────────────────────────────────────────────────────────────
  */
@@ -48,7 +48,7 @@ const SYNERGIX = {
     four_meme:"https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff"
   },
   bucket: {
-    name:     "synergix",
+    name:     "synergix-v2",
     network:  "BNB Greenfield Mainnet",
     chain_id: 1017,
     sp:       "https://greenfield-sp.bnbchain.org",
@@ -281,7 +281,7 @@ async function toolAsk({ query, lang = "es", context = "" }) {
   // System prompt que refleja la arquitectura real de Synergix
   const systemPrompt = `You are Synergix, the world's first AI deployed on BNB Greenfield DCellar — a decentralized collective intelligence system.
 
-Your knowledge comes from community contributions stored permanently on BNB Greenfield blockchain storage (bucket: "synergix"). You are NOT a general chatbot — you are a specialized AI that answers based on collective on-chain knowledge.
+Your knowledge comes from community contributions stored permanently on BNB Greenfield blockchain storage (bucket: "synergix-v2"). You are NOT a general chatbot — you are a specialized AI that answers based on collective on-chain knowledge.
 
 KEY FACTS ABOUT YOU:
 - You run as a Telegram bot (@synergix_ai_bot) with a 6-tier reputation system
@@ -348,7 +348,7 @@ RESPONSE RULES:
     usage:   data.usage || null,
     rag_info: {
       engine:    "keyword-scoring",
-      storage:   "BNB Greenfield bucket: synergix",
+      storage:   "BNB Greenfield bucket: synergix-v2",
       sync:      "every 8 minutes via federation_loop",
       rule:      "80% on-chain data + 20% Groq (when data available)"
     }
