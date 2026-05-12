@@ -33,8 +33,8 @@
    RESET & BASE
 ════════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--w);font-family:var(--B);overflow-x:hidden;cursor:none;line-height:1}
+html{scroll-behavior:smooth;font-size:16px;-webkit-tap-highlight-color:transparent;background:#060608!important}
+body{background:var(--bg);color:var(--w);font-family:var(--B);overflow-x:hidden;cursor:none;line-height:1;background:#060608!important}
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
 button{border:none;background:none;cursor:none;font-family:inherit}
@@ -75,7 +75,7 @@ strong{font-weight:700;color:var(--w)}
 ════════════════════════════════════════════════════════ */
 #langbar{
   position:fixed;top:0;left:0;right:0;height:30px;z-index:900;
-  background:rgba(6,6,8,.98);border-bottom:1px solid var(--bdr2);
+  background:#060608;border-bottom:1px solid var(--bdr2);
   display:flex;align-items:center;justify-content:center;gap:2px;
 }
 .lb{
@@ -146,7 +146,7 @@ strong{font-weight:700;color:var(--w)}
 ════════════════════════════════════════════════════════ */
 #hero{
   min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:56px 48px 56px;position:relative;z-index:2;overflow:hidden;
+  padding:56px 48px 56px;position:relative;z-index:2;overflow:hidden;background:#060608;
 }
 /* Three.js canvas — sits behind all hero content, above body bg */
 #threeCanvas{
@@ -250,7 +250,7 @@ strong{font-weight:700;color:var(--w)}
 /* ════════════════════════════════════════════════════════
    SECTIONS BASE
 ════════════════════════════════════════════════════════ */
-.s{padding:72px 48px;position:relative;z-index:2}
+.s{padding:72px 48px;position:relative;z-index:2;background:#060608}
 .s-dark{background:var(--bg2);border-top:1px solid var(--bdr2);border-bottom:1px solid var(--bdr2)}
 .s-alt{background:var(--bg3);border-top:1px solid var(--bdr2);border-bottom:1px solid var(--bdr2)}
 .si{max-width:1280px;margin:0 auto}
@@ -2097,6 +2097,9 @@ function setLang(l){
     el.style.display = el.dataset.lang===l?'inline':'none';
   });
   document.documentElement.lang = l;
+  // Forzar fondo negro siempre
+  document.documentElement.style.background='#060608';
+  document.body.style.background='#060608';
 }
 window.addEventListener('DOMContentLoaded',()=>setLang('en'));
 
