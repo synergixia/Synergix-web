@@ -1,7 +1,7 @@
 {
   "name": "Synergix",
-  "description": "The world's first AI on BNB Greenfield DCellar. Decentralized collective intelligence — every answer is grounded in community knowledge stored permanently on-chain. Ask questions, explore on-chain knowledge, get token info, and interact with the Synergix reputation system.",
-  "version": "2.0.0",
+  "description": "The world's first AI on BNB Greenfield DCellar. Stateless-absolute collective intelligence — the bucket synergix-v1 is the single source of truth. The bot pays all gas with its own wallet (BEP-362 Storage Fee Paymaster); users pay zero BNB. Local Qwen models serve the Thinker (1.5B, port 8081) and Judge (0.5B, port 8080) via llama.cpp. Ask questions, contribute knowledge, verify your wallet via EIP-4361 (sign, don't transact), read your live $SYNERGIX balance from BSC, and interact with the 6-tier on-chain reputation system.",
+  "version": "2.1.0",
   "url": "https://www.synergix.lol",
   "documentationUrl": "https://www.synergix.lol",
   "iconUrl": "https://www.synergix.lol/logo.png",
@@ -26,8 +26,8 @@
     {
       "id": "synergix_ask",
       "name": "Ask Synergix",
-      "description": "Ask a question to Synergix's RAG engine backed by BNB Greenfield collective knowledge. Returns AI-generated answers grounded in community contributions stored on-chain.",
-      "tags": ["rag", "collective-intelligence", "blockchain", "BNB-Greenfield", "knowledge"],
+      "description": "Ask a question to Synergix's RAG engine backed by the BNB Greenfield bucket synergix-v1. Returns AI-generated answers grounded in community contributions stored on-chain under the verify-before-act rule.",
+      "tags": ["rag", "collective-intelligence", "blockchain", "BNB-Greenfield", "knowledge", "synergix-v1"],
       "examples": [
         "What is BNB Greenfield DCellar?",
         "How does the Synergix rank system work?",
@@ -39,12 +39,12 @@
     {
       "id": "synergix_ranks",
       "name": "Rank System",
-      "description": "Get the complete Synergix 6-tier on-chain reputation system with point thresholds, multipliers, and daily limits.",
-      "tags": ["ranks", "reputation", "on-chain", "gamification"],
+      "description": "Get the complete Synergix 6-tier on-chain reputation system (Iniciado -> Oraculo) with point thresholds, multipliers, daily limits and trust_score interactions.",
+      "tags": ["ranks", "reputation", "on-chain", "gamification", "trust-score"],
       "examples": [
         "Show me the Synergix rank table",
         "What are the ranks in Synergix?",
-        "How many points do I need to reach Oráculo?"
+        "How many points do I need to reach Oraculo?"
       ],
       "inputModes": ["text/plain"],
       "outputModes": ["application/json"]
@@ -52,7 +52,7 @@
     {
       "id": "synergix_token",
       "name": "Token Info",
-      "description": "Get $SYNERGIX token details: contract address on BNB Chain, tax structure, and how 1% buy/sell tax funds Greenfield storage.",
+      "description": "Get $SYNERGIX token details: contract address on BNB Chain, tax structure, and how 1% buy/sell tax funds the Greenfield storage that the bot pays for every user.",
       "tags": ["token", "BNB-Chain", "tokenomics", "crypto", "DeFi"],
       "examples": [
         "What is the $SYNERGIX contract address?",
@@ -65,10 +65,10 @@
     {
       "id": "synergix_bucket",
       "name": "Greenfield Bucket Info",
-      "description": "Explore the Synergix BNB Greenfield bucket — the on-chain storage powering the AI. Shows bucket structure, paths, and the RAG engine architecture.",
-      "tags": ["greenfield", "DCellar", "storage", "decentralized", "bucket"],
+      "description": "Explore the synergix-v1 bucket on DCellar: brain_pointer, top10.json, system_config.json, challenges/current.json, users/{uid}, aportes/YYYY-MM/*, logs/*.log.gz, ai_guard.txt, emergency_lock. Shows the stateless-absolute architecture and the verify-before-act rule.",
+      "tags": ["greenfield", "DCellar", "storage", "decentralized", "bucket", "synergix-v1", "stateless-absolute"],
       "examples": [
-        "What is in the Synergix Greenfield bucket?",
+        "What is inside the synergix-v1 bucket?",
         "How does Synergix store knowledge on-chain?",
         "Explain the Synergix bucket structure"
       ],
@@ -76,10 +76,36 @@
       "outputModes": ["application/json"]
     },
     {
+      "id": "synergix_wallet_verification",
+      "name": "Human Verification & Live Balance",
+      "description": "Explain the EIP-4361 wallet verification flow (no gas for the user, just a signed message) and the live $SYNERGIX balance query from BSC via balanceOf. The balance is never stored in the bucket.",
+      "tags": ["EIP-4361", "human-verification", "wallet", "BSC", "balance", "DexScreener"],
+      "examples": [
+        "How do I verify my wallet with Synergix?",
+        "How does Synergix check my $SYNERGIX balance?",
+        "Does verifying my wallet cost gas?"
+      ],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
+      "id": "synergix_gas_sponsorship",
+      "name": "Gas Sponsorship",
+      "description": "Explain how the Synergix bot pays all Greenfield gas with its own wallet (PRIVATE_KEY / PaymentAddress, BEP-362 Storage Fee Paymaster), why users never pay anything, and how deferred registration keeps costs low.",
+      "tags": ["gas-sponsorship", "BEP-362", "paymaster", "relayer", "deferred-registration"],
+      "examples": [
+        "Who pays the gas in Synergix?",
+        "Do I need BNB to use the Synergix bot?",
+        "What is deferred registration?"
+      ],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
       "id": "synergix_stats",
       "name": "Network Stats",
-      "description": "Get global Synergix network statistics: RAG engine status, federation loop, supported languages, and system health.",
-      "tags": ["stats", "network", "system", "health"],
+      "description": "Get global Synergix network statistics: RAG engine status, Thinker/Judge models (Qwen 1.5B / 0.5B via llama.cpp), federation loop, supported languages, AI Guard state and emergency_lock state.",
+      "tags": ["stats", "network", "system", "health", "ai-guard", "emergency-lock"],
       "examples": [
         "What are the Synergix network statistics?",
         "Is Synergix operational?",

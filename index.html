@@ -849,6 +849,9 @@ body::before{
   <div class="nav-links">
     <a href="#why" class="t" data-key="nav_why"></a>
     <a href="#bucket" class="t" data-key="nav_bucket"></a>
+    <a href="#gas" class="t" data-key="nav_gas"></a>
+    <a href="#wallet" class="t" data-key="nav_wallet"></a>
+    <a href="#safety" class="t" data-key="nav_safety"></a>
     <a href="#how" class="t" data-key="nav_how"></a>
     <a href="#depin" class="t" data-key="nav_depin"></a>
     <a href="#tokenomics" class="t" data-key="nav_token"></a>
@@ -863,6 +866,9 @@ body::before{
 <div id="mob">
   <a href="#why" onclick="toggleMob()" class="t" data-key="nav_why"></a>
   <a href="#bucket" onclick="toggleMob()" class="t" data-key="nav_bucket"></a>
+  <a href="#gas" onclick="toggleMob()" class="t" data-key="nav_gas"></a>
+  <a href="#wallet" onclick="toggleMob()" class="t" data-key="nav_wallet"></a>
+  <a href="#safety" onclick="toggleMob()" class="t" data-key="nav_safety"></a>
   <a href="#how" onclick="toggleMob()" class="t" data-key="nav_how"></a>
   <a href="#depin" onclick="toggleMob()" class="t" data-key="nav_depin"></a>
   <a href="#tokenomics" onclick="toggleMob()" class="t" data-key="nav_token"></a>
@@ -990,38 +996,128 @@ body::before{
   <div class="si">
     <div class="sh">
       <div class="sh-eye t" data-key="bucket_eye"></div>
-      <h2 class="sh-title"><span class="wh" data-key="h2_bucket_w">THE BUCKET <em>synergix</em></span><br><span data-key="h2_bucket_r">ON DCELLAR</span></h2>
+      <h2 class="sh-title"><span class="wh" data-key="h2_bucket_w">THE BUCKET <em>synergix-v1</em></span><br><span data-key="h2_bucket_r">ON DCELLAR</span></h2>
       <p class="sh-sub t" data-key="bucket_sub"></p>
     </div>
     <div class="bucket-grid">
       <div class="b-left">
-        <div class="br reveal-x"><span class="br-icon">📁</span><div><div class="br-path">aportes/YYYY-MM/&#123;uid&#125;_&#123;ts&#125;.txt</div><div class="br-desc t" data-key="br1_d"></div><div class="br-freq">⚡ <span class="t" data-key="br1_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.08s"><span class="br-icon">🧠</span><div><div class="br-path">SYNERGIXAI/Synergix_ia_YYYYMMDD_HHmmss.txt</div><div class="br-desc t" data-key="br2_d"></div><div class="br-freq">🔄 <span class="t" data-key="br2_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.16s"><span class="br-icon">💾</span><div><div class="br-path">data/synergix_db_YYYYMMDD_HHmmss.json</div><div class="br-desc t" data-key="br3_d"></div><div class="br-freq">🔄 <span class="t" data-key="br3_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.24s"><span class="br-icon">👤</span><div><div class="br-path">users/&#123;uid&#125;</div><div class="br-desc t" data-key="br4_d"></div><div class="br-freq">🔄 <span class="t" data-key="br4_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.32s"><span class="br-icon">📋</span><div><div class="br-path">logs/YYYY-MM-DD_&#123;ts&#125;_events.log</div><div class="br-desc t" data-key="br5_d"></div><div class="br-freq">📅 <span class="t" data-key="br5_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.4s"><span class="br-icon">🛡️</span><div><div class="br-path">backups/snapshot_YYYYMMDD_&#123;ts&#125;.bak</div><div class="br-desc t" data-key="br6_d"></div><div class="br-freq">📅 <span class="t" data-key="br6_f"></span></div></div></div>
+        <div class="br reveal-x"><span class="br-icon">🧭</span><div><div class="br-path">aisynergix/data/brain_pointer</div><div class="br-desc t" data-key="br1_d"></div><div class="br-freq">🏷️ <span class="t" data-key="br1_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.06s"><span class="br-icon">🏆</span><div><div class="br-path">aisynergix/data/top10.json</div><div class="br-desc t" data-key="br2_d"></div><div class="br-freq">🔄 <span class="t" data-key="br2_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.12s"><span class="br-icon">⚙️</span><div><div class="br-path">aisynergix/data/system_config.json</div><div class="br-desc t" data-key="br3_d"></div><div class="br-freq">🔒 <span class="t" data-key="br3_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.18s"><span class="br-icon">🎯</span><div><div class="br-path">aisynergix/data/challenges/current.json</div><div class="br-desc t" data-key="br4_d"></div><div class="br-freq">📅 <span class="t" data-key="br4_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.24s"><span class="br-icon">👤</span><div><div class="br-path">aisynergix/users/&#123;uid_ofuscado&#125;</div><div class="br-desc t" data-key="br5_d"></div><div class="br-freq">🏷️ <span class="t" data-key="br5_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.3s"><span class="br-icon">📁</span><div><div class="br-path">aisynergix/aportes/YYYY-MM/&#123;uid&#125;_&#123;ts&#125;.txt</div><div class="br-desc t" data-key="br6_d"></div><div class="br-freq">⚡ <span class="t" data-key="br6_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.36s"><span class="br-icon">📋</span><div><div class="br-path">aisynergix/logs/&#123;YYYY-MM-DD&#125;.log.gz</div><div class="br-desc t" data-key="br7_d"></div><div class="br-freq">🗜️ <span class="t" data-key="br7_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.42s"><span class="br-icon">🛡️</span><div><div class="br-path">aisynergix/data/ai_guard.txt</div><div class="br-desc t" data-key="br8_d"></div><div class="br-freq">🔐 <span class="t" data-key="br8_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.48s"><span class="br-icon">🚨</span><div><div class="br-path">aisynergix/data/emergency_lock</div><div class="br-desc t" data-key="br9_d"></div><div class="br-freq">⛔ <span class="t" data-key="br9_f"></span></div></div></div>
       </div>
       <div class="b-right">
         <div class="term">
           <div class="term-bar"><div class="tb-r"></div><div class="tb-y"></div><div class="tb-g"></div></div>
           <div><span class="t-p">$ </span><span class="t-c">synergix status --verbose</span></div>
           <div class="t-o">🚀 Status: <span class="t-gr">ONLINE</span></div>
-          <div class="t-o">📦 Bucket: <span class="t-gd">synergix</span> (DCellar)</div>
-          <div class="t-o">🧠 Brain: <span class="t-gr">loaded from GF ✅</span></div>
-          <div class="t-o">💾 DB restored: <span class="t-gr">automatically ✅</span></div>
-          <div class="t-o">🔍 RAG cache: <span class="t-gd">contributions indexed</span></div>
-          <div class="t-o">⚡ Federation: <span class="t-gr">every 8 min</span></div>
+          <div class="t-o">📦 Bucket: <span class="t-gd">synergix-v1</span> (DCellar)</div>
+          <div class="t-o">🧭 brain_pointer: <span class="t-gr">latest_v = v0.0.1 ✅</span></div>
+          <div class="t-o">🧠 FAISS loaded from <span class="t-gd">brains/</span> in RAM</div>
+          <div class="t-o">⚙️ system_config.json: <span class="t-gr">OK ✅</span></div>
+          <div class="t-o">🛡️ ai_guard.txt: <span class="t-gr">patterns loaded</span></div>
+          <div class="t-o">🚨 emergency_lock: <span class="t-gr">NOT present</span></div>
+          <div class="t-o">⛽ Gas payer: <span class="t-gd">bot wallet (PRIVATE_KEY)</span></div>
+          <div class="t-o">👤 User cost: <span class="t-gr">ZERO BNB</span></div>
           <div>&nbsp;</div>
-          <div><span class="t-p">$ </span><span class="t-c">cat restore.log</span></div>
-          <div class="t-o">[OK] DB downloaded from bucket</div>
-          <div class="t-o">[OK] Brain: Synergix_ia_20260318.txt</div>
-          <div class="t-o">[OK] RAG rebuilt in 0.3s</div>
-          <div class="t-o">[OK] 0 contributions lost</div>
+          <div><span class="t-p">$ </span><span class="t-c">cat boot.log</span></div>
+          <div class="t-o">[OK] verify-before-act enforced</div>
+          <div class="t-o">[OK] stateless absolute: no local DB</div>
+          <div class="t-o">[OK] deferred user registration ON</div>
+          <div class="t-o">[OK] 0 files on disk · 100% bucket</div>
           <div>&nbsp;</div>
           <div><span class="t-p">$ </span><span class="t-c t-blink">_</span></div>
         </div>
         <div class="b-note"><div class="b-note-t t" data-key="bucket_note"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ GAS SPONSORSHIP -->
+<section class="s s-alt" id="gas">
+  <div class="si">
+    <div class="sh">
+      <div class="sh-eye t" data-key="gas_eye"></div>
+      <h2 class="sh-title"><span class="wh" data-key="h2_gas_w">BOT PAYS</span> <span data-key="h2_gas_r">ALL THE GAS</span></h2>
+      <p class="sh-sub t" data-key="gas_sub"></p>
+    </div>
+    <div class="why-grid">
+      <div class="wc reveal"><div class="wc-n">01</div><span class="wc-icon">⛽</span><div class="wc-t t" data-key="gas1_t"></div><div class="wc-d t" data-key="gas1_d"></div><span class="wc-b">BEP-362 Paymaster</span></div>
+      <div class="wc reveal" style="transition-delay:.1s"><div class="wc-n">02</div><span class="wc-icon">🪪</span><div class="wc-t t" data-key="gas2_t"></div><div class="wc-d t" data-key="gas2_d"></div><span class="wc-b">Zero BNB required</span></div>
+      <div class="wc reveal" style="transition-delay:.2s"><div class="wc-n">03</div><span class="wc-icon">🔄</span><div class="wc-t t" data-key="gas3_t"></div><div class="wc-d t" data-key="gas3_d"></div><span class="wc-b">Verify → create/update</span></div>
+      <div class="wc reveal" style="transition-delay:.3s"><div class="wc-n">04</div><span class="wc-icon">💤</span><div class="wc-t t" data-key="gas4_t"></div><div class="wc-d t" data-key="gas4_d"></div><span class="wc-b">Deferred registration</span></div>
+      <div class="wc reveal" style="transition-delay:.4s"><div class="wc-n">05</div><span class="wc-icon">🧊</span><div class="wc-t t" data-key="gas5_t"></div><div class="wc-d t" data-key="gas5_d"></div><span class="wc-b">Stateless absolute</span></div>
+      <div class="wc reveal" style="transition-delay:.5s"><div class="wc-n">06</div><span class="wc-icon">🧾</span><div class="wc-t t" data-key="gas6_t"></div><div class="wc-d t" data-key="gas6_d"></div><span class="wc-b">Signed by bot wallet</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ WALLET VERIFICATION & BALANCE -->
+<section class="s" id="wallet">
+  <div class="si">
+    <div class="sh">
+      <div class="sh-eye t" data-key="wallet_eye"></div>
+      <h2 class="sh-title"><span class="wh" data-key="h2_wallet_w">HUMAN PROOF &amp;</span> <span data-key="h2_wallet_r">REAL-TIME BALANCE</span></h2>
+      <p class="sh-sub t" data-key="wallet_sub"></p>
+    </div>
+    <div class="rag-split">
+      <div class="rag-left">
+        <div class="rag-step reveal-x"><div class="rs-n">1</div><div class="rs-t t" data-key="wv1"></div></div>
+        <div class="rag-step reveal-x" style="transition-delay:.06s"><div class="rs-n">2</div><div class="rs-t t" data-key="wv2"></div></div>
+        <div class="rag-step reveal-x" style="transition-delay:.12s"><div class="rs-n">3</div><div class="rs-t t" data-key="wv3"></div></div>
+        <div class="rag-step reveal-x" style="transition-delay:.18s"><div class="rs-n">4</div><div class="rs-t t" data-key="wv4"></div></div>
+        <div class="rag-step reveal-x" style="transition-delay:.24s"><div class="rs-n">5</div><div class="rs-t t" data-key="wv5"></div></div>
+        <div class="rag-step reveal-x" style="transition-delay:.3s"><div class="rs-n">6</div><div class="rs-t t" data-key="wv6"></div></div>
+        <div class="rag-step reveal-x" style="transition-delay:.36s"><div class="rs-n">7</div><div class="rs-t t" data-key="wv7"></div></div>
+      </div>
+      <div class="rag-right reveal">
+        <div class="rr-t">// NEW USER TAGS</div>
+        <div class="rr-rule"><div class="rr-pct gold">✓</div><div><div class="rr-label">human_verified</div><div class="rr-detail t" data-key="tag_human"></div></div></div>
+        <div class="rr-rule"><div class="rr-pct">0-10</div><div><div class="rr-label">trust_score</div><div class="rr-detail t" data-key="tag_trust"></div></div></div>
+        <div class="rr-rule"><div class="rr-pct gold" style="font-size:1.6rem">0x…</div><div><div class="rr-label">wallet_address</div><div class="rr-detail t" data-key="tag_wallet"></div></div></div>
+        <div class="rr-rule"><div class="rr-pct" style="font-size:1.6rem">sig</div><div><div class="rr-label">signature (on aportes)</div><div class="rr-detail t" data-key="tag_sig"></div></div></div>
+        <div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--bdr2);font-family:var(--M);font-size:.64rem;line-height:1.8;color:var(--w2)">
+          <div style="color:var(--gr);letter-spacing:2px;margin-bottom:6px">// REAL-TIME BSC BALANCE</div>
+          <div class="t" data-key="balance_note"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ AI GUARD & EMERGENCY LOCK -->
+<section class="s s-alt" id="safety">
+  <div class="si">
+    <div class="sh">
+      <div class="sh-eye t" data-key="safety_eye"></div>
+      <h2 class="sh-title"><span data-key="h2_safety_r">AI GUARD</span> <span class="wh" data-key="h2_safety_w">&amp; EMERGENCY LOCK</span></h2>
+      <p class="sh-sub t" data-key="safety_sub"></p>
+    </div>
+    <div class="depin-wrap">
+      <div class="dp-col">
+        <div class="dp-card reveal-x"><span class="dp-icon">🛡️</span><div class="dp-t t" data-key="guard_t"></div><div class="dp-d t" data-key="guard_d"></div><span class="dp-tag">ai_guard.txt</span></div>
+        <div class="dp-card reveal-x" style="transition-delay:.1s"><span class="dp-icon">🚨</span><div class="dp-t t" data-key="lock_t"></div><div class="dp-d t" data-key="lock_d"></div><span class="dp-tag">emergency_lock (0 bytes)</span></div>
+      </div>
+      <div class="dp-right">
+        <div class="burn-panel reveal" style="padding:30px 26px">
+          <span class="burn-flame" style="animation:none;filter:drop-shadow(0 0 18px rgba(0,210,160,.5))">🔒</span>
+          <div class="burn-h t" data-key="verify_h"></div>
+          <div class="burn-s t" data-key="verify_s"></div>
+          <div class="burn-log" style="margin-top:10px">
+            <div class="bl-h">// VERIFY-BEFORE-ACT.log</div>
+            <div class="bl-l">→ <span class="t" data-key="vb1"></span></div>
+            <div class="bl-l">→ <span class="t" data-key="vb2"></span></div>
+            <div class="bl-l">→ <span class="t" data-key="vb3"></span></div>
+            <div class="bl-l">→ <span class="t" data-key="vb4"></span></div>
+            <div class="bl-l">→ Stateless absolute <span class="bl-ok">✅</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1330,6 +1426,9 @@ const T={
 en:{
   nav_why:"Why Unique",
   nav_bucket:"Bucket",
+  nav_gas:"Gas",
+  nav_wallet:"Wallet",
+  nav_safety:"Safety",
   nav_how:"How It Works",
   nav_depin:"DePIN & Burn",
   nav_token:"Token",
@@ -1398,18 +1497,24 @@ en:{
   wc4_d:"Every contribution carries 4 on-chain tags: AI-generated summary, quality score, author identity, and evaluator data. Immutable, verifiable, auditable by anyone on DCellar.",
   wc5_d:"Synergix's RAG engine searches the Greenfield bucket first. 80% of every answer comes from actual community contributions stored on-chain. No hallucinations — immutable blockchain records.",
   wc6_d:"Every time the AI uses your contribution, you earn residual points automatically. At milestones (1, 5, 10, 25, 50, 100+ uses) you receive a Telegram notification. Your knowledge earns forever.",
-  br1_d:"Every community contribution immortalized with 4 on-chain metadata tags. The raw material of collective intelligence. Immutable. Forever.",
-  br2_d:"The fused collective brain. A versioned synthesis of all community knowledge, updated every 8 minutes. SHA-256 integrity hash. Powers the 80% rule.",
-  br3_d:"Complete database backup on-chain: reputation, points, settings, all stats. When the server restarts, this file is downloaded first and the full AI state is restored automatically.",
-  br4_d:"Every user's on-chain profile: role, points, daily contribution count, last active. Auditable by anyone on DCellar.",
-  br5_d:"Immutable event audit trail. Every action recorded on-chain: contributions, rank-ups, validations. Permanent historical record nobody can alter.",
-  br6_d:"Full state snapshot. Complete point-in-time recovery of the entire collective intelligence. If anything catastrophic happens, the network rewinds and recovers.",
-  br1_f:"⚡ Real-time upload",
-  br2_f:"🔄 Every 8 minutes",
-  br3_f:"🔄 Every 8 minutes",
-  br4_f:"🔄 Batch every 8 minutes",
-  br5_f:"📅 Daily flush (midnight UTC)",
-  br6_f:"📅 Weekly (every Monday)",
+  br1_d:"The pointer object. Its <strong>latest_v</strong> tag tells the bot which FAISS index version to load into RAM on startup. Empty 0‑byte object — the tag IS the data.",
+  br2_d:"Global leaderboard (top contributors by points and impact). Regenerated by a cron every 10 minutes: the old object is deleted and a new one created to avoid seal conflicts.",
+  br3_d:"Central configuration: prompts, thresholds, judge/thinker parameters. Read by the bot on boot. Already exists — never duplicated. Values previously hardcoded are now read from this file.",
+  br4_d:"Active weekly challenge for the community. A scheduled cron replaces this object every week with a freshly generated theme, reward and deadline.",
+  br5_d:"Obfuscated user profile (SHA-256 UID). Empty 0-byte object whose <strong>tags</strong> ARE the profile: fsm_state, points, rank, daily_aportes_count, total_uses_count, language, last_seen_ts, human_verified, trust_score, wallet_address.",
+  br6_d:"Every accepted contribution with 5 evaluation tags: quality_score, author_uid, lang, category, impact_index — plus an optional <strong>signature</strong> tag for verified-wallet authors. Immutable. Forever.",
+  br7_d:"Daily operational logs, compressed with gzip before upload to save storage space. Rolled and uploaded by a daily cron at midnight UTC.",
+  br8_d:"Anti-jailbreak and prompt-injection pattern list. Loaded on startup; every user message is checked against it before reaching the Thinker or Judge. Only the admin can modify it.",
+  br9_d:"Emergency kill switch. If this 0-byte object exists, every write to the bucket is blocked and the bot runs in read-only mode. Checked before every write and before every scheduled task.",
+  br1_f:"🏷️ tag: latest_v = v0.0.1",
+  br2_f:"🔄 Rebuilt every 10 minutes",
+  br3_f:"🔒 Read on boot · admin-only",
+  br4_f:"📅 Weekly cron (auto-replace)",
+  br5_f:"🏷️ Tags ARE the profile",
+  br6_f:"⚡ Real-time on acceptance",
+  br7_f:"🗜️ Daily · gzip compressed",
+  br8_f:"🔐 Admin-only · read every request",
+  br9_f:"⛔ Existence = read-only mode",
   hf1_t:"Contribute",
   hf2_t:"Immortalized",
   hf3_t:"AI Uses It",
@@ -1500,7 +1605,53 @@ en:{
   rm_d8:"4 complete languages: ES, EN, ZH_CN, ZH_TW. The bot responds in the user's language with native multilingual RAG system.",
   rm_d9:"GF as hard drive: full DB sync + automatic restoration on startup. If the server dies, the bot restarts and recovers everything from Greenfield in seconds."
 ,
-  bucket_note:"<strong>Zero data loss on server restart.</strong> The Greenfield bucket <strong>synergix</strong> is the actual hard drive. Servers are temporary. The blockchain is permanent. Every contribution becomes part of a censorship-resistant, decentralized memory that outlives any infrastructure.",
+  bucket_note:"<strong>Zero data loss on server restart.</strong> The Greenfield bucket <strong>synergix-v1</strong> is the actual hard drive. Servers are temporary. The blockchain is permanent. Every object follows the <em>verify-before-act</em> rule: check existence first, then create or update. The bot reconstructs its entire state from the bucket at boot — no local DB, no local files.",
+  gas_eye:"Gas sponsorship",
+  h2_gas_w:"BOT PAYS",
+  h2_gas_r:"ALL THE GAS",
+  gas_sub:"The bot is the universal relayer. Users never pay gas, never need BNB, never touch Greenfield storage fees. All bucket operations are signed and paid with the PRIVATE_KEY configured in the bot's .env.",
+  gas1_t:"Storage Fee Paymaster",
+  gas1_d:"Greenfield 1.7 introduced <strong>BEP-362</strong>, the Storage Fee Paymaster, letting projects sponsor storage fees for their users. The Synergix bot uses it natively via the Python SDK — PaymentAddress is the bot's own wallet.",
+  gas2_t:"Zero cost for users",
+  gas2_d:"Creating a profile, uploading a contribution, updating tags, regenerating the leaderboard — every on-chain action is paid by the bot. Telegram users don't need BNB, a wallet, or any crypto knowledge to interact.",
+  gas3_t:"Verify-before-act (golden rule)",
+  gas3_d:"Before any operation the bot calls <code>get_object_head</code>. If the object does NOT exist, it creates it with defaults via <code>create_object</code>. If it exists, it reads it, then updates tags or replaces content. Leaderboard and logs are deleted + recreated to avoid seal conflicts.",
+  gas4_t:"Deferred user registration",
+  gas4_d:"New users live only in RAM. Their on-chain profile is created ONLY after their first real action (first contribution or explicit language change). This is the main anti-spam defense and saves gas on never-active users.",
+  gas5_t:"Stateless absolute",
+  gas5_d:"The server has <strong>no database, no files, no state</strong>. Everything — config, brain pointer, profiles, contributions, challenges, logs — lives in <code>synergix-v1</code>. If the server is wiped, rebooting reconstructs the entire system from the bucket.",
+  gas6_t:"Bot never spends user funds",
+  gas6_d:"The bot pays Greenfield gas with its own wallet but NEVER executes transactions involving user funds. For buying/selling $SYNERGIX the bot only generates deep links — the user signs from their own wallet.",
+  wallet_eye:"Proof of humanity · sign not transact",
+  h2_wallet_w:"HUMAN PROOF &amp;",
+  h2_wallet_r:"REAL-TIME BALANCE",
+  wallet_sub:"Verifying a wallet via <strong>EIP-4361</strong> (sign-in message, not a transaction) proves there's a real person with a private key behind the chat — without costing the user any gas. Afterwards, the $SYNERGIX balance is read live from BSC and never stored in the bucket.",
+  wv1:"<strong>User taps</strong> 💰 Synergix → 🔐 Verify Wallet in the Telegram menu.",
+  wv2:"<strong>Bot requests</strong> the user's BSC address and validates format + checksum.",
+  wv3:"<strong>Bot generates</strong> a standard EIP-4361 message with a unique nonce and shows it to the user.",
+  wv4:"<strong>User signs</strong> the message with their wallet — no transaction, no gas, just a cryptographic signature.",
+  wv5:"<strong>User pastes</strong> the signature back into the bot.",
+  wv6:"<strong>Bot verifies</strong> with <code>web3.eth.account.recover_message</code>. If the recovered address matches, verification is successful.",
+  wv7:"<strong>Tags written</strong>: <code>wallet_address</code> and <code>human_verified = true</code> are added to the user's object. The bot pays the gas. trust_score gets a small bonus.",
+  tag_human:"Set to <strong>true</strong> only when the wallet verification flow completes. If the user never verifies, this tag simply does not exist on their profile.",
+  tag_trust:"Confidence score updated after every Judge evaluation. Rises with high-quality contributions, falls with rejections or duplicates. Wallet verification adds a small bonus. Low scores trigger reduced daily limits.",
+  tag_wallet:"Stored only when verification succeeds. If the user cancels or fails, no address is ever written. Used to read live BSC balance and to sign contributions.",
+  tag_sig:"Optional cryptographic signature over the SHA-256 hash of a contribution's text, proving decentralized authorship. Only users with a verified wallet can sign; others simply omit the tag.",
+  balance_note:"The bot reads the $SYNERGIX balance live from BSC via <code>balanceOf</code> (a <em>view</em> function — no gas). Price in USD is fetched from DexScreener on demand. Nothing is ever persisted: no <code>wallet_balance_synergix</code>, no <code>wallet_balance_updated_at</code>. A short RAM cache can smooth bursts, but it never touches the bucket.",
+  safety_eye:"Anti-jailbreak · read-only switch",
+  h2_safety_r:"AI GUARD",
+  h2_safety_w:"&amp; EMERGENCY LOCK",
+  safety_sub:"Two objects in <code>aisynergix/data/</code> protect the system: a pattern list that filters every user message before it reaches the models, and a zero-byte switch that freezes every write in the bucket.",
+  guard_t:"ai_guard.txt — Pattern firewall",
+  guard_d:"A plain-text list of forbidden patterns: jailbreak attempts, prompt injections, toxic content. Created automatically on first boot with a default list. <strong>Every user message is checked against it before hitting the Thinker (Qwen 1.5B, port 8081) or the Judge (Qwen 0.5B, port 8080)</strong>. Only the admin can edit it; updates are paid by the bot wallet.",
+  lock_t:"emergency_lock — Kill switch",
+  lock_d:"A zero-byte object. <strong>Its mere existence freezes every write in the bucket</strong>. The bot checks it before any write and at the start of every scheduled task. Reading it is free (a HEAD call). Only the admin can create or delete it from Telegram via a special action.",
+  verify_h:"VERIFY-BEFORE-ACT",
+  verify_s:"Enforced on every bucket operation",
+  vb1:"HEAD the object first (free read)",
+  vb2:"Does NOT exist → create_object with defaults + tags",
+  vb3:"EXISTS → read, then update tags or replace content",
+  vb4:"Full renewal objects → delete + recreate (avoids seal conflicts)",
   stat_sync:"Brain sync: 8 min",
   wc3_b:"Immortal by design",
   wc6_b:"Earn while you sleep"
@@ -1508,6 +1659,9 @@ en:{
 es:{
   nav_why:"Por qué único",
   nav_bucket:"Bucket",
+  nav_gas:"Gas",
+  nav_wallet:"Wallet",
+  nav_safety:"Seguridad",
   nav_how:"Cómo funciona",
   nav_depin:"DePIN & Quema",
   nav_token:"Token",
@@ -1576,18 +1730,24 @@ es:{
   wc4_d:"Cada contribución lleva 4 etiquetas on-chain: resumen generado por IA, puntuación de calidad, identidad del autor y datos del evaluador. Inmutables y auditables.",
   wc5_d:"El motor RAG de Synergix busca primero en el bucket de Greenfield. El 80% de cada respuesta proviene de contribuciones reales almacenadas on-chain.",
   wc6_d:"Cada vez que la IA usa tu contribución, ganas puntos residuales automáticamente. En hitos (1, 5, 10, 25, 50, 100+ usos) recibes notificación en Telegram.",
-  br1_d:"Cada contribución de la comunidad inmortalizada con 4 etiquetas de metadatos on-chain. La materia prima de la inteligencia colectiva. Inmutable. Para siempre.",
-  br2_d:"El cerebro colectivo fusionado. Una síntesis versionada de todo el conocimiento, actualizada cada 8 minutos con hash SHA-256.",
-  br3_d:"Respaldo completo de la base de datos on-chain. Cuando el servidor reinicia, este archivo se descarga primero y el estado de la IA se restaura automáticamente.",
-  br4_d:"El perfil on-chain de cada usuario: rol, puntos, conteo de contribuciones, última actividad. Auditable por cualquiera en DCellar.",
-  br5_d:"Registro de auditoría inmutable de eventos. Cada acción registrada on-chain. Historial permanente que nadie puede alterar.",
-  br6_d:"Snapshot completo del estado. Recuperación completa de toda la inteligencia colectiva en cualquier punto en el tiempo.",
-  br1_f:"⚡ Subida en tiempo real",
-  br2_f:"🔄 Cada 8 minutos",
-  br3_f:"🔄 Cada 8 minutos",
-  br4_f:"🔄 Lote cada 8 minutos",
-  br5_f:"📅 Diario (medianoche UTC)",
-  br6_f:"📅 Semanal (cada lunes)",
+  br1_d:"El objeto puntero. Su tag <strong>latest_v</strong> le indica al bot qué versión del índice FAISS cargar en RAM al iniciar. Archivo vacío de 0 bytes — el tag ES el dato.",
+  br2_d:"Leaderboard global (top contribuidores por puntos e impacto). Lo regenera un cron cada 10 minutos: se elimina el anterior y se crea uno nuevo para evitar conflictos con objetos sellados.",
+  br3_d:"Configuración central: prompts, umbrales, parámetros del juez/pensador. El bot lo lee al iniciar. Ya existe — no se duplica. Los valores antes hardcodeados se obtienen ahora de este archivo.",
+  br4_d:"Reto semanal activo para la comunidad. Un cron programado reemplaza este objeto cada semana con una nueva temática, recompensa y plazo.",
+  br5_d:"Perfil de usuario ofuscado (UID SHA-256). Archivo vacío de 0 bytes cuyos <strong>tags</strong> SON el perfil: fsm_state, points, rank, daily_aportes_count, total_uses_count, language, last_seen_ts, human_verified, trust_score, wallet_address.",
+  br6_d:"Cada aporte aceptado con 5 etiquetas de evaluación: quality_score, author_uid, lang, category, impact_index — más un tag opcional <strong>signature</strong> para autores con wallet verificada. Inmutable. Para siempre.",
+  br7_d:"Logs operacionales diarios, comprimidos con gzip antes de subirlos para ahorrar espacio. Los sube un cron diario a medianoche UTC.",
+  br8_d:"Lista de patrones anti-jailbreak y anti-inyección de prompts. Se carga al iniciar; cada mensaje del usuario se compara con ella antes de llegar al Pensador o al Juez. Solo el admin puede modificarla.",
+  br9_d:"Interruptor de emergencia. Si este objeto de 0 bytes existe, toda escritura en el bucket queda bloqueada y el bot pasa a modo solo-lectura. Se verifica antes de cada escritura y al inicio de cada tarea programada.",
+  br1_f:"🏷️ tag: latest_v = v0.0.1",
+  br2_f:"🔄 Regenerado cada 10 minutos",
+  br3_f:"🔒 Leído al iniciar · solo admin",
+  br4_f:"📅 Cron semanal (reemplazo auto)",
+  br5_f:"🏷️ Los tags SON el perfil",
+  br6_f:"⚡ En tiempo real al aceptarse",
+  br7_f:"🗜️ Diario · comprimido con gzip",
+  br8_f:"🔐 Solo admin · se lee en cada consulta",
+  br9_f:"⛔ Si existe = modo solo-lectura",
   hf1_t:"Contribuir",
   hf2_t:"Inmortalizado",
   hf3_t:"La IA lo usa",
@@ -1678,7 +1838,53 @@ es:{
   rm_d8:"4 idiomas completos: ES, EN, ZH_CN, ZH_TW. El bot responde en el idioma del usuario con RAG multilingüe nativo.",
   rm_d9:"GF como disco duro: sync DB completa + restauración automática al arrancar. Si el servidor muere, el bot reinicia y recupera todo desde Greenfield en segundos."
 ,
-  bucket_note:"<strong>Cero pérdida de datos al reiniciar el servidor.</strong> El bucket de Greenfield <strong>synergix</strong> es el disco duro real. Los servidores son temporales. La blockchain es permanente. Cada contribución se convierte en parte de una memoria descentralizada y resistente a la censura.",
+  bucket_note:"<strong>Cero pérdida de datos al reiniciar el servidor.</strong> El bucket de Greenfield <strong>synergix-v1</strong> es el disco duro real. Los servidores son temporales. La blockchain es permanente. Cada objeto sigue la regla <em>verificar antes de actuar</em>: primero se comprueba si existe, después se crea o se actualiza. El bot reconstruye todo su estado desde el bucket al arrancar — sin DB local, sin archivos locales.",
+  gas_eye:"Patrocinio de gas",
+  h2_gas_w:"EL BOT PAGA",
+  h2_gas_r:"TODO EL GAS",
+  gas_sub:"El bot es el relayer universal. Los usuarios nunca pagan gas, nunca necesitan BNB, nunca tocan tarifas de almacenamiento de Greenfield. Todas las operaciones en el bucket se firman y pagan con la PRIVATE_KEY configurada en el .env del bot.",
+  gas1_t:"Storage Fee Paymaster",
+  gas1_d:"Greenfield 1.7 introdujo <strong>BEP-362</strong>, el Storage Fee Paymaster, que permite a los proyectos patrocinar las tarifas de almacenamiento de sus usuarios. El bot lo usa de forma nativa vía el SDK de Python — el PaymentAddress es la wallet del propio bot.",
+  gas2_t:"Coste cero para el usuario",
+  gas2_d:"Crear perfil, subir aporte, actualizar etiquetas, regenerar leaderboard — cada acción on-chain la paga el bot. Los usuarios de Telegram no necesitan BNB, ni wallet, ni conocimientos de cripto para interactuar.",
+  gas3_t:"Verificar antes de actuar (regla de oro)",
+  gas3_d:"Antes de cada operación el bot hace <code>get_object_head</code>. Si el objeto NO existe, lo crea con valores por defecto vía <code>create_object</code>. Si existe, lo lee y después actualiza tags o reemplaza el contenido. El leaderboard y los logs se eliminan + recrean para evitar conflictos con objetos sellados.",
+  gas4_t:"Registro diferido",
+  gas4_d:"Los usuarios nuevos viven solo en RAM. Su perfil on-chain se crea SOLO tras su primera acción real (primer aporte o cambio explícito de idioma). Esta es la principal defensa anti-spam y ahorra gas en usuarios que nunca se activan.",
+  gas5_t:"Stateless absoluto",
+  gas5_d:"El servidor <strong>no tiene base de datos, ni archivos, ni estado</strong>. Todo — configuración, puntero de cerebro, perfiles, aportes, retos, logs — vive en <code>synergix-v1</code>. Si se borra el servidor, al reiniciar el sistema se reconstruye íntegro desde el bucket.",
+  gas6_t:"El bot nunca gasta fondos del usuario",
+  gas6_d:"El bot paga el gas de Greenfield con su propia wallet, pero NUNCA ejecuta transacciones que involucren fondos del usuario. Para comprar/vender $SYNERGIX el bot solo genera deep links — el usuario firma desde su propia wallet.",
+  wallet_eye:"Prueba de humanidad · firma, no transacción",
+  h2_wallet_w:"PRUEBA HUMANA &amp;",
+  h2_wallet_r:"SALDO EN TIEMPO REAL",
+  wallet_sub:"Verificar la wallet mediante <strong>EIP-4361</strong> (firma de mensaje, no transacción) demuestra que detrás del chat hay una persona real con una clave privada — sin que el usuario pague nada. Después, el saldo de $SYNERGIX se consulta en vivo desde la BSC y nunca se almacena en el bucket.",
+  wv1:"<strong>El usuario pulsa</strong> 💰 Synergix → 🔐 Verificar Wallet en el menú de Telegram.",
+  wv2:"<strong>El bot pide</strong> la dirección BSC del usuario y valida formato + checksum.",
+  wv3:"<strong>El bot genera</strong> un mensaje estándar EIP-4361 con un nonce único y se lo muestra al usuario.",
+  wv4:"<strong>El usuario firma</strong> el mensaje con su wallet — sin transacción, sin gas, solo una firma criptográfica.",
+  wv5:"<strong>El usuario pega</strong> la firma de vuelta en el bot.",
+  wv6:"<strong>El bot verifica</strong> con <code>web3.eth.account.recover_message</code>. Si la dirección recuperada coincide, la verificación es exitosa.",
+  wv7:"<strong>Tags escritos</strong>: <code>wallet_address</code> y <code>human_verified = true</code> se añaden al objeto del usuario. El gas lo paga el bot. trust_score recibe un pequeño bonus.",
+  tag_human:"Se pone a <strong>true</strong> solo cuando el flujo de verificación se completa. Si el usuario nunca verifica, este tag simplemente no existe en su perfil.",
+  tag_trust:"Puntuación de confianza actualizada tras cada evaluación del Juez. Sube con aportes de alta calidad, baja con rechazos o duplicados. Verificar la wallet añade un pequeño bonus. Valores bajos activan límites diarios reducidos.",
+  tag_wallet:"Solo se almacena cuando la verificación tiene éxito. Si el usuario cancela o falla, no se escribe ninguna dirección. Se usa para leer el saldo en vivo en BSC y para firmar aportes.",
+  tag_sig:"Firma criptográfica opcional sobre el hash SHA-256 del texto de un aporte, que prueba autoría descentralizada. Solo los usuarios con wallet verificada pueden firmar; el resto simplemente omite el tag.",
+  balance_note:"El bot lee el saldo de $SYNERGIX en vivo desde la BSC vía <code>balanceOf</code> (función <em>view</em> — sin gas). El precio en USD se obtiene de DexScreener bajo demanda. Nada se persiste: ni <code>wallet_balance_synergix</code>, ni <code>wallet_balance_updated_at</code>. Una caché corta en RAM puede suavizar ráfagas, pero nunca toca el bucket.",
+  safety_eye:"Anti-jailbreak · interruptor de solo-lectura",
+  h2_safety_r:"AI GUARD",
+  h2_safety_w:"Y BLOQUEO DE EMERGENCIA",
+  safety_sub:"Dos objetos en <code>aisynergix/data/</code> protegen el sistema: una lista de patrones que filtra cada mensaje del usuario antes de llegar a los modelos, y un interruptor de 0 bytes que congela toda escritura en el bucket.",
+  guard_t:"ai_guard.txt — Firewall de patrones",
+  guard_d:"Lista de patrones prohibidos en texto plano: intentos de jailbreak, inyección de prompts, contenido tóxico. Se crea automáticamente al arrancar con una lista por defecto. <strong>Cada mensaje del usuario se comprueba contra ella antes de llegar al Pensador (Qwen 1.5B, puerto 8081) o al Juez (Qwen 0.5B, puerto 8080)</strong>. Solo el admin puede editarla; las actualizaciones las paga la wallet del bot.",
+  lock_t:"emergency_lock — Interruptor de emergencia",
+  lock_d:"Objeto de 0 bytes. <strong>Su mera existencia congela toda escritura en el bucket</strong>. El bot lo verifica antes de cada escritura y al inicio de cada tarea programada. Leerlo es gratis (una llamada HEAD). Solo el admin puede crearlo o eliminarlo desde Telegram mediante una acción especial.",
+  verify_h:"VERIFICAR ANTES DE ACTUAR",
+  verify_s:"Aplicado en cada operación sobre el bucket",
+  vb1:"Primero HEAD al objeto (lectura gratis)",
+  vb2:"NO existe → create_object con defaults + tags",
+  vb3:"SÍ existe → leer, después actualizar tags o reemplazar contenido",
+  vb4:"Objetos de renovación completa → eliminar + recrear (evita conflictos)",
   stat_sync:"Sync cerebral: 8 min",
   wc3_b:"Inmortal por diseño",
   wc6_b:"Gana mientras duermes"
@@ -1686,6 +1892,9 @@ es:{
 zh:{
   nav_why:"为何独特",
   nav_bucket:"存储桶",
+  nav_gas:"Gas",
+  nav_wallet:"钱包",
+  nav_safety:"安全",
   nav_how:"如何运作",
   nav_depin:"DePIN与销毁",
   nav_token:"代币",
@@ -1754,18 +1963,24 @@ zh:{
   wc4_d:"每个贡献携带4个链上标签：AI生成摘要、质量评分、作者身份和评估者数据。不可篡改，可审计。",
   wc5_d:"Synergix的RAG引擎首先搜索Greenfield桶。80%的答案来自链上存储的真实社区贡献。",
   wc6_d:"每次AI使用您的贡献，您自动获得剩余积分。在里程碑（1、5、10、25、50、100+次）时收到Telegram通知。",
-  br1_d:"每个社区贡献都以4个链上元数据标签永久存储。集体智慧的原材料。不可篡改。永久存在。",
-  br2_d:"融合的集体大脑。所有社区知识的版本化综合，每8分钟更新一次。SHA-256完整性哈希。",
-  br3_d:"完整的链上数据库备份。当服务器重启时，首先下载此文件，自动恢复完整AI状态。",
-  br4_d:"每个用户的链上档案：角色、积分、每日贡献数量、最后活跃时间。任何人都可在DCellar上审计。",
-  br5_d:"不可篡改的事件审计记录。每个行动都记录在链上。永久历史记录，无人可以更改。",
-  br6_d:"完整状态快照。整个集体智能的完整时间点恢复。如果发生任何灾难，网络可以回退并恢复。",
-  br1_f:"⚡ 实时上传",
-  br2_f:"🔄 每8分钟",
-  br3_f:"🔄 每8分钟",
-  br4_f:"🔄 批量每8分钟",
-  br5_f:"📅 每日（UTC午夜）",
-  br6_f:"📅 每周（每周一）",
+  br1_d:"指针对象。其 <strong>latest_v</strong> 标签告诉机器人启动时要加载哪个版本的 FAISS 索引到内存。0 字节空对象——标签就是数据。",
+  br2_d:"全球排行榜（按积分和影响力排名的顶级贡献者）。每 10 分钟由定时任务重新生成：删除旧对象并创建新对象以避免密封冲突。",
+  br3_d:"中央配置：提示词、阈值、评判员/思考者参数。机器人启动时读取。已存在——从不重复创建。之前硬编码的值现在都从此文件读取。",
+  br4_d:"社区当前的每周挑战。计划任务每周用新生成的主题、奖励和截止日期替换此对象。",
+  br5_d:"混淆的用户档案（SHA-256 UID）。0 字节空对象，其<strong>标签</strong>就是档案：fsm_state、points、rank、daily_aportes_count、total_uses_count、language、last_seen_ts、human_verified、trust_score、wallet_address。",
+  br6_d:"每个被接受的贡献带有 5 个评估标签：quality_score、author_uid、lang、category、impact_index——加上对已验证钱包的作者可选的 <strong>signature</strong> 标签。不可篡改。永久存在。",
+  br7_d:"每日运行日志，在上传前用 gzip 压缩以节省存储空间。每日 UTC 午夜由定时任务上传。",
+  br8_d:"反越狱和提示词注入的模式列表。启动时加载；每条用户消息在到达思考者或评判员之前都会与之比对。只有管理员可修改。",
+  br9_d:"紧急关停开关。如果此 0 字节对象存在，所有对 bucket 的写入都会被阻止，机器人切换到只读模式。每次写入前和每个计划任务启动时都会检查。",
+  br1_f:"🏷️ tag: latest_v = v0.0.1",
+  br2_f:"🔄 每 10 分钟重建一次",
+  br3_f:"🔒 启动时读取 · 仅管理员",
+  br4_f:"📅 每周定时任务（自动替换）",
+  br5_f:"🏷️ 标签就是档案",
+  br6_f:"⚡ 接受时实时上传",
+  br7_f:"🗜️ 每日 · gzip 压缩",
+  br8_f:"🔐 仅管理员 · 每次请求都读取",
+  br9_f:"⛔ 存在 = 只读模式",
   hf1_t:"贡献",
   hf2_t:"永久存储",
   hf3_t:"AI使用它",
@@ -1856,7 +2071,53 @@ zh:{
   rm_d8:"4种完整语言：ES、EN、ZH_CN、ZH_TW。机器人用用户的语言回复，具有原生多语言RAG系统。",
   rm_d9:"GF作为硬盘：完整DB同步+启动时自动恢复。如果服务器宕机，机器人重启后几秒内从Greenfield恢复所有状态。"
 ,
-  bucket_note:"<strong>服务器重启零数据损失。</strong> Greenfield桶<strong>synergix</strong>是真正的硬盘。服务器是临时的。区块链是永久的。每个进入桶的贡献都成为抗审查、去中心化记忆的一部分。",
+  bucket_note:"<strong>服务器重启零数据损失。</strong> Greenfield 桶 <strong>synergix-v1</strong> 是真正的硬盘。服务器是临时的，区块链是永久的。每个对象都遵循<em>先验证再行动</em>规则：先检查是否存在，再创建或更新。机器人启动时从 bucket 完整重建状态——没有本地数据库，没有本地文件。",
+  gas_eye:"Gas 赞助",
+  h2_gas_w:"机器人支付",
+  h2_gas_r:"所有 Gas",
+  gas_sub:"机器人是通用中继器。用户从不支付 gas、从不需要 BNB、从不接触 Greenfield 存储费用。所有 bucket 操作均由机器人 .env 中配置的 PRIVATE_KEY 签名并支付。",
+  gas1_t:"存储费用 Paymaster",
+  gas1_d:"Greenfield 1.7 引入了 <strong>BEP-362</strong> 存储费用 Paymaster，允许项目方为用户赞助存储费用。机器人通过 Python SDK 原生使用此功能——PaymentAddress 就是机器人自己的钱包。",
+  gas2_t:"用户零成本",
+  gas2_d:"创建档案、上传贡献、更新标签、重新生成排行榜——每个链上操作都由机器人支付。Telegram 用户不需要 BNB、钱包或任何加密知识即可交互。",
+  gas3_t:"先验证再行动（黄金法则）",
+  gas3_d:"每个操作之前机器人会调用 <code>get_object_head</code>。如果对象不存在，就通过 <code>create_object</code> 以默认值创建；如果已存在，就读取后更新标签或替换内容。排行榜和日志会被删除并重建，以避免密封对象冲突。",
+  gas4_t:"延迟注册",
+  gas4_d:"新用户仅存在于内存。他们的链上档案仅在第一次真实操作后才创建（第一次贡献或显式切换语言）。这是主要的反垃圾防线，也能为永不激活的用户节省 gas。",
+  gas5_t:"绝对无状态",
+  gas5_d:"服务器<strong>没有数据库、没有文件、没有状态</strong>。配置、brain_pointer、档案、贡献、挑战、日志——一切都在 <code>synergix-v1</code> 中。即使服务器被擦除，重启后系统也会从 bucket 完整重建。",
+  gas6_t:"机器人从不花用户的钱",
+  gas6_d:"机器人用自己的钱包支付 Greenfield gas，但<strong>从不</strong>执行涉及用户资金的交易。买卖 $SYNERGIX 时机器人只生成深度链接——由用户在自己的钱包中签名。",
+  wallet_eye:"人类证明 · 签名而非交易",
+  h2_wallet_w:"人类证明 &amp;",
+  h2_wallet_r:"实时余额",
+  wallet_sub:"通过 <strong>EIP-4361</strong>（签名消息而非交易）验证钱包，证明聊天背后是一个持有私钥的真人——用户无需支付任何 gas。之后 $SYNERGIX 余额会从 BSC 实时读取，从不存储在 bucket 中。",
+  wv1:"<strong>用户点击</strong> 💰 Synergix → 🔐 验证钱包（Telegram 菜单）。",
+  wv2:"<strong>机器人要求</strong>用户的 BSC 地址，并验证格式和校验和。",
+  wv3:"<strong>机器人生成</strong>一条带有唯一 nonce 的标准 EIP-4361 消息，并展示给用户。",
+  wv4:"<strong>用户用钱包签名</strong>消息——没有交易，没有 gas，只是一次加密签名。",
+  wv5:"<strong>用户将签名</strong>粘贴回机器人。",
+  wv6:"<strong>机器人验证</strong>：使用 <code>web3.eth.account.recover_message</code>。如果恢复的地址匹配，验证成功。",
+  wv7:"<strong>写入标签</strong>：<code>wallet_address</code> 和 <code>human_verified = true</code> 被添加到用户对象。gas 由机器人支付，trust_score 获得小额加成。",
+  tag_human:"仅当钱包验证流程成功完成后才设为 <strong>true</strong>。如果用户从未验证，此标签根本不会存在于档案中。",
+  tag_trust:"每次评判员评估后自动更新的信任分。高质量贡献会提升，拒绝或重复会降低。钱包验证会加少许分。低分会触发更严格的每日限额。",
+  tag_wallet:"仅在验证成功时存储。若用户取消或失败，不会写入任何地址。用于读取 BSC 实时余额和为贡献签名。",
+  tag_sig:"对贡献文本的 SHA-256 哈希的可选加密签名，用于去中心化地证明作者身份。只有已验证钱包的用户才能签名；其他人则省略此标签。",
+  balance_note:"机器人通过 <code>balanceOf</code>（<em>view</em> 函数——无 gas）从 BSC 实时读取 $SYNERGIX 余额。USD 价格按需从 DexScreener 获取。任何数据都不会被持久化：没有 <code>wallet_balance_synergix</code>，也没有 <code>wallet_balance_updated_at</code>。短时内存缓存可以平滑请求峰值，但从不接触 bucket。",
+  safety_eye:"反越狱 · 只读开关",
+  h2_safety_r:"AI GUARD",
+  h2_safety_w:"与紧急锁",
+  safety_sub:"<code>aisynergix/data/</code> 中的两个对象保护系统：一个模式列表在用户消息到达模型前进行过滤，还有一个 0 字节开关可以冻结 bucket 中的所有写入。",
+  guard_t:"ai_guard.txt — 模式防火墙",
+  guard_d:"禁止模式的纯文本列表：越狱尝试、提示词注入、有毒内容。首次启动时自动以默认列表创建。<strong>每条用户消息在到达思考者（Qwen 1.5B，端口 8081）或评判员（Qwen 0.5B，端口 8080）之前都会与之比对</strong>。只有管理员可以编辑；更新由机器人钱包支付。",
+  lock_t:"emergency_lock — 紧急开关",
+  lock_d:"0 字节对象。<strong>仅凭它的存在就能冻结 bucket 中的所有写入</strong>。机器人在每次写入前和每个计划任务开始时都会检查它。读取它是免费的（HEAD 调用）。只有管理员可以通过 Telegram 中的特殊操作创建或删除它。",
+  verify_h:"先验证再行动",
+  verify_s:"对每次 bucket 操作强制执行",
+  vb1:"先对对象执行 HEAD（免费读取）",
+  vb2:"不存在 → create_object 使用默认值 + 标签",
+  vb3:"存在 → 读取，然后更新标签或替换内容",
+  vb4:"需整体更新的对象 → 删除并重建（避免密封冲突）",
   stat_sync:"大脑同步：8分钟",
   wc3_b:"永久设计",
   wc6_b:"睡眠时获利"
@@ -1864,6 +2125,9 @@ zh:{
 zht:{
   nav_why:"為何獨特",
   nav_bucket:"存儲桶",
+  nav_gas:"Gas",
+  nav_wallet:"錢包",
+  nav_safety:"安全",
   nav_how:"如何運作",
   nav_depin:"DePIN與銷毀",
   nav_token:"代幣",
@@ -1932,18 +2196,24 @@ zht:{
   wc4_d:"每个贡献携带4个链上标签：AI生成摘要、质量评分、作者身份和评估者数据。不可篡改，可审计。",
   wc5_d:"Synergix的RAG引擎首先搜索Greenfield桶。80%的答案来自链上存储的真实社区贡献。",
   wc6_d:"每次AI使用您的贡献，您自动获得剩余积分。在里程碑（1、5、10、25、50、100+次）时收到Telegram通知。",
-  br1_d:"每个社区贡献都以4个链上元数据标签永久存储。集体智慧的原材料。不可篡改。永久存在。",
-  br2_d:"融合的集体大脑。所有社区知识的版本化综合，每8分钟更新一次。SHA-256完整性哈希。",
-  br3_d:"完整的链上数据库备份。当服务器重启时，首先下载此文件，自动恢复完整AI状态。",
-  br4_d:"每个用户的链上档案：角色、积分、每日贡献数量、最后活跃时间。任何人都可在DCellar上审计。",
-  br5_d:"不可篡改的事件审计记录。每个行动都记录在链上。永久历史记录，无人可以更改。",
-  br6_d:"完整状态快照。整个集体智能的完整时间点恢复。如果发生任何灾难，网络可以回退并恢复。",
-  br1_f:"⚡ 实时上传",
-  br2_f:"🔄 每8分钟",
-  br3_f:"🔄 每8分钟",
-  br4_f:"🔄 批量每8分钟",
-  br5_f:"📅 每日（UTC午夜）",
-  br6_f:"📅 每周（每周一）",
+  br1_d:"指针对象。其 <strong>latest_v</strong> 标签告诉机器人启动时要加载哪个版本的 FAISS 索引到内存。0 字节空对象——标签就是数据。",
+  br2_d:"全球排行榜（按积分和影响力排名的顶级贡献者）。每 10 分钟由定时任务重新生成：删除旧对象并创建新对象以避免密封冲突。",
+  br3_d:"中央配置：提示词、阈值、评判员/思考者参数。机器人启动时读取。已存在——从不重复创建。之前硬编码的值现在都从此文件读取。",
+  br4_d:"社区当前的每周挑战。计划任务每周用新生成的主题、奖励和截止日期替换此对象。",
+  br5_d:"混淆的用户档案（SHA-256 UID）。0 字节空对象，其<strong>标签</strong>就是档案：fsm_state、points、rank、daily_aportes_count、total_uses_count、language、last_seen_ts、human_verified、trust_score、wallet_address。",
+  br6_d:"每个被接受的贡献带有 5 个评估标签：quality_score、author_uid、lang、category、impact_index——加上对已验证钱包的作者可选的 <strong>signature</strong> 标签。不可篡改。永久存在。",
+  br7_d:"每日运行日志，在上传前用 gzip 压缩以节省存储空间。每日 UTC 午夜由定时任务上传。",
+  br8_d:"反越狱和提示词注入的模式列表。启动时加载；每条用户消息在到达思考者或评判员之前都会与之比对。只有管理员可修改。",
+  br9_d:"紧急关停开关。如果此 0 字节对象存在，所有对 bucket 的写入都会被阻止，机器人切换到只读模式。每次写入前和每个计划任务启动时都会检查。",
+  br1_f:"🏷️ tag: latest_v = v0.0.1",
+  br2_f:"🔄 每 10 分钟重建一次",
+  br3_f:"🔒 启动时读取 · 仅管理员",
+  br4_f:"📅 每周定时任务（自动替换）",
+  br5_f:"🏷️ 标签就是档案",
+  br6_f:"⚡ 接受时实时上传",
+  br7_f:"🗜️ 每日 · gzip 压缩",
+  br8_f:"🔐 仅管理员 · 每次请求都读取",
+  br9_f:"⛔ 存在 = 只读模式",
   hf1_t:"贡献",
   hf2_t:"永久存储",
   hf3_t:"AI使用它",
@@ -2034,7 +2304,53 @@ zht:{
   rm_d8:"4种完整语言：ES、EN、ZH_CN、ZH_TW。机器人用用户的语言回复，具有原生多语言RAG系统。",
   rm_d9:"GF作为硬盘：完整DB同步+启动时自动恢复。如果服务器宕机，机器人重启后几秒内从Greenfield恢复所有状态。"
 ,
-  bucket_note:"<strong>伺服器重啟零數據損失。</strong> Greenfield桶<strong>synergix</strong>是真正的硬碟。伺服器是臨時的。區塊鏈是永久的。每個進入桶的貢獻都成為抗審查、去中心化記憶的一部分。",
+  bucket_note:"<strong>伺服器重啟零數據損失。</strong> Greenfield 桶 <strong>synergix-v1</strong> 是真正的硬碟。伺服器是臨時的，區塊鏈是永久的。每個物件都遵循<em>先驗證再行動</em>規則：先檢查是否存在，再建立或更新。機器人啟動時會從 bucket 完整重建狀態——沒有本地資料庫，沒有本地檔案。",
+  gas_eye:"Gas 贊助",
+  h2_gas_w:"機器人支付",
+  h2_gas_r:"所有 Gas",
+  gas_sub:"機器人是通用中繼器。使用者從不支付 gas、從不需要 BNB、從不接觸 Greenfield 儲存費用。所有 bucket 操作均由機器人 .env 中設定的 PRIVATE_KEY 簽署並支付。",
+  gas1_t:"儲存費用 Paymaster",
+  gas1_d:"Greenfield 1.7 引入了 <strong>BEP-362</strong> 儲存費用 Paymaster，允許專案方為使用者贊助儲存費用。機器人透過 Python SDK 原生使用此功能——PaymentAddress 就是機器人自己的錢包。",
+  gas2_t:"使用者零成本",
+  gas2_d:"建立檔案、上傳貢獻、更新標籤、重新生成排行榜——每個鏈上操作都由機器人支付。Telegram 使用者不需要 BNB、錢包或任何加密知識即可互動。",
+  gas3_t:"先驗證再行動（黃金法則）",
+  gas3_d:"每個操作之前機器人會呼叫 <code>get_object_head</code>。如果物件不存在，就透過 <code>create_object</code> 以預設值建立；如果已存在，就讀取後更新標籤或替換內容。排行榜和日誌會被刪除並重建，以避免密封物件衝突。",
+  gas4_t:"延遲註冊",
+  gas4_d:"新使用者僅存在於記憶體。他們的鏈上檔案僅在第一次真實操作後才建立（第一次貢獻或明確切換語言）。這是主要的反垃圾防線，也能為永不啟用的使用者節省 gas。",
+  gas5_t:"絕對無狀態",
+  gas5_d:"伺服器<strong>沒有資料庫、沒有檔案、沒有狀態</strong>。設定、brain_pointer、檔案、貢獻、挑戰、日誌——一切都在 <code>synergix-v1</code> 中。即使伺服器被抹除，重啟後系統也會從 bucket 完整重建。",
+  gas6_t:"機器人從不花使用者的錢",
+  gas6_d:"機器人用自己的錢包支付 Greenfield gas，但<strong>從不</strong>執行涉及使用者資金的交易。買賣 $SYNERGIX 時機器人只產生深度連結——由使用者在自己的錢包中簽署。",
+  wallet_eye:"人類證明 · 簽名而非交易",
+  h2_wallet_w:"人類證明 &amp;",
+  h2_wallet_r:"即時餘額",
+  wallet_sub:"透過 <strong>EIP-4361</strong>（簽署訊息而非交易）驗證錢包，證明聊天背後是一位持有私鑰的真人——使用者無需支付任何 gas。之後 $SYNERGIX 餘額會從 BSC 即時讀取，從不儲存在 bucket 中。",
+  wv1:"<strong>使用者點擊</strong> 💰 Synergix → 🔐 驗證錢包（Telegram 選單）。",
+  wv2:"<strong>機器人要求</strong>使用者的 BSC 地址，並驗證格式和校驗和。",
+  wv3:"<strong>機器人產生</strong>一條帶有唯一 nonce 的標準 EIP-4361 訊息並展示給使用者。",
+  wv4:"<strong>使用者用錢包簽署</strong>訊息——沒有交易，沒有 gas，只是一次加密簽名。",
+  wv5:"<strong>使用者將簽名</strong>貼回機器人。",
+  wv6:"<strong>機器人驗證</strong>：使用 <code>web3.eth.account.recover_message</code>。若恢復的地址相符，驗證成功。",
+  wv7:"<strong>寫入標籤</strong>：<code>wallet_address</code> 和 <code>human_verified = true</code> 被加到使用者物件。gas 由機器人支付，trust_score 獲得小額加成。",
+  tag_human:"僅當錢包驗證流程成功完成後才設為 <strong>true</strong>。若使用者從未驗證，此標籤根本不會存在於檔案中。",
+  tag_trust:"每次評判員評估後自動更新的信任分。高品質貢獻會提升，拒絕或重複會降低。錢包驗證會加少許分。低分會觸發更嚴格的每日限額。",
+  tag_wallet:"僅在驗證成功時儲存。若使用者取消或失敗，不會寫入任何地址。用於讀取 BSC 即時餘額與為貢獻簽名。",
+  tag_sig:"對貢獻文字的 SHA-256 雜湊的可選加密簽名，用於去中心化地證明作者身份。只有已驗證錢包的使用者能簽署；其他人則省略此標籤。",
+  balance_note:"機器人透過 <code>balanceOf</code>（<em>view</em> 函式——無 gas）從 BSC 即時讀取 $SYNERGIX 餘額。USD 價格按需從 DexScreener 取得。任何資料都不會被持久化：沒有 <code>wallet_balance_synergix</code>，也沒有 <code>wallet_balance_updated_at</code>。短暫的記憶體快取可以平滑請求高峰，但從不觸碰 bucket。",
+  safety_eye:"反越獄 · 唯讀開關",
+  h2_safety_r:"AI GUARD",
+  h2_safety_w:"與緊急鎖",
+  safety_sub:"<code>aisynergix/data/</code> 中的兩個物件保護系統：一個模式列表在使用者訊息到達模型前進行過濾，還有一個 0 位元組開關可凍結 bucket 中的所有寫入。",
+  guard_t:"ai_guard.txt — 模式防火牆",
+  guard_d:"禁止模式的純文字列表：越獄嘗試、提示詞注入、有害內容。首次啟動時自動以預設列表建立。<strong>每條使用者訊息在到達思考者（Qwen 1.5B，連接埠 8081）或評判員（Qwen 0.5B，連接埠 8080）之前都會與之比對</strong>。只有管理員可以編輯；更新由機器人錢包支付。",
+  lock_t:"emergency_lock — 緊急開關",
+  lock_d:"0 位元組物件。<strong>僅憑它的存在就能凍結 bucket 中的所有寫入</strong>。機器人在每次寫入前和每個排程任務開始時都會檢查它。讀取它是免費的（HEAD 呼叫）。只有管理員可以透過 Telegram 中的特殊操作建立或刪除它。",
+  verify_h:"先驗證再行動",
+  verify_s:"對每次 bucket 操作強制執行",
+  vb1:"先對物件執行 HEAD（免費讀取）",
+  vb2:"不存在 → create_object 使用預設值 + 標籤",
+  vb3:"存在 → 讀取，然後更新標籤或替換內容",
+  vb4:"需整體更新的物件 → 刪除並重建（避免密封衝突）",
   stat_sync:"大腦同步：8分鐘",
   wc3_b:"永久設計",
   wc6_b:"睡眠時獲利"
