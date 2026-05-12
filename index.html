@@ -9,6 +9,7 @@
 <title>SYNERGIX — First AI on BNB Greenfield</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════════════
@@ -147,6 +148,13 @@ strong{font-weight:700;color:var(--w)}
   min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:56px 48px 56px;position:relative;z-index:2;overflow:hidden;
 }
+/* Three.js canvas — sits behind all hero content, above body bg */
+#threeCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:1;pointer-events:none;opacity:.85;
+  mix-blend-mode:screen;display:block;
+}
+@media(prefers-reduced-motion:reduce){#threeCanvas{display:none}}
 /* Particles */
 .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;pointer-events:none;animation:orb-pulse 6s ease infinite}
@@ -288,6 +296,7 @@ strong{font-weight:700;color:var(--w)}
 .br::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--r);transition:width .3s}
 .br:hover::before{width:3px}
 .br-icon{font-size:1.4rem;flex-shrink:0}
+.br-title{font-family:var(--D);font-size:1.05rem;letter-spacing:2px;color:var(--w);margin-bottom:6px;line-height:1.2}
 .br-path{font-family:var(--M);font-size:.68rem;color:var(--g);margin-bottom:4px;word-break:break-all}
 .br-desc{font-size:.78rem;color:var(--w2);line-height:1.7}
 .br-freq{font-family:var(--M);font-size:.56rem;color:var(--r);letter-spacing:1px;margin-top:4px}
@@ -872,6 +881,9 @@ body::before{
 <!-- ═══════════════════════════════════════ TICKER -->
 <section id="hero">
 
+  <!-- Three.js 3D background canvas -->
+  <canvas id="threeCanvas" aria-hidden="true"></canvas>
+
   <!-- Circuit lines -->
   <div class="circ-line" style="top:22%;animation-duration:8s;animation-delay:0s"></div>
   <div class="circ-line" style="top:55%;animation-duration:12s;animation-delay:3s"></div>
@@ -892,7 +904,7 @@ body::before{
   <div class="ticker-inner">
     <span class="ti">$SYNERGIX</span><span class="ti-dot">◆</span>
     <span class="ti">FIRST AI ON GREENFIELD DCELLAR</span><span class="ti-dot">◆</span>
-    <span class="ti">BUCKET: synergix</span><span class="ti-dot">◆</span>
+    <span class="ti">BUCKET: synergix-v2</span><span class="ti-dot">◆</span>
     <span class="ti">IMMORTAL KNOWLEDGE</span><span class="ti-dot">◆</span>
     <span class="ti">BUY 1% · SELL 1%</span><span class="ti-dot">◆</span>
     <span class="ti">FOUR.MEME LAUNCH</span><span class="ti-dot">◆</span>
@@ -901,7 +913,7 @@ body::before{
     <span class="ti">CA: 0x6485907278c389e70c...</span><span class="ti-dot">◆</span>
     <span class="ti">$SYNERGIX</span><span class="ti-dot">◆</span>
     <span class="ti">FIRST AI ON GREENFIELD DCELLAR</span><span class="ti-dot">◆</span>
-    <span class="ti">BUCKET: synergix</span><span class="ti-dot">◆</span>
+    <span class="ti">BUCKET: synergix-v2</span><span class="ti-dot">◆</span>
     <span class="ti">IMMORTAL KNOWLEDGE</span><span class="ti-dot">◆</span>
     <span class="ti">BUY 1% · SELL 1%</span><span class="ti-dot">◆</span>
     <span class="ti">FOUR.MEME LAUNCH</span><span class="ti-dot">◆</span>
@@ -927,7 +939,7 @@ body::before{
     </h1>
     <div class="h-badges">
       <span class="badge badge-first t" data-key="badge_world"></span>
-      <span class="badge badge-dcellar">📦 Bucket: synergix</span>
+      <span class="badge badge-dcellar">📦 Bucket: synergix-v2</span>
       <span class="badge badge-chain t" data-key="badge_immortal"></span>
     </div>
     <p class="h-desc t" data-key="hero_desc"></p>
@@ -976,7 +988,7 @@ body::before{
     </div>
     <div class="why-grid">
       <div class="wc reveal"><div class="wc-n">01</div><span class="wc-icon">🌍</span><div class="wc-t t" data-key="wc1_t"></div><div class="wc-d t" data-key="wc1_d"></div><span class="wc-b">Pioneer</span></div>
-      <div class="wc reveal" style="transition-delay:.1s"><div class="wc-n">02</div><span class="wc-icon">📦</span><div class="wc-t t" data-key="wc2_t"></div><div class="wc-d t" data-key="wc2_d"></div><span class="wc-b">Bucket: synergix</span></div>
+      <div class="wc reveal" style="transition-delay:.1s"><div class="wc-n">02</div><span class="wc-icon">📦</span><div class="wc-t t" data-key="wc2_t"></div><div class="wc-d t" data-key="wc2_d"></div><span class="wc-b">Bucket: synergix-v2</span></div>
       <div class="wc reveal" style="transition-delay:.2s"><div class="wc-n">03</div><span class="wc-icon">🔄</span><div class="wc-t t" data-key="wc3_t"></div><div class="wc-d t" data-key="wc3_d"></div><span class="wc-b t" data-key="wc3_b"></span></div>
       <div class="wc reveal" style="transition-delay:.3s"><div class="wc-n">04</div><span class="wc-icon">⛓️</span><div class="wc-t t" data-key="wc4_t"></div><div class="wc-d t" data-key="wc4_d"></div><span class="wc-b">4 tags on-chain</span></div>
       <div class="wc reveal" style="transition-delay:.4s"><div class="wc-n">05</div><span class="wc-icon">🧠</span><div class="wc-t t" data-key="wc5_t"></div><div class="wc-d t" data-key="wc5_d"></div><span class="wc-b">RAG on Greenfield</span></div>
@@ -990,24 +1002,24 @@ body::before{
   <div class="si">
     <div class="sh">
       <div class="sh-eye t" data-key="bucket_eye"></div>
-      <h2 class="sh-title"><span class="wh" data-key="h2_bucket_w">THE BUCKET <em>synergix</em></span><br><span data-key="h2_bucket_r">ON DCELLAR</span></h2>
+      <h2 class="sh-title"><span class="wh" data-key="h2_bucket_w">THE BUCKET <em>synergix-v2</em></span><br><span data-key="h2_bucket_r">ON DCELLAR</span></h2>
       <p class="sh-sub t" data-key="bucket_sub"></p>
     </div>
     <div class="bucket-grid">
       <div class="b-left">
-        <div class="br reveal-x"><span class="br-icon">📁</span><div><div class="br-path">aportes/YYYY-MM/&#123;uid&#125;_&#123;ts&#125;.txt</div><div class="br-desc t" data-key="br1_d"></div><div class="br-freq">⚡ <span class="t" data-key="br1_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.08s"><span class="br-icon">🧠</span><div><div class="br-path">SYNERGIXAI/Synergix_ia_YYYYMMDD_HHmmss.txt</div><div class="br-desc t" data-key="br2_d"></div><div class="br-freq">🔄 <span class="t" data-key="br2_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.16s"><span class="br-icon">💾</span><div><div class="br-path">data/synergix_db_YYYYMMDD_HHmmss.json</div><div class="br-desc t" data-key="br3_d"></div><div class="br-freq">🔄 <span class="t" data-key="br3_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.24s"><span class="br-icon">👤</span><div><div class="br-path">users/&#123;uid&#125;</div><div class="br-desc t" data-key="br4_d"></div><div class="br-freq">🔄 <span class="t" data-key="br4_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.32s"><span class="br-icon">📋</span><div><div class="br-path">logs/YYYY-MM-DD_&#123;ts&#125;_events.log</div><div class="br-desc t" data-key="br5_d"></div><div class="br-freq">📅 <span class="t" data-key="br5_f"></span></div></div></div>
-        <div class="br reveal-x" style="transition-delay:.4s"><span class="br-icon">🛡️</span><div><div class="br-path">backups/snapshot_YYYYMMDD_&#123;ts&#125;.bak</div><div class="br-desc t" data-key="br6_d"></div><div class="br-freq">📅 <span class="t" data-key="br6_f"></span></div></div></div>
+        <div class="br reveal-x"><span class="br-icon">📁</span><div><div class="br-title t" data-key="br1_t"></div><div class="br-desc t" data-key="br1_d"></div><div class="br-freq">⚡ <span class="t" data-key="br1_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.08s"><span class="br-icon">🧠</span><div><div class="br-title t" data-key="br2_t"></div><div class="br-desc t" data-key="br2_d"></div><div class="br-freq">🔄 <span class="t" data-key="br2_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.16s"><span class="br-icon">💾</span><div><div class="br-title t" data-key="br3_t"></div><div class="br-desc t" data-key="br3_d"></div><div class="br-freq">🔄 <span class="t" data-key="br3_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.24s"><span class="br-icon">👤</span><div><div class="br-title t" data-key="br4_t"></div><div class="br-desc t" data-key="br4_d"></div><div class="br-freq">🔄 <span class="t" data-key="br4_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.32s"><span class="br-icon">📋</span><div><div class="br-title t" data-key="br5_t"></div><div class="br-desc t" data-key="br5_d"></div><div class="br-freq">📅 <span class="t" data-key="br5_f"></span></div></div></div>
+        <div class="br reveal-x" style="transition-delay:.4s"><span class="br-icon">🛡️</span><div><div class="br-title t" data-key="br6_t"></div><div class="br-desc t" data-key="br6_d"></div><div class="br-freq">📅 <span class="t" data-key="br6_f"></span></div></div></div>
       </div>
       <div class="b-right">
         <div class="term">
           <div class="term-bar"><div class="tb-r"></div><div class="tb-y"></div><div class="tb-g"></div></div>
-          <div><span class="t-p">$ </span><span class="t-c">synergix status --verbose</span></div>
+          <div><span class="t-p">$ </span><span class="t-c">synergix-v2 status --verbose</span></div>
           <div class="t-o">🚀 Status: <span class="t-gr">ONLINE</span></div>
-          <div class="t-o">📦 Bucket: <span class="t-gd">synergix</span> (DCellar)</div>
+          <div class="t-o">📦 Bucket: <span class="t-gd">synergix-v2</span> (DCellar)</div>
           <div class="t-o">🧠 Brain: <span class="t-gr">loaded from GF ✅</span></div>
           <div class="t-o">💾 DB restored: <span class="t-gr">automatically ✅</span></div>
           <div class="t-o">🔍 RAG cache: <span class="t-gd">contributions indexed</span></div>
@@ -1225,7 +1237,7 @@ body::before{
         <div class="rm-content">
           <div class="rm-tag" data-key="rm_tag">Implemented</div>
           <div class="rm-title" data-key="rm_t1">Chat libre con RAG</div>
-          <div class="rm-desc" data-key="rm_d1">Chat libre con RAG sobre memoria inmortal en GF — modo 80/20 activo. El bot consulta el bucket <em>synergix</em> antes de responder.</div>
+          <div class="rm-desc" data-key="rm_d1">Chat libre con RAG sobre memoria inmortal en GF — modo 80/20 activo. El bot consulta el bucket <em>synergix-v2</em> antes de responder.</div>
         </div>
       </div>
 
@@ -1270,7 +1282,7 @@ body::before{
         <div class="rm-content">
           <div class="rm-tag" data-key="rm_tag">Implemented</div>
           <div class="rm-title" data-key="rm_t6">Leaderboard /top</div>
-          <div class="rm-desc" data-key="rm_d6">Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el bucket synergix, visible para toda la comunidad.</div>
+          <div class="rm-desc" data-key="rm_d6">Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el bucket synergix-v2, visible para toda la comunidad.</div>
         </div>
       </div>
 
@@ -1314,11 +1326,11 @@ body::before{
     </div>
     <div><div class="fc-t t" data-key="ft_trade"></div><ul class="fc-l"><li><a href="https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank">four.meme ↗</a></li><li><a href="#tokenomics">Tokenomics</a></li><li><a href="#depin">DePIN &amp; Burn</a></li></ul></div>
     <div><div class="fc-t t" data-key="ft_comm"></div><ul class="fc-l"><li><a href="https://t.me/+E5ndVSGPuKYwMDlh" target="_blank">Telegram ↗</a></li><li><a href="https://x.com/Synergix_AI" target="_blank">Twitter / X ↗</a></li><li><a href="https://t.me/synergix_ai_bot" target="_blank">AI Bot ↗</a></li></ul></div>
-    <div><div class="fc-t">Blockchain</div><ul class="fc-l"><li><a href="https://dcellar.io" target="_blank">DCellar ↗</a></li><li><a href="https://greenfield.bnbchain.org" target="_blank">BNB Greenfield ↗</a></li><li><a href="#bucket">Bucket: synergix</a></li></ul></div>
+    <div><div class="fc-t">Blockchain</div><ul class="fc-l"><li><a href="https://dcellar.io" target="_blank">DCellar ↗</a></li><li><a href="https://greenfield.bnbchain.org" target="_blank">BNB Greenfield ↗</a></li><li><a href="#bucket">Bucket: synergix-v2</a></li></ul></div>
   </div>
   <div class="fbot">
     <span class="fcp">© 2026 Synergix · CA: 0x6485907278c389e70c572f441ce7052da58effff</span>
-    <span class="fch">⛓ Bucket: synergix · Buy 1% · Sell 1%</span>
+    <span class="fch">⛓ Bucket: synergix-v2 · Buy 1% · Sell 1%</span>
   </div>
 </footer>
 
@@ -1351,10 +1363,10 @@ en:{
   stat_community:"From community",
   stat_first:"On Greenfield",
   stat_langs:"Languages",
-  hero_desc:"<strong>No other AI team achieved this.</strong> Synergix is the first and only AI fully deployed on BNB Greenfield — the decentralized blockchain storage where your knowledge becomes <strong>permanent, immutable and censorship-resistant forever</strong>. The bucket <em>synergix</em> IS the hard drive of the AI.",
+  hero_desc:"<strong>No other AI team achieved this.</strong> Synergix is the first and only AI fully deployed on BNB Greenfield — the decentralized blockchain storage where your knowledge becomes <strong>permanent, immutable and censorship-resistant forever</strong>. The bucket <em>synergix-v2</em> IS the hard drive of the AI.",
   h2_why_w:"THE WORLD'S FIRST AI",
   h2_why_r:"ON BNB GREENFIELD",
-  h2_bucket_w:"THE BUCKET <em>synergix</em>",
+  h2_bucket_w:"THE BUCKET <em>synergix-v2</em>",
   h2_bucket_r:"ON DCELLAR",
   h2_how_w:"HOW",
   h2_how_r:"SYNERGIX WORKS",
@@ -1382,7 +1394,7 @@ en:{
   why_sub:"Our team achieved what no other AI project has done — deploying a fully functional collective intelligence system directly on BNB Greenfield, using DCellar as its permanent brain.",
   bucket_sub:"Every file in this bucket is a permanent piece of the AI's brain. Verifiable on DCellar. Owned by no one. Erasable by no one.",
   rag_sub:"The RAG engine makes Synergix fundamentally different. It doesn't guess — it retrieves from the blockchain first.",
-  ranks_sub:"Your rank is stored on-chain in the synergix bucket. Higher rank = higher RAG weight.",
+  ranks_sub:"Your rank is stored on-chain in the synergix-v2 bucket. Higher rank = higher RAG weight.",
   depin_sub:"Users are the infrastructure. Every contribution funds the immortal memory. Every 15 days, supply shrinks permanently.",
   toko_sub:"1% buy + 1% sell. 100% of collected BNB stays inside the Synergix ecosystem. Every satoshi funds the network you use.",
   roadmap_sub:"Everything below is live, on-chain, and running on BNB Greenfield.",
@@ -1393,11 +1405,17 @@ en:{
   wc5_t:"80% Community · 20% AI",
   wc6_t:"Passive Income from Knowledge",
   wc1_d:"No other AI project implemented a live intelligence system using BNB Greenfield as its storage layer before Synergix. Every technical challenge solved — from 4-tag on-chain metadata to full DB restoration from blockchain.",
-  wc2_d:"The bucket <strong>synergix</strong> on DCellar is not a backup — it IS the AI's memory. If the server is destroyed, rebooting reconnects to Greenfield and recovers the entire AI state automatically in seconds.",
+  wc2_d:"The bucket <strong>synergix-v2</strong> on DCellar is not a backup — it IS the AI's memory. If the server is destroyed, rebooting reconnects to Greenfield and recovers the entire AI state automatically in seconds.",
   wc3_d:"When the server restarts, the bot downloads the complete database from Greenfield, rebuilds the AI knowledge cache, and loads the latest fused brain — all automatically. The blockchain guarantees it.",
   wc4_d:"Every contribution carries 4 on-chain tags: AI-generated summary, quality score, author identity, and evaluator data. Immutable, verifiable, auditable by anyone on DCellar.",
   wc5_d:"Synergix's RAG engine searches the Greenfield bucket first. 80% of every answer comes from actual community contributions stored on-chain. No hallucinations — immutable blockchain records.",
   wc6_d:"Every time the AI uses your contribution, you earn residual points automatically. At milestones (1, 5, 10, 25, 50, 100+ uses) you receive a Telegram notification. Your knowledge earns forever.",
+  br1_t:"Community Contributions",
+  br2_t:"The Fused Collective Brain",
+  br3_t:"Complete Database Backup",
+  br4_t:"User On-Chain Profiles",
+  br5_t:"Immutable Audit Trail",
+  br6_t:"Weekly Recovery Snapshots",
   br1_d:"Every community contribution immortalized with 4 on-chain metadata tags. The raw material of collective intelligence. Immutable. Forever.",
   br2_d:"The fused collective brain. A versioned synthesis of all community knowledge, updated every 8 minutes. SHA-256 integrity hash. Powers the 80% rule.",
   br3_d:"Complete database backup on-chain: reputation, points, settings, all stats. When the server restarts, this file is downloaded first and the full AI state is restored automatically.",
@@ -1472,11 +1490,11 @@ en:{
   cta1:"OWN A PIECE",
   cta2:"OF THE FIRST",
   cta3:"IMMORTAL AI",
-  cta_sub:"The bucket <em>synergix</em> holds the world's first AI knowledge on BNB Greenfield. Every contribution is eternal. Every trade funds its survival.",
+  cta_sub:"The bucket <em>synergix-v2</em> holds the world's first AI knowledge on BNB Greenfield. Every contribution is eternal. Every trade funds its survival.",
   cta_buy:"Buy $SYNERGIX on four.meme",
   cta_bot:"Use the AI Bot",
   cta_tg:"Join Telegram",
-  footer_desc:"The world's first AI deployed on BNB Greenfield DCellar. Collective intelligence immortal by design. Bucket: synergix.",
+  footer_desc:"The world's first AI deployed on BNB Greenfield DCellar. Collective intelligence immortal by design. Bucket: synergix-v2.",
   ft_trade:"Trade",
   ft_comm:"Community",
   road_sub:"Everything below is live, on-chain, and running on BNB Greenfield.",
@@ -1490,7 +1508,7 @@ en:{
   rm_t7:"Real-time Notifications",
   rm_t8:"4 Complete Languages",
   rm_t9:"GF as Hard Drive",
-  rm_d1:"Free chat with RAG over immortal memory on GF — 80/20 mode active. The bot queries the <em>synergix</em> bucket before every answer.",
+  rm_d1:"Free chat with RAG over immortal memory on GF — 80/20 mode active. The bot queries the <em>synergix-v2</em> bucket before every answer.",
   rm_d2:"Contribution system with Groq judge and on-chain upload. Evaluated 1-10, accepted ≥5, uploaded to BNB Greenfield with 4 immutable tags.",
   rm_d3:"6 ranks with multipliers, daily limits and passive residual points. Initiated → Active → Synced → Architect → Hive Mind → Oracle.",
   rm_d4:"Weekly challenge with automatic AI generation. Each week a new on-chain thematic challenge with leaderboard and rewards.",
@@ -1500,7 +1518,7 @@ en:{
   rm_d8:"4 complete languages: ES, EN, ZH_CN, ZH_TW. The bot responds in the user's language with native multilingual RAG system.",
   rm_d9:"GF as hard drive: full DB sync + automatic restoration on startup. If the server dies, the bot restarts and recovers everything from Greenfield in seconds."
 ,
-  bucket_note:"<strong>Zero data loss on server restart.</strong> The Greenfield bucket <strong>synergix</strong> is the actual hard drive. Servers are temporary. The blockchain is permanent. Every contribution becomes part of a censorship-resistant, decentralized memory that outlives any infrastructure.",
+  bucket_note:"<strong>Zero data loss on server restart.</strong> The Greenfield bucket <strong>synergix-v2</strong> is the actual hard drive. Servers are temporary. The blockchain is permanent. Every contribution becomes part of a censorship-resistant, decentralized memory that outlives any infrastructure.",
   stat_sync:"Brain sync: 8 min",
   wc3_b:"Immortal by design",
   wc6_b:"Earn while you sleep"
@@ -1529,10 +1547,10 @@ es:{
   stat_community:"De la comunidad",
   stat_first:"En Greenfield",
   stat_langs:"Idiomas",
-  hero_desc:"<strong>Ningún otro equipo de IA logró esto.</strong> Synergix es la primera y única IA completamente desplegada en BNB Greenfield — el almacenamiento blockchain descentralizado donde tu conocimiento se vuelve <strong>permanente, inmutable y resistente a la censura para siempre</strong>. El bucket <em>synergix</em> ES el disco duro de la IA.",
+  hero_desc:"<strong>Ningún otro equipo de IA logró esto.</strong> Synergix es la primera y única IA completamente desplegada en BNB Greenfield — el almacenamiento blockchain descentralizado donde tu conocimiento se vuelve <strong>permanente, inmutable y resistente a la censura para siempre</strong>. El bucket <em>synergix-v2</em> ES el disco duro de la IA.",
   h2_why_w:"LA PRIMERA IA DEL MUNDO",
   h2_why_r:"EN BNB GREENFIELD",
-  h2_bucket_w:"EL BUCKET <em>synergix</em>",
+  h2_bucket_w:"EL BUCKET <em>synergix-v2</em>",
   h2_bucket_r:"EN DCELLAR",
   h2_how_w:"CÓMO FUNCIONA",
   h2_how_r:"SYNERGIX",
@@ -1560,7 +1578,7 @@ es:{
   why_sub:"Nuestro equipo logró lo que ningún otro proyecto de IA había hecho — desplegar un sistema de inteligencia colectiva completamente funcional en BNB Greenfield, usando DCellar como su cerebro permanente.",
   bucket_sub:"Cada archivo en este bucket es una pieza permanente del cerebro de la IA. Verificable en DCellar. Propiedad de nadie. Borrable por nadie.",
   rag_sub:"El motor RAG hace que Synergix sea fundamentalmente diferente. No adivina — recupera de la blockchain primero.",
-  ranks_sub:"Tu rango se almacena on-chain en el bucket synergix. Mayor rango = mayor peso RAG en cada respuesta de la IA.",
+  ranks_sub:"Tu rango se almacena on-chain en el bucket synergix-v2. Mayor rango = mayor peso RAG en cada respuesta de la IA.",
   depin_sub:"Los usuarios son la infraestructura. Cada contribución financia la memoria inmortal. Cada 15 días el suministro disminuye permanentemente.",
   toko_sub:"1% compra + 1% venta. El 100% del BNB recolectado permanece dentro del ecosistema Synergix.",
   roadmap_sub:"Todo lo de abajo está activo, on-chain, y corriendo en BNB Greenfield.",
@@ -1571,11 +1589,17 @@ es:{
   wc5_t:"80% Comunidad · 20% IA",
   wc6_t:"Ingresos pasivos del conocimiento",
   wc1_d:"Ningún proyecto de IA había implementado un sistema de inteligencia funcional usando BNB Greenfield como capa de almacenamiento antes que Synergix.",
-  wc2_d:"El bucket <strong>synergix</strong> en DCellar no es un respaldo — ES la memoria de la IA. Si el servidor se destruye, al reiniciar se recupera todo automáticamente.",
+  wc2_d:"El bucket <strong>synergix-v2</strong> en DCellar no es un respaldo — ES la memoria de la IA. Si el servidor se destruye, al reiniciar se recupera todo automáticamente.",
   wc3_d:"Cuando el servidor reinicia, el bot descarga la base de datos completa de Greenfield, reconstruye el caché y carga el último cerebro fusionado — todo automáticamente.",
   wc4_d:"Cada contribución lleva 4 etiquetas on-chain: resumen generado por IA, puntuación de calidad, identidad del autor y datos del evaluador. Inmutables y auditables.",
   wc5_d:"El motor RAG de Synergix busca primero en el bucket de Greenfield. El 80% de cada respuesta proviene de contribuciones reales almacenadas on-chain.",
   wc6_d:"Cada vez que la IA usa tu contribución, ganas puntos residuales automáticamente. En hitos (1, 5, 10, 25, 50, 100+ usos) recibes notificación en Telegram.",
+  br1_t:"Aportes de la Comunidad",
+  br2_t:"El Cerebro Colectivo Fusionado",
+  br3_t:"Respaldo Completo de la Base de Datos",
+  br4_t:"Perfiles On-Chain de Usuarios",
+  br5_t:"Registro de Auditoría Inmutable",
+  br6_t:"Snapshots Semanales de Recuperación",
   br1_d:"Cada contribución de la comunidad inmortalizada con 4 etiquetas de metadatos on-chain. La materia prima de la inteligencia colectiva. Inmutable. Para siempre.",
   br2_d:"El cerebro colectivo fusionado. Una síntesis versionada de todo el conocimiento, actualizada cada 8 minutos con hash SHA-256.",
   br3_d:"Respaldo completo de la base de datos on-chain. Cuando el servidor reinicia, este archivo se descarga primero y el estado de la IA se restaura automáticamente.",
@@ -1650,7 +1674,7 @@ es:{
   cta1:"SÉ DUEÑO",
   cta2:"DE LA PRIMERA",
   cta3:"IA INMORTAL",
-  cta_sub:"El bucket <em>synergix</em> alberga el conocimiento de la primera IA del mundo en BNB Greenfield. Cada contribución es eterna. Cada trade financia su supervivencia.",
+  cta_sub:"El bucket <em>synergix-v2</em> alberga el conocimiento de la primera IA del mundo en BNB Greenfield. Cada contribución es eterna. Cada trade financia su supervivencia.",
   cta_buy:"Comprar $SYNERGIX en four.meme",
   cta_bot:"Usar el Bot de IA",
   cta_tg:"Unirse a Telegram",
@@ -1668,17 +1692,17 @@ es:{
   rm_t7:"Notificaciones en tiempo real",
   rm_t8:"4 idiomas completos",
   rm_t9:"GF como disco duro",
-  rm_d1:"Chat libre con RAG sobre memoria inmortal en GF — modo 80/20 activo. El bot consulta el bucket <em>synergix</em> antes de cada respuesta.",
+  rm_d1:"Chat libre con RAG sobre memoria inmortal en GF — modo 80/20 activo. El bot consulta el bucket <em>synergix-v2</em> antes de cada respuesta.",
   rm_d2:"Sistema de aportes con juez Groq y subida on-chain. Evaluado 1-10, aceptado ≥5, subido a BNB Greenfield con 4 tags inmutables.",
   rm_d3:"6 rangos con multiplicadores, límites diarios y puntos residuales pasivos. Initiated → Active → Synced → Architect → Hive Mind → Oracle.",
   rm_d4:"Challenge semanal con generación automática por IA. Cada semana un nuevo desafío temático on-chain con leaderboard y recompensas.",
   rm_d5:"Validación por Hive Mind y Oracle + /validar. Los rangos superiores pueden validar, rechazar o escalar contribuciones con peso x3.0 y x5.0 en RAG.",
-  rm_d6:"Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el bucket synergix.",
+  rm_d6:"Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el bucket synergix-v2.",
   rm_d7:"Notificaciones en tiempo real de impacto y ascenso de rango. Alertas automáticas en Telegram en hitos 1, 5, 10, 25, 50, 100+ usos.",
   rm_d8:"4 idiomas completos: ES, EN, ZH_CN, ZH_TW. El bot responde en el idioma del usuario con RAG multilingüe nativo.",
   rm_d9:"GF como disco duro: sync DB completa + restauración automática al arrancar. Si el servidor muere, el bot reinicia y recupera todo desde Greenfield en segundos."
 ,
-  bucket_note:"<strong>Cero pérdida de datos al reiniciar el servidor.</strong> El bucket de Greenfield <strong>synergix</strong> es el disco duro real. Los servidores son temporales. La blockchain es permanente. Cada contribución se convierte en parte de una memoria descentralizada y resistente a la censura.",
+  bucket_note:"<strong>Cero pérdida de datos al reiniciar el servidor.</strong> El bucket de Greenfield <strong>synergix-v2</strong> es el disco duro real. Los servidores son temporales. La blockchain es permanente. Cada contribución se convierte en parte de una memoria descentralizada y resistente a la censura.",
   stat_sync:"Sync cerebral: 8 min",
   wc3_b:"Inmortal por diseño",
   wc6_b:"Gana mientras duermes"
@@ -1707,10 +1731,10 @@ zh:{
   stat_community:"来自社区",
   stat_first:"在Greenfield",
   stat_langs:"语言",
-  hero_desc:"<strong>没有其他AI团队做到这一点。</strong> Synergix是第一个完全部署在BNB Greenfield上的AI——去中心化区块链存储，您的知识将永远<strong>不可篡改、抗审查</strong>。bucket <em>synergix</em>就是AI真正的硬盘。",
+  hero_desc:"<strong>没有其他AI团队做到这一点。</strong> Synergix是第一个完全部署在BNB Greenfield上的AI——去中心化区块链存储，您的知识将永远<strong>不可篡改、抗审查</strong>。bucket <em>synergix-v2</em>就是AI真正的硬盘。",
   h2_why_w:"全球首个AI",
   h2_why_r:"部署于BNB GREENFIELD",
-  h2_bucket_w:"存储桶 <em>synergix</em>",
+  h2_bucket_w:"存储桶 <em>synergix-v2</em>",
   h2_bucket_r:"在DCELLAR上",
   h2_how_w:"如何运作",
   h2_how_r:"SYNERGIX",
@@ -1738,7 +1762,7 @@ zh:{
   why_sub:"我们的团队做到了其他AI项目从未实现的事情——将完全功能的集体智能系统直接部署在BNB Greenfield上，使用DCellar作为其永久大脑。",
   bucket_sub:"此桶中的每个文件都是AI大脑的永久组成部分。可在DCellar上验证。无人拥有。无人可删除。",
   rag_sub:"RAG引擎使Synergix从根本上与众不同。它不猜测——它首先从区块链检索。",
-  ranks_sub:"您的等级存储在synergix桶的链上。等级越高=每次AI响应中的RAG权重越高。",
+  ranks_sub:"您的等级存储在synergix-v2桶的链上。等级越高=每次AI响应中的RAG权重越高。",
   depin_sub:"用户就是基础设施。每次贡献都为不朽记忆提供资金。每15天，供应量永久减少。",
   toko_sub:"1%买入+1%卖出。100%收取的BNB留在Synergix生态系统内。",
   roadmap_sub:"以下所有功能均已上线，在链上运行于BNB Greenfield。",
@@ -1749,11 +1773,17 @@ zh:{
   wc5_t:"80%社区 · 20%AI",
   wc6_t:"知识带来被动收入",
   wc1_d:"在Synergix之前，没有任何AI项目使用BNB Greenfield作为存储层。每一个技术挑战都被解决了。",
-  wc2_d:"DCellar上的<strong>synergix</strong>桶不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
+  wc2_d:"DCellar上的<strong>synergix-v2</strong>桶不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
   wc3_d:"当服务器重启时，机器人立即从Greenfield下载完整数据库，重建AI知识缓存，并加载最新融合大脑。",
   wc4_d:"每个贡献携带4个链上标签：AI生成摘要、质量评分、作者身份和评估者数据。不可篡改，可审计。",
   wc5_d:"Synergix的RAG引擎首先搜索Greenfield桶。80%的答案来自链上存储的真实社区贡献。",
   wc6_d:"每次AI使用您的贡献，您自动获得剩余积分。在里程碑（1、5、10、25、50、100+次）时收到Telegram通知。",
+  br1_t:"社区贡献",
+  br2_t:"融合的集体大脑",
+  br3_t:"完整数据库备份",
+  br4_t:"用户链上档案",
+  br5_t:"不可篡改的审计记录",
+  br6_t:"每周恢复快照",
   br1_d:"每个社区贡献都以4个链上元数据标签永久存储。集体智慧的原材料。不可篡改。永久存在。",
   br2_d:"融合的集体大脑。所有社区知识的版本化综合，每8分钟更新一次。SHA-256完整性哈希。",
   br3_d:"完整的链上数据库备份。当服务器重启时，首先下载此文件，自动恢复完整AI状态。",
@@ -1828,7 +1858,7 @@ zh:{
   cta1:"拥有一份",
   cta2:"第一个",
   cta3:"不朽AI",
-  cta_sub:"<em>synergix</em>桶存储着BNB Greenfield上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
+  cta_sub:"<em>synergix-v2</em>桶存储着BNB Greenfield上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
   cta_buy:"在four.meme购买$SYNERGIX",
   cta_bot:"使用AI机器人",
   cta_tg:"加入Telegram",
@@ -1846,7 +1876,7 @@ zh:{
   rm_t7:"实时通知",
   rm_t8:"4种完整语言",
   rm_t9:"GF作为硬盘",
-  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix</em>桶。",
+  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix-v2</em>桶。",
   rm_d2:"带Groq评判员和链上上传的贡献系统。评分1-10，接受≥5分，以4个不可篡改标签上传到BNB Greenfield。",
   rm_d3:"6个等级，配备倍增器、每日限额和被动剩余积分。Initiated→Active→Synced→Architect→Hive Mind→Oracle。",
   rm_d4:"每周AI自动生成挑战。每周在链上生成新的主题挑战，配备排行榜和奖励。",
@@ -1856,7 +1886,7 @@ zh:{
   rm_d8:"4种完整语言：ES、EN、ZH_CN、ZH_TW。机器人用用户的语言回复，具有原生多语言RAG系统。",
   rm_d9:"GF作为硬盘：完整DB同步+启动时自动恢复。如果服务器宕机，机器人重启后几秒内从Greenfield恢复所有状态。"
 ,
-  bucket_note:"<strong>服务器重启零数据损失。</strong> Greenfield桶<strong>synergix</strong>是真正的硬盘。服务器是临时的。区块链是永久的。每个进入桶的贡献都成为抗审查、去中心化记忆的一部分。",
+  bucket_note:"<strong>服务器重启零数据损失。</strong> Greenfield桶<strong>synergix-v2</strong>是真正的硬盘。服务器是临时的。区块链是永久的。每个进入桶的贡献都成为抗审查、去中心化记忆的一部分。",
   stat_sync:"大脑同步：8分钟",
   wc3_b:"永久设计",
   wc6_b:"睡眠时获利"
@@ -1885,10 +1915,10 @@ zht:{
   stat_community:"來自社區",
   stat_first:"在Greenfield",
   stat_langs:"語言",
-  hero_desc:"<strong>沒有其他AI團隊做到這一點。</strong> Synergix是第一個完全部署在BNB Greenfield上的AI——去中心化區塊鏈存儲，您的知識將永遠<strong>不可篡改、抗審查</strong>。bucket <em>synergix</em>就是AI真正的硬碟。",
+  hero_desc:"<strong>沒有其他AI團隊做到這一點。</strong> Synergix是第一個完全部署在BNB Greenfield上的AI——去中心化區塊鏈存儲，您的知識將永遠<strong>不可篡改、抗審查</strong>。bucket <em>synergix-v2</em>就是AI真正的硬碟。",
   h2_why_w:"全球首個AI",
   h2_why_r:"部署於BNB GREENFIELD",
-  h2_bucket_w:"存儲桶 <em>synergix</em>",
+  h2_bucket_w:"存儲桶 <em>synergix-v2</em>",
   h2_bucket_r:"在DCELLAR上",
   h2_how_w:"如何運作",
   h2_how_r:"SYNERGIX",
@@ -1916,7 +1946,7 @@ zht:{
   why_sub:"我们的团队做到了其他AI项目从未实现的事情——将完全功能的集体智能系统直接部署在BNB Greenfield上，使用DCellar作为其永久大脑。",
   bucket_sub:"此桶中的每个文件都是AI大脑的永久组成部分。可在DCellar上验证。无人拥有。无人可删除。",
   rag_sub:"RAG引擎使Synergix从根本上与众不同。它不猜测——它首先从区块链检索。",
-  ranks_sub:"您的等级存储在synergix桶的链上。等级越高=每次AI响应中的RAG权重越高。",
+  ranks_sub:"您的等级存储在synergix-v2桶的链上。等级越高=每次AI响应中的RAG权重越高。",
   depin_sub:"用户就是基础设施。每次贡献都为不朽记忆提供资金。每15天，供应量永久减少。",
   toko_sub:"1%買入+1%賣出。100%收取的BNB留在Synergix生態系統內。",
   roadmap_sub:"以下所有功能均已上線，在鏈上運行於BNB Greenfield。",
@@ -1927,11 +1957,17 @@ zht:{
   wc5_t:"80%社区 · 20%AI",
   wc6_t:"知识带来被动收入",
   wc1_d:"在Synergix之前，没有任何AI项目使用BNB Greenfield作为存储层。每一个技术挑战都被解决了。",
-  wc2_d:"DCellar上的<strong>synergix</strong>桶不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
+  wc2_d:"DCellar上的<strong>synergix-v2</strong>桶不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
   wc3_d:"当服务器重启时，机器人立即从Greenfield下载完整数据库，重建AI知识缓存，并加载最新融合大脑。",
   wc4_d:"每个贡献携带4个链上标签：AI生成摘要、质量评分、作者身份和评估者数据。不可篡改，可审计。",
   wc5_d:"Synergix的RAG引擎首先搜索Greenfield桶。80%的答案来自链上存储的真实社区贡献。",
   wc6_d:"每次AI使用您的贡献，您自动获得剩余积分。在里程碑（1、5、10、25、50、100+次）时收到Telegram通知。",
+  br1_t:"社区贡献",
+  br2_t:"融合的集体大脑",
+  br3_t:"完整数据库备份",
+  br4_t:"用户链上档案",
+  br5_t:"不可篡改的审计记录",
+  br6_t:"每周恢复快照",
   br1_d:"每个社区贡献都以4个链上元数据标签永久存储。集体智慧的原材料。不可篡改。永久存在。",
   br2_d:"融合的集体大脑。所有社区知识的版本化综合，每8分钟更新一次。SHA-256完整性哈希。",
   br3_d:"完整的链上数据库备份。当服务器重启时，首先下载此文件，自动恢复完整AI状态。",
@@ -2006,7 +2042,7 @@ zht:{
   cta1:"擁有一份",
   cta2:"第一個",
   cta3:"不朽AI",
-  cta_sub:"<em>synergix</em>桶存储着BNB Greenfield上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
+  cta_sub:"<em>synergix-v2</em>桶存储着BNB Greenfield上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
   cta_buy:"在four.meme購買$SYNERGIX",
   cta_bot:"使用AI機器人",
   cta_tg:"加入Telegram",
@@ -2024,7 +2060,7 @@ zht:{
   rm_t7:"即時通知",
   rm_t8:"4種完整語言",
   rm_t9:"GF作為硬碟",
-  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix</em>桶。",
+  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix-v2</em>桶。",
   rm_d2:"带Groq评判员和链上上传的贡献系统。评分1-10，接受≥5分，以4个不可篡改标签上传到BNB Greenfield。",
   rm_d3:"6个等级，配备倍增器、每日限额和被动剩余积分。Initiated→Active→Synced→Architect→Hive Mind→Oracle。",
   rm_d4:"每周AI自动生成挑战。每周在链上生成新的主题挑战，配备排行榜和奖励。",
@@ -2034,7 +2070,7 @@ zht:{
   rm_d8:"4种完整语言：ES、EN、ZH_CN、ZH_TW。机器人用用户的语言回复，具有原生多语言RAG系统。",
   rm_d9:"GF作为硬盘：完整DB同步+启动时自动恢复。如果服务器宕机，机器人重启后几秒内从Greenfield恢复所有状态。"
 ,
-  bucket_note:"<strong>伺服器重啟零數據損失。</strong> Greenfield桶<strong>synergix</strong>是真正的硬碟。伺服器是臨時的。區塊鏈是永久的。每個進入桶的貢獻都成為抗審查、去中心化記憶的一部分。",
+  bucket_note:"<strong>伺服器重啟零數據損失。</strong> Greenfield桶<strong>synergix-v2</strong>是真正的硬碟。伺服器是臨時的。區塊鏈是永久的。每個進入桶的貢獻都成為抗審查、去中心化記憶的一部分。",
   stat_sync:"大腦同步：8分鐘",
   wc3_b:"永久設計",
   wc6_b:"睡眠時獲利"
@@ -2215,6 +2251,156 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
   });
   btn.addEventListener('mouseleave',()=>btn.style.transform='');
 });
+
+// ═══════════════════════════════════════════════════════════
+//  THREE.JS 3D HERO SCENE
+//  — rotating wireframe icosahedron + particle cloud
+//  — loaded async; disabled on prefers-reduced-motion
+//  — adaptive pixel ratio + lowered node count on mobile
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const canvas = document.getElementById('threeCanvas');
+  if(!canvas) return;
+
+  // Respect reduced motion & skip if WebGL isn't supported
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){ canvas.style.display='none'; return; }
+  const testCtx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if(!testCtx){ canvas.style.display='none'; return; }
+  // Release the test context (THREE will make its own)
+  try{ testCtx.getExtension('WEBGL_lose_context') && testCtx.getExtension('WEBGL_lose_context').loseContext(); }catch(e){}
+
+  // Lazy-load Three.js from a CDN (module script, no bundler needed)
+  const s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+  s.async = true;
+  s.onload = initThree;
+  s.onerror = ()=>{ canvas.style.display='none'; };
+  document.head.appendChild(s);
+
+  function initThree(){
+    const THREE = window.THREE;
+    if(!THREE) return;
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const DPR = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({
+      canvas, antialias:!isMobile, alpha:true, powerPreference:'low-power'
+    });
+    renderer.setPixelRatio(DPR);
+    renderer.setClearColor(0x000000, 0);
+
+    // Scene + camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+    camera.position.set(0, 0, 6);
+
+    // ── Wireframe icosahedron (brain core) ──
+    const coreGeom = new THREE.IcosahedronGeometry(1.35, 1);
+    const coreMat  = new THREE.MeshBasicMaterial({
+      color:0xC0392B, wireframe:true, transparent:true, opacity:0.55
+    });
+    const core = new THREE.Mesh(coreGeom, coreMat);
+    scene.add(core);
+
+    // Outer ring torus — represents the federation loop
+    const ringGeom = new THREE.TorusGeometry(2.15, 0.008, 6, 128);
+    const ringMat  = new THREE.MeshBasicMaterial({ color:0xF0A500, transparent:true, opacity:0.45 });
+    const ring = new THREE.Mesh(ringGeom, ringMat);
+    ring.rotation.x = Math.PI / 2.4;
+    scene.add(ring);
+
+    const ring2Geom = new THREE.TorusGeometry(2.75, 0.005, 6, 128);
+    const ring2Mat  = new THREE.MeshBasicMaterial({ color:0x00D2A0, transparent:true, opacity:0.28 });
+    const ring2 = new THREE.Mesh(ring2Geom, ring2Mat);
+    ring2.rotation.x = Math.PI / 1.6;
+    ring2.rotation.y = Math.PI / 3;
+    scene.add(ring2);
+
+    // ── Particle cloud ──
+    const PARTICLE_COUNT = isMobile ? 260 : 800;
+    const positions = new Float32Array(PARTICLE_COUNT * 3);
+    const colors    = new Float32Array(PARTICLE_COUNT * 3);
+    const palette = [
+      [0.75, 0.22, 0.17],   // red
+      [0.94, 0.65, 0.00],   // gold
+      [0.00, 0.82, 0.63]    // green
+    ];
+    for(let i = 0; i < PARTICLE_COUNT; i++){
+      // Uniformly distributed on a spherical shell — immortal memory halo
+      const r = 2.4 + Math.random()*1.8;
+      const theta = Math.acos(2*Math.random() - 1);
+      const phi   = Math.random() * Math.PI * 2;
+      positions[i*3    ] = r * Math.sin(theta) * Math.cos(phi);
+      positions[i*3 + 1] = r * Math.sin(theta) * Math.sin(phi);
+      positions[i*3 + 2] = r * Math.cos(theta);
+      const c = palette[i % palette.length];
+      colors[i*3]=c[0]; colors[i*3+1]=c[1]; colors[i*3+2]=c[2];
+    }
+    const pGeom = new THREE.BufferGeometry();
+    pGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    pGeom.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+    const pMat = new THREE.PointsMaterial({
+      size: isMobile ? 0.04 : 0.028,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.85,
+      depthWrite: false
+    });
+    const points = new THREE.Points(pGeom, pMat);
+    scene.add(points);
+
+    // Pointer-based parallax
+    let targetX = 0, targetY = 0, rotX = 0, rotY = 0;
+    if(!isMobile){
+      window.addEventListener('mousemove', e=>{
+        targetX = (e.clientX / window.innerWidth  - 0.5) * 0.6;
+        targetY = (e.clientY / window.innerHeight - 0.5) * 0.6;
+      }, { passive:true });
+    }
+
+    // Resize handler — bound to the hero section, not full window
+    const hero = document.getElementById('hero');
+    function resize(){
+      const w = hero.clientWidth;
+      const h = hero.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive:true });
+
+    // Pause rendering when the hero is offscreen or tab is hidden
+    let inView = true;
+    const heroIO = new IntersectionObserver(entries=>{
+      inView = entries[0].isIntersecting;
+    }, { threshold: 0 });
+    heroIO.observe(hero);
+    let docVisible = !document.hidden;
+    document.addEventListener('visibilitychange', ()=>{ docVisible = !document.hidden; });
+
+    // Render loop
+    const clock = new THREE.Clock();
+    (function animate(){
+      requestAnimationFrame(animate);
+      if(!inView || !docVisible) return;
+      const dt = clock.getDelta();
+      // Smooth parallax
+      rotX += (targetY - rotX) * 0.04;
+      rotY += (targetX - rotY) * 0.04;
+      core.rotation.x += dt * 0.22 + rotX * 0.02;
+      core.rotation.y += dt * 0.28 + rotY * 0.02;
+      ring.rotation.z += dt * 0.15;
+      ring2.rotation.z -= dt * 0.09;
+      points.rotation.y += dt * 0.05;
+      points.rotation.x = rotX * 0.5;
+      renderer.render(scene, camera);
+    })();
+  }
+})();
 </script>
 </body>
 </html>

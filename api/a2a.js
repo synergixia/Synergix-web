@@ -26,7 +26,7 @@ const SYNERGIX = {
   name:     "Synergix",
   version:  "2.0.0",
   token_ca: "0x6485907278c389e70c572f441ce7052da58effff",
-  bucket:   "synergix",
+  bucket:   "synergix-v2",
   sp:       "https://greenfield-sp.bnbchain.org",
   links: {
     web:      "https://www.synergix.lol",
@@ -254,7 +254,7 @@ async function skillAsk(query, lang = "es") {
 
   const systemPrompt = `You are Synergix, the world's first AI deployed on BNB Greenfield DCellar — a decentralized collective intelligence system accessed via the A2A protocol.
 
-Your knowledge comes from community contributions stored permanently on BNB Greenfield blockchain (bucket: "synergix"). You are a specialized agent that answers based on collective on-chain knowledge.
+Your knowledge comes from community contributions stored permanently on BNB Greenfield blockchain (bucket: "synergix-v2"). You are a specialized agent that answers based on collective on-chain knowledge.
 
 IDENTITY:
 - Telegram bot: @synergix_ai_bot | Web: synergix.lol | Token: $SYNERGIX (BNB Chain)

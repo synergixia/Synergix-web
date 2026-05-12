@@ -65,12 +65,12 @@
     {
       "id": "synergix_bucket",
       "name": "Greenfield Bucket Info",
-      "description": "Explore the Synergix BNB Greenfield bucket — the on-chain storage powering the AI. Shows bucket structure, paths, and the RAG engine architecture.",
+      "description": "Explore the Synergix BNB Greenfield bucket (synergix-v2) — the on-chain storage powering the AI. Shows bucket structure, paths, and the RAG engine architecture.",
       "tags": ["greenfield", "DCellar", "storage", "decentralized", "bucket"],
       "examples": [
         "What is in the Synergix Greenfield bucket?",
         "How does Synergix store knowledge on-chain?",
-        "Explain the Synergix bucket structure"
+        "Explain the synergix-v2 bucket structure"
       ],
       "inputModes": ["text/plain"],
       "outputModes": ["application/json"]
