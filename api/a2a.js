@@ -16,18 +16,25 @@
  *   synergix_ask, synergix_ranks, synergix_token, synergix_bucket, synergix_stats
  *
  * VARIABLES DE ENTORNO (Vercel):
- *   GROQ_API_KEY  — obligatorio para synergix_ask
- *   MCP_SECRET    — token de auth opcional
+ *   IRYS_PRIVATE_KEY  — obligatoria (fail-fast si ausente)
+ *   GROQ_API_KEY      — obligatoria para synergix_ask
+ *   MCP_SECRET        — token de auth opcional
  * ─────────────────────────────────────────────────────────────────────────────
  */
+
+import { validateConfig, queryByTags, fetchById } from "./_lib/irys.js";
 
 // ── CONSTANTES ────────────────────────────────────────────────────────────────
 const SYNERGIX = {
   name:     "Synergix",
   version:  "2.0.0",
   token_ca: "0x6485907278c389e70c572f441ce7052da58effff",
-  bucket:   "synergix-v2",
-  sp:       "https://gateway.irys.xyz",
+  storage: {
+    network:  "Arweave (via Irys)",
+    token:    "BNB",
+    gateway:  "https://gateway.irys.xyz",
+    app_name: "Synergix"
+  },
   links: {
     web:      "https://www.synergix.lol",
     telegram: "https://t.me/synergix_ai_bot",
@@ -46,9 +53,7 @@ const SYNERGIX = {
 const GROQ_MODEL   = "llama-3.3-70b-versatile";
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
-// Estado de tareas en memoria (serverless — stateless entre invocaciones)
-// Para persistencia real se necesitaría Redis/KV, pero A2A funciona sin estado
-// porque Vercel serverless completa cada tarea en la misma invocación.
+// Estado de tareas en memoria (stateless entre invocaciones serverless)
 const taskStore = new Map();
 
 // ── HANDLER PRINCIPAL ─────────────────────────────────────────────────────────
@@ -60,6 +65,14 @@ export default async function handler(req, res) {
 
   if (req.method === "OPTIONS") return res.status(200).end();
 
+  // Fail-fast: IRYS_PRIVATE_KEY must be configured
+  try {
+    validateConfig();
+  } catch (err) {
+    console.error("[A2A] CRITICAL config error:", err.message);
+    return res.status(500).json(jsonRpcError(null, -32603, err.message));
+  }
+
   // Auth opcional
   const secret = process.env.MCP_SECRET;
   if (secret) {
@@ -69,15 +82,14 @@ export default async function handler(req, res) {
     }
   }
 
-  // GET → redirigir al agent card
   if (req.method === "GET") {
     return res.status(200).json({
-      agent:     SYNERGIX.name,
-      version:   SYNERGIX.version,
-      protocol:  "A2A",
-      card:      "https://www.synergix.lol/.well-known/agent.json",
-      endpoint:  "https://www.synergix.lol/api/a2a",
-      note:      "Send POST with JSON-RPC 2.0 payload"
+      agent:    SYNERGIX.name,
+      version:  SYNERGIX.version,
+      protocol: "A2A",
+      card:     "https://www.synergix.lol/.well-known/agent.json",
+      endpoint: "https://www.synergix.lol/api/a2a",
+      note:     "Send POST with JSON-RPC 2.0 payload"
     });
   }
 
@@ -85,7 +97,6 @@ export default async function handler(req, res) {
     return res.status(405).json(jsonRpcError(null, -32700, "Method not allowed"));
   }
 
-  // Parsear body JSON-RPC
   let body;
   try {
     body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
@@ -99,7 +110,6 @@ export default async function handler(req, res) {
     return res.status(400).json(jsonRpcError(id, -32600, "Invalid Request — jsonrpc must be '2.0'"));
   }
 
-  // Dispatch por método A2A
   try {
     switch (method) {
       case "message/send":
@@ -112,7 +122,6 @@ export default async function handler(req, res) {
         return res.status(200).json(handleTasksCancel(id, params));
 
       case "agent/authenticatedExtendedCard":
-        // Devolver el mismo agent card (sin datos extra en este caso)
         return res.status(200).json(jsonRpcResult(id, await getExtendedCard()));
 
       default:
@@ -131,10 +140,9 @@ async function handleMessageSend(rpcId, params) {
   }
 
   const { message, configuration } = params;
-  const taskId   = `task_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  const taskId    = `task_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
   const contextId = message.contextId || `ctx_${Date.now()}`;
 
-  // Extraer texto del mensaje (A2A usa Parts)
   const textParts = (message.parts || []).filter(p => p.kind === "text" || p.type === "text");
   const inputText = textParts.map(p => p.text || p.content || "").join(" ").trim();
 
@@ -142,19 +150,16 @@ async function handleMessageSend(rpcId, params) {
     return jsonRpcError(rpcId, -32602, "No text content found in message parts");
   }
 
-  // Detectar skill solicitada (por metadata o autodetect)
   const skillId = (configuration?.skill) || detectSkill(inputText);
-  const lang    = (configuration?.lang) || detectLang(inputText);
+  const lang    = (configuration?.lang)  || detectLang(inputText);
 
-  // Ejecutar la skill
   let artifactContent;
   try {
     artifactContent = await executeSkill(skillId, inputText, lang);
   } catch (err) {
-    artifactContent = { error: err.message, skill: skillId };
+    return jsonRpcError(rpcId, -32603, err.message);
   }
 
-  // Respuesta A2A — Task completada directamente (no hay streaming)
   const task = {
     id:        taskId,
     contextId,
@@ -186,18 +191,16 @@ async function handleMessageSend(rpcId, params) {
       }
     ],
     metadata: {
-      agent:   SYNERGIX.name,
-      version: SYNERGIX.version,
-      skill:   skillId,
+      agent:    SYNERGIX.name,
+      version:  SYNERGIX.version,
+      skill:    skillId,
       lang,
-      storage: `Irys permanent storage: ${SYNERGIX.bucket}`,
-      protocol:"A2A"
+      storage:  `${SYNERGIX.storage.network} — App-Name: ${SYNERGIX.storage.app_name}`,
+      protocol: "A2A"
     }
   };
 
-  // Guardar en store (para tasks/get — dentro de la misma invocación)
   taskStore.set(taskId, task);
-
   return jsonRpcResult(rpcId, task);
 }
 
@@ -210,7 +213,6 @@ function handleTasksGet(rpcId, params) {
 
   const task = taskStore.get(taskId);
   if (!task) {
-    // En serverless stateless, la tarea ya no existe entre invocaciones
     return jsonRpcError(rpcId, -32001, `Task '${taskId}' not found. Note: Synergix A2A is stateless — tasks complete synchronously in message/send.`);
   }
 
@@ -224,7 +226,6 @@ function handleTasksCancel(rpcId, params) {
     return jsonRpcError(rpcId, -32602, "Invalid params — 'id' is required");
   }
 
-  // Synergix completa tareas sincrónicamente, no hay tareas en curso que cancelar
   return jsonRpcResult(rpcId, {
     id:     taskId,
     status: { state: "canceled", timestamp: new Date().toISOString() },
@@ -238,10 +239,9 @@ async function executeSkill(skillId, inputText, lang) {
     case "synergix_ask":    return await skillAsk(inputText, lang);
     case "synergix_ranks":  return skillRanks(lang);
     case "synergix_token":  return skillToken();
-    case "synergix_bucket": return skillBucket();
-    case "synergix_stats":  return skillStats();
+    case "synergix_bucket": return await skillBucket();
+    case "synergix_stats":  return await skillStats();
     default:
-      // Skill desconocida → usar ask como fallback
       return await skillAsk(inputText, lang);
   }
 }
@@ -249,32 +249,25 @@ async function executeSkill(skillId, inputText, lang) {
 // ── SKILL: synergix_ask ───────────────────────────────────────────────────────
 async function skillAsk(query, lang = "es") {
   const groqKey = process.env.GROQ_API_KEY;
+  if (!groqKey) {
+    throw new Error("CRITICAL: GROQ_API_KEY not set. synergix_ask requires Groq API access.");
+  }
+
   const langNames = { es: "Spanish", en: "English", zh: "Chinese (Simplified)" };
   const langName  = langNames[lang] || "Spanish";
 
-  const systemPrompt = `You are Synergix, the world's first AI deployed on Irys — a decentralized collective intelligence system accessed via the A2A protocol.
-
-Your knowledge comes from community contributions stored permanently on Irys permanent storage (bucket: "synergix-v2"). You are a specialized agent that answers based on collective on-chain knowledge.
+  const systemPrompt = `You are Synergix, a decentralized collective intelligence AI accessed via the A2A protocol. Your knowledge is permanently stored on Arweave via Irys (BNB payments), indexed by tags: App-Name: Synergix, Type: aporte.
 
 IDENTITY:
 - Telegram bot: @synergix_ai_bot | Web: synergix.lol | Token: $SYNERGIX (BNB Chain)
 - Contract: ${SYNERGIX.token_ca}
 - RAG scoring: keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency
-- Federation sync: every 8 minutes to Irys
+- Federation sync: every 8 minutes to Irys/Arweave permanently
 - Tax: 1% buy + 1% sell → 40% Irys storage, 30% buybacks/LP, 15% ops, 10% dev, 5% rewards
 
 RANKS: 🌱 Iniciado(0) → 📈 Activo(100) → 🧬 Sincronizado(500) → 🏗️ Arquitecto(1500) → 🧠 Mente Colmena(5000) → 🔮 Oráculo(15000, ×5.0, unlimited)
 
 Respond in ${langName}. Be concise and direct. You are communicating via A2A protocol with another AI agent.`;
-
-  if (!groqKey) {
-    return {
-      answer: `[Synergix A2A — Demo Mode] Query: "${query}". Set GROQ_API_KEY in Vercel to enable live RAG responses.`,
-      source: "demo",
-      lang,
-      protocol: "A2A"
-    };
-  }
 
   const response = await fetch(GROQ_API_URL, {
     method:  "POST",
@@ -305,7 +298,7 @@ Respond in ${langName}. Be concise and direct. You are communicating via A2A pro
     source:   "groq+rag",
     lang,
     model:    GROQ_MODEL,
-    storage:  `Irys permanent storage: ${SYNERGIX.bucket}`,
+    storage:  `${SYNERGIX.storage.network} — App-Name: ${SYNERGIX.storage.app_name}`,
     protocol: "A2A"
   };
 }
@@ -313,15 +306,15 @@ Respond in ${langName}. Be concise and direct. You are communicating via A2A pro
 // ── SKILL: synergix_ranks ─────────────────────────────────────────────────────
 function skillRanks(lang = "en") {
   return {
-    title:   "Synergix On-Chain Rank System",
-    protocol:"A2A",
-    ranks:   SYNERGIX.ranks.map(r => ({
+    title:    "Synergix On-Chain Rank System",
+    protocol: "A2A",
+    ranks:    SYNERGIX.ranks.map(r => ({
       rank:        r.rank,
       min_points:  r.min_pts,
       multiplier:  `×${r.mult}`,
       daily_limit: r.daily ?? "unlimited"
     })),
-    scoring: "score = keyword_match × quality(0-10) × fusion_weight × impact_boost × lang_boost × recency",
+    scoring:    "score = keyword_match × quality(0-10) × fusion_weight × impact_boost × lang_boost × recency",
     validation: "🧠 Mente Colmena+ can validate contributions from other users",
     challenge:  "Weekly AI-generated challenge — top 3 earn special recognition",
     telegram:   SYNERGIX.links.telegram
@@ -331,23 +324,23 @@ function skillRanks(lang = "en") {
 // ── SKILL: synergix_token ─────────────────────────────────────────────────────
 function skillToken() {
   return {
-    name:        "Synergix",
-    symbol:      "$SYNERGIX",
-    contract:    SYNERGIX.token_ca,
-    network:     "BNB Chain",
-    protocol:    "A2A",
+    name:     "Synergix",
+    symbol:   "$SYNERGIX",
+    contract: SYNERGIX.token_ca,
+    network:  "BNB Chain",
+    protocol: "A2A",
     tax: {
       buy:  "1%",
       sell: "1%"
     },
     tax_distribution: {
       irys_storage: "40%",
-      buybacks_lp:        "30% (manual by team)",
-      operations:         "15%",
-      development:        "10%",
-      rewards:            "5%"
+      buybacks_lp:  "30% (manual by team)",
+      operations:   "15%",
+      development:  "10%",
+      rewards:      "5%"
     },
-    unique_value: "First token whose tax directly funds on-chain AI storage on Irys",
+    unique_value: "First token whose tax directly funds permanent AI storage on Arweave via Irys (BNB payments)",
     links: {
       launch:   `https://four.meme/token/${SYNERGIX.token_ca}`,
       bscscan:  `https://bscscan.com/token/${SYNERGIX.token_ca}`,
@@ -359,49 +352,79 @@ function skillToken() {
 }
 
 // ── SKILL: synergix_bucket ────────────────────────────────────────────────────
-function skillBucket() {
-  return {
-    bucket_name: SYNERGIX.bucket,
-    network:     "Irys Network",
-    chain_id:    null,
-    sp_endpoint: SYNERGIX.sp,
-    protocol:    "A2A",
-    structure: {
-      "SYNERGIXAI/":              "Versioned AI brain (JSON) — collective knowledge, never deleted",
-      "aportes/YYYY-MM/":         "Community contributions by month — RAG source",
-      "users/{uid}":              "User profiles with rank/points tags",
-      "data/synergix_db_*.json":  "Full DB snapshot, synced every 8 min",
-      "logs/YYYY-MM-DD.log":      "Audit trail, flushed at midnight UTC",
-      "backups/snapshot_*.bak":   "Weekly snapshots"
+async function skillBucket() {
+  let liveStats = null;
+  try {
+    const nodes = await queryByTags([{ name: "Type", values: ["global-stats"] }], 1);
+    if (nodes.length > 0) {
+      liveStats = await fetchById(nodes[0].id);
+    }
+  } catch {
+    // No live data
+  }
+
+  const result = {
+    storage_network: SYNERGIX.storage.network,
+    payment_token:   SYNERGIX.storage.token,
+    gateway:         SYNERGIX.storage.gateway,
+    protocol:        "A2A",
+    tag_structure: {
+      "Type: brain":        "Versioned AI brain (JSON, immutable) — collective knowledge, never deleted",
+      "Type: aporte":       "Community contributions (+ Year-Month, User-Id) — RAG source",
+      "Type: user":         "User profiles with rank/points (+ User-Id)",
+      "Type: db-snapshot":  "Full DB snapshot, uploaded every 8 min",
+      "Type: log":          "Audit trail (+ Date), flushed at midnight UTC",
+      "Type: backup":       "Weekly snapshots",
+      "Type: global-stats": "Global network statistics",
+      "Type: leaderboard":  "Weekly contributor leaderboard"
     },
     rag: {
-      mode_a:   "80% Irys data + 20% Groq (when on-chain data available)",
-      mode_b:   "100% Groq (no data yet)",
-      sync:     "every 8 minutes via federation_loop",
-      scoring:  "keyword × quality × fusion_weight × impact × lang_boost × recency"
+      mode_a:  "80% Irys/Arweave data + 20% Groq (when on-chain data available)",
+      mode_b:  "100% Groq (no data yet)",
+      sync:    "every 8 minutes via federation_loop",
+      scoring: "keyword × quality × fusion_weight × impact × lang_boost × recency"
     },
-    unique_fact: "The bucket IS the AI brain. Full state restored from Irys on server restart — zero data loss, 100% decentralized."
+    unique_fact: "All data is permanently stored on Arweave via Irys (BNB). Immutable, censorship-resistant — the AI brain persists forever on the permaweb."
   };
+
+  if (liveStats) {
+    result.live_stats = {
+      fetched_at: new Date().toISOString(),
+      ...liveStats
+    };
+  }
+
+  return result;
 }
 
 // ── SKILL: synergix_stats ─────────────────────────────────────────────────────
-function skillStats() {
-  return {
-    agent:    SYNERGIX.name,
-    version:  SYNERGIX.version,
-    status:   "operational",
-    protocol: "A2A",
+async function skillStats() {
+  let liveStats = null;
+  try {
+    const nodes = await queryByTags([{ name: "Type", values: ["global-stats"] }], 1);
+    if (nodes.length > 0) {
+      liveStats = await fetchById(nodes[0].id);
+    }
+  } catch {
+    // No live data
+  }
+
+  const result = {
+    agent:               SYNERGIX.name,
+    version:             SYNERGIX.version,
+    status:              "operational",
+    protocol:            "A2A",
     protocols_supported: ["A2A", "MCP"],
     storage: {
-      type:    "Irys",
-      bucket:  SYNERGIX.bucket,
-      network: "Mainnet",
-      chain_id: 1017
+      type:     SYNERGIX.storage.network,
+      token:    SYNERGIX.storage.token,
+      gateway:  SYNERGIX.storage.gateway,
+      app_name: SYNERGIX.storage.app_name
     },
     rag_engine: {
-      type:       "keyword-scoring (ARM-compatible, no vectors)",
-      sync:       "every 8 minutes",
-      languages:  ["es", "en", "zh-hans", "zh-hant"]
+      type:      "keyword-scoring (ARM-compatible, no vectors)",
+      sync:      "every 8 minutes",
+      languages: ["es", "en", "zh-hans", "zh-hant"]
     },
     rank_system: {
       tiers:    6,
@@ -415,20 +438,30 @@ function skillStats() {
     },
     links: SYNERGIX.links
   };
+
+  if (liveStats) {
+    result.live = {
+      fetched_at:     new Date().toISOString(),
+      total_users:    liveStats.total_users    || "N/A",
+      total_contribs: liveStats.total_contribs || "N/A",
+      weekly_top:     liveStats.weekly_top     || "N/A"
+    };
+  }
+
+  return result;
 }
 
 // ── SKILL DETECTION ───────────────────────────────────────────────────────────
 function detectSkill(text) {
-  const t = text.toLowerCase();
-  if (/rank|tier|level|rang|nivel|puntos|points|mult/i.test(t)) return "synergix_ranks";
-  if (/token|contract|tax|buy|sell|price|precio|0x|bnb|bsc/i.test(t)) return "synergix_token";
-  if (/bucket|irys|storage|almacenamiento|brain|cerebro/i.test(t)) return "synergix_bucket";
-  if (/stats|statistics|status|estado|network|health|usuarios|users/i.test(t)) return "synergix_stats";
-  return "synergix_ask"; // default
+  if (/rank|tier|level|rang|nivel|puntos|points|mult/i.test(text))                  return "synergix_ranks";
+  if (/token|contract|tax|buy|sell|price|precio|0x|bnb|bsc/i.test(text))            return "synergix_token";
+  if (/irys|arweave|storage|almacenamiento|brain|cerebro|permaweb/i.test(text))     return "synergix_bucket";
+  if (/stats|statistics|status|estado|network|health|usuarios|users/i.test(text))   return "synergix_stats";
+  return "synergix_ask";
 }
 
 function detectLang(text) {
-  if (/[\u4e00-\u9fff]/.test(text)) return "zh";
+  if (/[一-鿿]/.test(text)) return "zh";
   if (/\b(que|como|para|con|una|esto|este|qué|cómo)\b/i.test(text)) return "es";
   return "en";
 }
@@ -445,15 +478,14 @@ function jsonRpcError(id, code, message, data = null) {
 }
 
 async function getExtendedCard() {
-  // Mismo agent card + skills extendidas con autenticación
   return {
-    name:     SYNERGIX.name,
-    version:  SYNERGIX.version,
-    endpoint: "https://www.synergix.lol/api/a2a",
-    card:     "https://www.synergix.lol/.well-known/agent.json",
-    extended: true,
-    skills:   ["synergix_ask", "synergix_ranks", "synergix_token", "synergix_bucket", "synergix_stats"],
-    protocols:["A2A", "MCP"],
+    name:         SYNERGIX.name,
+    version:      SYNERGIX.version,
+    endpoint:     "https://www.synergix.lol/api/a2a",
+    card:         "https://www.synergix.lol/.well-known/agent.json",
+    extended:     true,
+    skills:       ["synergix_ask", "synergix_ranks", "synergix_token", "synergix_bucket", "synergix_stats"],
+    protocols:    ["A2A", "MCP"],
     mcp_endpoint: "https://www.synergix.lol/api/mcp"
   };
 }
