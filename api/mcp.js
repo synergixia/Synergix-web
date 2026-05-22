@@ -9,23 +9,25 @@
  *   1. synergix_ask        — Consulta al cerebro colectivo via RAG + Groq
  *   2. synergix_ranks      — Tabla de rangos oficial y sus multiplicadores
  *   3. synergix_token      — Info del token $SYNERGIX en BNB Chain
- *   4. synergix_bucket     — Estado del almacenamiento permanente en Irys
+ *   4. synergix_bucket     — Estado del storage Irys/Arweave
  *   5. synergix_stats      — Estadísticas globales del sistema
  *   6. synergix_top        — Top contributors de la semana
  *
  * VARIABLES DE ENTORNO (Vercel → Settings → Environment Variables):
+ *   IRYS_PRIVATE_KEY       — Wallet BNB con fondos en Irys mainnet (OBLIGATORIA)
  *   GROQ_API_KEY           — API key de Groq (obligatoria para synergix_ask)
- *   IRYS_GATEWAY         — SP de Irys (opcional, para datos live)
- *   IRYS_NAMESPACE              — Nombre del bucket (default: synergix-v2)
+ *   IRYS_GATEWAY           — Gateway Irys (default: https://gateway.irys.xyz)
  *   MCP_SECRET             — Token de autorización opcional (recomendado)
  * ─────────────────────────────────────────────────────────────────────────────
  */
+
+import { validateConfig, queryByTags, fetchById } from "./_lib/irys.js";
 
 // ── CONSTANTES DE SYNERGIX ────────────────────────────────────────────────────
 const SYNERGIX = {
   name:        "Synergix",
   version:     "2.0.0",
-  description: "The world's first AI on Irys — Decentralized collective intelligence",
+  description: "The world's first AI on Irys/Arweave — Decentralized collective intelligence with permanent on-chain storage",
   token: {
     symbol:   "$SYNERGIX",
     contract: "0x6485907278c389e70c572f441ce7052da58effff",
@@ -35,46 +37,49 @@ const SYNERGIX = {
     tax_sell: "1%",
     tax_distribution: {
       irys_storage: "40%",
-      buybacks_lp:        "30%",
-      operations:         "15%",
-      development:        "10%",
-      rewards:            "5%"
+      buybacks_lp:  "30%",
+      operations:   "15%",
+      development:  "10%",
+      rewards:      "5%"
     }
   },
   links: {
-    web:      "https://www.synergix.lol",
-    telegram: "https://t.me/synergix_ai_bot",
-    twitter:  "https://x.com/Synergix_AI",
-    four_meme:"https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff"
+    web:       "https://www.synergix.lol",
+    telegram:  "https://t.me/synergix_ai_bot",
+    twitter:   "https://x.com/Synergix_AI",
+    four_meme: "https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff"
   },
-  bucket: {
-    name:     "synergix-v2",
-    network:  "Irys Network",
-    chain_id: 1017,
-    sp:       "https://gateway.irys.xyz",
-    paths: {
-      brain:    "SYNERGIXAI/Synergix_ia_*.txt",
-      contribs: "aportes/YYYY-MM/{uid}_{ts}.txt",
-      users:    "users/{uid}",
-      db:       "data/synergix_db_*.json",
-      logs:     "logs/YYYY-MM-DD_events.log",
-      backups:  "backups/snapshot_*.bak"
+  storage: {
+    network:  "Arweave (via Irys)",
+    token:    "BNB",
+    gateway:  "https://gateway.irys.xyz",
+    graphql:  "https://uploader.irys.xyz/graphql",
+    app_name: "Synergix",
+    tags: {
+      brain:       "App-Name: Synergix | Type: brain",
+      aporte:      "App-Name: Synergix | Type: aporte | Year-Month: YYYY-MM | User-Id: {uid}",
+      user:        "App-Name: Synergix | Type: user | User-Id: {uid}",
+      db_snapshot: "App-Name: Synergix | Type: db-snapshot",
+      log:         "App-Name: Synergix | Type: log | Date: YYYY-MM-DD",
+      backup:      "App-Name: Synergix | Type: backup",
+      stats:       "App-Name: Synergix | Type: global-stats",
+      leaderboard: "App-Name: Synergix | Type: leaderboard"
     }
   },
   ranks: [
-    { rank: "🌱 Iniciado",       min_pts: 0,     multiplier: 1.0, daily_limit: 5,   description: "Nuevo miembro de la colmena" },
-    { rank: "📈 Activo",         min_pts: 100,   multiplier: 1.1, daily_limit: 12,  description: "Contribuidor regular" },
-    { rank: "🧬 Sincronizado",   min_pts: 500,   multiplier: 1.5, daily_limit: 25,  description: "Mente alineada con la colmena" },
-    { rank: "🏗️ Arquitecto",     min_pts: 1500,  multiplier: 2.5, daily_limit: 40,  description: "Constructor del conocimiento colectivo" },
-    { rank: "🧠 Mente Colmena",  min_pts: 5000,  multiplier: 3.0, daily_limit: 60,  description: "Validador de la sabiduría colectiva" },
+    { rank: "🌱 Iniciado",       min_pts: 0,     multiplier: 1.0, daily_limit: 5,    description: "Nuevo miembro de la colmena" },
+    { rank: "📈 Activo",         min_pts: 100,   multiplier: 1.1, daily_limit: 12,   description: "Contribuidor regular" },
+    { rank: "🧬 Sincronizado",   min_pts: 500,   multiplier: 1.5, daily_limit: 25,   description: "Mente alineada con la colmena" },
+    { rank: "🏗️ Arquitecto",     min_pts: 1500,  multiplier: 2.5, daily_limit: 40,   description: "Constructor del conocimiento colectivo" },
+    { rank: "🧠 Mente Colmena",  min_pts: 5000,  multiplier: 3.0, daily_limit: 60,   description: "Validador de la sabiduría colectiva" },
     { rank: "🔮 Oráculo",        min_pts: 15000, multiplier: 5.0, daily_limit: null, description: "Entidad suprema de conocimiento — sin límite diario" }
   ],
   rag: {
-    mode_a: "80% datos Irys + 20% Groq (cuando hay datos on-chain)",
-    mode_b: "100% Groq conocimiento general (sin datos on-chain aún)",
-    scoring: "score = keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency",
+    mode_a:              "80% datos Irys/Arweave + 20% Groq (cuando hay datos on-chain)",
+    mode_b:              "100% Groq conocimiento general (sin datos on-chain aún)",
+    scoring:             "score = keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency",
     federation_interval: "cada 8 minutos",
-    languages: ["es", "en", "zh-hans", "zh-hant"]
+    languages:           ["es", "en", "zh-hans", "zh-hant"]
   }
 };
 
@@ -84,13 +89,13 @@ const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 // ── MCP MANIFEST ──────────────────────────────────────────────────────────────
 const MCP_MANIFEST = {
   schema_version: "2025-06-18",
-  name:        SYNERGIX.name,
-  description: SYNERGIX.description,
-  version:     SYNERGIX.version,
+  name:           SYNERGIX.name,
+  description:    SYNERGIX.description,
+  version:        SYNERGIX.version,
   tools: [
     {
       name:        "synergix_ask",
-      description: "Ask Synergix a question using its RAG engine backed by Irys collective knowledge. Returns an AI-generated answer grounded in community contributions stored on-chain. Supports es/en/zh.",
+      description: "Ask Synergix a question using its RAG engine backed by Irys/Arweave permanent collective knowledge. Returns an AI-generated answer grounded in community contributions stored on-chain. Supports es/en/zh.",
       inputSchema: {
         type: "object",
         properties: {
@@ -121,17 +126,17 @@ const MCP_MANIFEST = {
         type:       "object",
         properties: {
           lang: {
-            type:    "string",
+            type:        "string",
             description: "Response language",
-            enum:    ["es", "en", "zh"],
-            default: "en"
+            enum:        ["es", "en", "zh"],
+            default:     "en"
           }
         }
       }
     },
     {
       name:        "synergix_token",
-      description: "Get $SYNERGIX token information: contract address, network, tax structure, and how 1% buy/sell tax funds Irys storage and operations.",
+      description: "Get $SYNERGIX token information: contract address, network, tax structure, and how 1% buy/sell tax funds Irys/Arweave storage and operations.",
       inputSchema: {
         type:       "object",
         properties: {
@@ -145,13 +150,13 @@ const MCP_MANIFEST = {
     },
     {
       name:        "synergix_bucket",
-      description: "Get information about the Synergix Irys permanent storage — the on-chain storage that powers the AI. Shows bucket structure, paths, and live stats if available.",
+      description: "Get information about Synergix permanent storage on Irys/Arweave — the on-chain brain powering the AI. Shows storage architecture, tag structure, and live stats if available.",
       inputSchema: {
         type:       "object",
         properties: {
           include_live: {
             type:        "boolean",
-            description: "Attempt to fetch live stats from Irys gateway (may be slow)",
+            description: "Attempt to fetch latest global-stats from Irys (may take a few seconds)",
             default:     false
           }
         }
@@ -192,7 +197,6 @@ const MCP_MANIFEST = {
 
 // ── HANDLER PRINCIPAL ─────────────────────────────────────────────────────────
 export default async function handler(req, res) {
-  // CORS — permite que cualquier agente AI llame este endpoint
   res.setHeader("Access-Control-Allow-Origin",  "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-MCP-Version");
@@ -200,6 +204,14 @@ export default async function handler(req, res) {
   res.setHeader("X-MCP-Protocol", "2025-06-18");
 
   if (req.method === "OPTIONS") return res.status(200).end();
+
+  // Fail-fast: IRYS_PRIVATE_KEY must be configured
+  try {
+    validateConfig();
+  } catch (err) {
+    console.error("[MCP] CRITICAL config error:", err.message);
+    return res.status(500).json({ error: err.message, critical: true });
+  }
 
   // Autorización opcional
   const secret = process.env.MCP_SECRET;
@@ -210,12 +222,10 @@ export default async function handler(req, res) {
     }
   }
 
-  // GET → devolver el manifest (discovery)
   if (req.method === "GET") {
     return res.status(200).json(MCP_MANIFEST);
   }
 
-  // POST → ejecutar una tool
   if (req.method === "POST") {
     let body;
     try {
@@ -227,25 +237,24 @@ export default async function handler(req, res) {
     const { tool, parameters = {}, id } = body;
 
     if (!tool) {
-      // Sin tool → devolver manifest también (compatibilidad)
       return res.status(200).json(MCP_MANIFEST);
     }
 
     try {
       const result = await executeTool(tool, parameters);
       return res.status(200).json({
-        id:      id || crypto.randomUUID(),
+        id:               id || crypto.randomUUID(),
         tool,
         result,
         synergix_version: SYNERGIX.version,
-        timestamp: new Date().toISOString()
+        timestamp:        new Date().toISOString()
       });
     } catch (err) {
       console.error(`[MCP] Error en tool '${tool}':`, err);
       return res.status(500).json({
-        error:   err.message || "Internal error",
+        error: err.message || "Internal error",
         tool,
-        id:      id || null
+        id:    id || null
       });
     }
   }
@@ -263,7 +272,7 @@ async function executeTool(tool, params) {
     case "synergix_stats":  return await toolStats(params);
     case "synergix_top":    return await toolTop(params);
     default:
-      throw new Error(`Tool '${tool}' not found. Available tools: ${MCP_MANIFEST.tools.map(t=>t.name).join(", ")}`);
+      throw new Error(`Tool '${tool}' not found. Available: ${MCP_MANIFEST.tools.map(t => t.name).join(", ")}`);
   }
 }
 
@@ -274,19 +283,19 @@ async function toolAsk({ query, lang = "es", context = "" }) {
   }
 
   const groqKey = process.env.GROQ_API_KEY;
+  if (!groqKey) {
+    throw new Error("CRITICAL: GROQ_API_KEY not set. synergix_ask requires Groq API access.");
+  }
 
   const langNames = { es: "Spanish", en: "English", zh: "Chinese (Simplified)" };
   const langName  = langNames[lang] || "Spanish";
 
-  // System prompt que refleja la arquitectura real de Synergix
-  const systemPrompt = `You are Synergix, the world's first AI deployed on Irys — a decentralized collective intelligence system.
-
-Your knowledge comes from community contributions stored permanently on Irys permanent storage (bucket: "synergix-v2"). You are NOT a general chatbot — you are a specialized AI that answers based on collective on-chain knowledge.
+  const systemPrompt = `You are Synergix, a decentralized collective intelligence AI. Your knowledge is permanently stored on Arweave via Irys (funded by BNB), with community contributions indexed by tags: App-Name: Synergix, Type: aporte.
 
 KEY FACTS ABOUT YOU:
 - You run as a Telegram bot (@synergix_ai_bot) with a 6-tier reputation system
 - Your RAG engine uses keyword scoring: score = keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency
-- Every 8 minutes, your federation loop syncs new knowledge to Irys
+- Every 8 minutes, your federation loop uploads new knowledge to Irys/Arweave permanently
 - Your token is $SYNERGIX (CA: 0x6485907278c389e70c572f441ce7052da58effff) on BNB Chain
 - Tax distribution: 40% Irys storage, 30% buybacks/LP, 15% operations, 10% development, 5% rewards
 - You support: Spanish, English, 简体中文, 繁體中文
@@ -297,24 +306,10 @@ RANK SYSTEM (6 tiers):
 RESPONSE RULES:
 - Always respond in ${langName}
 - Be concise and direct — you are an on-chain AI, not a general assistant
-- Mention that knowledge comes from Irys when relevant
+- Mention that knowledge is permanently stored on Arweave via Irys when relevant
 - If you don't have specific on-chain knowledge, say so and provide general guidance
 - Always stay in character as Synergix${context ? `\n\nAdditional context: ${context}` : ""}`;
 
-  const userMessage = query;
-
-  if (!groqKey) {
-    // Sin API key → respuesta estática con info de Synergix
-    return {
-      answer:  `[Synergix MCP — Demo Mode] Query received: "${query}". To enable live AI responses, set GROQ_API_KEY in Vercel environment variables. Synergix uses Groq (${GROQ_MODEL}) with Irys RAG.`,
-      source:  "demo",
-      lang,
-      model:   GROQ_MODEL,
-      note:    "Set GROQ_API_KEY environment variable to enable live responses"
-    };
-  }
-
-  // Llamada real a Groq
   const response = await fetch(GROQ_API_URL, {
     method:  "POST",
     headers: {
@@ -326,8 +321,8 @@ RESPONSE RULES:
       max_tokens:  600,
       temperature: 0.7,
       messages: [
-        { role: "system",  content: systemPrompt },
-        { role: "user",    content: userMessage }
+        { role: "system", content: systemPrompt },
+        { role: "user",   content: query }
       ]
     })
   });
@@ -342,81 +337,81 @@ RESPONSE RULES:
 
   return {
     answer,
-    source:  "groq+rag",
+    source:   "groq+rag",
     lang,
-    model:   GROQ_MODEL,
-    usage:   data.usage || null,
+    model:    GROQ_MODEL,
+    usage:    data.usage || null,
     rag_info: {
-      engine:    "keyword-scoring",
-      storage:   "Irys permanent storage: synergix-v2",
-      sync:      "every 8 minutes via federation_loop",
-      rule:      "80% on-chain data + 20% Groq (when data available)"
+      engine:  "keyword-scoring",
+      storage: "Arweave (via Irys) — App-Name: Synergix",
+      sync:    "every 8 minutes via federation_loop",
+      rule:    "80% on-chain data + 20% Groq (when data available)"
     }
   };
 }
 
-// ── TOOL: synergix_ranks ─────────────────────────────────────────────────────
+// ── TOOL: synergix_ranks ──────────────────────────────────────────────────────
 function toolRanks({ lang = "en" }) {
   const labels = {
     en: {
-      title:        "Synergix Rank System — 6 Tiers of Collective Intelligence",
-      rank:         "Rank",
-      min_pts:      "Min Points",
-      multiplier:   "Multiplier",
-      daily_limit:  "Daily Limit",
-      description:  "Description",
-      unlimited:    "Unlimited",
-      note:         "Multipliers apply to points earned per contribution. Higher ranks also gain validation powers (🧠 Mente Colmena can validate others' contributions). 🔮 Oracles have no daily limit and earn 5× points.",
-      scoring:      SYNERGIX.rag.scoring
+      title:       "Synergix Rank System — 6 Tiers of Collective Intelligence",
+      rank:        "Rank",
+      min_pts:     "Min Points",
+      multiplier:  "Multiplier",
+      daily_limit: "Daily Limit",
+      description: "Description",
+      unlimited:   "Unlimited",
+      note:        "Multipliers apply to points earned per contribution. Higher ranks gain validation powers (🧠 Mente Colmena can validate others' contributions). 🔮 Oracles have no daily limit and earn 5× points.",
+      scoring:     SYNERGIX.rag.scoring
     },
     es: {
-      title:        "Sistema de Rangos Synergix — 6 Niveles de Inteligencia Colectiva",
-      rank:         "Rango",
-      min_pts:      "Puntos mín.",
-      multiplier:   "Multiplicador",
-      daily_limit:  "Límite diario",
-      description:  "Descripción",
-      unlimited:    "Sin límite",
-      note:         "Los multiplicadores aplican a los puntos por contribución. Los rangos altos obtienen poderes de validación (🧠 Mente Colmena puede validar aportes de otros). 🔮 Oráculo no tiene límite diario y gana ×5 puntos.",
-      scoring:      SYNERGIX.rag.scoring
+      title:       "Sistema de Rangos Synergix — 6 Niveles de Inteligencia Colectiva",
+      rank:        "Rango",
+      min_pts:     "Puntos mín.",
+      multiplier:  "Multiplicador",
+      daily_limit: "Límite diario",
+      description: "Descripción",
+      unlimited:   "Sin límite",
+      note:        "Los multiplicadores aplican a los puntos por contribución. Los rangos altos obtienen poderes de validación (🧠 Mente Colmena puede validar aportes de otros). 🔮 Oráculo no tiene límite diario y gana ×5 puntos.",
+      scoring:     SYNERGIX.rag.scoring
     },
     zh: {
-      title:        "Synergix 等级系统 — 集体智慧的6个层级",
-      rank:         "等级",
-      min_pts:      "最低积分",
-      multiplier:   "倍率",
-      daily_limit:  "每日限额",
-      description:  "描述",
-      unlimited:    "无限制",
-      note:         "倍率适用于每次贡献获得的积分。高等级用户拥有验证权限（🧠 蜂巢思维可以验证他人的贡献）。🔮 神谕无每日限额，积分×5。",
-      scoring:      SYNERGIX.rag.scoring
+      title:       "Synergix 等级系统 — 集体智慧的6个层级",
+      rank:        "等级",
+      min_pts:     "最低积分",
+      multiplier:  "倍率",
+      daily_limit: "每日限额",
+      description: "描述",
+      unlimited:   "无限制",
+      note:        "倍率适用于每次贡献获得的积分。高等级用户拥有验证权限（🧠 蜂巢思维可以验证他人的贡献）。🔮 神谕无每日限额，积分×5。",
+      scoring:     SYNERGIX.rag.scoring
     }
   };
 
   const l = labels[lang] || labels.en;
 
   return {
-    title:  l.title,
-    ranks:  SYNERGIX.ranks.map(r => ({
+    title: l.title,
+    ranks: SYNERGIX.ranks.map(r => ({
       [l.rank]:        r.rank,
       [l.min_pts]:     r.min_pts,
       [l.multiplier]:  `×${r.multiplier}`,
       [l.daily_limit]: r.daily_limit ? r.daily_limit : l.unlimited,
       [l.description]: r.description
     })),
-    note:    l.note,
-    scoring: l.scoring,
+    note:        l.note,
+    scoring:     l.scoring,
     total_tiers: SYNERGIX.ranks.length
   };
 }
 
-// ── TOOL: synergix_token ─────────────────────────────────────────────────────
+// ── TOOL: synergix_token ──────────────────────────────────────────────────────
 function toolToken({ include_distribution = true }) {
   const result = {
-    name:      "Synergix",
-    symbol:    SYNERGIX.token.symbol,
-    contract:  SYNERGIX.token.contract,
-    network:   SYNERGIX.token.network,
+    name:     "Synergix",
+    symbol:   SYNERGIX.token.symbol,
+    contract: SYNERGIX.token.contract,
+    network:  SYNERGIX.token.network,
     tax: {
       buy:  SYNERGIX.token.tax_buy,
       sell: SYNERGIX.token.tax_sell,
@@ -428,7 +423,7 @@ function toolToken({ include_distribution = true }) {
       telegram: SYNERGIX.links.telegram,
       twitter:  SYNERGIX.links.twitter
     },
-    unique_value: "First token whose tax directly funds on-chain AI storage on Irys. Every trade contributes to immortal knowledge on blockchain.",
+    unique_value:    "First token whose tax directly funds permanent AI storage on Arweave via Irys (BNB payments). Every trade contributes to immortal knowledge on the permaweb.",
     verify_on_chain: `https://bscscan.com/token/${SYNERGIX.token.contract}`
   };
 
@@ -443,21 +438,23 @@ function toolToken({ include_distribution = true }) {
   return result;
 }
 
-// ── TOOL: synergix_bucket ────────────────────────────────────────────────────
+// ── TOOL: synergix_bucket ─────────────────────────────────────────────────────
 async function toolBucket({ include_live = false }) {
   const staticInfo = {
-    bucket_name:   SYNERGIX.bucket.name,
-    network:       SYNERGIX.bucket.network,
-    chain_id:      SYNERGIX.bucket.chain_id,
-    sp_endpoint:   SYNERGIX.bucket.sp,
-    irys_url:   `https://gateway.irys.xyz/${SYNERGIX.bucket.name}`,
-    structure: {
-      "SYNERGIXAI/": "Versioned AI brain files (JSON, never deleted) — the collective knowledge",
-      "aportes/YYYY-MM/": "Community contributions by month — RAG source",
-      "users/{uid}": "User profiles with tags (rank, points, lang)",
-      "data/synergix_db_*.json": "Full DB snapshot, synced every 8 minutes",
-      "logs/YYYY-MM-DD_events.log": "Audit trail, flushed at midnight UTC",
-      "backups/snapshot_*.bak": "Weekly snapshots every Monday"
+    storage_network: SYNERGIX.storage.network,
+    payment_token:   SYNERGIX.storage.token,
+    gateway:         SYNERGIX.storage.gateway,
+    graphql:         SYNERGIX.storage.graphql,
+    app_tag:         `App-Name: ${SYNERGIX.storage.app_name}`,
+    tag_structure: {
+      "Type: brain":        "Versioned AI brain files (JSON, immutable) — the collective knowledge",
+      "Type: aporte":       "Community contributions (+ Year-Month, User-Id tags) — RAG source",
+      "Type: user":         "User profiles with rank/points (+ User-Id tag)",
+      "Type: db-snapshot":  "Full DB snapshot, uploaded every 8 minutes",
+      "Type: log":          "Audit trail (+ Date tag), flushed at midnight UTC",
+      "Type: backup":       "Weekly snapshots every Monday",
+      "Type: global-stats": "Global network statistics JSON",
+      "Type: leaderboard":  "Weekly contributor leaderboard JSON"
     },
     rag_integration: {
       mode_a:    SYNERGIX.rag.mode_a,
@@ -465,70 +462,60 @@ async function toolBucket({ include_live = false }) {
       sync_freq: SYNERGIX.rag.federation_interval,
       scoring:   SYNERGIX.rag.scoring
     },
-    unique_fact: "This bucket IS the AI brain. When the server restarts, the entire AI state is restored from Irys — zero data loss, 100% decentralized persistence."
+    unique_fact: "All data is permanently stored on Arweave via Irys (BNB payments). Unlike traditional cloud storage, this data is immutable and censorship-resistant — the AI brain persists forever on the permaweb."
   };
 
   if (include_live) {
     try {
-      const spEndpoint = process.env.IRYS_GATEWAY || SYNERGIX.bucket.sp;
-      const bucketName = process.env.IRYS_NAMESPACE      || SYNERGIX.bucket.name;
-      const url = `${spEndpoint}/view/${bucketName}/data/stats.json`;
-
-      const controller = new AbortController();
-      setTimeout(() => controller.abort(), 4000); // 4s timeout
-
-      const resp = await fetch(url, { signal: controller.signal });
-      if (resp.ok) {
-        const liveData = await resp.json();
+      const nodes = await queryByTags([{ name: "Type", values: ["global-stats"] }], 1);
+      if (nodes.length > 0) {
+        const liveData = await fetchById(nodes[0].id);
         staticInfo.live_stats = {
           fetched_at: new Date().toISOString(),
+          tx_id:      nodes[0].id,
           ...liveData
         };
       } else {
-        staticInfo.live_stats = { error: `SP returned ${resp.status}`, note: "Live data unavailable" };
+        staticInfo.live_stats = {
+          note: "No Type: global-stats transaction found on Irys yet."
+        };
       }
     } catch (e) {
-      staticInfo.live_stats = { error: e.message, note: "Live data unavailable — SP may be slow or stats.json not yet created" };
+      staticInfo.live_stats = { error: e.message, note: "Could not fetch live stats from Irys." };
     }
   }
 
   return staticInfo;
 }
 
-// ── TOOL: synergix_stats ─────────────────────────────────────────────────────
+// ── TOOL: synergix_stats ──────────────────────────────────────────────────────
 async function toolStats({ lang = "en" }) {
-  // Intentar obtener stats desde GF si están disponibles
   let liveStats = null;
   try {
-    const spEndpoint = process.env.IRYS_GATEWAY || SYNERGIX.bucket.sp;
-    const bucketName = process.env.IRYS_NAMESPACE      || SYNERGIX.bucket.name;
-    const url = `${spEndpoint}/view/${bucketName}/data/global_stats.json`;
-
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), 3000);
-
-    const resp = await fetch(url, { signal: controller.signal });
-    if (resp.ok) liveStats = await resp.json();
+    const nodes = await queryByTags([{ name: "Type", values: ["global-stats"] }], 1);
+    if (nodes.length > 0) {
+      liveStats = await fetchById(nodes[0].id);
+    }
   } catch {
-    // Sin stats live — OK
+    // No live stats available
   }
 
   const base = {
     system: {
-      name:        SYNERGIX.name,
-      version:     SYNERGIX.version,
-      status:      "operational",
-      network:     SYNERGIX.bucket.network,
-      bucket:      SYNERGIX.bucket.name,
-      telegram:    SYNERGIX.links.telegram,
-      web:         SYNERGIX.links.web
+      name:     SYNERGIX.name,
+      version:  SYNERGIX.version,
+      status:   "operational",
+      storage:  SYNERGIX.storage.network,
+      gateway:  SYNERGIX.storage.gateway,
+      telegram: SYNERGIX.links.telegram,
+      web:      SYNERGIX.links.web
     },
     rag_engine: {
-      type:           "keyword-scoring (no vectors, ARM-compatible)",
-      scoring_formula: SYNERGIX.rag.scoring,
-      sync_interval:  SYNERGIX.rag.federation_interval,
-      supported_langs: SYNERGIX.rag.languages,
-      data_source:    "Irys permanent storage: synergix"
+      type:             "keyword-scoring (no vectors, ARM-compatible)",
+      scoring_formula:  SYNERGIX.rag.scoring,
+      sync_interval:    SYNERGIX.rag.federation_interval,
+      supported_langs:  SYNERGIX.rag.languages,
+      data_source:      "Arweave (via Irys) — App-Name: Synergix"
     },
     rank_system: {
       tiers:      SYNERGIX.ranks.length,
@@ -545,60 +532,54 @@ async function toolStats({ lang = "en" }) {
 
   if (liveStats) {
     base.live = {
-      fetched_at:   new Date().toISOString(),
-      total_users:  liveStats.total_users       || "N/A",
-      total_contribs: liveStats.total_contribs  || "N/A",
-      weekly_top:   liveStats.weekly_top        || "N/A",
-      active_challenge: liveStats.challenge     || null
+      fetched_at:       new Date().toISOString(),
+      total_users:      liveStats.total_users    || "N/A",
+      total_contribs:   liveStats.total_contribs || "N/A",
+      weekly_top:       liveStats.weekly_top     || "N/A",
+      active_challenge: liveStats.challenge      || null
     };
   } else {
     base.live = {
-      note: "Live stats not yet available. Deploy synergix_stats feature or create data/global_stats.json in bucket."
+      note: "Live stats not yet available. Upload a Type: global-stats transaction to Irys to expose live data."
     };
   }
 
   return base;
 }
 
-// ── TOOL: synergix_top ───────────────────────────────────────────────────────
+// ── TOOL: synergix_top ────────────────────────────────────────────────────────
 async function toolTop({ limit = 10 }) {
   limit = Math.min(Math.max(1, parseInt(limit) || 10), 20);
 
-  // Intentar obtener leaderboard desde GF
   let liveTop = null;
   try {
-    const spEndpoint = process.env.IRYS_GATEWAY || SYNERGIX.bucket.sp;
-    const bucketName = process.env.IRYS_NAMESPACE      || SYNERGIX.bucket.name;
-    const url = `${spEndpoint}/view/${bucketName}/data/leaderboard.json`;
-
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), 3000);
-
-    const resp = await fetch(url, { signal: controller.signal });
-    if (resp.ok) liveTop = await resp.json();
+    const nodes = await queryByTags([{ name: "Type", values: ["leaderboard"] }], 1);
+    if (nodes.length > 0) {
+      liveTop = await fetchById(nodes[0].id);
+    }
   } catch {
-    // Sin datos live
+    // No leaderboard data
   }
 
   if (liveTop && Array.isArray(liveTop.top)) {
     return {
-      source:    "irys_live",
-      fetched_at: new Date().toISOString(),
+      source:      "irys_live",
+      fetched_at:  new Date().toISOString(),
       total_shown: Math.min(limit, liveTop.top.length),
       leaderboard: liveTop.top.slice(0, limit),
-      period:    liveTop.period || "current_week",
-      note:      "Live data from Irys permanent storage: synergix"
+      period:      liveTop.period || "current_week",
+      note:        "Live data from Irys/Arweave — permanent and verifiable on-chain"
     };
   }
 
   return {
-    source: "static",
-    note:   "Live leaderboard not yet available. The Synergix bot tracks top contributors in its Irys DB. To expose live data, create data/leaderboard.json in the synergix bucket.",
+    source: "no_data",
+    note:   "Live leaderboard not yet available. The Synergix bot uploads Type: leaderboard transactions to Irys every week.",
     how_to_earn: {
-      contribute:  "Send knowledge to @synergix_ai_bot on Telegram",
-      get_points:  "Each contribution is evaluated by AI (0-10 quality score)",
-      multipliers: "Higher rank = more points per contribution",
-      weekly_prize:"Top 3 contributors each week win special recognition"
+      contribute:   "Send knowledge to @synergix_ai_bot on Telegram",
+      get_points:   "Each contribution is evaluated by AI (0-10 quality score)",
+      multipliers:  "Higher rank = more points per contribution",
+      weekly_prize: "Top 3 contributors each week win special recognition"
     },
     ranks_reference: SYNERGIX.ranks.map(r => ({
       rank: r.rank, min_pts: r.min_pts, multiplier: `×${r.multiplier}`
