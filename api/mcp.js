@@ -9,14 +9,14 @@
  *   1. synergix_ask        — Consulta al cerebro colectivo via RAG + Groq
  *   2. synergix_ranks      — Tabla de rangos oficial y sus multiplicadores
  *   3. synergix_token      — Info del token $SYNERGIX en BNB Chain
- *   4. synergix_bucket     — Estado del bucket Greenfield DCellar
+ *   4. synergix_bucket     — Estado del almacenamiento permanente en Irys
  *   5. synergix_stats      — Estadísticas globales del sistema
  *   6. synergix_top        — Top contributors de la semana
  *
  * VARIABLES DE ENTORNO (Vercel → Settings → Environment Variables):
  *   GROQ_API_KEY           — API key de Groq (obligatoria para synergix_ask)
- *   GF_SP_ENDPOINT         — SP de Greenfield (opcional, para datos live)
- *   GF_BUCKET              — Nombre del bucket (default: synergix-v2)
+ *   IRYS_GATEWAY         — SP de Irys (opcional, para datos live)
+ *   IRYS_NAMESPACE              — Nombre del bucket (default: synergix-v2)
  *   MCP_SECRET             — Token de autorización opcional (recomendado)
  * ─────────────────────────────────────────────────────────────────────────────
  */
@@ -25,7 +25,7 @@
 const SYNERGIX = {
   name:        "Synergix",
   version:     "2.0.0",
-  description: "The world's first AI on BNB Greenfield DCellar — Decentralized collective intelligence",
+  description: "The world's first AI on Irys — Decentralized collective intelligence",
   token: {
     symbol:   "$SYNERGIX",
     contract: "0x6485907278c389e70c572f441ce7052da58effff",
@@ -34,7 +34,7 @@ const SYNERGIX = {
     tax_buy:  "1%",
     tax_sell: "1%",
     tax_distribution: {
-      greenfield_storage: "40%",
+      irys_storage: "40%",
       buybacks_lp:        "30%",
       operations:         "15%",
       development:        "10%",
@@ -49,9 +49,9 @@ const SYNERGIX = {
   },
   bucket: {
     name:     "synergix-v2",
-    network:  "BNB Greenfield Mainnet",
+    network:  "Irys Network",
     chain_id: 1017,
-    sp:       "https://greenfield-sp.bnbchain.org",
+    sp:       "https://gateway.irys.xyz",
     paths: {
       brain:    "SYNERGIXAI/Synergix_ia_*.txt",
       contribs: "aportes/YYYY-MM/{uid}_{ts}.txt",
@@ -70,7 +70,7 @@ const SYNERGIX = {
     { rank: "🔮 Oráculo",        min_pts: 15000, multiplier: 5.0, daily_limit: null, description: "Entidad suprema de conocimiento — sin límite diario" }
   ],
   rag: {
-    mode_a: "80% datos Greenfield + 20% Groq (cuando hay datos on-chain)",
+    mode_a: "80% datos Irys + 20% Groq (cuando hay datos on-chain)",
     mode_b: "100% Groq conocimiento general (sin datos on-chain aún)",
     scoring: "score = keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency",
     federation_interval: "cada 8 minutos",
@@ -90,7 +90,7 @@ const MCP_MANIFEST = {
   tools: [
     {
       name:        "synergix_ask",
-      description: "Ask Synergix a question using its RAG engine backed by BNB Greenfield collective knowledge. Returns an AI-generated answer grounded in community contributions stored on-chain. Supports es/en/zh.",
+      description: "Ask Synergix a question using its RAG engine backed by Irys collective knowledge. Returns an AI-generated answer grounded in community contributions stored on-chain. Supports es/en/zh.",
       inputSchema: {
         type: "object",
         properties: {
@@ -131,7 +131,7 @@ const MCP_MANIFEST = {
     },
     {
       name:        "synergix_token",
-      description: "Get $SYNERGIX token information: contract address, network, tax structure, and how 1% buy/sell tax funds Greenfield storage and operations.",
+      description: "Get $SYNERGIX token information: contract address, network, tax structure, and how 1% buy/sell tax funds Irys storage and operations.",
       inputSchema: {
         type:       "object",
         properties: {
@@ -145,13 +145,13 @@ const MCP_MANIFEST = {
     },
     {
       name:        "synergix_bucket",
-      description: "Get information about the Synergix BNB Greenfield bucket — the on-chain storage that powers the AI. Shows bucket structure, paths, and live stats if available.",
+      description: "Get information about the Synergix Irys permanent storage — the on-chain storage that powers the AI. Shows bucket structure, paths, and live stats if available.",
       inputSchema: {
         type:       "object",
         properties: {
           include_live: {
             type:        "boolean",
-            description: "Attempt to fetch live stats from Greenfield SP (may be slow)",
+            description: "Attempt to fetch live stats from Irys gateway (may be slow)",
             default:     false
           }
         }
@@ -279,16 +279,16 @@ async function toolAsk({ query, lang = "es", context = "" }) {
   const langName  = langNames[lang] || "Spanish";
 
   // System prompt que refleja la arquitectura real de Synergix
-  const systemPrompt = `You are Synergix, the world's first AI deployed on BNB Greenfield DCellar — a decentralized collective intelligence system.
+  const systemPrompt = `You are Synergix, the world's first AI deployed on Irys — a decentralized collective intelligence system.
 
-Your knowledge comes from community contributions stored permanently on BNB Greenfield blockchain storage (bucket: "synergix-v2"). You are NOT a general chatbot — you are a specialized AI that answers based on collective on-chain knowledge.
+Your knowledge comes from community contributions stored permanently on Irys permanent storage (bucket: "synergix-v2"). You are NOT a general chatbot — you are a specialized AI that answers based on collective on-chain knowledge.
 
 KEY FACTS ABOUT YOU:
 - You run as a Telegram bot (@synergix_ai_bot) with a 6-tier reputation system
 - Your RAG engine uses keyword scoring: score = keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency
-- Every 8 minutes, your federation loop syncs new knowledge to Greenfield
+- Every 8 minutes, your federation loop syncs new knowledge to Irys
 - Your token is $SYNERGIX (CA: 0x6485907278c389e70c572f441ce7052da58effff) on BNB Chain
-- Tax distribution: 40% Greenfield storage, 30% buybacks/LP, 15% operations, 10% development, 5% rewards
+- Tax distribution: 40% Irys storage, 30% buybacks/LP, 15% operations, 10% development, 5% rewards
 - You support: Spanish, English, 简体中文, 繁體中文
 
 RANK SYSTEM (6 tiers):
@@ -297,7 +297,7 @@ RANK SYSTEM (6 tiers):
 RESPONSE RULES:
 - Always respond in ${langName}
 - Be concise and direct — you are an on-chain AI, not a general assistant
-- Mention that knowledge comes from BNB Greenfield when relevant
+- Mention that knowledge comes from Irys when relevant
 - If you don't have specific on-chain knowledge, say so and provide general guidance
 - Always stay in character as Synergix${context ? `\n\nAdditional context: ${context}` : ""}`;
 
@@ -306,7 +306,7 @@ RESPONSE RULES:
   if (!groqKey) {
     // Sin API key → respuesta estática con info de Synergix
     return {
-      answer:  `[Synergix MCP — Demo Mode] Query received: "${query}". To enable live AI responses, set GROQ_API_KEY in Vercel environment variables. Synergix uses Groq (${GROQ_MODEL}) with BNB Greenfield RAG.`,
+      answer:  `[Synergix MCP — Demo Mode] Query received: "${query}". To enable live AI responses, set GROQ_API_KEY in Vercel environment variables. Synergix uses Groq (${GROQ_MODEL}) with Irys RAG.`,
       source:  "demo",
       lang,
       model:   GROQ_MODEL,
@@ -348,7 +348,7 @@ RESPONSE RULES:
     usage:   data.usage || null,
     rag_info: {
       engine:    "keyword-scoring",
-      storage:   "BNB Greenfield bucket: synergix-v2",
+      storage:   "Irys permanent storage: synergix-v2",
       sync:      "every 8 minutes via federation_loop",
       rule:      "80% on-chain data + 20% Groq (when data available)"
     }
@@ -428,7 +428,7 @@ function toolToken({ include_distribution = true }) {
       telegram: SYNERGIX.links.telegram,
       twitter:  SYNERGIX.links.twitter
     },
-    unique_value: "First token whose tax directly funds on-chain AI storage on BNB Greenfield DCellar. Every trade contributes to immortal knowledge on blockchain.",
+    unique_value: "First token whose tax directly funds on-chain AI storage on Irys. Every trade contributes to immortal knowledge on blockchain.",
     verify_on_chain: `https://bscscan.com/token/${SYNERGIX.token.contract}`
   };
 
@@ -450,7 +450,7 @@ async function toolBucket({ include_live = false }) {
     network:       SYNERGIX.bucket.network,
     chain_id:      SYNERGIX.bucket.chain_id,
     sp_endpoint:   SYNERGIX.bucket.sp,
-    dcellar_url:   `https://dcellar.io/buckets/${SYNERGIX.bucket.name}`,
+    irys_url:   `https://gateway.irys.xyz/${SYNERGIX.bucket.name}`,
     structure: {
       "SYNERGIXAI/": "Versioned AI brain files (JSON, never deleted) — the collective knowledge",
       "aportes/YYYY-MM/": "Community contributions by month — RAG source",
@@ -465,13 +465,13 @@ async function toolBucket({ include_live = false }) {
       sync_freq: SYNERGIX.rag.federation_interval,
       scoring:   SYNERGIX.rag.scoring
     },
-    unique_fact: "This bucket IS the AI brain. When the server restarts, the entire AI state is restored from Greenfield — zero data loss, 100% decentralized persistence."
+    unique_fact: "This bucket IS the AI brain. When the server restarts, the entire AI state is restored from Irys — zero data loss, 100% decentralized persistence."
   };
 
   if (include_live) {
     try {
-      const spEndpoint = process.env.GF_SP_ENDPOINT || SYNERGIX.bucket.sp;
-      const bucketName = process.env.GF_BUCKET      || SYNERGIX.bucket.name;
+      const spEndpoint = process.env.IRYS_GATEWAY || SYNERGIX.bucket.sp;
+      const bucketName = process.env.IRYS_NAMESPACE      || SYNERGIX.bucket.name;
       const url = `${spEndpoint}/view/${bucketName}/data/stats.json`;
 
       const controller = new AbortController();
@@ -500,8 +500,8 @@ async function toolStats({ lang = "en" }) {
   // Intentar obtener stats desde GF si están disponibles
   let liveStats = null;
   try {
-    const spEndpoint = process.env.GF_SP_ENDPOINT || SYNERGIX.bucket.sp;
-    const bucketName = process.env.GF_BUCKET      || SYNERGIX.bucket.name;
+    const spEndpoint = process.env.IRYS_GATEWAY || SYNERGIX.bucket.sp;
+    const bucketName = process.env.IRYS_NAMESPACE      || SYNERGIX.bucket.name;
     const url = `${spEndpoint}/view/${bucketName}/data/global_stats.json`;
 
     const controller = new AbortController();
@@ -528,7 +528,7 @@ async function toolStats({ lang = "en" }) {
       scoring_formula: SYNERGIX.rag.scoring,
       sync_interval:  SYNERGIX.rag.federation_interval,
       supported_langs: SYNERGIX.rag.languages,
-      data_source:    "BNB Greenfield bucket: synergix"
+      data_source:    "Irys permanent storage: synergix"
     },
     rank_system: {
       tiers:      SYNERGIX.ranks.length,
@@ -567,8 +567,8 @@ async function toolTop({ limit = 10 }) {
   // Intentar obtener leaderboard desde GF
   let liveTop = null;
   try {
-    const spEndpoint = process.env.GF_SP_ENDPOINT || SYNERGIX.bucket.sp;
-    const bucketName = process.env.GF_BUCKET      || SYNERGIX.bucket.name;
+    const spEndpoint = process.env.IRYS_GATEWAY || SYNERGIX.bucket.sp;
+    const bucketName = process.env.IRYS_NAMESPACE      || SYNERGIX.bucket.name;
     const url = `${spEndpoint}/view/${bucketName}/data/leaderboard.json`;
 
     const controller = new AbortController();
@@ -582,18 +582,18 @@ async function toolTop({ limit = 10 }) {
 
   if (liveTop && Array.isArray(liveTop.top)) {
     return {
-      source:    "greenfield_live",
+      source:    "irys_live",
       fetched_at: new Date().toISOString(),
       total_shown: Math.min(limit, liveTop.top.length),
       leaderboard: liveTop.top.slice(0, limit),
       period:    liveTop.period || "current_week",
-      note:      "Live data from BNB Greenfield bucket: synergix"
+      note:      "Live data from Irys permanent storage: synergix"
     };
   }
 
   return {
     source: "static",
-    note:   "Live leaderboard not yet available. The Synergix bot tracks top contributors in its Greenfield DB. To expose live data, create data/leaderboard.json in the synergix bucket.",
+    note:   "Live leaderboard not yet available. The Synergix bot tracks top contributors in its Irys DB. To expose live data, create data/leaderboard.json in the synergix bucket.",
     how_to_earn: {
       contribute:  "Send knowledge to @synergix_ai_bot on Telegram",
       get_points:  "Each contribution is evaluated by AI (0-10 quality score)",
