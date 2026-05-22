@@ -16,7 +16,7 @@
  * VARIABLES DE ENTORNO (Vercel → Settings → Environment Variables):
  *   GROQ_API_KEY           — API key de Groq (obligatoria para synergix_ask)
  *   IRYS_GATEWAY         — SP de Irys (opcional, para datos live)
- *   IRYS_NAMESPACE              — Nombre del bucket (default: synergix-v2)
+ *   IRYS_NAMESPACE              — Nombre del Data Ledger (default: synergix-v2)
  *   MCP_SECRET             — Token de autorización opcional (recomendado)
  * ─────────────────────────────────────────────────────────────────────────────
  */
@@ -145,7 +145,7 @@ const MCP_MANIFEST = {
     },
     {
       name:        "synergix_bucket",
-      description: "Get information about the Synergix Irys permanent storage — the on-chain storage that powers the AI. Shows bucket structure, paths, and live stats if available.",
+      description: "Get information about the Synergix Irys permanent storage — the on-chain storage that powers the AI. Shows Data Ledger structure, paths, and live stats if available.",
       inputSchema: {
         type:       "object",
         properties: {
@@ -281,7 +281,7 @@ async function toolAsk({ query, lang = "es", context = "" }) {
   // System prompt que refleja la arquitectura real de Synergix
   const systemPrompt = `You are Synergix, the world's first AI deployed on Irys — a decentralized collective intelligence system.
 
-Your knowledge comes from community contributions stored permanently on Irys permanent storage (bucket: "synergix-v2"). You are NOT a general chatbot — you are a specialized AI that answers based on collective on-chain knowledge.
+Your knowledge comes from community contributions stored permanently on Irys permanent storage (Data Ledger: "synergix-v2"). You are NOT a general chatbot — you are a specialized AI that answers based on collective on-chain knowledge.
 
 KEY FACTS ABOUT YOU:
 - You run as a Telegram bot (@synergix_ai_bot) with a 6-tier reputation system
@@ -348,7 +348,7 @@ RESPONSE RULES:
     usage:   data.usage || null,
     rag_info: {
       engine:    "keyword-scoring",
-      storage:   "Irys permanent storage: synergix-v2",
+      storage:   "Irys Data Ledger: synergix-v2",
       sync:      "every 8 minutes via federation_loop",
       rule:      "80% on-chain data + 20% Groq (when data available)"
     }
@@ -446,7 +446,7 @@ function toolToken({ include_distribution = true }) {
 // ── TOOL: synergix_bucket ────────────────────────────────────────────────────
 async function toolBucket({ include_live = false }) {
   const staticInfo = {
-    bucket_name:   SYNERGIX.bucket.name,
+    ledger_name:   SYNERGIX.bucket.name,
     network:       SYNERGIX.bucket.network,
     chain_id:      SYNERGIX.bucket.chain_id,
     sp_endpoint:   SYNERGIX.bucket.sp,
@@ -465,7 +465,7 @@ async function toolBucket({ include_live = false }) {
       sync_freq: SYNERGIX.rag.federation_interval,
       scoring:   SYNERGIX.rag.scoring
     },
-    unique_fact: "This bucket IS the AI brain. When the server restarts, the entire AI state is restored from Irys — zero data loss, 100% decentralized persistence."
+    unique_fact: "This Data Ledger IS the AI brain. When the server restarts, the entire AI state is restored from Irys — zero data loss, 100% decentralized persistence."
   };
 
   if (include_live) {
@@ -553,7 +553,7 @@ async function toolStats({ lang = "en" }) {
     };
   } else {
     base.live = {
-      note: "Live stats not yet available. Deploy synergix_stats feature or create data/global_stats.json in bucket."
+      note: "Live stats not yet available. Deploy synergix_stats feature or create data/global_stats.json in the Data Ledger."
     };
   }
 
@@ -593,7 +593,7 @@ async function toolTop({ limit = 10 }) {
 
   return {
     source: "static",
-    note:   "Live leaderboard not yet available. The Synergix bot tracks top contributors in its Irys DB. To expose live data, create data/leaderboard.json in the synergix bucket.",
+    note:   "Live leaderboard not yet available. The Synergix bot tracks top contributors in its Irys DB. To expose live data, create data/leaderboard.json in the synergix Data Ledger.",
     how_to_earn: {
       contribute:  "Send knowledge to @synergix_ai_bot on Telegram",
       get_points:  "Each contribution is evaluated by AI (0-10 quality score)",

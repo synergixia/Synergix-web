@@ -828,6 +828,20 @@ body::before{
 /* Mobile */
 @media(max-width:900px){.roadmap-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.roadmap-grid{grid-template-columns:1fr}}
+/* ══════════════════════════════════════════
+   ROADMAP 2026 — upcoming cards
+══════════════════════════════════════════ */
+#roadmap2026{background:var(--bg3)}
+.rm-card-up::before{background:linear-gradient(90deg,var(--g),transparent)}
+.rm-card-up:hover{border-color:rgba(240,165,0,.4)}
+.rm-tag-up{color:var(--g)}
+.rm-tag-up::before{content:'';width:16px;height:1px;background:var(--g);display:block}
+.rm-card-vis::before{background:linear-gradient(90deg,var(--r),transparent)}
+.rm-card-vis:hover{border-color:rgba(192,57,43,.4)}
+.rm-tag-vis{color:var(--r2)}
+.rm-tag-vis::before{content:'';width:16px;height:1px;background:var(--r2);display:block}
+.rm-2026-header{grid-column:1/-1;padding:12px 24px 4px;font-family:var(--M);font-size:.6rem;letter-spacing:3px;color:var(--g);opacity:.7;text-transform:uppercase}
+
 
 </style>
 </head>
@@ -953,7 +967,7 @@ body::before{
     </h1>
     <div class="h-badges">
       <span class="badge badge-first t" data-key="badge_world"></span>
-      <span class="badge badge-irys">📦 Bucket: synergix-v2</span>
+      <span class="badge badge-irys">📦 Data Ledger: synergix-v2</span>
       <span class="badge badge-chain t" data-key="badge_immortal"></span>
     </div>
     <p class="h-desc t" data-key="hero_desc"></p>
@@ -1002,7 +1016,7 @@ body::before{
     </div>
     <div class="why-grid">
       <div class="wc reveal"><div class="wc-n">01</div><span class="wc-icon">🌍</span><div class="wc-t t" data-key="wc1_t"></div><div class="wc-d t" data-key="wc1_d"></div><span class="wc-b">Pioneer</span></div>
-      <div class="wc reveal" style="transition-delay:.1s"><div class="wc-n">02</div><span class="wc-icon">📦</span><div class="wc-t t" data-key="wc2_t"></div><div class="wc-d t" data-key="wc2_d"></div><span class="wc-b">Bucket: synergix-v2</span></div>
+      <div class="wc reveal" style="transition-delay:.1s"><div class="wc-n">02</div><span class="wc-icon">📦</span><div class="wc-t t" data-key="wc2_t"></div><div class="wc-d t" data-key="wc2_d"></div><span class="wc-b">Data Ledger: synergix-v2</span></div>
       <div class="wc reveal" style="transition-delay:.2s"><div class="wc-n">03</div><span class="wc-icon">🔄</span><div class="wc-t t" data-key="wc3_t"></div><div class="wc-d t" data-key="wc3_d"></div><span class="wc-b t" data-key="wc3_b"></span></div>
       <div class="wc reveal" style="transition-delay:.3s"><div class="wc-n">04</div><span class="wc-icon">⛓️</span><div class="wc-t t" data-key="wc4_t"></div><div class="wc-d t" data-key="wc4_d"></div><span class="wc-b">4 tags on-chain</span></div>
       <div class="wc reveal" style="transition-delay:.4s"><div class="wc-n">05</div><span class="wc-icon">🧠</span><div class="wc-t t" data-key="wc5_t"></div><div class="wc-d t" data-key="wc5_d"></div><span class="wc-b">RAG on Irys</span></div>
@@ -1016,7 +1030,7 @@ body::before{
   <div class="si">
     <div class="sh">
       <div class="sh-eye t" data-key="bucket_eye"></div>
-      <h2 class="sh-title"><span class="wh" data-key="h2_bucket_w">THE BUCKET <em>synergix-v2</em></span><br><span data-key="h2_bucket_r">ON IRYS</span></h2>
+      <h2 class="sh-title"><span class="wh" data-key="h2_bucket_w">THE DATA LEDGER <em>synergix-v2</em></span><br><span data-key="h2_bucket_r">ON IRYS</span></h2>
       <p class="sh-sub t" data-key="bucket_sub"></p>
     </div>
     <div class="bucket-grid">
@@ -1033,14 +1047,14 @@ body::before{
           <div class="term-bar"><div class="tb-r"></div><div class="tb-y"></div><div class="tb-g"></div></div>
           <div><span class="t-p">$ </span><span class="t-c">synergix-v2 status --verbose</span></div>
           <div class="t-o">🚀 Status: <span class="t-gr">ONLINE</span></div>
-          <div class="t-o">📦 Bucket: <span class="t-gd">synergix-v2</span> (Irys)</div>
+          <div class="t-o">📦 Data Ledger: <span class="t-gd">synergix-v2</span> (Irys)</div>
           <div class="t-o">🧠 Brain: <span class="t-gr">loaded from Irys ✅</span></div>
           <div class="t-o">💾 DB restored: <span class="t-gr">automatically ✅</span></div>
           <div class="t-o">🔍 RAG cache: <span class="t-gd">contributions indexed</span></div>
           <div class="t-o">⚡ Federation: <span class="t-gr">every 8 min</span></div>
           <div>&nbsp;</div>
           <div><span class="t-p">$ </span><span class="t-c">cat restore.log</span></div>
-          <div class="t-o">[OK] DB downloaded from bucket</div>
+          <div class="t-o">[OK] DB downloaded from Data Ledger</div>
           <div class="t-o">[OK] Brain: Synergix_ia_20260318.txt</div>
           <div class="t-o">[OK] RAG rebuilt in 0.3s</div>
           <div class="t-o">[OK] 0 contributions lost</div>
@@ -1251,7 +1265,7 @@ body::before{
         <div class="rm-content">
           <div class="rm-tag" data-key="rm_tag">Implemented</div>
           <div class="rm-title" data-key="rm_t1">Chat libre con RAG</div>
-          <div class="rm-desc" data-key="rm_d1">Chat libre con RAG sobre memoria inmortal en Irys — modo 80/20 activo. El bot consulta el bucket <em>synergix-v2</em> antes de responder.</div>
+          <div class="rm-desc" data-key="rm_d1">Chat libre con RAG sobre memoria inmortal en Irys — modo 80/20 activo. El bot consulta el Data Ledger <em>synergix-v2</em> antes de responder.</div>
         </div>
       </div>
 
@@ -1296,7 +1310,7 @@ body::before{
         <div class="rm-content">
           <div class="rm-tag" data-key="rm_tag">Implemented</div>
           <div class="rm-title" data-key="rm_t6">Leaderboard /top</div>
-          <div class="rm-desc" data-key="rm_d6">Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el bucket synergix-v2, visible para toda la comunidad.</div>
+          <div class="rm-desc" data-key="rm_d6">Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el Data Ledger synergix-v2, visible para toda la comunidad.</div>
         </div>
       </div>
 
@@ -1331,6 +1345,94 @@ body::before{
   </div>
 </section>
 
+
+<!-- ══════════════════════════ ROADMAP 2026 -->
+<section class="s" id="roadmap2026">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="sh-eye t" data-key="road2026_eye">Upcoming Milestones</div>
+      <h2 class="sh-title"><span class="wh" data-key="h2_road2026_w">ROADMAP</span> <span data-key="h2_road2026_r">2026</span></h2>
+      <p class="sh-sub t" data-key="road2026_sub">The evolution of Synergix — from now to December 2026 and beyond.</p>
+    </div>
+
+    <div class="roadmap-grid">
+
+      <div class="rm-card rm-card-up wc">
+        <div class="rm-check">🌐</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-up t" data-key="rm26_tag1">Jun 2026</div>
+          <div class="rm-title t" data-key="rm26_t1">Global Connectivity &amp; Infrastructure Scaling</div>
+          <div class="rm-desc t" data-key="rm26_d1">Integration of internet search capabilities for Synergix AI. Expansion and optimization of server capacity to enhance performance, reduce latency, and strengthen the core of our artificial intelligence.</div>
+        </div>
+      </div>
+
+      <div class="rm-card rm-card-up wc">
+        <div class="rm-check">🏆</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-up t" data-key="rm26_tag2">Jul 2026</div>
+          <div class="rm-title t" data-key="rm26_t2">Governance &amp; Rewards System</div>
+          <div class="rm-desc t" data-key="rm26_d2">Launch of the royalty system based on contribution quality. Implementation of a Judge System designed to evaluate and audit contributions with high precision, directly rewarding outstanding users with Synergix's native token.</div>
+        </div>
+      </div>
+
+      <div class="rm-card rm-card-up wc">
+        <div class="rm-check">💻</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-up t" data-key="rm26_tag3">Aug 2026</div>
+          <div class="rm-title t" data-key="rm26_t3">Web Platform Launch</div>
+          <div class="rm-desc t" data-key="rm26_d3">Official presentation of the Synergix web ecosystem. Users will have centralized access to our complete suite of advanced tools and AI capabilities directly from the website interface.</div>
+        </div>
+      </div>
+
+      <div class="rm-card rm-card-up wc">
+        <div class="rm-check">⛏️</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-up t" data-key="rm26_tag4">Sep 2026</div>
+          <div class="rm-title t" data-key="rm26_t4">Node Deployment &amp; Mining</div>
+          <div class="rm-desc t" data-key="rm26_d4">Introduction of the mining protocol for infrastructure operators. Users who host Synergix Ghost Nodes will strengthen the decentralized network and receive direct incentives in the ecosystem's native currency.</div>
+        </div>
+      </div>
+
+      <div class="rm-card rm-card-up wc">
+        <div class="rm-check">🔒</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-up t" data-key="rm26_tag5">Oct 2026</div>
+          <div class="rm-title t" data-key="rm26_t5">Native Decentralized Storage</div>
+          <div class="rm-desc t" data-key="rm26_d5">Presentation and deployment of Synergix's own decentralized storage solution, designed to ensure data sovereignty, security, and network immutability.</div>
+        </div>
+      </div>
+
+      <div class="rm-card rm-card-up wc">
+        <div class="rm-check">🧠</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-up t" data-key="rm26_tag6">Nov 2026</div>
+          <div class="rm-title t" data-key="rm26_t6">Cognitive Evolution &amp; Advanced Computing</div>
+          <div class="rm-desc t" data-key="rm26_d6">Expansion of AI infrastructure through the adoption of NVIDIA-powered servers. Integration of next-generation language models specialized in deep reasoning and advanced programming.</div>
+        </div>
+      </div>
+
+      <div class="rm-card rm-card-up wc">
+        <div class="rm-check">📱</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-up t" data-key="rm26_tag7">Dec 2026</div>
+          <div class="rm-title t" data-key="rm26_t7">Open Source Mobile Ecosystem</div>
+          <div class="rm-desc t" data-key="rm26_d7">Official launch of Synergix apps for iOS and Android. Built under an open-source philosophy to ensure transparency, security, and global community accessibility.</div>
+        </div>
+      </div>
+
+      <div class="rm-card rm-card-up rm-card-vis wc">
+        <div class="rm-check">🔮</div>
+        <div class="rm-content">
+          <div class="rm-tag rm-tag-vis t" data-key="rm26_tag8">Vision 2027</div>
+          <div class="rm-title t" data-key="rm26_t8">2027 Roadmap</div>
+          <div class="rm-desc t" data-key="rm26_d8">The roadmap and strategic objectives for 2027 will be officially revealed to our community on December 15, 2026.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="fi">
     <div>
@@ -1340,7 +1442,7 @@ body::before{
     </div>
     <div><div class="fc-t t" data-key="ft_trade"></div><ul class="fc-l"><li><a href="https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank">four.meme ↗</a></li><li><a href="#tokenomics">Tokenomics</a></li><li><a href="#depin">DePIN &amp; Burn</a></li></ul></div>
     <div><div class="fc-t t" data-key="ft_comm"></div><ul class="fc-l"><li><a href="https://t.me/+E5ndVSGPuKYwMDlh" target="_blank">Telegram ↗</a></li><li><a href="https://x.com/Synergix_AI" target="_blank">Twitter / X ↗</a></li><li><a href="https://t.me/synergix_ai_bot" target="_blank">AI Bot ↗</a></li></ul></div>
-    <div><div class="fc-t">Blockchain</div><ul class="fc-l"><li><a href="https://irys.xyz" target="_blank">Irys ↗</a></li><li><a href="https://irys.xyz" target="_blank">Irys ↗</a></li><li><a href="#bucket">Bucket: synergix-v2</a></li></ul></div>
+    <div><div class="fc-t">Blockchain</div><ul class="fc-l"><li><a href="https://irys.xyz" target="_blank">Irys ↗</a></li><li><a href="#bucket">Data Ledger: synergix-v2</a></li></ul></div>
   </div>
   <div class="fbot">
     <span class="fcp">© 2026 Synergix · CA: 0x6485907278c389e70c572f441ce7052da58effff</span>
@@ -1355,7 +1457,7 @@ body::before{
 const T={
 en:{
   nav_why:"Why Unique",
-  nav_bucket:"Irys Memory",
+  nav_bucket:"Data Ledger",
   nav_how:"How It Works",
   nav_depin:"DePIN & Burn",
   nav_token:"Token",
@@ -1377,10 +1479,10 @@ en:{
   stat_community:"From community",
   stat_first:"On Irys",
   stat_langs:"Languages",
-  hero_desc:"<strong>No other AI team achieved this.</strong> Synergix is the first and only AI fully deployed on Irys — the decentralized blockchain storage where your knowledge becomes <strong>permanent, immutable and censorship-resistant forever</strong>. The bucket <em>synergix-v2</em> IS the hard drive of the AI.",
+  hero_desc:"<strong>No other AI team achieved this.</strong> Synergix is the first and only AI with Irys immortal memory — the decentralized blockchain storage where your knowledge becomes <strong>permanent, immutable and censorship-resistant forever</strong>. The Data Ledger <em>synergix-v2</em> IS the immortal memory of the AI.",
   h2_why_w:"THE WORLD'S FIRST AI",
   h2_why_r:"ON BNB IRYS",
-  h2_bucket_w:"THE BUCKET <em>synergix-v2</em>",
+  h2_bucket_w:"THE DATA LEDGER <em>synergix-v2</em>",
   h2_bucket_r:"ON IRYS",
   h2_how_w:"HOW",
   h2_how_r:"SYNERGIX WORKS",
@@ -1406,23 +1508,23 @@ en:{
   comm_eye:"Join us",
   roadmap_eye:"Progress",
   why_sub:"Our team achieved what no other AI project has done — deploying a fully functional collective intelligence system directly on Irys, using Irys as its permanent brain.",
-  bucket_sub:"Every file in this bucket is a permanent piece of the AI's brain. Verifiable on Irys. Owned by no one. Erasable by no one.",
+  bucket_sub:"Every entry in this Data Ledger is a permanent piece of the AI's brain. Verifiable on Irys. Owned by no one. Erasable by no one.",
   rag_sub:"The RAG engine makes Synergix fundamentally different. It doesn't guess — it retrieves from the blockchain first.",
-  ranks_sub:"Your rank is stored on-chain in the synergix-v2 bucket. Higher rank = higher RAG weight.",
+  ranks_sub:"Your rank is stored on-chain in the synergix-v2 Data Ledger. Higher rank = higher RAG weight.",
   depin_sub:"Users are the infrastructure. Every contribution funds the immortal memory. Every 15 days, supply shrinks permanently.",
   toko_sub:"1% buy + 1% sell. 100% of collected BNB stays inside the Synergix ecosystem. Every satoshi funds the network you use.",
   roadmap_sub:"Everything below is live, on-chain, and running on Irys.",
   wc1_t:"World First Achievement",
-  wc2_t:"The Bucket IS the Brain",
+  wc2_t:"The Data Ledger IS the Brain",
   wc3_t:"Server Restart = Zero Loss",
   wc4_t:"On-Chain Metadata",
   wc5_t:"80% Community · 20% AI",
   wc6_t:"Passive Income from Knowledge",
   wc1_d:"No other AI project implemented a live intelligence system using Irys as its storage layer before Synergix. Every technical challenge solved — from 4-tag on-chain metadata to full DB restoration from blockchain.",
-  wc2_d:"The bucket <strong>synergix-v2</strong> on Irys is not a backup — it IS the AI's memory. If the server is destroyed, rebooting reconnects to Irys and recovers the entire AI state automatically in seconds.",
+  wc2_d:"The Data Ledger <strong>synergix-v2</strong> on Irys is not a backup — it IS the AI's memory. If the server is destroyed, rebooting reconnects to Irys and recovers the entire AI state automatically in seconds.",
   wc3_d:"When the server restarts, the bot downloads the complete database from Irys, rebuilds the AI knowledge cache, and loads the latest fused brain — all automatically. The blockchain guarantees it.",
   wc4_d:"Every contribution carries 4 on-chain tags: AI-generated summary, quality score, author identity, and evaluator data. Immutable, verifiable, auditable by anyone on Irys.",
-  wc5_d:"Synergix's RAG engine searches the Irys bucket first. 80% of every answer comes from actual community contributions stored on-chain. No hallucinations — immutable blockchain records.",
+  wc5_d:"Synergix's RAG engine searches the Irys Data Ledger first. 80% of every answer comes from actual community contributions stored on-chain. No hallucinations — immutable blockchain records.",
   wc6_d:"Every time the AI uses your contribution, you earn residual points automatically. At milestones (1, 5, 10, 25, 50, 100+ uses) you receive a Telegram notification. Your knowledge earns forever.",
   br1_t:"Community Contributions",
   br2_t:"The Fused Collective Brain",
@@ -1448,18 +1550,18 @@ en:{
   hf4_t:"Earn Passively",
   hf1_d:"Send knowledge to the Telegram bot. An AI quality judge evaluates it (score 1–10). Only 5+ accepted. Score 8–10 = Elite with higher RAG weight.",
   hf2_d:"Accepted contributions upload to Irys with a unique CID. The 4 on-chain tags are written to the blockchain. Your contribution is now permanent. Forever.",
-  hf3_d:"When anyone asks a question, the RAG engine downloads the fused brain from Irys and builds 80% of the response from the bucket — not from AI training data.",
+  hf3_d:"When anyone asks a question, the RAG engine downloads the fused brain from Irys and builds 80% of the response from the Data Ledger — not from AI training data.",
   hf4_d:"Every use of your contribution earns automatic residual points. At 1, 5, 10, 25, 50, 100+ uses you receive milestone notifications on Telegram. No daily limit.",
   rs1:"<strong>Question arrives</strong> — user asks anything in the Telegram bot in any of the 10 languages.",
-  rs2:"<strong>Brain loaded</strong> — the latest SYNERGIXAI brain version is fetched from the Irys bucket.",
+  rs2:"<strong>Brain loaded</strong> — the latest SYNERGIXAI brain version is fetched from the Irys Data Ledger.",
   rs3:"<strong>Contributions searched</strong> — the RAG engine scans all indexed on-chain contributions: quality × impact × author rank × recency × language.",
   rs4:"<strong>80/20 construction</strong> — if relevant data is found, the AI uses 80% community data + 20% inference. If nothing relevant: 100% inference with explicit notice.",
   rs5:"<strong>Authors rewarded</strong> — every contribution used triggers automatic residual point awards. No action needed. The blockchain records it.",
   rs6:"<strong>Knowledge grows</strong> — the federation loop fuses all contributions every 8 minutes into a new brain version, uploaded to Irys.",
-  rr1_l:"From the Irys Bucket",
+  rr1_l:"From the Irys Data Ledger",
   rr2_l:"AI Context & Inference",
   rr1_d:"When the RAG finds relevant contributions on-chain, the AI builds 80% of the response from those immutable, community-validated records. Not AI hallucination — immutable fact.",
-  rr2_d:"The remaining 20% adds context, structure and clarification. It never overrides the community data. The bucket is the primary source. The AI is the translator.",
+  rr2_d:"The remaining 20% adds context, structure and clarification. It never overrides the community data. The Data Ledger is the primary source. The AI is the translator.",
   dp1_t:"DePIN Data Acquisition",
   dp2_t:"Immortal Memory — Every 15 Days",
   dp1_d:"In Synergix, <strong>users ARE the data source</strong>. Every quality contribution (5+) uploaded to Irys builds the decentralized AI infrastructure. Contributors become permanent nodes — rewarded continuously.",
@@ -1498,17 +1600,17 @@ en:{
   bar2:"Operations",
   bar6:"Institutional",
   ca1_d:"The main hub. Get updates, discuss strategy, and be part of the collective intelligence building the first AI on Irys.",
-  ca2_d:"Follow for token news, weekly challenge announcements, top contributor spotlights, technical updates, and Irys bucket milestones.",
+  ca2_d:"Follow for token news, weekly challenge announcements, top contributor spotlights, technical updates, and Irys Data Ledger milestones.",
   ca3_t:"Buy on four.meme",
   ca3_d:"Trade $SYNERGIX on BNB Chain. View live chart, holder count, liquidity and execute your purchase on the launch platform.",
   cta1:"OWN A PIECE",
   cta2:"OF THE FIRST",
   cta3:"IMMORTAL AI",
-  cta_sub:"The bucket <em>synergix-v2</em> holds the world's first AI knowledge on Irys. Every contribution is eternal. Every trade funds its survival.",
+  cta_sub:"The Data Ledger <em>synergix-v2</em> holds the world's first AI knowledge on Irys. Every contribution is eternal. Every trade funds its survival.",
   cta_buy:"Buy $SYNERGIX on four.meme",
   cta_bot:"Use the AI Bot",
   cta_tg:"Join Telegram",
-  footer_desc:"The world's first AI deployed on Irys. Collective intelligence immortal by design. Bucket: synergix-v2.",
+  footer_desc:"The world's first AI deployed on Irys. Collective intelligence immortal by design. Data Ledger: synergix-v2.",
   ft_trade:"Trade",
   ft_comm:"Community",
   road_sub:"Everything below is live, on-chain, and running on Irys.",
@@ -1522,24 +1624,52 @@ en:{
   rm_t7:"Real-time Notifications",
   rm_t8:"10 Complete Languages",
   rm_t9:"Irys as Immortal Memory",
-  rm_d1:"Free chat with RAG over immortal memory on Irys — 80/20 mode active. The bot queries the <em>synergix-v2</em> bucket before every answer.",
+  rm_d1:"Free chat with RAG over immortal memory on Irys — 80/20 mode active. The bot queries the <em>synergix-v2</em> Data Ledger before every answer.",
   rm_d2:"Contribution system with Groq judge and on-chain upload. Evaluated 1-10, accepted ≥5, uploaded to Irys with 4 immutable tags.",
   rm_d3:"6 ranks with multipliers, daily limits and passive residual points. Initiated → Active → Synced → Architect → Hive Mind → Oracle.",
   rm_d4:"Weekly challenge with automatic AI generation. Each week a new on-chain thematic challenge with leaderboard and rewards.",
   rm_d5:"Validation by Hive Mind and Oracle + /validate. Upper ranks validate, reject or escalate contributions with x3.0 and x5.0 RAG weight.",
-  rm_d6:"Leaderboard /top: top 10 score + top 3 impact. Real-time ranking stored on-chain in the synergix bucket.",
+  rm_d6:"Leaderboard /top: top 10 score + top 3 impact. Real-time ranking stored on-chain in the synergix Data Ledger.",
   rm_d7:"Real-time notifications for impact and rank-up. Automatic Telegram alerts at milestones 1, 5, 10, 25, 50, 100+ uses.",
   rm_d8:"10 complete languages: ES, EN, PT, FR, DE, RU, JA, KO, ZH_CN, ZH_TW. The bot responds in the user's language with native multilingual RAG system.",
   rm_d9:"Irys as immortal memory: full DB sync + automatic restoration on startup. If the server dies, the bot restarts and recovers everything from Irys in seconds."
 ,
-  bucket_note:"<strong>Zero data loss on server restart.</strong> The Irys bucket <strong>synergix-v2</strong> is the actual hard drive. Servers are temporary. The blockchain is permanent. Every contribution becomes part of a censorship-resistant, decentralized memory that outlives any infrastructure.",
+  bucket_note:"<strong>Zero data loss on server restart.</strong> The Irys Data Ledger <strong>synergix-v2</strong> is the actual hard drive. Servers are temporary. The blockchain is permanent. Every contribution becomes part of a censorship-resistant, decentralized memory that outlives any infrastructure.",
   stat_sync:"Brain sync: 8 min",
   wc3_b:"Immortal by design",
-  wc6_b:"Earn while you sleep"
+  wc6_b:"Earn while you sleep",
+  road2026_eye:"Upcoming Milestones",
+  h2_road2026_w:"ROADMAP",
+  h2_road2026_r:"2026",
+  road2026_sub:"The evolution of Synergix — from now to December 2026 and beyond.",
+  rm26_tag1:"Jun 2026",
+  rm26_t1:"Global Connectivity & Infrastructure Scaling",
+  rm26_d1:"Integration of internet search capabilities for Synergix AI. Expansion and optimization of server capacity to enhance performance, reduce latency, and strengthen the core of our artificial intelligence.",
+  rm26_tag2:"Jul 2026",
+  rm26_t2:"Governance & Rewards System",
+  rm26_d2:"Launch of the royalty system based on contribution quality. Implementation of a Judge System designed to evaluate and audit contributions with high precision, directly rewarding outstanding users with Synergix's native token.",
+  rm26_tag3:"Aug 2026",
+  rm26_t3:"Web Platform Launch",
+  rm26_d3:"Official presentation of the Synergix web ecosystem. Users will have centralized access to our complete suite of advanced tools and AI capabilities directly from the website interface.",
+  rm26_tag4:"Sep 2026",
+  rm26_t4:"Node Deployment & Mining",
+  rm26_d4:"Introduction of the mining protocol for infrastructure operators. Users who host Synergix Ghost Nodes will strengthen the decentralized network and receive direct incentives in the ecosystem's native currency.",
+  rm26_tag5:"Oct 2026",
+  rm26_t5:"Native Decentralized Storage",
+  rm26_d5:"Presentation and deployment of Synergix's own decentralized storage solution, designed to ensure data sovereignty, security, and network immutability.",
+  rm26_tag6:"Nov 2026",
+  rm26_t6:"Cognitive Evolution & Advanced Computing",
+  rm26_d6:"Expansion of AI infrastructure through the adoption of NVIDIA-powered servers. Integration of next-generation language models specialized in deep reasoning and advanced programming.",
+  rm26_tag7:"Dec 2026",
+  rm26_t7:"Open Source Mobile Ecosystem",
+  rm26_d7:"Official launch of Synergix apps for iOS and Android. Built under an open-source philosophy to ensure transparency, security, and global community accessibility.",
+  rm26_tag8:"Vision 2027",
+  rm26_t8:"2027 Roadmap",
+  rm26_d8:"The roadmap and strategic objectives for 2027 will be officially revealed to our community on December 15, 2026."
 },
 es:{
   nav_why:"Por qué único",
-  nav_bucket:"Irys Memory",
+  nav_bucket:"Data Ledger",
   nav_how:"Cómo funciona",
   nav_depin:"DePIN & Quema",
   nav_token:"Token",
@@ -1561,10 +1691,10 @@ es:{
   stat_community:"De la comunidad",
   stat_first:"En Irys",
   stat_langs:"Idiomas",
-  hero_desc:"<strong>Ningún otro equipo de IA logró esto.</strong> Synergix es la primera y única IA completamente desplegada en Irys — el almacenamiento blockchain descentralizado donde tu conocimiento se vuelve <strong>permanente, inmutable y resistente a la censura para siempre</strong>. El bucket <em>synergix-v2</em> ES el disco duro de la IA.",
+  hero_desc:"<strong>Ningún otro equipo de IA logró esto.</strong> Synergix es la primera y única IA con memoria inmortal en Irys — el almacenamiento blockchain descentralizado donde tu conocimiento se vuelve <strong>permanente, inmutable y resistente a la censura para siempre</strong>. El Data Ledger <em>synergix-v2</em> ES la memoria inmortal de la IA.",
   h2_why_w:"LA PRIMERA IA DEL MUNDO",
   h2_why_r:"EN BNB IRYS",
-  h2_bucket_w:"EL BUCKET <em>synergix-v2</em>",
+  h2_bucket_w:"EL DATA LEDGER <em>synergix-v2</em>",
   h2_bucket_r:"EN IRYS",
   h2_how_w:"CÓMO FUNCIONA",
   h2_how_r:"SYNERGIX",
@@ -1590,23 +1720,23 @@ es:{
   comm_eye:"Únete",
   roadmap_eye:"Progreso",
   why_sub:"Nuestro equipo logró lo que ningún otro proyecto de IA había hecho — desplegar un sistema de inteligencia colectiva completamente funcional en Irys, usando Irys como su cerebro permanente.",
-  bucket_sub:"Cada archivo en este bucket es una pieza permanente del cerebro de la IA. Verificable en Irys. Propiedad de nadie. Borrable por nadie.",
+  bucket_sub:"Cada entrada en este Data Ledger es una pieza permanente del cerebro de la IA. Verificable en Irys. Propiedad de nadie. Borrable por nadie.",
   rag_sub:"El motor RAG hace que Synergix sea fundamentalmente diferente. No adivina — recupera de la blockchain primero.",
-  ranks_sub:"Tu rango se almacena on-chain en el bucket synergix-v2. Mayor rango = mayor peso RAG en cada respuesta de la IA.",
+  ranks_sub:"Tu rango se almacena on-chain en el Data Ledger synergix-v2. Mayor rango = mayor peso RAG en cada respuesta de la IA.",
   depin_sub:"Los usuarios son la infraestructura. Cada contribución financia la memoria inmortal. Cada 15 días el suministro disminuye permanentemente.",
   toko_sub:"1% compra + 1% venta. El 100% del BNB recolectado permanece dentro del ecosistema Synergix.",
   roadmap_sub:"Todo lo de abajo está activo, on-chain, y corriendo en Irys.",
   wc1_t:"Logro mundial pionero",
-  wc2_t:"El Bucket ES el Cerebro",
+  wc2_t:"El Data Ledger ES el Cerebro",
   wc3_t:"Reinicio = Cero pérdida",
   wc4_t:"Metadatos en cadena",
   wc5_t:"80% Comunidad · 20% IA",
   wc6_t:"Ingresos pasivos del conocimiento",
   wc1_d:"Ningún proyecto de IA había implementado un sistema de inteligencia funcional usando Irys como capa de almacenamiento antes que Synergix.",
-  wc2_d:"El bucket <strong>synergix-v2</strong> en Irys no es un respaldo — ES la memoria de la IA. Si el servidor se destruye, al reiniciar se recupera todo automáticamente.",
+  wc2_d:"El Data Ledger <strong>synergix-v2</strong> en Irys no es un respaldo — ES la memoria de la IA. Si el servidor se destruye, al reiniciar se recupera todo automáticamente.",
   wc3_d:"Cuando el servidor reinicia, el bot descarga la base de datos completa de Irys, reconstruye el caché y carga el último cerebro fusionado — todo automáticamente.",
   wc4_d:"Cada contribución lleva 4 etiquetas on-chain: resumen generado por IA, puntuación de calidad, identidad del autor y datos del evaluador. Inmutables y auditables.",
-  wc5_d:"El motor RAG de Synergix busca primero en el bucket de Irys. El 80% de cada respuesta proviene de contribuciones reales almacenadas on-chain.",
+  wc5_d:"El motor RAG de Synergix busca primero en el Data Ledger de Irys. El 80% de cada respuesta proviene de contribuciones reales almacenadas on-chain.",
   wc6_d:"Cada vez que la IA usa tu contribución, ganas puntos residuales automáticamente. En hitos (1, 5, 10, 25, 50, 100+ usos) recibes notificación en Telegram.",
   br1_t:"Aportes de la Comunidad",
   br2_t:"El Cerebro Colectivo Fusionado",
@@ -1632,18 +1762,18 @@ es:{
   hf4_t:"Gana pasivamente",
   hf1_d:"Envía conocimiento al bot de Telegram. Un juez de calidad IA lo evalúa (1-10). Solo 5+ aceptado. 8-10 = Élite con mayor peso RAG.",
   hf2_d:"Las contribuciones aceptadas se suben a Irys con un CID único. Las 4 etiquetas on-chain se escriben en la blockchain. Tu contribución es ahora permanente.",
-  hf3_d:"Cuando alguien hace una pregunta, el motor RAG descarga el cerebro fusionado de Irys y construye el 80% de la respuesta desde el bucket.",
+  hf3_d:"Cuando alguien hace una pregunta, el motor RAG descarga el cerebro fusionado de Irys y construye el 80% de la respuesta desde el Data Ledger.",
   hf4_d:"Cada uso de tu contribución gana puntos residuales automáticos. En 1, 5, 10, 25, 50, 100+ usos recibes notificaciones de hitos. Sin límite diario.",
   rs1:"<strong>Llega la pregunta</strong> — el usuario pregunta en el bot de Telegram en cualquiera de los 4 idiomas.",
-  rs2:"<strong>Cerebro cargado</strong> — la última versión del cerebro SYNERGIXAI se obtiene del bucket de Irys.",
+  rs2:"<strong>Cerebro cargado</strong> — la última versión del cerebro SYNERGIXAI se obtiene del Data Ledger de Irys.",
   rs3:"<strong>Contribuciones buscadas</strong> — el motor RAG escanea todas las contribuciones on-chain: calidad × impacto × rango × recencia × idioma.",
   rs4:"<strong>Construcción 80/20</strong> — si se encuentran datos relevantes, la IA usa 80% datos de la comunidad + 20% inferencia.",
   rs5:"<strong>Autores recompensados</strong> — cada contribución usada activa premios automáticos de puntos residuales. La blockchain lo registra.",
   rs6:"<strong>El conocimiento crece</strong> — el bucle de federación fusiona todas las contribuciones cada 8 minutos en una nueva versión del cerebro.",
-  rr1_l:"Del Bucket de Irys",
+  rr1_l:"Del Data Ledger de Irys",
   rr2_l:"Contexto e Inferencia IA",
   rr1_d:"Cuando el RAG encuentra contribuciones on-chain relevantes, la IA construye el 80% de la respuesta con esos registros inmutables validados por la comunidad.",
-  rr2_d:"El 20% restante agrega contexto, estructura y clarificación. Nunca anula los datos de la comunidad. El bucket es la fuente principal.",
+  rr2_d:"El 20% restante agrega contexto, estructura y clarificación. Nunca anula los datos de la comunidad. El Data Ledger es la fuente principal.",
   dp1_t:"Adquisición de Datos DePIN",
   dp2_t:"Memoria Inmortal — Cada 15 Días",
   dp1_d:"En Synergix, <strong>los usuarios SON la fuente de datos</strong>. Cada contribución de calidad (5+) subida a Irys construye la IA descentralizada.",
@@ -1688,7 +1818,7 @@ es:{
   cta1:"SÉ DUEÑO",
   cta2:"DE LA PRIMERA",
   cta3:"IA INMORTAL",
-  cta_sub:"El bucket <em>synergix-v2</em> alberga el conocimiento de la primera IA del mundo en Irys. Cada contribución es eterna. Cada trade financia su supervivencia.",
+  cta_sub:"El Data Ledger <em>synergix-v2</em> alberga el conocimiento de la primera IA del mundo en Irys. Cada contribución es eterna. Cada trade financia su supervivencia.",
   cta_buy:"Comprar $SYNERGIX en four.meme",
   cta_bot:"Usar el Bot de IA",
   cta_tg:"Unirse a Telegram",
@@ -1706,20 +1836,48 @@ es:{
   rm_t7:"Notificaciones en tiempo real",
   rm_t8:"10 idiomas completos",
   rm_t9:"Irys como memoria inmortal",
-  rm_d1:"Chat libre con RAG sobre memoria inmortal en Irys — modo 80/20 activo. El bot consulta el bucket <em>synergix-v2</em> antes de cada respuesta.",
+  rm_d1:"Chat libre con RAG sobre memoria inmortal en Irys — modo 80/20 activo. El bot consulta el Data Ledger <em>synergix-v2</em> antes de cada respuesta.",
   rm_d2:"Sistema de aportes con juez Groq y subida on-chain. Evaluado 1-10, aceptado ≥5, subido a Irys con 4 tags inmutables.",
   rm_d3:"6 rangos con multiplicadores, límites diarios y puntos residuales pasivos. Initiated → Active → Synced → Architect → Hive Mind → Oracle.",
   rm_d4:"Challenge semanal con generación automática por IA. Cada semana un nuevo desafío temático on-chain con leaderboard y recompensas.",
   rm_d5:"Validación por Hive Mind y Oracle + /validar. Los rangos superiores pueden validar, rechazar o escalar contribuciones con peso x3.0 y x5.0 en RAG.",
-  rm_d6:"Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el bucket synergix-v2.",
+  rm_d6:"Leaderboard /top: top 10 score + top 3 impacto. Ranking en tiempo real almacenado on-chain en el Data Ledger synergix-v2.",
   rm_d7:"Notificaciones en tiempo real de impacto y ascenso de rango. Alertas automáticas en Telegram en hitos 1, 5, 10, 25, 50, 100+ usos.",
   rm_d8:"10 idiomas completos: ES, EN, PT, FR, DE, RU, JA, KO, ZH_CN, ZH_TW. El bot responde en el idioma del usuario con RAG multilingüe nativo.",
   rm_d9:"Irys como memoria inmortal: sync DB completa + restauración automática al arrancar. Si el servidor muere, el bot reinicia y recupera todo desde Irys en segundos."
 ,
-  bucket_note:"<strong>Cero pérdida de datos al reiniciar el servidor.</strong> El bucket de Irys <strong>synergix-v2</strong> es el disco duro real. Los servidores son temporales. La blockchain es permanente. Cada contribución se convierte en parte de una memoria descentralizada y resistente a la censura.",
+  bucket_note:"<strong>Cero pérdida de datos al reiniciar el servidor.</strong> El Data Ledger de Irys <strong>synergix-v2</strong> es el disco duro real. Los servidores son temporales. La blockchain es permanente. Cada contribución se convierte en parte de una memoria descentralizada y resistente a la censura.",
   stat_sync:"Sync cerebral: 8 min",
   wc3_b:"Inmortal por diseño",
-  wc6_b:"Gana mientras duermes"
+  wc6_b:"Gana mientras duermes",
+  road2026_eye:"Próximos Hitos",
+  h2_road2026_w:"HOJA DE RUTA",
+  h2_road2026_r:"2026",
+  road2026_sub:"La evolución de Synergix — de aquí a diciembre 2026 y más allá.",
+  rm26_tag1:"Jun 2026",
+  rm26_t1:"Conectividad Global y Escalamiento de Infraestructura",
+  rm26_d1:"Integración de capacidades de búsqueda en internet para la IA de Synergix. Expansión y optimización de nuestra capacidad de servidores para potenciar el rendimiento, reducir la latencia y fortalecer el núcleo de nuestra inteligencia artificial.",
+  rm26_tag2:"Jul 2026",
+  rm26_t2:"Gobernanza y Sistema de Recompensas",
+  rm26_d2:"Lanzamiento del sistema de regalías basado en la calidad de las contribuciones. Implementación de un Sistema de Jueces diseñado para evaluar y auditar los aportes con alta precisión, recompensando a los usuarios destacados directamente con el token nativo de Synergix.",
+  rm26_tag3:"Ago 2026",
+  rm26_t3:"Lanzamiento de la Plataforma Web",
+  rm26_d3:"Presentación oficial del ecosistema web de Synergix. Los usuarios tendrán acceso centralizado a nuestra suite completa de herramientas avanzadas y habilidades de IA directamente desde la interfaz del sitio web.",
+  rm26_tag4:"Sep 2026",
+  rm26_t4:"Despliegue de Nodos y Minería",
+  rm26_d4:"Introducción del protocolo de minería para operadores de infraestructura. Los usuarios que alojen los Nodos Fantasma de Synergix fortalecerán la red descentralizada y recibirán incentivos directos en la moneda nativa del ecosistema.",
+  rm26_tag5:"Oct 2026",
+  rm26_t5:"Almacenamiento Descentralizado Nativo",
+  rm26_d5:"Presentación y despliegue de la solución propia de almacenamiento descentralizado de Synergix, diseñada para garantizar la soberanía de los datos, la seguridad y la inmutabilidad de la red.",
+  rm26_tag6:"Nov 2026",
+  rm26_t6:"Evolución Cognitiva y Cómputo Avanzado",
+  rm26_d6:"Ampliación de la infraestructura de IA mediante la adopción de servidores impulsados por tecnología NVIDIA. Integración de modelos de lenguaje de última generación, especializados en razonamiento profundo y programación avanzada.",
+  rm26_tag7:"Dic 2026",
+  rm26_t7:"Ecosistema Móvil Open Source",
+  rm26_d7:"Lanzamiento oficial de las aplicaciones de Synergix para iOS y Android. Construidas bajo una filosofía de código abierto para garantizar la transparencia, la seguridad y la accesibilidad global de la comunidad.",
+  rm26_tag8:"Visión 2027",
+  rm26_t8:"Hoja de Ruta 2027",
+  rm26_d8:"La hoja de ruta y los objetivos estratégicos para la gestión 2027 serán revelados oficialmente a nuestra comunidad el 15 de diciembre de 2026."
 },
 zh:{
   nav_why:"为何独特",
@@ -1745,10 +1903,10 @@ zh:{
   stat_community:"来自社区",
   stat_first:"在Irys",
   stat_langs:"语言",
-  hero_desc:"<strong>没有其他AI团队做到这一点。</strong> Synergix是第一个完全部署在Irys上的AI——去中心化区块链存储，您的知识将永远<strong>不可篡改、抗审查</strong>。bucket <em>synergix-v2</em>就是AI真正的硬盘。",
+  hero_desc:"<strong>没有其他AI团队做到这一点。</strong> Synergix是第一个完全部署在Irys上的AI——去中心化区块链存储，您的知识将永远<strong>不可篡改、抗审查</strong>。Data Ledger <em>synergix-v2</em>就是AI的永恒记忆。",
   h2_why_w:"全球首个AI",
   h2_why_r:"部署于BNB IRYS",
-  h2_bucket_w:"存储桶 <em>synergix-v2</em>",
+  h2_bucket_w:"Data Ledger <em>synergix-v2</em>",
   h2_bucket_r:"在IRYS上",
   h2_how_w:"如何运作",
   h2_how_r:"SYNERGIX",
@@ -1774,20 +1932,20 @@ zh:{
   comm_eye:"加入我们",
   roadmap_eye:"进度",
   why_sub:"我们的团队做到了其他AI项目从未实现的事情——将完全功能的集体智能系统直接部署在Irys上，使用Irys作为其永久大脑。",
-  bucket_sub:"此桶中的每个文件都是AI大脑的永久组成部分。可在Irys上验证。无人拥有。无人可删除。",
+  bucket_sub:"此Data Ledger中的每条记录都是AI大脑的永久组成部分。可在Irys上验证。无人拥有。无人可删除。",
   rag_sub:"RAG引擎使Synergix从根本上与众不同。它不猜测——它首先从区块链检索。",
-  ranks_sub:"您的等级存储在synergix-v2桶的链上。等级越高=每次AI响应中的RAG权重越高。",
+  ranks_sub:"您的等级存储在synergix-v2 Data Ledger的链上。等级越高=每次AI响应中的RAG权重越高。",
   depin_sub:"用户就是基础设施。每次贡献都为不朽记忆提供资金。每15天，供应量永久减少。",
   toko_sub:"1%买入+1%卖出。100%收取的BNB留在Synergix生态系统内。",
   roadmap_sub:"以下所有功能均已上线，在链上运行于Irys。",
   wc1_t:"世界首创成就",
-  wc2_t:"桶就是大脑",
+  wc2_t:"Data Ledger就是大脑",
   wc3_t:"重启=零损失",
   wc4_t:"链上元数据",
   wc5_t:"80%社区 · 20%AI",
   wc6_t:"知识带来被动收入",
   wc1_d:"在Synergix之前，没有任何AI项目使用Irys作为存储层。每一个技术挑战都被解决了。",
-  wc2_d:"Irys上的<strong>synergix-v2</strong>桶不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
+  wc2_d:"Irys上的<strong>synergix-v2</strong> Data Ledger不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
   wc3_d:"当服务器重启时，机器人立即从Irys下载完整数据库，重建AI知识缓存，并加载最新融合大脑。",
   wc4_d:"每个贡献携带4个链上标签：AI生成摘要、质量评分、作者身份和评估者数据。不可篡改，可审计。",
   wc5_d:"Synergix的RAG引擎首先搜索Irys。80%的答案来自链上存储的真实社区贡献。",
@@ -1816,18 +1974,18 @@ zh:{
   hf4_t:"被动获利",
   hf1_d:"向Telegram机器人发送知识。AI质量评判员评估（1-10）。只接受5分以上。8-10分=精英，RAG权重更高。",
   hf2_d:"接受的贡献上传到Irys，附有唯一CID。4个链上标签写入区块链。您的贡献现在是永久的。",
-  hf3_d:"当有人提问时，RAG引擎从Irys下载融合大脑，并从桶中构建80%的回答。",
+  hf3_d:"当有人提问时，RAG引擎从Irys下载融合大脑，并从Data Ledger构建80%的回答。",
   hf4_d:"每次使用您的贡献都会自动获得剩余积分。在1、5、10、25、50、100+次使用时收到Telegram里程碑通知。",
   rs1:"<strong>问题到达</strong> — 用户在Telegram机器人中用4种语言中的任何一种提问。",
   rs2:"<strong>加载大脑</strong> — 从Irys获取最新SYNERGIXAI大脑版本。",
   rs3:"<strong>搜索贡献</strong> — RAG引擎扫描所有索引的链上贡献：质量×影响×作者等级×时效性×语言。",
-  rs4:"<strong>80/20构建</strong> — 如果在桶中找到相关数据，AI使用80%社区数据+20%推理。",
+  rs4:"<strong>80/20构建</strong> — 如果在Data Ledger中找到相关数据，AI使用80%社区数据+20%推理。",
   rs5:"<strong>作者获得奖励</strong> — 每次在响应中使用的贡献都会触发自动剩余积分奖励。",
   rs6:"<strong>知识增长</strong> — 联合循环每8分钟将所有贡献融合成一个新的大脑版本，上传到Irys。",
   rr1_l:"来自Irys",
   rr2_l:"AI上下文与推理",
   rr1_d:"当RAG在链上找到相关贡献时，AI从那些不可篡改的记录中构建80%的响应。不是AI幻觉——是不可篡改的事实。",
-  rr2_d:"剩余20%添加上下文、结构和说明。它永远不会覆盖社区数据。桶是主要来源。AI是翻译器。",
+  rr2_d:"剩余20%添加上下文、结构和说明。它永远不会覆盖社区数据。Data Ledger是主要来源。AI是翻译器。",
   dp1_t:"DePIN数据获取",
   dp2_t:"不朽记忆——每15天",
   dp1_d:"在Synergix中，<strong>用户就是数据来源</strong>。每个质量贡献（5+）上传到Irys都是构建去中心化AI基础设施的行为。",
@@ -1866,13 +2024,13 @@ zh:{
   bar2:"运营",
   bar6:"机构",
   ca1_d:"主要中心。获取更新、讨论策略，成为构建Irys上第一个AI的集体智慧的一部分。",
-  ca2_d:"关注代币新闻、每周挑战公告、顶级贡献者聚焦、技术更新和Irys桶里程碑。",
+  ca2_d:"关注代币新闻、每周挑战公告、顶级贡献者聚焦、技术更新和Irys Data Ledger里程碑。",
   ca3_t:"在four.meme购买",
   ca3_d:"在BNB链上交易$SYNERGIX。查看实时图表、持有者数量、流动性，直接执行购买。",
   cta1:"拥有一份",
   cta2:"第一个",
   cta3:"不朽AI",
-  cta_sub:"<em>synergix-v2</em>桶存储着Irys上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
+  cta_sub:"<em>synergix-v2</em> Data Ledger存储着Irys上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
   cta_buy:"在four.meme购买$SYNERGIX",
   cta_bot:"使用AI机器人",
   cta_tg:"加入Telegram",
@@ -1890,20 +2048,20 @@ zh:{
   rm_t7:"实时通知",
   rm_t8:"10种完整语言",
   rm_t9:"Irys作为永恒记忆",
-  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix-v2</em>桶。",
+  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix-v2</em> Data Ledger。",
   rm_d2:"带Groq评判员和链上上传的贡献系统。评分1-10，接受≥5分，以4个不可篡改标签上传到Irys。",
   rm_d3:"6个等级，配备倍增器、每日限额和被动剩余积分。Initiated→Active→Synced→Architect→Hive Mind→Oracle。",
   rm_d4:"每周AI自动生成挑战。每周在链上生成新的主题挑战，配备排行榜和奖励。",
   rm_d5:"蜂巢思维和神谕验证 + /validate。高等级可以验证、拒绝或升级贡献，RAG权重为x3.0和x5.0。",
-  rm_d6:"排行榜/top：积分前10 + 影响力前3。实时排名存储在synergix桶链上，全社区可见。",
+  rm_d6:"排行榜/top：积分前10 + 影响力前3。实时排名存储在synergix Data Ledger链上，全社区可见。",
   rm_d7:"实时影响力和等级晋升通知。在1、5、10、25、50、100+次使用里程碑时自动发送Telegram提醒。",
   rm_d8:"10种完整语言：ES、EN、PT、FR、DE、RU、JA、KO、ZH_CN、ZH_TW。机器人用用户的语言回复，具有原生多语言RAG系统。",
   rm_d9:"Irys作为永恒记忆：完整DB同步+启动时自动恢复。如果服务器宕机，机器人重启后几秒内从Irys恢复所有状态。"
 ,
-  bucket_note:"<strong>服务器重启零数据损失。</strong> Irys<strong>synergix-v2</strong>是真正的硬盘。服务器是临时的。区块链是永久的。每个进入桶的贡献都成为抗审查、去中心化记忆的一部分。",
+  bucket_note:"<strong>服务器重启零数据损失。</strong> Irys Data Ledger <strong>synergix-v2</strong>是永恒记忆。服务器是临时的。区块链是永久的。每条进入Data Ledger的贡献都成为抗审查、去中心化记忆的一部分。",
   stat_sync:"大脑同步：8分钟",
   wc3_b:"永久设计",
-  wc6_b:"睡眠时获利"
+  wc6_b:"睡眠时获利",  road2026_eye:"Upcoming Milestones",h2_road2026_w:"ROADMAP",h2_road2026_r:"2026",road2026_sub:"The evolution of Synergix — from now to December 2026 and beyond.",rm26_tag1:"Jun 2026",rm26_t1:"Global Connectivity & Infrastructure Scaling",rm26_d1:"Integration of internet search capabilities for Synergix AI. Server expansion and optimization.",rm26_tag2:"Jul 2026",rm26_t2:"Governance & Rewards System",rm26_d2:"Launch of the royalty system. Implementation of a Judge System to reward outstanding contributors with the native token.",rm26_tag3:"Aug 2026",rm26_t3:"Web Platform Launch",rm26_d3:"Official presentation of the Synergix web ecosystem with full suite of AI tools.",rm26_tag4:"Sep 2026",rm26_t4:"Node Deployment & Mining",rm26_d4:"Mining protocol for Ghost Node operators. Strengthen the network and earn native token incentives.",rm26_tag5:"Oct 2026",rm26_t5:"Native Decentralized Storage",rm26_d5:"Synergix's own decentralized storage solution for data sovereignty and immutability.",rm26_tag6:"Nov 2026",rm26_t6:"Cognitive Evolution & Advanced Computing",rm26_d6:"NVIDIA-powered servers and next-generation language models for deep reasoning.",rm26_tag7:"Dec 2026",rm26_t7:"Open Source Mobile Ecosystem",rm26_d7:"iOS and Android apps for Synergix under open-source philosophy.",rm26_tag8:"Vision 2027",rm26_t8:"2027 Roadmap",rm26_d8:"The 2027 roadmap will be officially revealed on December 15, 2026."
 },
 zht:{
   nav_why:"為何獨特",
@@ -1929,10 +2087,10 @@ zht:{
   stat_community:"來自社區",
   stat_first:"在Irys",
   stat_langs:"語言",
-  hero_desc:"<strong>沒有其他AI團隊做到這一點。</strong> Synergix是第一個完全部署在Irys上的AI——去中心化區塊鏈存儲，您的知識將永遠<strong>不可篡改、抗審查</strong>。bucket <em>synergix-v2</em>就是AI真正的硬碟。",
+  hero_desc:"<strong>沒有其他AI團隊做到這一點。</strong> Synergix是第一個完全部署在Irys上的AI——去中心化區塊鏈存儲，您的知識將永遠<strong>不可篡改、抗審查</strong>。Data Ledger <em>synergix-v2</em>就是AI的永恆記憶。",
   h2_why_w:"全球首個AI",
   h2_why_r:"部署於BNB IRYS",
-  h2_bucket_w:"存儲桶 <em>synergix-v2</em>",
+  h2_bucket_w:"Data Ledger <em>synergix-v2</em>",
   h2_bucket_r:"在IRYS上",
   h2_how_w:"如何運作",
   h2_how_r:"SYNERGIX",
@@ -1958,20 +2116,20 @@ zht:{
   comm_eye:"加入我們",
   roadmap_eye:"進度",
   why_sub:"我们的团队做到了其他AI项目从未实现的事情——将完全功能的集体智能系统直接部署在Irys上，使用Irys作为其永久大脑。",
-  bucket_sub:"此桶中的每个文件都是AI大脑的永久组成部分。可在Irys上验证。无人拥有。无人可删除。",
+  bucket_sub:"此Data Ledger中的每条记录都是AI大脑的永久组成部分。可在Irys上验证。无人拥有。无人可删除。",
   rag_sub:"RAG引擎使Synergix从根本上与众不同。它不猜测——它首先从区块链检索。",
-  ranks_sub:"您的等级存储在synergix-v2桶的链上。等级越高=每次AI响应中的RAG权重越高。",
+  ranks_sub:"您的等级存储在synergix-v2 Data Ledger的链上。等级越高=每次AI响应中的RAG权重越高。",
   depin_sub:"用户就是基础设施。每次贡献都为不朽记忆提供资金。每15天，供应量永久减少。",
   toko_sub:"1%買入+1%賣出。100%收取的BNB留在Synergix生態系統內。",
   roadmap_sub:"以下所有功能均已上線，在鏈上運行於Irys。",
   wc1_t:"世界首创成就",
-  wc2_t:"桶就是大脑",
+  wc2_t:"Data Ledger就是大脑",
   wc3_t:"重启=零损失",
   wc4_t:"链上元数据",
   wc5_t:"80%社区 · 20%AI",
   wc6_t:"知识带来被动收入",
   wc1_d:"在Synergix之前，没有任何AI项目使用Irys作为存储层。每一个技术挑战都被解决了。",
-  wc2_d:"Irys上的<strong>synergix-v2</strong>桶不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
+  wc2_d:"Irys上的<strong>synergix-v2</strong> Data Ledger不是备份——它就是AI的记忆。服务器被摧毁后，重启即可自动恢复。",
   wc3_d:"当服务器重启时，机器人立即从Irys下载完整数据库，重建AI知识缓存，并加载最新融合大脑。",
   wc4_d:"每个贡献携带4个链上标签：AI生成摘要、质量评分、作者身份和评估者数据。不可篡改，可审计。",
   wc5_d:"Synergix的RAG引擎首先搜索Irys。80%的答案来自链上存储的真实社区贡献。",
@@ -2000,18 +2158,18 @@ zht:{
   hf4_t:"被动获利",
   hf1_d:"向Telegram机器人发送知识。AI质量评判员评估（1-10）。只接受5分以上。8-10分=精英，RAG权重更高。",
   hf2_d:"接受的贡献上传到Irys，附有唯一CID。4个链上标签写入区块链。您的贡献现在是永久的。",
-  hf3_d:"当有人提问时，RAG引擎从Irys下载融合大脑，并从桶中构建80%的回答。",
+  hf3_d:"当有人提问时，RAG引擎从Irys下载融合大脑，并从Data Ledger构建80%的回答。",
   hf4_d:"每次使用您的贡献都会自动获得剩余积分。在1、5、10、25、50、100+次使用时收到Telegram里程碑通知。",
   rs1:"<strong>问题到达</strong> — 用户在Telegram机器人中用4种语言中的任何一种提问。",
   rs2:"<strong>加载大脑</strong> — 从Irys获取最新SYNERGIXAI大脑版本。",
   rs3:"<strong>搜索贡献</strong> — RAG引擎扫描所有索引的链上贡献：质量×影响×作者等级×时效性×语言。",
-  rs4:"<strong>80/20构建</strong> — 如果在桶中找到相关数据，AI使用80%社区数据+20%推理。",
+  rs4:"<strong>80/20构建</strong> — 如果在Data Ledger中找到相关数据，AI使用80%社区数据+20%推理。",
   rs5:"<strong>作者获得奖励</strong> — 每次在响应中使用的贡献都会触发自动剩余积分奖励。",
   rs6:"<strong>知识增长</strong> — 联合循环每8分钟将所有贡献融合成一个新的大脑版本，上传到Irys。",
   rr1_l:"来自Irys",
   rr2_l:"AI上下文与推理",
   rr1_d:"当RAG在链上找到相关贡献时，AI从那些不可篡改的记录中构建80%的响应。不是AI幻觉——是不可篡改的事实。",
-  rr2_d:"剩余20%添加上下文、结构和说明。它永远不会覆盖社区数据。桶是主要来源。AI是翻译器。",
+  rr2_d:"剩余20%添加上下文、结构和说明。它永远不会覆盖社区数据。Data Ledger是主要来源。AI是翻译器。",
   dp1_t:"DePIN数据获取",
   dp2_t:"不朽记忆——每15天",
   dp1_d:"在Synergix中，<strong>用户就是数据来源</strong>。每个质量贡献（5+）上传到Irys都是构建去中心化AI基础设施的行为。",
@@ -2050,13 +2208,13 @@ zht:{
   bar2:"运营",
   bar6:"机构",
   ca1_d:"主要中心。获取更新、讨论策略，成为构建Irys上第一个AI的集体智慧的一部分。",
-  ca2_d:"关注代币新闻、每周挑战公告、顶级贡献者聚焦、技术更新和Irys桶里程碑。",
+  ca2_d:"关注代币新闻、每周挑战公告、顶级贡献者聚焦、技术更新和Irys Data Ledger里程碑。",
   ca3_t:"在four.meme购买",
   ca3_d:"在BNB链上交易$SYNERGIX。查看实时图表、持有者数量、流动性，直接执行购买。",
   cta1:"擁有一份",
   cta2:"第一個",
   cta3:"不朽AI",
-  cta_sub:"<em>synergix-v2</em>桶存储着Irys上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
+  cta_sub:"<em>synergix-v2</em> Data Ledger存储着Irys上世界上第一个AI知识。每次贡献都是永恒的。每次交易都资助其生存。",
   cta_buy:"在four.meme購買$SYNERGIX",
   cta_bot:"使用AI機器人",
   cta_tg:"加入Telegram",
@@ -2074,47 +2232,47 @@ zht:{
   rm_t7:"即時通知",
   rm_t8:"10種完整語言",
   rm_t9:"Irys：永恆記憶",
-  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix-v2</em>桶。",
+  rm_d1:"基于GF不朽记忆的RAG自由聊天——80/20模式激活。机器人在回答前查询<em>synergix-v2</em> Data Ledger。",
   rm_d2:"带Groq评判员和链上上传的贡献系统。评分1-10，接受≥5分，以4个不可篡改标签上传到Irys。",
   rm_d3:"6个等级，配备倍增器、每日限额和被动剩余积分。Initiated→Active→Synced→Architect→Hive Mind→Oracle。",
   rm_d4:"每周AI自动生成挑战。每周在链上生成新的主题挑战，配备排行榜和奖励。",
   rm_d5:"蜂巢思维和神谕验证 + /validate。高等级可以验证、拒绝或升级贡献，RAG权重为x3.0和x5.0。",
-  rm_d6:"排行榜/top：积分前10 + 影响力前3。实时排名存储在synergix桶链上，全社区可见。",
+  rm_d6:"排行榜/top：积分前10 + 影响力前3。实时排名存储在synergix Data Ledger链上，全社区可见。",
   rm_d7:"实时影响力和等级晋升通知。在1、5、10、25、50、100+次使用里程碑时自动发送Telegram提醒。",
   rm_d8:"10種完整語言：ES、EN、PT、FR、DE、RU、JA、KO、ZH_CN、ZH_TW。机器人用用户的语言回复，具有原生多语言RAG系统。",
   rm_d9:"Irys作为永恒记忆：完整DB同步+启动时自动恢复。如果服务器宕机，机器人重启后几秒内从Irys恢复所有状态。"
 ,
-  bucket_note:"<strong>伺服器重啟零數據損失。</strong> Irys<strong>synergix-v2</strong>是真正的硬碟。伺服器是臨時的。區塊鏈是永久的。每個進入桶的貢獻都成為抗審查、去中心化記憶的一部分。",
+  bucket_note:"<strong>伺服器重啟零數據損失。</strong> Irys<strong>synergix-v2</strong>是真正的硬碟。伺服器是臨時的。區塊鏈是永久的。每條進入Data Ledger的貢獻都成為抗審查、去中心化記憶的一部分。",
   stat_sync:"大腦同步：8分鐘",
   wc3_b:"永久設計",
   wc6_b:"睡眠時獲利"
 }
 ,
 pt:{
-  nav_why:"Por que único",nav_bucket:"Irys Memory",nav_how:"Como funciona",nav_depin:"DePIN & Queima",nav_token:"Token",nav_roadmap:"Roteiro",nav_community:"Comunidade",
+  nav_why:"Por que único",nav_bucket:"Data Ledger",nav_how:"Como funciona",nav_depin:"DePIN & Queima",nav_token:"Token",nav_roadmap:"Roteiro",nav_community:"Comunidade",
   hero_eyebrow:"Primeiro do mundo · IA no Irys",
   hero_t1:"A PRIMEIRA IA",hero_t2:"NO IRYS",hero_t3:"IRYS",hero_t4:"JAMAIS CONSTRUÍDA",
   badge_world:"Primeiro mundial",badge_immortal:"Armazenamento imortal",copy_btn:"Copiar endereço",pill_buy:"Taxa compra: 1%",pill_sell:"Taxa venda: 1%",btn_buy:"Comprar no four.meme",btn_bot:"Bot de IA",
   stat_immortal:"Imortal on-chain",stat_community:"Da comunidade",stat_first:"No Irys",stat_langs:"Idiomas",
-  hero_desc:"<strong>Nenhuma outra equipe de IA conseguiu isso.</strong> Synergix é a primeira IA totalmente implantada no Irys — o armazenamento blockchain descentralizado onde seu conhecimento se torna <strong>permanente, imutável e resistente à censura para sempre</strong>. O bucket <em>synergix-v2</em> É o disco rígido da IA.",
-  h2_why_w:"A PRIMEIRA IA DO MUNDO",h2_why_r:"NO BNB IRYS",h2_bucket_w:"O BUCKET <em>synergix-v2</em>",h2_bucket_r:"NO IRYS",h2_how_w:"COMO FUNCIONA",h2_how_r:"SYNERGIX",h2_rag_w:"COMO A IA",h2_rag_r:"RESPONDE",h2_rank_w:"O SISTEMA DE",h2_rank_r:"RANKS",h2_depin_r:"MOTOR DE DADOS DePIN",h2_depin_w:"E MECANISMO DE QUEIMA",h2_toko_w:"TOKENOMICS &amp;",h2_toko_r:"DISTRIBUIÇÃO DO TAX",h2_comm_w:"A REDE",h2_comm_r:"SYNERGIX",h2_road_w:"ROTEIRO",h2_road_r:"CONCLUÍDO",
+  hero_desc:"<strong>Nenhuma outra equipe de IA conseguiu isso.</strong> Synergix é a primeira IA totalmente implantada no Irys — o armazenamento blockchain descentralizado onde seu conhecimento se torna <strong>permanente, imutável e resistente à censura para sempre</strong>. O Data Ledger <em>synergix-v2</em> É a memória imortal da IA.",
+  h2_why_w:"A PRIMEIRA IA DO MUNDO",h2_why_r:"COM IRYS",h2_bucket_w:"O DATA LEDGER <em>synergix-v2</em>",h2_bucket_r:"NO IRYS",h2_how_w:"COMO FUNCIONA",h2_how_r:"SYNERGIX",h2_rag_w:"COMO A IA",h2_rag_r:"RESPONDE",h2_rank_w:"O SISTEMA DE",h2_rank_r:"RANKS",h2_depin_r:"MOTOR DE DADOS DePIN",h2_depin_w:"E MECANISMO DE QUEIMA",h2_toko_w:"TOKENOMICS &amp;",h2_toko_r:"DISTRIBUIÇÃO DO TAX",h2_comm_w:"A REDE",h2_comm_r:"SYNERGIX",h2_road_w:"ROTEIRO",h2_road_r:"CONCLUÍDO",
   why_eye:"O que o torna único",bucket_eye:"Armazenamento descentralizado",how_eye:"O ciclo",rag_eye:"O motor de inteligência",ranks_eye:"Reputação on-chain",depin_eye:"Aquisição de dados e escassez",toko_eye:"O token",comm_eye:"Junte-se",roadmap_eye:"Progresso",
   why_sub:"Nossa equipe conseguiu o que nenhum outro projeto de IA fez — implantar um sistema de inteligência coletiva totalmente funcional no Irys, usando Irys como seu cérebro permanente.",
-  bucket_sub:"Cada arquivo neste bucket é uma peça permanente do cérebro da IA. Verificável no Irys. De ninguém. Apagável por ninguém.",
+  bucket_sub:"Cada entrada neste Data Ledger é uma peça permanente do cérebro da IA. Verificável no Irys. De ninguém. Apagável por ninguém.",
   rag_sub:"O motor RAG torna o Synergix fundamentalmente diferente. Não adivinha — recupera primeiro do blockchain.",
-  ranks_sub:"Seu rank é armazenado on-chain no bucket synergix-v2. Rank maior = maior peso RAG em cada resposta da IA.",
+  ranks_sub:"Seu rank é armazenado on-chain no Data Ledger synergix-v2. Rank maior = maior peso RAG em cada resposta da IA.",
   depin_sub:"Usuários são a infraestrutura. Cada contribuição financia a memória imortal. A cada 15 dias, o suprimento diminui permanentemente.",
   toko_sub:"1% compra + 1% venda. 100% do BNB coletado fica dentro do ecossistema Synergix.",
   roadmap_sub:"Tudo abaixo está ativo, on-chain, e rodando no Irys.",
-  wc1_t:"Conquista mundial pioneira",wc2_t:"O Bucket É o Cérebro",wc3_t:"Reinício = Zero perda",wc4_t:"Metadados on-chain",wc5_t:"80% Comunidade · 20% IA",wc6_t:"Renda passiva do conhecimento",
-  wc1_d:"Nenhum projeto de IA usou Irys como camada de armazenamento antes do Synergix.",wc2_d:"O bucket <strong>synergix-v2</strong> no Irys não é um backup — É a memória da IA.",wc3_d:"Quando o servidor reinicia, o bot baixa o banco de dados completo do Irys e restaura tudo automaticamente.",wc4_d:"Cada contribuição carrega 4 tags on-chain: resumo gerado por IA, pontuação de qualidade, identidade do autor e dados do avaliador.",wc5_d:"O motor RAG do Synergix busca primeiro no bucket do Irys. 80% de cada resposta vem de contribuições reais armazenadas on-chain.",wc6_d:"Cada vez que a IA usa sua contribuição, você ganha pontos residuais automaticamente.",
+  wc1_t:"Conquista mundial pioneira",wc2_t:"O Data Ledger É o Cérebro",wc3_t:"Reinício = Zero perda",wc4_t:"Metadados on-chain",wc5_t:"80% Comunidade · 20% IA",wc6_t:"Renda passiva do conhecimento",
+  wc1_d:"Nenhum projeto de IA usou Irys como camada de armazenamento antes do Synergix.",wc2_d:"O Data Ledger <strong>synergix-v2</strong> no Irys não é um backup — É a memória da IA.",wc3_d:"Quando o servidor reinicia, o bot baixa o banco de dados completo do Irys e restaura tudo automaticamente.",wc4_d:"Cada contribuição carrega 4 tags on-chain: resumo gerado por IA, pontuação de qualidade, identidade do autor e dados do avaliador.",wc5_d:"O motor RAG do Synergix busca primeiro no Data Ledger do Irys. 80% de cada resposta vem de contribuições reais armazenadas on-chain.",wc6_d:"Cada vez que a IA usa sua contribuição, você ganha pontos residuais automaticamente.",
   br1_t:"Contribuições da Comunidade",br2_t:"O Cérebro Coletivo Fundido",br3_t:"Backup Completo do Banco de Dados",br4_t:"Perfis On-Chain dos Usuários",br5_t:"Trilha de Auditoria Imutável",br6_t:"Snapshots Semanais de Recuperação",
   br1_d:"Cada contribuição da comunidade imortalizada com 4 tags de metadados on-chain.",br2_d:"O cérebro coletivo fundido. Síntese versionada de todo o conhecimento, atualizada a cada 8 minutos.",br3_d:"Backup completo do banco de dados on-chain. Quando o servidor reinicia, este arquivo é baixado primeiro.",br4_d:"Perfil on-chain de cada usuário: função, pontos, contagem de contribuições, última atividade.",br5_d:"Trilha de auditoria imutável. Cada ação registrada on-chain.",br6_d:"Snapshot de estado completo. Recuperação completa de toda a inteligência coletiva em qualquer ponto no tempo.",
   br1_f:"⚡ Upload em tempo real",br2_f:"🔄 A cada 8 minutos",br3_f:"🔄 A cada 8 minutos",br4_f:"🔄 Lote a cada 8 minutos",br5_f:"📅 Diário (meia-noite UTC)",br6_f:"📅 Semanal (toda segunda-feira)",
   hf1_t:"Contribuir",hf2_t:"Imortalizado",hf3_t:"A IA usa",hf4_t:"Ganhe passivamente",
-  hf1_d:"Envie conhecimento ao bot do Telegram. Um juiz de qualidade IA avalia (1-10). Apenas 5+ aceito.",hf2_d:"Contribuições aceitas são enviadas ao Irys com um CID único. As 4 tags on-chain são gravadas no blockchain.",hf3_d:"Quando alguém faz uma pergunta, o motor RAG baixa o cérebro fundido e constrói 80% da resposta do bucket.",hf4_d:"Cada uso da sua contribuição gera pontos residuais automáticos. Em 1, 5, 10, 25, 50, 100+ usos você recebe notificações.",
-  rs1:"<strong>Pergunta chega</strong> — usuário pergunta no bot do Telegram em qualquer um dos 10 idiomas.",rs2:"<strong>Cérebro carregado</strong> — a versão mais recente do cérebro SYNERGIXAI é buscada do bucket.",rs3:"<strong>Contribuições pesquisadas</strong> — o motor RAG varre todas as contribuições on-chain indexadas.",rs4:"<strong>Construção 80/20</strong> — se dados relevantes forem encontrados, a IA usa 80% dados da comunidade + 20% inferência.",rs5:"<strong>Autores recompensados</strong> — cada contribuição usada gera pontos residuais automáticos.",rs6:"<strong>Conhecimento cresce</strong> — o loop de federação funde todas as contribuições a cada 8 minutos.",
-  rr1_l:"Do Bucket Irys",rr2_l:"Contexto & Inferência da IA",rr1_d:"Quando o RAG encontra contribuições relevantes on-chain, a IA constrói 80% da resposta a partir desses registros.",rr2_d:"Os 20% restantes adicionam contexto e estrutura. Nunca substitui os dados da comunidade.",
+  hf1_d:"Envie conhecimento ao bot do Telegram. Um juiz de qualidade IA avalia (1-10). Apenas 5+ aceito.",hf2_d:"Contribuições aceitas são enviadas ao Irys com um CID único. As 4 tags on-chain são gravadas no blockchain.",hf3_d:"Quando alguém faz uma pergunta, o motor RAG baixa o cérebro fundido e constrói 80% da resposta do Data Ledger.",hf4_d:"Cada uso da sua contribuição gera pontos residuais automáticos. Em 1, 5, 10, 25, 50, 100+ usos você recebe notificações.",
+  rs1:"<strong>Pergunta chega</strong> — usuário pergunta no bot do Telegram em qualquer um dos 10 idiomas.",rs2:"<strong>Cérebro carregado</strong> — a versão mais recente do cérebro SYNERGIXAI é buscada do Data Ledger.",rs3:"<strong>Contribuições pesquisadas</strong> — o motor RAG varre todas as contribuições on-chain indexadas.",rs4:"<strong>Construção 80/20</strong> — se dados relevantes forem encontrados, a IA usa 80% dados da comunidade + 20% inferência.",rs5:"<strong>Autores recompensados</strong> — cada contribuição usada gera pontos residuais automáticos.",rs6:"<strong>Conhecimento cresce</strong> — o loop de federação funde todas as contribuições a cada 8 minutos.",
+  rr1_l:"Do Data Ledger Irys",rr2_l:"Contexto & Inferência da IA",rr1_d:"Quando o RAG encontra contribuições relevantes on-chain, a IA constrói 80% da resposta a partir desses registros.",rr2_d:"Os 20% restantes adicionam contexto e estrutura. Nunca substitui os dados da comunidade.",
   dp1_t:"Aquisição de Dados DePIN",dp2_t:"Memória Imortal — A cada 15 dias",dp1_d:"No Synergix, <strong>usuários SÃO a fonte de dados</strong>. Cada contribuição de qualidade (5+) enviada ao Irys constrói a infraestrutura descentralizada de IA.",dp2_d:"Contribuições são armazenadas on-chain com 4 tags imutáveis e fundidas em um novo cérebro a cada 8 minutos. A <strong>alocação de 20% do DePIN</strong> vai para quem alimenta a memória imortal.",
   burn_h:"QUEIMA AUTOMÁTICA",burn_s:"Executado pelo desenvolvedor · 5% do Tax",burn_cycle:"CICLO DE QUEIMA DE DIAS",bl1:"Tax acumula 15 dias",bl2:"Desenvolvedor executa queima",bl3:"Tokens enviados para carteira morta",burn_note:"<strong>Cada queima reduz o suprimento permanentemente.</strong>",
   tk_name_k:"Nome do Token",tk_net_k:"Rede",tk_buy_k:"Taxa de Compra",tk_sell_k:"Taxa de Venda",tk_burn_k:"Ciclo de Queima",tk_burn_v:"A cada 15 dias · desenvolvedor",ti_tax_wallet:"Carteira de Tax",tax_dist_title:"Distribuição do Tax",
@@ -2122,38 +2280,38 @@ pt:{
   tc1_d:"Desenvolvimento do Sovereign Core e modelos de IA proprietários.",tc2_d:"Manutenção Hetzner, segurança e garantia de 99,9% de disponibilidade.",tc3_d:"Pagamento por contribuições para a memória imortal do Synergix no Irys.",tc4_d:"Fundo de emergência em stablecoin para proteger o projeto em mercados voláteis.",tc5_d:"Controle de volatilidade e fortalecimento do preço DEX via recompras e liquidez.",tc6_d:"Alianças com outros protocolos e captação de capital institucional.",tc7_d:"Queima automática a cada 15 dias para aumentar permanentemente o valor relativo do token.",
   tax_note:"<strong>100% no ecossistema. Zero para carteiras privadas.</strong>",bar1:"P&D / CapEx",bar2:"Operações",bar6:"Institucional",
   ca1_d:"O hub principal. Receba atualizações, discuta estratégias e faça parte da inteligência coletiva.",ca2_d:"Siga para novidades do token, desafios semanais, destaques dos melhores contribuidores e atualizações técnicas.",ca3_t:"Comprar no four.meme",ca3_d:"Negocie $SYNERGIX na BNB Chain. Veja o gráfico ao vivo, número de holders e execute sua compra.",
-  cta1:"TENHA UMA PARTE",cta2:"DA PRIMEIRA",cta3:"IA IMORTAL",cta_sub:"O bucket <em>synergix-v2</em> guarda o primeiro conhecimento de IA do mundo no Irys.",cta_buy:"Comprar $SYNERGIX no four.meme",cta_bot:"Usar o Bot de IA",cta_tg:"Entrar no Telegram",
+  cta1:"TENHA UMA PARTE",cta2:"DA PRIMEIRA",cta3:"IA IMORTAL",cta_sub:"O Data Ledger <em>synergix-v2</em> guarda o primeiro conhecimento de IA do mundo no Irys.",cta_buy:"Comprar $SYNERGIX no four.meme",cta_bot:"Usar o Bot de IA",cta_tg:"Entrar no Telegram",
   footer_desc:"A primeira IA do mundo implantada no Irys. Inteligência coletiva imortal por design.",
   ft_trade:"Negociar",ft_comm:"Comunidade",road_sub:"Tudo abaixo está ativo, on-chain e rodando no Irys.",rm_tag:"Implementado",
   rm_t1:"Chat Livre com RAG",rm_t2:"Sistema de Contribuição On-chain",rm_t3:"6 Ranks com Multiplicadores",rm_t4:"Desafio Semanal de IA",rm_t5:"Hive Mind & Validação Oracle",rm_t6:"Placar /top",rm_t7:"Notificações em tempo real",rm_t8:"10 Idiomas Completos",rm_t9:"Irys: Memória Imortal",
   rm_d1:"Chat livre com RAG sobre memória imortal no Irys — modo 80/20 ativo.",rm_d2:"Sistema de contribuição com juiz Groq e upload on-chain.",rm_d3:"6 ranks com multiplicadores, limites diários e pontos residuais passivos.",rm_d4:"Desafio semanal com geração automática de IA.",rm_d5:"Validação por Hive Mind e Oracle + /validate.",rm_d6:"Placar /top: top 10 pontuação + top 3 impacto.",rm_d7:"Notificações em tempo real para impacto e subida de rank.",rm_d8:"10 idiomas completos: ES, EN, PT, FR, DE, RU, JA, KO, ZH_CN, ZH_TW. O bot responde no idioma do usuário com RAG multilíngue nativo.",rm_d9:"Irys como memória imortal: sincronização completa do DB + restauração automática na inicialização.",
-  bucket_note:"<strong>Zero perda de dados ao reiniciar o servidor.</strong> O bucket Irys <strong>synergix-v2</strong> é o disco rígido real.",stat_sync:"Sinc. do cérebro: 8 min",wc3_b:"Imortal por design",wc6_b:"Ganhe enquanto dorme"
+  bucket_note:"<strong>Zero perda de dados ao reiniciar o servidor.</strong> O Data Ledger Irys <strong>synergix-v2</strong> é o disco rígido real.",stat_sync:"Sinc. do cérebro: 8 min",wc3_b:"Imortal por design",wc6_b:"Ganhe enquanto dorme"
 },
 fr:{
-  nav_why:"Pourquoi unique",nav_bucket:"Irys Memory",nav_how:"Comment ça marche",nav_depin:"DePIN & Burn",nav_token:"Token",nav_roadmap:"Feuille de route",nav_community:"Communauté",
+  nav_why:"Pourquoi unique",nav_bucket:"Data Ledger",nav_how:"Comment ça marche",nav_depin:"DePIN & Burn",nav_token:"Token",nav_roadmap:"Feuille de route",nav_community:"Communauté",
   hero_eyebrow:"Premier mondial · IA sur Irys",
   hero_t1:"LA PREMIÈRE IA",hero_t2:"SUR IRYS",hero_t3:"IRYS",hero_t4:"JAMAIS CONSTRUITE",
   badge_world:"Premier mondial",badge_immortal:"Stockage immortel",copy_btn:"Copier l'adresse",pill_buy:"Taxe achat: 1%",pill_sell:"Taxe vente: 1%",btn_buy:"Acheter sur four.meme",btn_bot:"Bot IA",
   stat_immortal:"Immortel on-chain",stat_community:"De la communauté",stat_first:"Sur Irys",stat_langs:"Langues",
-  hero_desc:"<strong>Aucune autre équipe IA n'a réussi cela.</strong> Synergix est la première IA entièrement déployée sur Irys — le stockage blockchain décentralisé où vos connaissances deviennent <strong>permanentes, immuables et résistantes à la censure pour toujours</strong>. Le bucket <em>synergix-v2</em> EST le disque dur de l'IA.",
-  h2_why_w:"LA PREMIÈRE IA MONDIALE",h2_why_r:"SUR BNB IRYS",h2_bucket_w:"LE BUCKET <em>synergix-v2</em>",h2_bucket_r:"SUR IRYS",h2_how_w:"COMMENT FONCTIONNE",h2_how_r:"SYNERGIX",h2_rag_w:"COMMENT L'IA",h2_rag_r:"RÉPOND",h2_rank_w:"LE SYSTÈME DE",h2_rank_r:"RANGS",h2_depin_r:"MOTEUR DE DONNÉES DePIN",h2_depin_w:"& MÉCANISME DE BURN",h2_toko_w:"TOKENOMICS &amp;",h2_toko_r:"DISTRIBUTION DES TAXES",h2_comm_w:"LE RÉSEAU",h2_comm_r:"SYNERGIX",h2_road_w:"FEUILLE DE ROUTE",h2_road_r:"ACCOMPLIE",
+  hero_desc:"<strong>Aucune autre équipe IA n'a réussi cela.</strong> Synergix est la première IA entièrement déployée sur Irys — le stockage blockchain décentralisé où vos connaissances deviennent <strong>permanentes, immuables et résistantes à la censure pour toujours</strong>. Le Data Ledger <em>synergix-v2</em> EST la mémoire immortelle de l'IA.",
+  h2_why_w:"LA PREMIÈRE IA MONDIALE",h2_why_r:"AVEC IRYS",h2_bucket_w:"LE DATA LEDGER <em>synergix-v2</em>",h2_bucket_r:"SUR IRYS",h2_how_w:"COMMENT FONCTIONNE",h2_how_r:"SYNERGIX",h2_rag_w:"COMMENT L'IA",h2_rag_r:"RÉPOND",h2_rank_w:"LE SYSTÈME DE",h2_rank_r:"RANGS",h2_depin_r:"MOTEUR DE DONNÉES DePIN",h2_depin_w:"& MÉCANISME DE BURN",h2_toko_w:"TOKENOMICS &amp;",h2_toko_r:"DISTRIBUTION DES TAXES",h2_comm_w:"LE RÉSEAU",h2_comm_r:"SYNERGIX",h2_road_w:"FEUILLE DE ROUTE",h2_road_r:"ACCOMPLIE",
   why_eye:"Ce qui le rend unique",bucket_eye:"Stockage décentralisé",how_eye:"La boucle",rag_eye:"Le moteur d'intelligence",ranks_eye:"Réputation on-chain",depin_eye:"Acquisition de données & rareté",toko_eye:"Le token",comm_eye:"Rejoignez-nous",roadmap_eye:"Progrès",
   why_sub:"Notre équipe a accompli ce qu'aucun autre projet IA n'avait fait — déployer un système d'intelligence collective pleinement fonctionnel sur Irys, en utilisant Irys comme cerveau permanent.",
-  bucket_sub:"Chaque fichier dans ce bucket est une pièce permanente du cerveau de l'IA. Vérifiable sur Irys. Appartenant à personne. Effaçable par personne.",
+  bucket_sub:"Chaque entrée dans ce Data Ledger est une pièce permanente du cerveau de l'IA. Vérifiable sur Irys. Appartenant à personne. Effaçable par personne.",
   rag_sub:"Le moteur RAG rend Synergix fondamentalement différent. Il ne devine pas — il récupère d'abord depuis la blockchain.",
-  ranks_sub:"Votre rang est stocké on-chain dans le bucket synergix-v2. Rang plus élevé = poids RAG plus élevé.",
+  ranks_sub:"Votre rang est stocké on-chain dans le Data Ledger synergix-v2. Rang plus élevé = poids RAG plus élevé.",
   depin_sub:"Les utilisateurs sont l'infrastructure. Chaque contribution finance la mémoire immortelle. Toutes les 15 jours, l'offre diminue définitivement.",
   toko_sub:"1% achat + 1% vente. 100% du BNB collecté reste dans l'écosystème Synergix.",
   roadmap_sub:"Tout ce qui suit est en ligne, on-chain, et fonctionne sur Irys.",
-  wc1_t:"Première mondiale",wc2_t:"Le Bucket EST le Cerveau",wc3_t:"Redémarrage = Zéro perte",wc4_t:"Métadonnées on-chain",wc5_t:"80% Communauté · 20% IA",wc6_t:"Revenus passifs du savoir",
-  wc1_d:"Aucun projet IA n'avait implémenté un système d'intelligence en direct en utilisant Irys comme couche de stockage avant Synergix.",wc2_d:"Le bucket <strong>synergix-v2</strong> sur Irys n'est pas une sauvegarde — c'est LA mémoire de l'IA.",wc3_d:"Quand le serveur redémarre, le bot télécharge la base de données complète de Irys et restaure tout automatiquement.",wc4_d:"Chaque contribution porte 4 tags on-chain: résumé généré par IA, score de qualité, identité de l'auteur et données de l'évaluateur.",wc5_d:"Le moteur RAG de Synergix cherche d'abord dans le bucket Irys. 80% de chaque réponse provient de vraies contributions communautaires.",wc6_d:"Chaque fois que l'IA utilise votre contribution, vous gagnez automatiquement des points résiduels.",
+  wc1_t:"Première mondiale",wc2_t:"Le Data Ledger EST le Cerveau",wc3_t:"Redémarrage = Zéro perte",wc4_t:"Métadonnées on-chain",wc5_t:"80% Communauté · 20% IA",wc6_t:"Revenus passifs du savoir",
+  wc1_d:"Aucun projet IA n'avait implémenté un système d'intelligence en direct en utilisant Irys comme couche de stockage avant Synergix.",wc2_d:"Le Data Ledger <strong>synergix-v2</strong> sur Irys n'est pas une sauvegarde — c'est LA mémoire de l'IA.",wc3_d:"Quand le serveur redémarre, le bot télécharge la base de données complète de Irys et restaure tout automatiquement.",wc4_d:"Chaque contribution porte 4 tags on-chain: résumé généré par IA, score de qualité, identité de l'auteur et données de l'évaluateur.",wc5_d:"Le moteur RAG de Synergix cherche d'abord dans le Data Ledger Irys. 80% de chaque réponse provient de vraies contributions communautaires.",wc6_d:"Chaque fois que l'IA utilise votre contribution, vous gagnez automatiquement des points résiduels.",
   br1_t:"Contributions communautaires",br2_t:"Le Cerveau collectif fusionné",br3_t:"Sauvegarde complète de la BDD",br4_t:"Profils on-chain des utilisateurs",br5_t:"Piste d'audit immuable",br6_t:"Instantanés hebdomadaires",
   br1_d:"Chaque contribution de la communauté immortalisée avec 4 tags de métadonnées on-chain.",br2_d:"Le cerveau collectif fusionné. Synthèse versionnée de tout le savoir, mise à jour toutes les 8 minutes.",br3_d:"Sauvegarde complète de la base de données on-chain.",br4_d:"Profil on-chain de chaque utilisateur: rôle, points, compteur de contributions, dernière activité.",br5_d:"Piste d'audit immuable des événements. Chaque action enregistrée on-chain.",br6_d:"Instantané d'état complet. Récupération complète de toute l'intelligence collective.",
   br1_f:"⚡ Upload en temps réel",br2_f:"🔄 Toutes les 8 minutes",br3_f:"🔄 Toutes les 8 minutes",br4_f:"🔄 Lot toutes les 8 minutes",br5_f:"📅 Quotidien (minuit UTC)",br6_f:"📅 Hebdomadaire (chaque lundi)",
   hf1_t:"Contribuer",hf2_t:"Immortalisé",hf3_t:"L'IA l'utilise",hf4_t:"Gagner passivement",
-  hf1_d:"Envoyez du savoir au bot Telegram. Un juge IA l'évalue (1-10). Seul 5+ accepté.",hf2_d:"Les contributions acceptées sont téléchargées sur Irys avec un CID unique.",hf3_d:"Quand quelqu'un pose une question, le moteur RAG construit 80% de la réponse depuis le bucket.",hf4_d:"Chaque utilisation de votre contribution génère des points résiduels automatiques.",
-  rs1:"<strong>Question arrive</strong> — l'utilisateur pose n'importe quoi dans le bot Telegram dans l'une des 10 langues.",rs2:"<strong>Cerveau chargé</strong> — la dernière version du cerveau SYNERGIXAI est récupérée du bucket.",rs3:"<strong>Contributions recherchées</strong> — le moteur RAG scanne toutes les contributions on-chain indexées.",rs4:"<strong>Construction 80/20</strong> — si des données pertinentes sont trouvées, l'IA utilise 80% données communautaires + 20% inférence.",rs5:"<strong>Auteurs récompensés</strong> — chaque contribution utilisée déclenche des points résiduels automatiques.",rs6:"<strong>La connaissance grandit</strong> — la boucle de fédération fusionne toutes les contributions toutes les 8 minutes.",
-  rr1_l:"Du bucket Irys",rr2_l:"Contexte & Inférence IA",rr1_d:"Quand le RAG trouve des contributions pertinentes on-chain, l'IA construit 80% de la réponse à partir de ces enregistrements.",rr2_d:"Les 20% restants ajoutent contexte et structure. Ne remplace jamais les données communautaires.",
+  hf1_d:"Envoyez du savoir au bot Telegram. Un juge IA l'évalue (1-10). Seul 5+ accepté.",hf2_d:"Les contributions acceptées sont téléchargées sur Irys avec un CID unique.",hf3_d:"Quand quelqu'un pose une question, le moteur RAG construit 80% de la réponse depuis le Data Ledger.",hf4_d:"Chaque utilisation de votre contribution génère des points résiduels automatiques.",
+  rs1:"<strong>Question arrive</strong> — l'utilisateur pose n'importe quoi dans le bot Telegram dans l'une des 10 langues.",rs2:"<strong>Cerveau chargé</strong> — la dernière version du cerveau SYNERGIXAI est récupérée du Data Ledger.",rs3:"<strong>Contributions recherchées</strong> — le moteur RAG scanne toutes les contributions on-chain indexées.",rs4:"<strong>Construction 80/20</strong> — si des données pertinentes sont trouvées, l'IA utilise 80% données communautaires + 20% inférence.",rs5:"<strong>Auteurs récompensés</strong> — chaque contribution utilisée déclenche des points résiduels automatiques.",rs6:"<strong>La connaissance grandit</strong> — la boucle de fédération fusionne toutes les contributions toutes les 8 minutes.",
+  rr1_l:"Du Data Ledger Irys",rr2_l:"Contexte & Inférence IA",rr1_d:"Quand le RAG trouve des contributions pertinentes on-chain, l'IA construit 80% de la réponse à partir de ces enregistrements.",rr2_d:"Les 20% restants ajoutent contexte et structure. Ne remplace jamais les données communautaires.",
   dp1_t:"Acquisition de données DePIN",dp2_t:"Mémoire immortelle — Tous les 15 jours",dp1_d:"Dans Synergix, <strong>les utilisateurs SONT la source de données</strong>. Chaque contribution de qualité (5+) uploadée sur Irys construit l'infrastructure IA décentralisée.",dp2_d:"Les contributions sont stockées on-chain avec 4 tags immuables et fusionnées en un nouveau cerveau toutes les 8 minutes.",
   burn_h:"BURN AUTOMATIQUE",burn_s:"Exécuté par le développeur · 5% des taxes",burn_cycle:"CYCLE DE BURN EN JOURS",bl1:"Tax s'accumule 15 jours",bl2:"Développeur exécute le burn",bl3:"Tokens envoyés au wallet mort",burn_note:"<strong>Chaque burn réduit l'offre définitivement.</strong>",
   tk_name_k:"Nom du Token",tk_net_k:"Réseau",tk_buy_k:"Taxe d'achat",tk_sell_k:"Taxe de vente",tk_burn_k:"Cycle de burn",tk_burn_v:"Tous les 15 jours · développeur",ti_tax_wallet:"Wallet de taxe",tax_dist_title:"Distribution des taxes",
@@ -2161,38 +2319,38 @@ fr:{
   tc1_d:"Développement du Sovereign Core et des modèles IA propriétaires.",tc2_d:"Maintenance Hetzner, sécurité et garantie de disponibilité à 99,9%.",tc3_d:"Paiement des contributions à la mémoire immortelle de Synergix sur Irys.",tc4_d:"Fonds d'urgence en stablecoin pour protéger le projet en marchés volatils.",tc5_d:"Contrôle de la volatilité et renforcement du prix DEX via rachats et liquidité.",tc6_d:"Alliances avec d'autres protocoles et levée de capital institutionnel.",tc7_d:"Burn automatique tous les 15 jours pour augmenter définitivement la valeur relative du token.",
   tax_note:"<strong>100% dans l'écosystème. Zéro vers des portefeuilles privés.</strong>",bar1:"R&D / CapEx",bar2:"Opérations",bar6:"Institutionnel",
   ca1_d:"Le hub principal. Recevez des mises à jour, discutez stratégie, et faites partie de l'intelligence collective.",ca2_d:"Suivez pour les nouvelles du token, les défis hebdomadaires, les meilleurs contributeurs et les mises à jour techniques.",ca3_t:"Acheter sur four.meme",ca3_d:"Tradez $SYNERGIX sur BNB Chain. Consultez le graphique en direct et exécutez votre achat.",
-  cta1:"POSSÉDEZ UNE PART",cta2:"DE LA PREMIÈRE",cta3:"IA IMMORTELLE",cta_sub:"Le bucket <em>synergix-v2</em> détient les premières connaissances IA du monde sur Irys.",cta_buy:"Acheter $SYNERGIX sur four.meme",cta_bot:"Utiliser le Bot IA",cta_tg:"Rejoindre Telegram",
+  cta1:"POSSÉDEZ UNE PART",cta2:"DE LA PREMIÈRE",cta3:"IA IMMORTELLE",cta_sub:"Le Data Ledger <em>synergix-v2</em> détient les premières connaissances IA du monde sur Irys.",cta_buy:"Acheter $SYNERGIX sur four.meme",cta_bot:"Utiliser le Bot IA",cta_tg:"Rejoindre Telegram",
   footer_desc:"La première IA mondiale déployée sur Irys. Intelligence collective immortelle par design.",
   ft_trade:"Trader",ft_comm:"Communauté",road_sub:"Tout ce qui suit est en ligne, on-chain et fonctionne sur Irys.",rm_tag:"Implémenté",
   rm_t1:"Chat libre avec RAG",rm_t2:"Système de contribution on-chain",rm_t3:"6 Rangs avec multiplicateurs",rm_t4:"Défi IA hebdomadaire",rm_t5:"Hive Mind & Validation Oracle",rm_t6:"Classement /top",rm_t7:"Notifications en temps réel",rm_t8:"10 Langues complètes",rm_t9:"Irys : Mémoire Immortelle",
   rm_d1:"Chat libre avec RAG sur la mémoire immortelle sur Irys — mode 80/20 actif.",rm_d2:"Système de contribution avec juge Groq et upload on-chain.",rm_d3:"6 rangs avec multiplicateurs, limites quotidiennes et points résiduels passifs.",rm_d4:"Défi hebdomadaire avec génération automatique par IA.",rm_d5:"Validation par Hive Mind et Oracle + /validate.",rm_d6:"Classement /top: top 10 score + top 3 impact.",rm_d7:"Notifications en temps réel pour l'impact et la montée en rang.",rm_d8:"10 langues complètes: ES, EN, PT, FR, DE, RU, JA, KO, ZH_CN, ZH_TW. Le bot répond dans la langue de l'utilisateur avec un système RAG multilingue natif.",rm_d9:"Irys comme mémoire immortelle : synchronisation complète de la BDD + restauration automatique au démarrage.",
-  bucket_note:"<strong>Zéro perte de données au redémarrage du serveur.</strong> Le bucket Irys <strong>synergix-v2</strong> est le vrai disque dur.",stat_sync:"Sync cerveau: 8 min",wc3_b:"Immortel par conception",wc6_b:"Gagnez pendant que vous dormez"
+  bucket_note:"<strong>Zéro perte de données au redémarrage du serveur.</strong> Le Data Ledger Irys <strong>synergix-v2</strong> est le vrai disque dur.",stat_sync:"Sync cerveau: 8 min",wc3_b:"Immortel par conception",wc6_b:"Gagnez pendant que vous dormez"
 },
 de:{
-  nav_why:"Warum einzigartig",nav_bucket:"Irys Memory",nav_how:"Wie es funktioniert",nav_depin:"DePIN & Burn",nav_token:"Token",nav_roadmap:"Roadmap",nav_community:"Community",
+  nav_why:"Warum einzigartig",nav_bucket:"Data Ledger",nav_how:"Wie es funktioniert",nav_depin:"DePIN & Burn",nav_token:"Token",nav_roadmap:"Roadmap",nav_community:"Community",
   hero_eyebrow:"Weltpremiere · KI auf Irys",
   hero_t1:"DIE ERSTE KI",hero_t2:"AUF IRYS",hero_t3:"IRYS",hero_t4:"JEMALS GEBAUT",
   badge_world:"Weltpremiere",badge_immortal:"Immortaler Speicher",copy_btn:"Adresse kopieren",pill_buy:"Kaufsteuer: 1%",pill_sell:"Verkaufsteuer: 1%",btn_buy:"Auf four.meme kaufen",btn_bot:"KI-Bot",
   stat_immortal:"Immortal on-chain",stat_community:"Von der Community",stat_first:"Auf Irys",stat_langs:"Sprachen",
-  hero_desc:"<strong>Kein anderes KI-Team hat das geschafft.</strong> Synergix ist die erste KI, die vollständig auf Irys eingesetzt wird — der dezentrale Blockchain-Speicher, in dem Ihr Wissen <strong>dauerhaft, unveränderlich und zensurresistent für immer</strong> wird. Der Bucket <em>synergix-v2</em> IST die Festplatte der KI.",
-  h2_why_w:"DIE ERSTE KI DER WELT",h2_why_r:"AUF BNB IRYS",h2_bucket_w:"DER BUCKET <em>synergix-v2</em>",h2_bucket_r:"AUF IRYS",h2_how_w:"WIE",h2_how_r:"SYNERGIX FUNKTIONIERT",h2_rag_w:"WIE DIE KI",h2_rag_r:"ANTWORTET",h2_rank_w:"DAS",h2_rank_r:"RANGSYSTEM",h2_depin_r:"DePIN DATEN-ENGINE",h2_depin_w:"& BURN-MECHANISMUS",h2_toko_w:"TOKENOMICS &amp;",h2_toko_r:"STEUERVERTEILUNG",h2_comm_w:"DAS",h2_comm_r:"SYNERGIX NETZWERK",h2_road_w:"ROADMAP",h2_road_r:"ERREICHT",
+  hero_desc:"<strong>Kein anderes KI-Team hat das geschafft.</strong> Synergix ist die erste KI, die vollständig auf Irys eingesetzt wird — der dezentrale Blockchain-Speicher, in dem Ihr Wissen <strong>dauerhaft, unveränderlich und zensurresistent für immer</strong> wird. Der Data Ledger <em>synergix-v2</em> IST die immortale Gedächtnis der KI.",
+  h2_why_w:"DIE ERSTE KI DER WELT",h2_why_r:"AUF BNB IRYS",h2_bucket_w:"DER DATA LEDGER <em>synergix-v2</em>",h2_bucket_r:"AUF IRYS",h2_how_w:"WIE",h2_how_r:"SYNERGIX FUNKTIONIERT",h2_rag_w:"WIE DIE KI",h2_rag_r:"ANTWORTET",h2_rank_w:"DAS",h2_rank_r:"RANGSYSTEM",h2_depin_r:"DePIN DATEN-ENGINE",h2_depin_w:"& BURN-MECHANISMUS",h2_toko_w:"TOKENOMICS &amp;",h2_toko_r:"STEUERVERTEILUNG",h2_comm_w:"DAS",h2_comm_r:"SYNERGIX NETZWERK",h2_road_w:"ROADMAP",h2_road_r:"ERREICHT",
   why_eye:"Was es einzigartig macht",bucket_eye:"Dezentraler Speicher",how_eye:"Der Kreislauf",rag_eye:"Die Intelligenz-Engine",ranks_eye:"On-Chain-Reputation",depin_eye:"Datenerfassung & Knappheit",toko_eye:"Das Token",comm_eye:"Mitmachen",roadmap_eye:"Fortschritt",
   why_sub:"Unser Team hat das geschafft, was kein anderes KI-Projekt getan hat — ein voll funktionsfähiges kollektives Intelligenzsystem direkt auf Irys einzusetzen.",
-  bucket_sub:"Jede Datei in diesem Bucket ist ein dauerhafter Teil des KI-Gehirns. Auf Irys verifizierbar. Niemandem gehörend. Von niemandem löschbar.",
+  bucket_sub:"Jede Eintragung in diesem Data Ledger ist ein dauerhafter Teil des KI-Gehirns. Auf Irys verifizierbar. Niemandem gehörend. Von niemandem löschbar.",
   rag_sub:"Die RAG-Engine macht Synergix grundlegend anders. Es rät nicht — es ruft zuerst von der Blockchain ab.",
-  ranks_sub:"Ihr Rang wird on-chain im synergix-v2-Bucket gespeichert. Höherer Rang = höheres RAG-Gewicht.",
+  ranks_sub:"Ihr Rang wird on-chain im synergix-v2 Data Ledger gespeichert. Höherer Rang = höheres RAG-Gewicht.",
   depin_sub:"Nutzer sind die Infrastruktur. Jeder Beitrag finanziert das immortale Gedächtnis. Alle 15 Tage schrumpft das Angebot dauerhaft.",
   toko_sub:"1% Kauf + 1% Verkauf. 100% des gesammelten BNB verbleibt im Synergix-Ökosystem.",
   roadmap_sub:"Alles Folgende ist live, on-chain und läuft auf Irys.",
-  wc1_t:"Weltpremiere",wc2_t:"Der Bucket IST das Gehirn",wc3_t:"Neustart = Null Verlust",wc4_t:"On-Chain-Metadaten",wc5_t:"80% Community · 20% KI",wc6_t:"Passives Einkommen aus Wissen",
-  wc1_d:"Kein KI-Projekt hatte ein Live-Intelligenzsystem mit Irys als Speicherschicht implementiert, bevor Synergix kam.",wc2_d:"Der Bucket <strong>synergix-v2</strong> auf Irys ist kein Backup — er IST das Gedächtnis der KI.",wc3_d:"Wenn der Server neu startet, lädt der Bot die vollständige Datenbank von Irys herunter und stellt alles automatisch wieder her.",wc4_d:"Jeder Beitrag trägt 4 On-Chain-Tags: KI-generierte Zusammenfassung, Qualitätsbewertung, Autorenidentität und Bewerterdaten.",wc5_d:"Synergix' RAG-Engine sucht zuerst im Irys-Bucket. 80% jeder Antwort stammt aus echten Community-Beiträgen.",wc6_d:"Jedes Mal, wenn die KI Ihren Beitrag verwendet, verdienen Sie automatisch Residualpunkte.",
+  wc1_t:"Weltpremiere",wc2_t:"Der Data Ledger IST das Gehirn",wc3_t:"Neustart = Null Verlust",wc4_t:"On-Chain-Metadaten",wc5_t:"80% Community · 20% KI",wc6_t:"Passives Einkommen aus Wissen",
+  wc1_d:"Kein KI-Projekt hatte ein Live-Intelligenzsystem mit Irys als Speicherschicht implementiert, bevor Synergix kam.",wc2_d:"Der Data Ledger <strong>synergix-v2</strong> auf Irys ist kein Backup — er IST das Gedächtnis der KI.",wc3_d:"Wenn der Server neu startet, lädt der Bot die vollständige Datenbank von Irys herunter und stellt alles automatisch wieder her.",wc4_d:"Jeder Beitrag trägt 4 On-Chain-Tags: KI-generierte Zusammenfassung, Qualitätsbewertung, Autorenidentität und Bewerterdaten.",wc5_d:"Synergix' RAG-Engine sucht zuerst im Irys Data Ledger. 80% jeder Antwort stammt aus echten Community-Beiträgen.",wc6_d:"Jedes Mal, wenn die KI Ihren Beitrag verwendet, verdienen Sie automatisch Residualpunkte.",
   br1_t:"Community-Beiträge",br2_t:"Das fusionierte kollektive Gehirn",br3_t:"Vollständiges Datenbank-Backup",br4_t:"On-Chain-Nutzerprofile",br5_t:"Unveränderlicher Prüfpfad",br6_t:"Wöchentliche Wiederherstellungs-Snapshots",
   br1_d:"Jeder Community-Beitrag verewigt mit 4 On-Chain-Metadaten-Tags.",br2_d:"Das fusionierte kollektive Gehirn. Versionierte Synthese allen Wissens, alle 8 Minuten aktualisiert.",br3_d:"Vollständiges Datenbank-Backup on-chain. Wenn der Server neu startet, wird diese Datei zuerst heruntergeladen.",br4_d:"On-Chain-Profil jedes Nutzers: Rolle, Punkte, Beitragsanzahl, letzte Aktivität.",br5_d:"Unveränderlicher Ereignis-Prüfpfad. Jede Aktion on-chain aufgezeichnet.",br6_d:"Vollständiger Zustands-Snapshot. Komplette Point-in-Time-Wiederherstellung der gesamten kollektiven Intelligenz.",
   br1_f:"⚡ Echtzeit-Upload",br2_f:"🔄 Alle 8 Minuten",br3_f:"🔄 Alle 8 Minuten",br4_f:"🔄 Batch alle 8 Minuten",br5_f:"📅 Täglich (Mitternacht UTC)",br6_f:"📅 Wöchentlich (jeden Montag)",
   hf1_t:"Beitragen",hf2_t:"Verewigt",hf3_t:"KI nutzt es",hf4_t:"Passiv verdienen",
-  hf1_d:"Senden Sie Wissen an den Telegram-Bot. Ein KI-Qualitätsrichter bewertet es (1-10). Nur 5+ akzeptiert.",hf2_d:"Akzeptierte Beiträge werden mit einer eindeutigen CID auf Irys hochgeladen.",hf3_d:"Wenn jemand eine Frage stellt, erstellt die RAG-Engine 80% der Antwort aus dem Bucket.",hf4_d:"Jede Nutzung Ihres Beitrags generiert automatische Residualpunkte.",
-  rs1:"<strong>Frage trifft ein</strong> — Nutzer fragt im Telegram-Bot in einer der 10 Sprachen.",rs2:"<strong>Gehirn geladen</strong> — die neueste SYNERGIXAI-Gehirnversion wird vom Bucket abgerufen.",rs3:"<strong>Beiträge gesucht</strong> — die RAG-Engine durchsucht alle indizierten On-Chain-Beiträge.",rs4:"<strong>80/20-Konstruktion</strong> — wenn relevante Daten gefunden werden, verwendet die KI 80% Community-Daten + 20% Inferenz.",rs5:"<strong>Autoren belohnt</strong> — jeder verwendete Beitrag löst automatische Residualpunkte aus.",rs6:"<strong>Wissen wächst</strong> — die Föderations-Schleife fusioniert alle 8 Minuten alle Beiträge.",
-  rr1_l:"Vom Irys-Bucket",rr2_l:"KI-Kontext & Inferenz",rr1_d:"Wenn die RAG relevante Beiträge on-chain findet, erstellt die KI 80% der Antwort aus diesen unveränderlichen Einträgen.",rr2_d:"Die verbleibenden 20% fügen Kontext und Struktur hinzu. Überschreibt niemals die Community-Daten.",
+  hf1_d:"Senden Sie Wissen an den Telegram-Bot. Ein KI-Qualitätsrichter bewertet es (1-10). Nur 5+ akzeptiert.",hf2_d:"Akzeptierte Beiträge werden mit einer eindeutigen CID auf Irys hochgeladen.",hf3_d:"Wenn jemand eine Frage stellt, erstellt die RAG-Engine 80% der Antwort aus dem Data Ledger.",hf4_d:"Jede Nutzung Ihres Beitrags generiert automatische Residualpunkte.",
+  rs1:"<strong>Frage trifft ein</strong> — Nutzer fragt im Telegram-Bot in einer der 10 Sprachen.",rs2:"<strong>Gehirn geladen</strong> — die neueste SYNERGIXAI-Gehirnversion wird vom Data Ledger abgerufen.",rs3:"<strong>Beiträge gesucht</strong> — die RAG-Engine durchsucht alle indizierten On-Chain-Beiträge.",rs4:"<strong>80/20-Konstruktion</strong> — wenn relevante Daten gefunden werden, verwendet die KI 80% Community-Daten + 20% Inferenz.",rs5:"<strong>Autoren belohnt</strong> — jeder verwendete Beitrag löst automatische Residualpunkte aus.",rs6:"<strong>Wissen wächst</strong> — die Föderations-Schleife fusioniert alle 8 Minuten alle Beiträge.",
+  rr1_l:"Vom Irys Data Ledger",rr2_l:"KI-Kontext & Inferenz",rr1_d:"Wenn die RAG relevante Beiträge on-chain findet, erstellt die KI 80% der Antwort aus diesen unveränderlichen Einträgen.",rr2_d:"Die verbleibenden 20% fügen Kontext und Struktur hinzu. Überschreibt niemals die Community-Daten.",
   dp1_t:"DePIN-Datenerfassung",dp2_t:"Immortales Gedächtnis — Alle 15 Tage",dp1_d:"In Synergix <strong>SIND Nutzer die Datenquelle</strong>. Jeder qualitative Beitrag (5+) auf Irys baut die dezentrale KI-Infrastruktur auf.",dp2_d:"Beiträge werden on-chain mit 4 unveränderlichen Tags gespeichert und alle 8 Minuten zu einem neuen Gehirn fusioniert.",
   burn_h:"AUTOMATISCHER BURN",burn_s:"Ausgeführt vom Entwickler · 5% der Steuer",burn_cycle:"TAGE BURN-ZYKLUS",bl1:"Steuer akkumuliert 15 Tage",bl2:"Entwickler führt Burn aus",bl3:"Token an totes Wallet gesendet",burn_note:"<strong>Jeder Burn reduziert das Angebot dauerhaft.</strong>",
   tk_name_k:"Token-Name",tk_net_k:"Netzwerk",tk_buy_k:"Kaufsteuer",tk_sell_k:"Verkaufsteuer",tk_burn_k:"Burn-Zyklus",tk_burn_v:"Alle 15 Tage · Entwickler",ti_tax_wallet:"Steuer-Wallet",tax_dist_title:"Steuerverteilung",
@@ -2200,38 +2358,38 @@ de:{
   tc1_d:"Entwicklung des Sovereign Core und proprietärer KI-Modelle.",tc2_d:"Hetzner-Wartung, Sicherheit und 99,9% Verfügbarkeitsgarantie.",tc3_d:"Zahlung für Beiträge zum immortalen Gedächtnis von Synergix auf Irys.",tc4_d:"Stablecoin-Notfallfonds zum Schutz des Projekts in volatilen Märkten.",tc5_d:"Volatilitätskontrolle und DEX-Preisstärkung durch Rückkäufe und Liquidität.",tc6_d:"Allianzen mit anderen Protokollen und institutionelle Kapitalaufnahme.",tc7_d:"Automatischer Burn alle 15 Tage zur dauerhaften Erhöhung des relativen Token-Werts.",
   tax_note:"<strong>100% im Ökosystem. Null an private Wallets.</strong>",bar1:"F&E / CapEx",bar2:"Betrieb",bar6:"Institutionell",
   ca1_d:"Der Hauptknotenpunkt. Erhalte Updates, diskutiere Strategie und sei Teil der kollektiven Intelligenz.",ca2_d:"Folge für Token-Neuigkeiten, wöchentliche Herausforderungen, Top-Beitragende und technische Updates.",ca3_t:"Auf four.meme kaufen",ca3_d:"Handle $SYNERGIX auf BNB Chain. Sieh Live-Chart, Holder-Anzahl und führe deinen Kauf aus.",
-  cta1:"BESITZE EIN STÜCK",cta2:"DER ERSTEN",cta3:"IMMORTALEN KI",cta_sub:"Der Bucket <em>synergix-v2</em> enthält das weltweit erste KI-Wissen auf Irys.",cta_buy:"$SYNERGIX auf four.meme kaufen",cta_bot:"Den KI-Bot nutzen",cta_tg:"Telegram beitreten",
+  cta1:"BESITZE EIN STÜCK",cta2:"DER ERSTEN",cta3:"IMMORTALEN KI",cta_sub:"Der Data Ledger <em>synergix-v2</em> enthält das weltweit erste KI-Wissen auf Irys.",cta_buy:"$SYNERGIX auf four.meme kaufen",cta_bot:"Den KI-Bot nutzen",cta_tg:"Telegram beitreten",
   footer_desc:"Die weltweit erste KI, die auf Irys eingesetzt wird. Kollektive Intelligenz, immortal by design.",
   ft_trade:"Handeln",ft_comm:"Community",road_sub:"Alles Folgende ist live, on-chain und läuft auf Irys.",rm_tag:"Implementiert",
   rm_t1:"Freier Chat mit RAG",rm_t2:"On-Chain-Beitragssystem",rm_t3:"6 Ränge mit Multiplikatoren",rm_t4:"Wöchentliche KI-Herausforderung",rm_t5:"Hive Mind & Oracle-Validierung",rm_t6:"Rangliste /top",rm_t7:"Echtzeit-Benachrichtigungen",rm_t8:"10 vollständige Sprachen",rm_t9:"Irys: Unsterbliches Gedächtnis",
   rm_d1:"Freier Chat mit RAG über immortales Gedächtnis auf Irys — 80/20-Modus aktiv.",rm_d2:"Beitragssystem mit Groq-Richter und On-Chain-Upload.",rm_d3:"6 Ränge mit Multiplikatoren, täglichen Limits und passiven Residualpunkten.",rm_d4:"Wöchentliche Herausforderung mit automatischer KI-Generierung.",rm_d5:"Validierung durch Hive Mind und Oracle + /validate.",rm_d6:"Rangliste /top: Top 10 Score + Top 3 Impact.",rm_d7:"Echtzeit-Benachrichtigungen für Impact und Rang-Aufstieg.",rm_d8:"10 vollständige Sprachen: ES, EN, PT, FR, DE, RU, JA, KO, ZH_CN, ZH_TW. Der Bot antwortet in der Sprache des Nutzers mit nativem mehrsprachigem RAG-System.",rm_d9:"Irys als unsterbliches Gedächtnis: vollständige DB-Synchronisation + automatische Wiederherstellung beim Start.",
-  bucket_note:"<strong>Null Datenverlust beim Serverneustart.</strong> Der Irys-Bucket <strong>synergix-v2</strong> ist die echte Festplatte.",stat_sync:"Gehirn-Sync: 8 Min",wc3_b:"Immortal by Design",wc6_b:"Verdiene im Schlaf"
+  bucket_note:"<strong>Null Datenverlust beim Serverneustart.</strong> Der Irys Data Ledger <strong>synergix-v2</strong> ist die echte Festplatte.",stat_sync:"Gehirn-Sync: 8 Min",wc3_b:"Immortal by Design",wc6_b:"Verdiene im Schlaf"
 },
 ru:{
-  nav_why:"Почему уникален",nav_bucket:"Irys Memory",nav_how:"Как работает",nav_depin:"DePIN и сжигание",nav_token:"Токен",nav_roadmap:"Дорожная карта",nav_community:"Сообщество",
+  nav_why:"Почему уникален",nav_bucket:"Data Ledger",nav_how:"Как работает",nav_depin:"DePIN и сжигание",nav_token:"Токен",nav_roadmap:"Дорожная карта",nav_community:"Сообщество",
   hero_eyebrow:"Первый в мире · ИИ на Irys",
   hero_t1:"ПЕРВЫЙ ИИ",hero_t2:"НА IRYS",hero_t3:"IRYS",hero_t4:"НИКОГДА НЕ СОЗДАННЫЙ",
   badge_world:"Первый в мире",badge_immortal:"Бессмертное хранилище",copy_btn:"Скопировать адрес",pill_buy:"Налог покупки: 1%",pill_sell:"Налог продажи: 1%",btn_buy:"Купить на four.meme",btn_bot:"ИИ-бот",
   stat_immortal:"Бессмертный on-chain",stat_community:"От сообщества",stat_first:"На Irys",stat_langs:"Языки",
-  hero_desc:"<strong>Ни одна другая команда ИИ не достигла этого.</strong> Synergix — первый и единственный ИИ, полностью развёрнутый на Irys — децентрализованное блокчейн-хранилище, где ваши знания становятся <strong>постоянными, неизменными и устойчивыми к цензуре навсегда</strong>. Bucket <em>synergix-v2</em> — это жёсткий диск ИИ.",
-  h2_why_w:"ПЕРВЫЙ ИИ В МИРЕ",h2_why_r:"НА BNB IRYS",h2_bucket_w:"BUCKET <em>synergix-v2</em>",h2_bucket_r:"НА IRYS",h2_how_w:"КАК РАБОТАЕТ",h2_how_r:"SYNERGIX",h2_rag_w:"КАК ИИ",h2_rag_r:"ОТВЕЧАЕТ",h2_rank_w:"СИСТЕМА",h2_rank_r:"РАНГОВ",h2_depin_r:"ДВИЖОК ДАННЫХ DePIN",h2_depin_w:"И МЕХАНИЗМ СЖИГАНИЯ",h2_toko_w:"ТОКЕНОМИКА &amp;",h2_toko_r:"РАСПРЕДЕЛЕНИЕ НАЛОГОВ",h2_comm_w:"СЕТЬ",h2_comm_r:"SYNERGIX",h2_road_w:"ДОРОЖНАЯ КАРТА",h2_road_r:"ВЫПОЛНЕНА",
+  hero_desc:"<strong>Ни одна другая команда ИИ не достигла этого.</strong> Synergix — первый и единственный ИИ, полностью развёрнутый на Irys — децентрализованное блокчейн-хранилище, где ваши знания становятся <strong>постоянными, неизменными и устойчивыми к цензуре навсегда</strong>. Data Ledger <em>synergix-v2</em> — это бессмертная память ИИ.",
+  h2_why_w:"ПЕРВЫЙ ИИ В МИРЕ",h2_why_r:"НА BNB IRYS",h2_bucket_w:"DATA LEDGER <em>synergix-v2</em>",h2_bucket_r:"НА IRYS",h2_how_w:"КАК РАБОТАЕТ",h2_how_r:"SYNERGIX",h2_rag_w:"КАК ИИ",h2_rag_r:"ОТВЕЧАЕТ",h2_rank_w:"СИСТЕМА",h2_rank_r:"РАНГОВ",h2_depin_r:"ДВИЖОК ДАННЫХ DePIN",h2_depin_w:"И МЕХАНИЗМ СЖИГАНИЯ",h2_toko_w:"ТОКЕНОМИКА &amp;",h2_toko_r:"РАСПРЕДЕЛЕНИЕ НАЛОГОВ",h2_comm_w:"СЕТЬ",h2_comm_r:"SYNERGIX",h2_road_w:"ДОРОЖНАЯ КАРТА",h2_road_r:"ВЫПОЛНЕНА",
   why_eye:"Что делает его уникальным",bucket_eye:"Децентрализованное хранилище",how_eye:"Цикл",rag_eye:"Движок интеллекта",ranks_eye:"On-chain репутация",depin_eye:"Сбор данных и дефицит",toko_eye:"Токен",comm_eye:"Присоединиться",roadmap_eye:"Прогресс",
   why_sub:"Наша команда достигла того, чего не делал ни один другой проект ИИ — развернула полностью функциональную систему коллективного интеллекта на Irys.",
-  bucket_sub:"Каждый файл в этом bucket является постоянной частью мозга ИИ. Проверяемо на Irys. Не принадлежит никому. Не удаляется никем.",
+  bucket_sub:"Каждая запись в этом Data Ledger является постоянной частью мозга ИИ. Проверяемо на Irys. Не принадлежит никому. Не удаляется никем.",
   rag_sub:"Движок RAG делает Synergix принципиально другим. Он не угадывает — сначала извлекает из блокчейна.",
-  ranks_sub:"Ваш ранг хранится on-chain в bucket synergix-v2. Более высокий ранг = более высокий вес RAG.",
+  ranks_sub:"Ваш ранг хранится on-chain в Data Ledger synergix-v2. Более высокий ранг = более высокий вес RAG.",
   depin_sub:"Пользователи — это инфраструктура. Каждый вклад финансирует бессмертную память. Каждые 15 дней предложение постоянно сокращается.",
   toko_sub:"1% покупка + 1% продажа. 100% собранного BNB остаётся в экосистеме Synergix.",
   roadmap_sub:"Всё перечисленное ниже работает в прямом эфире, on-chain, на Irys.",
-  wc1_t:"Мировое достижение",wc2_t:"Bucket — это Мозг",wc3_t:"Перезапуск = Ноль потерь",wc4_t:"Метаданные on-chain",wc5_t:"80% Сообщество · 20% ИИ",wc6_t:"Пассивный доход от знаний",
-  wc1_d:"Ни один проект ИИ не реализовал систему интеллекта в режиме реального времени с использованием Irys до Synergix.",wc2_d:"Bucket <strong>synergix-v2</strong> на Irys — не резервная копия, это ПАМЯТЬ ИИ.",wc3_d:"При перезапуске сервера бот загружает полную базу данных из Irys и автоматически восстанавливает всё.",wc4_d:"Каждый вклад несёт 4 on-chain тега: сводка, оценка качества, идентификатор автора и данные оценщика.",wc5_d:"Движок RAG Synergix сначала ищет в bucket Irys. 80% каждого ответа — реальные вклады сообщества.",wc6_d:"Каждый раз, когда ИИ использует ваш вклад, вы автоматически зарабатываете остаточные очки.",
+  wc1_t:"Мировое достижение",wc2_t:"Data Ledger — это Мозг",wc3_t:"Перезапуск = Ноль потерь",wc4_t:"Метаданные on-chain",wc5_t:"80% Сообщество · 20% ИИ",wc6_t:"Пассивный доход от знаний",
+  wc1_d:"Ни один проект ИИ не реализовал систему интеллекта в режиме реального времени с использованием Irys до Synergix.",wc2_d:"Data Ledger <strong>synergix-v2</strong> на Irys — не резервная копия, это ПАМЯТЬ ИИ.",wc3_d:"При перезапуске сервера бот загружает полную базу данных из Irys и автоматически восстанавливает всё.",wc4_d:"Каждый вклад несёт 4 on-chain тега: сводка, оценка качества, идентификатор автора и данные оценщика.",wc5_d:"Движок RAG Synergix сначала ищет в Data Ledger Irys. 80% каждого ответа — реальные вклады сообщества.",wc6_d:"Каждый раз, когда ИИ использует ваш вклад, вы автоматически зарабатываете остаточные очки.",
   br1_t:"Вклады сообщества",br2_t:"Объединённый коллективный мозг",br3_t:"Полная резервная копия БД",br4_t:"On-Chain профили пользователей",br5_t:"Неизменяемый журнал аудита",br6_t:"Еженедельные снимки восстановления",
   br1_d:"Каждый вклад сообщества увековечен с 4 on-chain тегами метаданных.",br2_d:"Объединённый коллективный мозг. Версионный синтез всех знаний, обновляемый каждые 8 минут.",br3_d:"Полная резервная копия базы данных on-chain.",br4_d:"On-chain профиль каждого пользователя: роль, очки, количество вкладов, последняя активность.",br5_d:"Неизменяемый журнал событий. Каждое действие записано on-chain.",br6_d:"Полный снимок состояния. Полное восстановление всего коллективного интеллекта в любой момент времени.",
   br1_f:"⚡ Загрузка в реальном времени",br2_f:"🔄 Каждые 8 минут",br3_f:"🔄 Каждые 8 минут",br4_f:"🔄 Пакет каждые 8 минут",br5_f:"📅 Ежедневно (полночь UTC)",br6_f:"📅 Еженедельно (каждый понедельник)",
   hf1_t:"Вносить вклад",hf2_t:"Увековечено",hf3_t:"ИИ использует",hf4_t:"Зарабатывать пассивно",
-  hf1_d:"Отправьте знания боту Telegram. Судья ИИ оценивает (1-10). Принимается только 5+.",hf2_d:"Принятые вклады загружаются на Irys с уникальным CID.",hf3_d:"Когда кто-то задаёт вопрос, движок RAG строит 80% ответа из bucket.",hf4_d:"Каждое использование вашего вклада приносит автоматические остаточные очки.",
-  rs1:"<strong>Вопрос поступает</strong> — пользователь спрашивает в боте Telegram на любом из 10 языков.",rs2:"<strong>Мозг загружен</strong> — последняя версия мозга SYNERGIXAI получена из bucket.",rs3:"<strong>Вклады найдены</strong> — движок RAG сканирует все индексированные on-chain вклады.",rs4:"<strong>Построение 80/20</strong> — если найдены релевантные данные, ИИ использует 80% данных сообщества + 20% логического вывода.",rs5:"<strong>Авторы вознаграждены</strong> — каждый использованный вклад вызывает автоматическое начисление очков.",rs6:"<strong>Знания растут</strong> — цикл федерации объединяет все вклады каждые 8 минут.",
-  rr1_l:"Из Irys bucket",rr2_l:"Контекст и логический вывод ИИ",rr1_d:"Когда RAG находит релевантные вклады on-chain, ИИ строит 80% ответа из неизменяемых записей.",rr2_d:"Оставшиеся 20% добавляют контекст и структуру. Никогда не перекрывает данные сообщества.",
+  hf1_d:"Отправьте знания боту Telegram. Судья ИИ оценивает (1-10). Принимается только 5+.",hf2_d:"Принятые вклады загружаются на Irys с уникальным CID.",hf3_d:"Когда кто-то задаёт вопрос, движок RAG строит 80% ответа из Data Ledger.",hf4_d:"Каждое использование вашего вклада приносит автоматические остаточные очки.",
+  rs1:"<strong>Вопрос поступает</strong> — пользователь спрашивает в боте Telegram на любом из 10 языков.",rs2:"<strong>Мозг загружен</strong> — последняя версия мозга SYNERGIXAI получена из Data Ledger.",rs3:"<strong>Вклады найдены</strong> — движок RAG сканирует все индексированные on-chain вклады.",rs4:"<strong>Построение 80/20</strong> — если найдены релевантные данные, ИИ использует 80% данных сообщества + 20% логического вывода.",rs5:"<strong>Авторы вознаграждены</strong> — каждый использованный вклад вызывает автоматическое начисление очков.",rs6:"<strong>Знания растут</strong> — цикл федерации объединяет все вклады каждые 8 минут.",
+  rr1_l:"Из Irys Data Ledger",rr2_l:"Контекст и логический вывод ИИ",rr1_d:"Когда RAG находит релевантные вклады on-chain, ИИ строит 80% ответа из неизменяемых записей.",rr2_d:"Оставшиеся 20% добавляют контекст и структуру. Никогда не перекрывает данные сообщества.",
   dp1_t:"Сбор данных DePIN",dp2_t:"Бессмертная память — Каждые 15 дней",dp1_d:"В Synergix <strong>пользователи — это источник данных</strong>. Каждый качественный вклад (5+), загруженный на Irys, строит децентрализованную инфраструктуру ИИ.",dp2_d:"Вклады хранятся on-chain с 4 неизменяемыми тегами и объединяются в новый мозг каждые 8 минут.",
   burn_h:"АВТОМАТИЧЕСКОЕ СЖИГАНИЕ",burn_s:"Выполняется разработчиком · 5% налога",burn_cycle:"ДНЕЙ ЦИКЛ СЖИГАНИЯ",bl1:"Налог накапливается 15 дней",bl2:"Разработчик выполняет сжигание",bl3:"Токены отправляются на мёртвый кошелёк",burn_note:"<strong>Каждое сжигание навсегда сокращает предложение.</strong>",
   tk_name_k:"Название токена",tk_net_k:"Сеть",tk_buy_k:"Налог покупки",tk_sell_k:"Налог продажи",tk_burn_k:"Цикл сжигания",tk_burn_v:"Каждые 15 дней · разработчик",ti_tax_wallet:"Кошелёк налогов",tax_dist_title:"Распределение налогов",
@@ -2239,38 +2397,38 @@ ru:{
   tc1_d:"Разработка Sovereign Core и проприетарных моделей ИИ.",tc2_d:"Обслуживание Hetzner, безопасность и гарантия 99,9% доступности.",tc3_d:"Оплата вкладов в бессмертную память Synergix на Irys.",tc4_d:"Стабильный резервный фонд для защиты проекта на волатильных рынках.",tc5_d:"Контроль волатильности и укрепление цены DEX через выкупы и ликвидность.",tc6_d:"Альянсы с другими протоколами и привлечение институционального капитала.",tc7_d:"Автоматическое сжигание каждые 15 дней для постоянного увеличения относительной стоимости токена.",
   tax_note:"<strong>100% в экосистеме. Ноль на частные кошельки.</strong>",bar1:"НИОКР / CapEx",bar2:"Операции",bar6:"Институционалы",
   ca1_d:"Главный хаб. Получайте обновления, обсуждайте стратегию и будьте частью коллективного интеллекта.",ca2_d:"Следите за новостями токена, еженедельными вызовами, топ-вкладчиками и техническими обновлениями.",ca3_t:"Купить на four.meme",ca3_d:"Торгуйте $SYNERGIX на BNB Chain. Просмотрите живой график и выполните покупку.",
-  cta1:"ВЛАДЕЙТЕ ЧАСТЬЮ",cta2:"ПЕРВОГО",cta3:"БЕССМЕРТНОГО ИИ",cta_sub:"Bucket <em>synergix-v2</em> хранит первые в мире знания ИИ на Irys.",cta_buy:"Купить $SYNERGIX на four.meme",cta_bot:"Использовать ИИ-бот",cta_tg:"Присоединиться к Telegram",
+  cta1:"ВЛАДЕЙТЕ ЧАСТЬЮ",cta2:"ПЕРВОГО",cta3:"БЕССМЕРТНОГО ИИ",cta_sub:"Data Ledger <em>synergix-v2</em> хранит первые в мире знания ИИ на Irys.",cta_buy:"Купить $SYNERGIX на four.meme",cta_bot:"Использовать ИИ-бот",cta_tg:"Присоединиться к Telegram",
   footer_desc:"Первый в мире ИИ, развёрнутый на Irys. Коллективный интеллект, бессмертный по замыслу.",
   ft_trade:"Торговля",ft_comm:"Сообщество",road_sub:"Всё перечисленное ниже работает в реальном времени, on-chain на Irys.",rm_tag:"Реализовано",
   rm_t1:"Свободный чат с RAG",rm_t2:"Система вкладов on-chain",rm_t3:"6 рангов с множителями",rm_t4:"Еженедельный вызов ИИ",rm_t5:"Hive Mind и проверка Oracle",rm_t6:"Таблица лидеров /top",rm_t7:"Уведомления в реальном времени",rm_t8:"10 полных языков",rm_t9:"Irys: Бессмертная Память",
   rm_d1:"Свободный чат с RAG над бессмертной памятью на Irys — режим 80/20 активен.",rm_d2:"Система вкладов с судьёй Groq и загрузкой on-chain.",rm_d3:"6 рангов с множителями, дневными лимитами и пассивными остаточными очками.",rm_d4:"Еженедельный вызов с автоматической генерацией ИИ.",rm_d5:"Проверка Hive Mind и Oracle + /validate.",rm_d6:"Таблица лидеров /top: топ 10 баллов + топ 3 влияния.",rm_d7:"Уведомления в реальном времени о влиянии и повышении ранга.",rm_d8:"10 полных языков: ES, EN, PT, FR, DE, RU, JA, KO, ZH_CN, ZH_TW. Бот отвечает на языке пользователя с нативной многоязычной системой RAG.",rm_d9:"Irys как бессмертная память: полная синхронизация БД + автоматическое восстановление при запуске.",
-  bucket_note:"<strong>Ноль потери данных при перезапуске сервера.</strong> Bucket Irys <strong>synergix-v2</strong> — настоящий жёсткий диск.",stat_sync:"Синхронизация мозга: 8 мин",wc3_b:"Бессмертный по замыслу",wc6_b:"Зарабатывай пока спишь"
+  bucket_note:"<strong>Ноль потери данных при перезапуске сервера.</strong> Data Ledger Irys <strong>synergix-v2</strong> — настоящий жёсткий диск.",stat_sync:"Синхронизация мозга: 8 мин",wc3_b:"Бессмертный по замыслу",wc6_b:"Зарабатывай пока спишь"
 },
 ja:{
-  nav_why:"なぜ独自なのか",nav_bucket:"バケット",nav_how:"仕組み",nav_depin:"DePINとバーン",nav_token:"トークン",nav_roadmap:"ロードマップ",nav_community:"コミュニティ",
+  nav_why:"なぜ独自なのか",nav_bucket:"Data Ledger",nav_how:"仕組み",nav_depin:"DePINとバーン",nav_token:"トークン",nav_roadmap:"ロードマップ",nav_community:"コミュニティ",
   hero_eyebrow:"世界初 · Irys上のAI",
   hero_t1:"最初のAI",hero_t2:"IRYS上",hero_t3:"IRYS",hero_t4:"史上初",
   badge_world:"世界初",badge_immortal:"不滅のストレージ",copy_btn:"アドレスをコピー",pill_buy:"購入税: 1%",pill_sell:"売却税: 1%",btn_buy:"four.memeで購入",btn_bot:"AIボット",
   stat_immortal:"オンチェーン不滅",stat_community:"コミュニティから",stat_first:"Irysで",stat_langs:"言語",
-  hero_desc:"<strong>他のAIチームはこれを達成していません。</strong> Synergixは、Irysに完全展開された最初のAIです — あなたの知識が<strong>永続的、不変、検閲耐性を持つ</strong>分散型ブロックチェーンストレージ。バケット<em>synergix-v2</em>がAIのハードドライブです。",
-  h2_why_w:"世界初のAI",h2_why_r:"BNB IRYS上",h2_bucket_w:"バケット <em>synergix-v2</em>",h2_bucket_r:"IRYS上",h2_how_w:"仕組み",h2_how_r:"SYNERGIX",h2_rag_w:"AIが",h2_rag_r:"回答する方法",h2_rank_w:"ランク",h2_rank_r:"システム",h2_depin_r:"DePINデータエンジン",h2_depin_w:"とバーンメカニズム",h2_toko_w:"トークノミクス &amp;",h2_toko_r:"税分配",h2_comm_w:"",h2_comm_r:"SYNERGIXネットワーク",h2_road_w:"ロードマップ",h2_road_r:"達成済み",
+  hero_desc:"<strong>他のAIチームはこれを達成していません。</strong> Synergixは、Irysに完全展開された最初のAIです — あなたの知識が<strong>永続的、不変、検閲耐性を持つ</strong>分散型ブロックチェーンストレージ。Data Ledger<em>synergix-v2</em>がAIのハードドライブです。",
+  h2_why_w:"世界初のAI",h2_why_r:"BNB IRYS上",h2_bucket_w:"Data Ledger <em>synergix-v2</em>",h2_bucket_r:"IRYS上",h2_how_w:"仕組み",h2_how_r:"SYNERGIX",h2_rag_w:"AIが",h2_rag_r:"回答する方法",h2_rank_w:"ランク",h2_rank_r:"システム",h2_depin_r:"DePINデータエンジン",h2_depin_w:"とバーンメカニズム",h2_toko_w:"トークノミクス &amp;",h2_toko_r:"税分配",h2_comm_w:"",h2_comm_r:"SYNERGIXネットワーク",h2_road_w:"ロードマップ",h2_road_r:"達成済み",
   why_eye:"独自性の理由",bucket_eye:"分散型ストレージ",how_eye:"ループ",rag_eye:"インテリジェンスエンジン",ranks_eye:"オンチェーン評判",depin_eye:"データ取得と希少性",toko_eye:"トークン",comm_eye:"参加する",roadmap_eye:"進捗",
   why_sub:"我々のチームは他のAIプロジェクトが達成していないことを実現しました — Irys上に完全機能する集合知システムを展開。",
-  bucket_sub:"このバケット内の各ファイルはAIの脳の永続的な部分です。Irysで検証可能。誰も所有しない。誰も削除できない。",
+  bucket_sub:"このData Ledger内の各ファイルはAIの脳の永続的な部分です。Irysで検証可能。誰も所有しない。誰も削除できない。",
   rag_sub:"RAGエンジンがSynergixを根本的に異なるものにします。推測しない — まずブロックチェーンから取得します。",
-  ranks_sub:"あなたのランクはsynergix-v2バケットにオンチェーンで保存されます。ランクが高い = RAG重みが高い。",
+  ranks_sub:"あなたのランクはsynergix-v2Data Ledgerにオンチェーンで保存されます。ランクが高い = RAG重みが高い。",
   depin_sub:"ユーザーがインフラです。各貢献が不滅のメモリに資金を提供。15日ごとに供給が永続的に減少。",
   toko_sub:"購入1% + 売却1%。収集されたBNBの100%がSynergixエコシステム内に留まります。",
   roadmap_sub:"以下はすべてライブ、オンチェーン、Irys上で稼働中。",
-  wc1_t:"世界初の成果",wc2_t:"バケットが脳",wc3_t:"再起動 = ゼロ損失",wc4_t:"オンチェーンメタデータ",wc5_t:"80%コミュニティ · 20%AI",wc6_t:"知識からの受動収入",
-  wc1_d:"Synergix以前、Irysをストレージとして使用したAIプロジェクトはありませんでした。",wc2_d:"Irys上の<strong>synergix-v2</strong>バケットはバックアップではなく、AIのメモリそのものです。",wc3_d:"サーバーが再起動すると、ボットはIrysから完全なデータベースをダウンロードし、自動的にすべてを復元します。",wc4_d:"各貢献は4つのオンチェーンタグを持ちます: AI生成サマリー、品質スコア、著者ID、評価者データ。",wc5_d:"SynergixのRAGエンジンはまずIrysバケットを検索します。各回答の80%はオンチェーンに保存された実際のコミュニティ貢献から。",wc6_d:"AIがあなたの貢献を使用するたびに、自動的に残余ポイントを獲得します。",
+  wc1_t:"世界初の成果",wc2_t:"Data Ledgerが脳",wc3_t:"再起動 = ゼロ損失",wc4_t:"オンチェーンメタデータ",wc5_t:"80%コミュニティ · 20%AI",wc6_t:"知識からの受動収入",
+  wc1_d:"Synergix以前、Irysをストレージとして使用したAIプロジェクトはありませんでした。",wc2_d:"Irys上の<strong>synergix-v2</strong>Data Ledgerはバックアップではなく、AIのメモリそのものです。",wc3_d:"サーバーが再起動すると、ボットはIrysから完全なデータベースをダウンロードし、自動的にすべてを復元します。",wc4_d:"各貢献は4つのオンチェーンタグを持ちます: AI生成サマリー、品質スコア、著者ID、評価者データ。",wc5_d:"SynergixのRAGエンジンはまずIrysData Ledgerを検索します。各回答の80%はオンチェーンに保存された実際のコミュニティ貢献から。",wc6_d:"AIがあなたの貢献を使用するたびに、自動的に残余ポイントを獲得します。",
   br1_t:"コミュニティ貢献",br2_t:"融合された集合脳",br3_t:"完全なデータベースバックアップ",br4_t:"ユーザーオンチェーンプロファイル",br5_t:"不変の監査証跡",br6_t:"週次リカバリースナップショット",
   br1_d:"4つのオンチェーンメタデータタグで永続化された各コミュニティ貢献。",br2_d:"融合された集合脳。8分ごとに更新される全知識の版管理合成。",br3_d:"オンチェーンの完全なデータベースバックアップ。サーバー再起動時にこのファイルが最初にダウンロードされます。",br4_d:"各ユーザーのオンチェーンプロファイル: ロール、ポイント、貢献数、最終アクティビティ。",br5_d:"不変のイベント監査証跡。すべてのアクションがオンチェーンに記録。",br6_d:"完全な状態スナップショット。コレクティブインテリジェンス全体の完全な時点復元。",
   br1_f:"⚡ リアルタイムアップロード",br2_f:"🔄 8分ごと",br3_f:"🔄 8分ごと",br4_f:"🔄 バッチ8分ごと",br5_f:"📅 毎日(UTC深夜)",br6_f:"📅 毎週(毎週月曜日)",
   hf1_t:"貢献する",hf2_t:"永続化",hf3_t:"AIが使用",hf4_t:"受動的に稼ぐ",
-  hf1_d:"TelegramボットにAI品質審査員が評価(1-10)。5以上のみ受付。",hf2_d:"受け入れられた貢献はユニークなCIDとともにIrysにアップロードされます。",hf3_d:"誰かが質問するとRAGエンジンがバケットから80%の回答を構築します。",hf4_d:"あなたの貢献が使用されるたびに自動的に残余ポイントを獲得。マイルストーン通知あり。",
-  rs1:"<strong>質問が届く</strong> — ユーザーが10言語のいずれかでTelegramボットに質問。",rs2:"<strong>脳がロード</strong> — 最新のSYNERGIXAI脳バージョンがバケットから取得。",rs3:"<strong>貢献を検索</strong> — RAGエンジンがインデックス化されたすべてのオンチェーン貢献をスキャン。",rs4:"<strong>80/20構築</strong> — 関連データが見つかった場合、AIはコミュニティデータ80% + 推論20%を使用。",rs5:"<strong>著者に報酬</strong> — 使用された各貢献が自動残余ポイントを発動。",rs6:"<strong>知識が成長</strong> — フェデレーションループが8分ごとにすべての貢献を融合。",
-  rr1_l:"Irysバケットから",rr2_l:"AIコンテキストと推論",rr1_d:"RAGがオンチェーンの関連貢献を見つけると、AIはそれらの不変記録から80%の回答を構築します。",rr2_d:"残りの20%はコンテキストと構造を追加します。コミュニティデータを上書きしません。",
+  hf1_d:"TelegramボットにAI品質審査員が評価(1-10)。5以上のみ受付。",hf2_d:"受け入れられた貢献はユニークなCIDとともにIrysにアップロードされます。",hf3_d:"誰かが質問するとRAGエンジンがData Ledgerから80%の回答を構築します。",hf4_d:"あなたの貢献が使用されるたびに自動的に残余ポイントを獲得。マイルストーン通知あり。",
+  rs1:"<strong>質問が届く</strong> — ユーザーが10言語のいずれかでTelegramボットに質問。",rs2:"<strong>脳がロード</strong> — 最新のSYNERGIXAI脳バージョンがData Ledgerから取得。",rs3:"<strong>貢献を検索</strong> — RAGエンジンがインデックス化されたすべてのオンチェーン貢献をスキャン。",rs4:"<strong>80/20構築</strong> — 関連データが見つかった場合、AIはコミュニティデータ80% + 推論20%を使用。",rs5:"<strong>著者に報酬</strong> — 使用された各貢献が自動残余ポイントを発動。",rs6:"<strong>知識が成長</strong> — フェデレーションループが8分ごとにすべての貢献を融合。",
+  rr1_l:"IrysData Ledgerから",rr2_l:"AIコンテキストと推論",rr1_d:"RAGがオンチェーンの関連貢献を見つけると、AIはそれらの不変記録から80%の回答を構築します。",rr2_d:"残りの20%はコンテキストと構造を追加します。コミュニティデータを上書きしません。",
   dp1_t:"DePINデータ取得",dp2_t:"不滅のメモリ — 15日ごと",dp1_d:"Synergixでは<strong>ユーザーがデータソース</strong>です。Irysにアップロードされた各品質貢献(5+)が分散型AIインフラを構築します。",dp2_d:"貢献は4つの不変タグとともにオンチェーンに保存され、8分ごとに新しい脳に融合されます。",
   burn_h:"自動バーン",burn_s:"開発者が実行 · 税の5%",burn_cycle:"日バーンサイクル",bl1:"税が15日間蓄積",bl2:"開発者がバーンを実行",bl3:"トークンをデッドウォレットに送信",burn_note:"<strong>各バーンは永続的に供給を削減します。</strong>",
   tk_name_k:"トークン名",tk_net_k:"ネットワーク",tk_buy_k:"購入税",tk_sell_k:"売却税",tk_burn_k:"バーンサイクル",tk_burn_v:"15日ごと · 開発者",ti_tax_wallet:"税ウォレット",tax_dist_title:"税分配",
@@ -2278,12 +2436,12 @@ ja:{
   tc1_d:"Sovereign Coreと独自AIモデルの開発。",tc2_d:"Hetznerメンテナンス、セキュリティ、99.9%稼働時間保証。",tc3_d:"Irysでの不滅メモリへの貢献への支払い。",tc4_d:"ボラティリティの高い市場でプロジェクトを保護するためのステーブルコイン緊急資金。",tc5_d:"買戻しと流動性によるボラティリティコントロールとDEX価格強化。",tc6_d:"他のプロトコルとの提携と機関資本の調達。",tc7_d:"トークンの相対的価値を永続的に高めるための15日ごとの自動バーン。",
   tax_note:"<strong>エコシステム内100%。プライベートウォレットにゼロ。</strong>",bar1:"R&D / CapEx",bar2:"運用",bar6:"機関",
   ca1_d:"メインハブ。アップデートを受け取り、戦略を議論し、集合知の一部になりましょう。",ca2_d:"トークンニュース、週次チャレンジ、トップ貢献者スポットライト、技術更新、Irysマイルストーンをフォロー。",ca3_t:"four.memeで購入",ca3_d:"BNB Chainで$SYNERGIXを取引。ライブチャートを見て購入を実行。",
-  cta1:"所有しよう",cta2:"最初の",cta3:"不滅のAI",cta_sub:"バケット<em>synergix-v2</em>はIrysで世界初のAI知識を保持しています。",cta_buy:"four.memeで$SYNERGIXを購入",cta_bot:"AIボットを使用",cta_tg:"Telegramに参加",
+  cta1:"所有しよう",cta2:"最初の",cta3:"不滅のAI",cta_sub:"Data Ledger<em>synergix-v2</em>はIrysで世界初のAI知識を保持しています。",cta_buy:"four.memeで$SYNERGIXを購入",cta_bot:"AIボットを使用",cta_tg:"Telegramに参加",
   footer_desc:"Irysに展開された世界初のAI。設計による不滅の集合知。",
   ft_trade:"取引",ft_comm:"コミュニティ",road_sub:"以下はすべてライブ、オンチェーン、Irys上で稼働中。",rm_tag:"実装済み",
   rm_t1:"RAGを使った自由チャット",rm_t2:"オンチェーン貢献システム",rm_t3:"倍率付き6ランク",rm_t4:"週次AIチャレンジ",rm_t5:"Hive Mind & Oracle検証",rm_t6:"リーダーボード /top",rm_t7:"リアルタイム通知",rm_t8:"10の完全言語",rm_t9:"ハードドライブとしてのGF",
   rm_d1:"IrysのRAG自由チャット（不滅のメモリ — 80/20モード有効。",rm_d2:"Groq審査員とオンチェーンアップロードを備えた貢献システム。",rm_d3:"倍率、日次制限、受動的残余ポイント付き6ランク。",rm_d4:"AI自動生成による週次チャレンジ。",rm_d5:"Hive MindとOracleによる検証 + /validate。",rm_d6:"リーダーボード /top: トップ10スコア + トップ3インパクト。",rm_d7:"インパクトとランクアップのリアルタイム通知。",rm_d8:"10の完全言語: ES, EN, PT, FR, DE, RU, JA, KO, ZH_CN, ZH_TW。ボットはネイティブ多言語RAGシステムでユーザーの言語で応答します。",rm_d9:"Irysとして永続メモリ: 完全DBシンク + 起動時の自動復元。",
-  bucket_note:"<strong>サーバー再起動時のデータ損失ゼロ。</strong> Irysバケット<strong>synergix-v2</strong>が実際のハードドライブです。",stat_sync:"脳の同期: 8分",wc3_b:"設計による不滅",wc6_b:"眠りながら稼ぐ"
+  bucket_note:"<strong>サーバー再起動時のデータ損失ゼロ。</strong> IrysData Ledger<strong>synergix-v2</strong>が実際のハードドライブです。",stat_sync:"脳の同期: 8分",wc3_b:"設計による不滅",wc6_b:"眠りながら稼ぐ"
 },
 ko:{
   nav_why:"왜 독특한가",nav_bucket:"버킷",nav_how:"작동 방식",nav_depin:"DePIN & 소각",nav_token:"토큰",nav_roadmap:"로드맵",nav_community:"커뮤니티",

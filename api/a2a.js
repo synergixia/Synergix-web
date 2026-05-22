@@ -190,7 +190,7 @@ async function handleMessageSend(rpcId, params) {
       version: SYNERGIX.version,
       skill:   skillId,
       lang,
-      storage: `Irys permanent storage: ${SYNERGIX.bucket}`,
+      storage: `Irys Data Ledger: ${SYNERGIX.bucket}`,
       protocol:"A2A"
     }
   };
@@ -254,7 +254,7 @@ async function skillAsk(query, lang = "es") {
 
   const systemPrompt = `You are Synergix, the world's first AI deployed on Irys — a decentralized collective intelligence system accessed via the A2A protocol.
 
-Your knowledge comes from community contributions stored permanently on Irys permanent storage (bucket: "synergix-v2"). You are a specialized agent that answers based on collective on-chain knowledge.
+Your knowledge comes from community contributions stored permanently on Irys permanent storage (Data Ledger: "synergix-v2"). You are a specialized agent that answers based on collective on-chain knowledge.
 
 IDENTITY:
 - Telegram bot: @synergix_ai_bot | Web: synergix.lol | Token: $SYNERGIX (BNB Chain)
@@ -305,7 +305,7 @@ Respond in ${langName}. Be concise and direct. You are communicating via A2A pro
     source:   "groq+rag",
     lang,
     model:    GROQ_MODEL,
-    storage:  `Irys permanent storage: ${SYNERGIX.bucket}`,
+    storage:  `Irys Data Ledger: ${SYNERGIX.bucket}`,
     protocol: "A2A"
   };
 }
@@ -361,7 +361,7 @@ function skillToken() {
 // ── SKILL: synergix_bucket ────────────────────────────────────────────────────
 function skillBucket() {
   return {
-    bucket_name: SYNERGIX.bucket,
+    ledger_name: SYNERGIX.bucket,
     network:     "Irys Network",
     chain_id:    null,
     sp_endpoint: SYNERGIX.sp,
@@ -380,7 +380,7 @@ function skillBucket() {
       sync:     "every 8 minutes via federation_loop",
       scoring:  "keyword × quality × fusion_weight × impact × lang_boost × recency"
     },
-    unique_fact: "The bucket IS the AI brain. Full state restored from Irys on server restart — zero data loss, 100% decentralized."
+    unique_fact: "The Data Ledger IS the AI brain. Full state restored from Irys on server restart — zero data loss, 100% decentralized."
   };
 }
 
