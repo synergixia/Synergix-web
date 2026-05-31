@@ -1355,7 +1355,7 @@ body::before{
     <div class="sh reveal">
       <div class="sh-eye t" data-key="market_eye">Live on-chain market</div>
       <h2 class="sh-title"><span class="wh t" data-key="h2_market_w">LIVE</span> <span class="t" data-key="h2_market_r">MARKET DATA</span></h2>
-      <p class="sh-sub t" data-key="market_sub">Real-time $SYNERGIX price, liquidity and candlesticks — pulled live from BNB Chain on every visit. Chart data by GeckoTerminal.</p>
+      <p class="sh-sub t" data-key="market_sub">Real-time $SYNERGIX price, liquidity and candlesticks — read live from BNB Chain on every visit. Trade on four.meme.</p>
     </div>
 
     <div class="mkt-stats">
@@ -1383,11 +1383,12 @@ body::before{
         <div class="mkt-chart-ph" id="mktChartPh"><div class="mkt-spinner"></div><div id="mktPhTxt">Loading live chart…</div></div>
       </div>
       <div class="mkt-actions">
-        <a class="btn-p" href="https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank" rel="noopener">🚀 Buy $SYNERGIX</a>
+        <a class="btn-p" href="https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank" rel="noopener">🚀 Buy on four.meme</a>
+        <a class="btn-s" href="https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank" rel="noopener">📈 Live chart on four.meme</a>
         <a class="btn-s" href="https://bscscan.com/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank" rel="noopener">🔎 BscScan</a>
       </div>
     </div>
-    <div class="mkt-disc t" data-key="market_disc">Market data is fetched live from public sources and may differ from your exchange. Not financial advice.</div>
+    <div class="mkt-disc t" data-key="market_disc">$SYNERGIX trades on four.meme (BNB Chain). Live on-chain prices may differ from your exchange. Not financial advice.</div>
   </div>
 </section>
 
@@ -3093,35 +3094,35 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
   // ── i18n (merged into T before setLang('en') runs on DOMContentLoaded) ──
   const MKT_T = {
     en:{ nav_market:"Markets", market_eye:"Live on-chain market", h2_market_w:"LIVE", h2_market_r:"MARKET DATA",
-      market_sub:"Real-time $SYNERGIX price, liquidity and candlesticks — pulled live from BNB Chain on every visit. Chart data by GeckoTerminal.",
-      market_disc:"Market data is fetched live from GeckoTerminal (CoinGecko) and may differ from your exchange. Not financial advice." },
+      market_sub:"Real-time $SYNERGIX price, liquidity and candlesticks — read live from BNB Chain on every visit. Trade on four.meme.",
+      market_disc:"$SYNERGIX trades on four.meme (BNB Chain). Live on-chain prices may differ from your exchange. Not financial advice." },
     es:{ nav_market:"Mercado", market_eye:"Mercado on-chain en vivo", h2_market_w:"DATOS DE", h2_market_r:"MERCADO EN VIVO",
-      market_sub:"Precio, liquidez y velas de $SYNERGIX en tiempo real — directo desde BNB Chain en cada visita. Datos del gráfico por GeckoTerminal.",
-      market_disc:"Los datos se obtienen en vivo de GeckoTerminal (CoinGecko) y pueden diferir de tu exchange. Esto no es asesoramiento financiero." },
+      market_sub:"Precio, liquidez y velas de $SYNERGIX en tiempo real — leídos desde BNB Chain en cada visita. Compra en four.meme.",
+      market_disc:"$SYNERGIX cotiza en four.meme (BNB Chain). Los precios on-chain en vivo pueden diferir de tu exchange. Esto no es asesoramiento financiero." },
     pt:{ nav_market:"Mercado", market_eye:"Mercado on-chain ao vivo", h2_market_w:"DADOS DE", h2_market_r:"MERCADO AO VIVO",
-      market_sub:"Preço, liquidez e candles do $SYNERGIX em tempo real — direto da BNB Chain a cada visita. Dados do gráfico via GeckoTerminal.",
-      market_disc:"Os dados são obtidos ao vivo do GeckoTerminal (CoinGecko) e podem diferir da sua corretora. Isto não é aconselhamento financeiro." },
+      market_sub:"Preço, liquidez e candles do $SYNERGIX em tempo real — lidos da BNB Chain a cada visita. Negocie na four.meme.",
+      market_disc:"$SYNERGIX é negociado na four.meme (BNB Chain). Os preços on-chain ao vivo podem diferir da sua corretora. Isto não é aconselhamento financeiro." },
     fr:{ nav_market:"Marché", market_eye:"Marché on-chain en direct", h2_market_w:"DONNÉES DE", h2_market_r:"MARCHÉ EN DIRECT",
-      market_sub:"Prix, liquidité et chandeliers de $SYNERGIX en temps réel — directement depuis la BNB Chain. Données du graphique par GeckoTerminal.",
-      market_disc:"Les données proviennent en direct de GeckoTerminal (CoinGecko) et peuvent différer de votre plateforme. Ceci n'est pas un conseil financier." },
+      market_sub:"Prix, liquidité et chandeliers de $SYNERGIX en temps réel — lus depuis la BNB Chain à chaque visite. Tradez sur four.meme.",
+      market_disc:"$SYNERGIX se négocie sur four.meme (BNB Chain). Les prix on-chain en direct peuvent différer de votre plateforme. Ceci n'est pas un conseil financier." },
     de:{ nav_market:"Markt", market_eye:"Live On-Chain-Markt", h2_market_w:"LIVE-", h2_market_r:"MARKTDATEN",
-      market_sub:"$SYNERGIX-Preis, Liquidität und Kerzen in Echtzeit — bei jedem Besuch live von der BNB Chain. Chartdaten von GeckoTerminal.",
-      market_disc:"Die Marktdaten werden live von GeckoTerminal (CoinGecko) abgerufen und können von deiner Börse abweichen. Keine Finanzberatung." },
+      market_sub:"$SYNERGIX-Preis, Liquidität und Kerzen in Echtzeit — bei jedem Besuch live von der BNB Chain. Handel auf four.meme.",
+      market_disc:"$SYNERGIX wird auf four.meme (BNB Chain) gehandelt. Live On-Chain-Preise können von deiner Börse abweichen. Keine Finanzberatung." },
     ru:{ nav_market:"Рынок", market_eye:"Рынок on-chain в реальном времени", h2_market_w:"ДАННЫЕ", h2_market_r:"РЫНКА В ЖИВУЮ",
-      market_sub:"Цена, ликвидность и свечи $SYNERGIX в реальном времени — напрямую из BNB Chain при каждом визите. Данные графика от GeckoTerminal.",
-      market_disc:"Данные рынка загружаются в реальном времени из GeckoTerminal (CoinGecko) и могут отличаться от вашей биржи. Не является финансовым советом." },
+      market_sub:"Цена, ликвидность и свечи $SYNERGIX в реальном времени — напрямую из BNB Chain при каждом визите. Торгуйте на four.meme.",
+      market_disc:"$SYNERGIX торгуется на four.meme (BNB Chain). Живые on-chain цены могут отличаться от вашей биржи. Не является финансовым советом." },
     ja:{ nav_market:"マーケット", market_eye:"ライブ・オンチェーン市場", h2_market_w:"ライブ", h2_market_r:"マーケットデータ",
-      market_sub:"$SYNERGIX の価格・流動性・ローソク足をリアルタイムで表示。アクセスのたびに BNB チェーンから直接取得。チャートデータ：GeckoTerminal。",
-      market_disc:"市場データは GeckoTerminal（CoinGecko）からライブで取得しており、ご利用の取引所と異なる場合があります。投資助言ではありません。" },
+      market_sub:"$SYNERGIX の価格・流動性・ローソク足をリアルタイムで表示。アクセスのたびに BNB チェーンから直接取得。four.meme で取引。",
+      market_disc:"$SYNERGIX は four.meme（BNB チェーン）で取引されています。ライブのオンチェーン価格は取引所と異なる場合があります。投資助言ではありません。" },
     ko:{ nav_market:"마켓", market_eye:"실시간 온체인 마켓", h2_market_w:"실시간", h2_market_r:"마켓 데이터",
-      market_sub:"$SYNERGIX 가격, 유동성, 캔들을 실시간으로 — 방문할 때마다 BNB 체인에서 직접 가져옵니다. 차트 데이터: GeckoTerminal.",
-      market_disc:"시장 데이터는 GeckoTerminal(CoinGecko)에서 실시간으로 가져오며 거래소와 다를 수 있습니다. 투자 조언이 아닙니다." },
+      market_sub:"$SYNERGIX 가격, 유동성, 캔들을 실시간으로 — 방문할 때마다 BNB 체인에서 직접 가져옵니다. four.meme에서 거래하세요.",
+      market_disc:"$SYNERGIX는 four.meme(BNB 체인)에서 거래됩니다. 실시간 온체인 가격은 거래소와 다를 수 있습니다. 투자 조언이 아닙니다." },
     zh:{ nav_market:"行情", market_eye:"实时链上行情", h2_market_w:"实时", h2_market_r:"市场数据",
-      market_sub:"$SYNERGIX 的价格、流动性和 K 线实时更新 — 每次访问都直接来自 BNB 链。图表数据来自 GeckoTerminal。",
-      market_disc:"市场数据从 GeckoTerminal（CoinGecko）实时获取，可能与您的交易所不同。本内容不构成投资建议。" },
+      market_sub:"$SYNERGIX 的价格、流动性和 K 线实时更新 — 每次访问都直接来自 BNB 链。在 four.meme 交易。",
+      market_disc:"$SYNERGIX 在 four.meme（BNB 链）交易。实时链上价格可能与您的交易所不同。本内容不构成投资建议。" },
     zht:{ nav_market:"行情", market_eye:"即時鏈上行情", h2_market_w:"即時", h2_market_r:"市場數據",
-      market_sub:"$SYNERGIX 的價格、流動性與 K 線即時更新 — 每次造訪都直接來自 BNB 鏈。圖表資料來自 GeckoTerminal。",
-      market_disc:"市場資料從 GeckoTerminal（CoinGecko）即時取得，可能與您的交易所不同。本內容不構成投資建議。" }
+      market_sub:"$SYNERGIX 的價格、流動性與 K 線即時更新 — 每次造訪都直接來自 BNB 鏈。在 four.meme 交易。",
+      market_disc:"$SYNERGIX 在 four.meme（BNB 鏈）交易。即時鏈上價格可能與您的交易所不同。本內容不構成投資建議。" }
   };
   try{
     if(typeof T!=="undefined"){ Object.keys(MKT_T).forEach(l=>{ if(T[l]) Object.assign(T[l], MKT_T[l]); }); }
