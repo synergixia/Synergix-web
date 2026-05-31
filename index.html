@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="color-scheme" content="dark">
 <meta name="description" content="Synergix — World's first AI on Irys. Immortal collective intelligence on-chain.">
 <meta property="og:title" content="Synergix — First AI on Irys">
 <meta property="og:description" content="The world's first AI deployed on Irys. Your knowledge lives forever on-chain.">
@@ -1336,7 +1337,7 @@ body::before{
 .mkt-chart{position:relative;width:100%;height:520px;background:#0b0b10}
 @media(max-width:768px){.mkt-chart{height:430px}}
 .mkt-chart iframe{width:100%;height:100%;border:0;display:block}
-.mkt-chart-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--w3);font-family:var(--M);font-size:.72rem;letter-spacing:1px;text-align:center;padding:28px}
+.mkt-chart-ph{position:absolute;inset:0;z-index:2;background:#0b0b10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--w3);font-family:var(--M);font-size:.72rem;letter-spacing:1px;text-align:center;padding:28px}
 .mkt-spinner{width:34px;height:34px;border:2px solid var(--bdr2);border-top-color:var(--r);border-radius:50%;animation:mkt-spin .9s linear infinite}
 @keyframes mkt-spin{to{transform:rotate(360deg)}}
 .mkt-actions{display:flex;flex-wrap:wrap;gap:12px;padding:18px;border-top:1px solid var(--bdr2);justify-content:center}
@@ -3150,16 +3151,20 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
   let chartLoaded = false;
   function loadChart(pair){
     if(chartLoaded || !pair?.pairAddress) return;
+    chartLoaded = true;
     const wrap = $("mktChartWrap");
+    const ph   = $("mktChartPh");
     const ifr = document.createElement("iframe");
     ifr.src = "https://dexscreener.com/" + (pair.chainId||CHAIN) + "/" + pair.pairAddress +
               "?embed=1&theme=dark&info=0&trades=0";
     ifr.loading = "lazy";
     ifr.title = "SYNERGIX live price chart";
     ifr.allow = "clipboard-write";
-    wrap.innerHTML = "";
-    wrap.appendChild(ifr);
-    chartLoaded = true;
+    // Dark by default so a blank/slow iframe never flashes white.
+    ifr.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#0b0b10;color-scheme:dark";
+    // Keep the dark placeholder on top until DexScreener's dark chart is ready.
+    ifr.addEventListener("load", ()=>{ if(ph) ph.style.display = "none"; });
+    if(ph) wrap.insertBefore(ifr, ph); else wrap.appendChild(ifr);
   }
 
   function render(pair){
