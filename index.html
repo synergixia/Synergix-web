@@ -3258,7 +3258,13 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
       upColor:"#00D2A0", downColor:"#C0392B",
       borderUpColor:"#00D2A0", borderDownColor:"#C0392B",
       wickUpColor:"#00D2A0", wickDownColor:"#C0392B",
-      priceFormat:{ type:"custom", minMove:0.0000000001, formatter:p=>"$"+fmtPrice(p) }
+      priceFormat:{ type:"custom", minMove:0.0000000001, formatter:p=>"$"+fmtPrice(p) },
+      // Price can never be negative — keep the axis from padding below 0
+      autoscaleInfoProvider: original => {
+        const res = original();
+        if(res && res.priceRange && res.priceRange.minValue < 0) res.priceRange.minValue = 0;
+        return res;
+      }
     });
     if(window.ResizeObserver){
       new ResizeObserver(()=>{ if(chart) chart.applyOptions({ width:el.clientWidth, height:el.clientHeight }); }).observe(el);
