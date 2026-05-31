@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="color-scheme" content="dark">
 <meta name="description" content="Synergix — World's first AI on Irys. Immortal collective intelligence on-chain.">
 <meta property="og:title" content="Synergix — First AI on Irys">
 <meta property="og:description" content="The world's first AI deployed on Irys. Your knowledge lives forever on-chain.">
@@ -1318,28 +1319,35 @@ body::before{
 
 <!-- ═══════════════════════════════════════ LIVE MARKET -->
 <style>
-#market .mkt-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:20px}
-@media(max-width:900px){#market .mkt-stats{grid-template-columns:repeat(2,1fr)}}
+#market .mkt-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+@media(max-width:1024px){#market .mkt-stats{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){#market .mkt-stats{grid-template-columns:repeat(2,1fr);gap:10px}}
 .mkt-card{background:var(--card);border:1px solid var(--bdr2);padding:18px 16px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s}
 .mkt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--r),transparent)}
 .mkt-card:hover{border-color:rgba(192,57,43,.4);box-shadow:0 0 30px rgba(192,57,43,.06)}
 .mkt-lbl{font-family:var(--M);font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--w3);margin-bottom:10px}
-.mkt-val{font-family:var(--D);font-size:1.85rem;letter-spacing:1px;color:var(--w);line-height:1;word-break:break-all}
+.mkt-val{font-family:var(--D);font-size:1.7rem;letter-spacing:1px;color:var(--w);line-height:1;word-break:break-all}
+@media(max-width:560px){.mkt-val{font-size:1.32rem}}
 .mkt-sub{font-family:var(--M);font-size:.52rem;letter-spacing:1px;color:var(--w3);margin-top:8px;text-transform:uppercase}
-.mkt-status{display:flex;align-items:center;gap:8px;font-family:var(--M);font-size:.58rem;letter-spacing:1.5px;color:var(--w3);text-transform:uppercase;margin-bottom:16px}
+.mkt-status{display:flex;align-items:center;gap:8px;font-family:var(--M);font-size:.58rem;letter-spacing:1.5px;color:var(--w3);text-transform:uppercase;margin-bottom:14px}
 .mkt-dot{width:8px;height:8px;border-radius:50%;background:var(--w3);flex:none}
 .mkt-status.live .mkt-dot{background:var(--gr);animation:mkt-pulse 2s infinite}
 .mkt-status.err .mkt-dot{background:var(--r2)}
 .mkt-status.wait .mkt-dot{background:var(--g)}
 @keyframes mkt-pulse{0%{box-shadow:0 0 0 0 rgba(0,210,160,.5)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
-.mkt-chart-wrap{border:1px solid var(--bdr2);background:var(--card);position:relative}
-.mkt-chart{position:relative;width:100%;height:520px;background:#0b0b10}
-@media(max-width:768px){.mkt-chart{height:430px}}
-.mkt-chart iframe{width:100%;height:100%;border:0;display:block}
-.mkt-chart-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--w3);font-family:var(--M);font-size:.72rem;letter-spacing:1px;text-align:center;padding:28px}
+.mkt-panel{border:1px solid var(--bdr2);background:var(--card);position:relative}
+.mkt-tfbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:12px 14px;border-bottom:1px solid var(--bdr2)}
+.mkt-pairlbl{font-family:var(--M);font-size:.62rem;letter-spacing:1.5px;color:var(--w2);text-transform:uppercase}
+.mkt-tfs{display:flex;gap:6px;flex-wrap:wrap}
+.mkt-tf{font-family:var(--M);font-size:.6rem;letter-spacing:1px;padding:6px 12px;border:1px solid var(--bdr2);background:transparent;color:var(--w3);cursor:pointer;transition:all .2s;text-transform:uppercase}
+.mkt-tf:hover{color:var(--w);border-color:var(--bdr)}
+.mkt-tf.on{background:var(--ra);border-color:var(--r);color:var(--r)}
+.mkt-chart{position:relative;width:100%;height:480px;background:#0b0b10;overflow:hidden}
+@media(max-width:768px){.mkt-chart{height:340px}}
+.mkt-chart-ph{position:absolute;inset:0;z-index:3;background:#0b0b10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--w3);font-family:var(--M);font-size:.72rem;letter-spacing:1px;text-align:center;padding:24px}
 .mkt-spinner{width:34px;height:34px;border:2px solid var(--bdr2);border-top-color:var(--r);border-radius:50%;animation:mkt-spin .9s linear infinite}
 @keyframes mkt-spin{to{transform:rotate(360deg)}}
-.mkt-actions{display:flex;flex-wrap:wrap;gap:12px;padding:18px;border-top:1px solid var(--bdr2);justify-content:center}
+.mkt-actions{display:flex;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--bdr2);justify-content:center}
 .mkt-disc{font-family:var(--M);font-size:.5rem;letter-spacing:1px;color:var(--w3);text-align:center;margin-top:14px;opacity:.7}
 </style>
 <section class="s" id="market">
@@ -1347,7 +1355,7 @@ body::before{
     <div class="sh reveal">
       <div class="sh-eye t" data-key="market_eye">Live on-chain market</div>
       <h2 class="sh-title"><span class="wh t" data-key="h2_market_w">LIVE</span> <span class="t" data-key="h2_market_r">MARKET DATA</span></h2>
-      <p class="sh-sub t" data-key="market_sub">Real-time $SYNERGIX price, liquidity and price action — pulled live from BNB Chain on every visit. Data by DexScreener.</p>
+      <p class="sh-sub t" data-key="market_sub">Real-time $SYNERGIX price, liquidity and candlesticks — pulled live from BNB Chain on every visit. Chart data by GeckoTerminal.</p>
     </div>
 
     <div class="mkt-stats">
@@ -1360,13 +1368,22 @@ body::before{
 
     <div class="mkt-status reveal" id="mktStatus"><span class="mkt-dot"></span><span id="mktStatusTxt">Connecting to BNB Chain…</span></div>
 
-    <div class="mkt-chart-wrap reveal">
-      <div class="mkt-chart" id="mktChartWrap">
-        <div class="mkt-chart-ph" id="mktChartPh"><div class="mkt-spinner"></div><div>Loading live chart…</div></div>
+    <div class="mkt-panel reveal">
+      <div class="mkt-tfbar">
+        <span class="mkt-pairlbl" id="mktPairLbl">$SYNERGIX</span>
+        <div class="mkt-tfs" id="mktTfs">
+          <button type="button" class="mkt-tf" data-tf="15m">15m</button>
+          <button type="button" class="mkt-tf" data-tf="2h">2H</button>
+          <button type="button" class="mkt-tf" data-tf="4h">4H</button>
+          <button type="button" class="mkt-tf on" data-tf="1d">1D</button>
+          <button type="button" class="mkt-tf" data-tf="1w">1W</button>
+        </div>
+      </div>
+      <div class="mkt-chart" id="mktChart">
+        <div class="mkt-chart-ph" id="mktChartPh"><div class="mkt-spinner"></div><div id="mktPhTxt">Loading live chart…</div></div>
       </div>
       <div class="mkt-actions">
         <a class="btn-p" href="https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank" rel="noopener">🚀 Buy $SYNERGIX</a>
-        <a class="btn-s" id="mktDex" href="https://dexscreener.com/bsc/0x6485907278c389e70c572f441ce7052da58effff" target="_blank" rel="noopener">📊 DexScreener</a>
         <a class="btn-s" href="https://bscscan.com/token/0x6485907278c389e70c572f441ce7052da58effff" target="_blank" rel="noopener">🔎 BscScan</a>
       </div>
     </div>
@@ -3068,53 +3085,65 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
 </script>
 <script>
 // ═══════════════════════════════════════════════════════════
-//  LIVE MARKET — price / liquidity / chart (DexScreener)
-//  Runs in the browser; fetches client-side from BNB Chain.
+//  LIVE MARKET — custom candlestick chart (no third-party logo)
+//  Data: GeckoTerminal public API (CORS) · Render: lightweight-charts (Apache-2.0)
+//  Runs client-side; reads BNB Chain pools for $SYNERGIX.
 // ═══════════════════════════════════════════════════════════
 (function(){
-  // ── i18n for this section (merged into T before setLang runs) ──
+  // ── i18n (merged into T before setLang('en') runs on DOMContentLoaded) ──
   const MKT_T = {
     en:{ nav_market:"Markets", market_eye:"Live on-chain market", h2_market_w:"LIVE", h2_market_r:"MARKET DATA",
-      market_sub:"Real-time $SYNERGIX price, liquidity and price action — pulled live from BNB Chain on every visit. Data by DexScreener.",
-      market_disc:"Market data is fetched live from public sources and may differ from your exchange. Not financial advice." },
+      market_sub:"Real-time $SYNERGIX price, liquidity and candlesticks — pulled live from BNB Chain on every visit. Chart data by GeckoTerminal.",
+      market_disc:"Market data is fetched live from GeckoTerminal (CoinGecko) and may differ from your exchange. Not financial advice." },
     es:{ nav_market:"Mercado", market_eye:"Mercado on-chain en vivo", h2_market_w:"DATOS DE", h2_market_r:"MERCADO EN VIVO",
-      market_sub:"Precio, liquidez y movimiento de $SYNERGIX en tiempo real — directo desde BNB Chain en cada visita. Datos de DexScreener.",
-      market_disc:"Los datos se obtienen en vivo de fuentes públicas y pueden diferir de tu exchange. Esto no es asesoramiento financiero." },
+      market_sub:"Precio, liquidez y velas de $SYNERGIX en tiempo real — directo desde BNB Chain en cada visita. Datos del gráfico por GeckoTerminal.",
+      market_disc:"Los datos se obtienen en vivo de GeckoTerminal (CoinGecko) y pueden diferir de tu exchange. Esto no es asesoramiento financiero." },
     pt:{ nav_market:"Mercado", market_eye:"Mercado on-chain ao vivo", h2_market_w:"DADOS DE", h2_market_r:"MERCADO AO VIVO",
-      market_sub:"Preço, liquidez e movimento do $SYNERGIX em tempo real — direto da BNB Chain a cada visita. Dados via DexScreener.",
-      market_disc:"Os dados são obtidos ao vivo de fontes públicas e podem diferir da sua corretora. Isto não é aconselhamento financeiro." },
+      market_sub:"Preço, liquidez e candles do $SYNERGIX em tempo real — direto da BNB Chain a cada visita. Dados do gráfico via GeckoTerminal.",
+      market_disc:"Os dados são obtidos ao vivo do GeckoTerminal (CoinGecko) e podem diferir da sua corretora. Isto não é aconselhamento financeiro." },
     fr:{ nav_market:"Marché", market_eye:"Marché on-chain en direct", h2_market_w:"DONNÉES DE", h2_market_r:"MARCHÉ EN DIRECT",
-      market_sub:"Prix, liquidité et évolution de $SYNERGIX en temps réel — directement depuis la BNB Chain. Données par DexScreener.",
-      market_disc:"Les données sont récupérées en direct depuis des sources publiques et peuvent différer de votre plateforme. Ceci n'est pas un conseil financier." },
+      market_sub:"Prix, liquidité et chandeliers de $SYNERGIX en temps réel — directement depuis la BNB Chain. Données du graphique par GeckoTerminal.",
+      market_disc:"Les données proviennent en direct de GeckoTerminal (CoinGecko) et peuvent différer de votre plateforme. Ceci n'est pas un conseil financier." },
     de:{ nav_market:"Markt", market_eye:"Live On-Chain-Markt", h2_market_w:"LIVE-", h2_market_r:"MARKTDATEN",
-      market_sub:"$SYNERGIX-Preis, Liquidität und Kursverlauf in Echtzeit — bei jedem Besuch live von der BNB Chain. Daten von DexScreener.",
-      market_disc:"Die Marktdaten werden live aus öffentlichen Quellen abgerufen und können von deiner Börse abweichen. Keine Finanzberatung." },
+      market_sub:"$SYNERGIX-Preis, Liquidität und Kerzen in Echtzeit — bei jedem Besuch live von der BNB Chain. Chartdaten von GeckoTerminal.",
+      market_disc:"Die Marktdaten werden live von GeckoTerminal (CoinGecko) abgerufen und können von deiner Börse abweichen. Keine Finanzberatung." },
     ru:{ nav_market:"Рынок", market_eye:"Рынок on-chain в реальном времени", h2_market_w:"ДАННЫЕ", h2_market_r:"РЫНКА В ЖИВУЮ",
-      market_sub:"Цена, ликвидность и динамика $SYNERGIX в реальном времени — напрямую из BNB Chain при каждом визите. Данные DexScreener.",
-      market_disc:"Данные рынка загружаются в реальном времени из публичных источников и могут отличаться от вашей биржи. Не является финансовым советом." },
+      market_sub:"Цена, ликвидность и свечи $SYNERGIX в реальном времени — напрямую из BNB Chain при каждом визите. Данные графика от GeckoTerminal.",
+      market_disc:"Данные рынка загружаются в реальном времени из GeckoTerminal (CoinGecko) и могут отличаться от вашей биржи. Не является финансовым советом." },
     ja:{ nav_market:"マーケット", market_eye:"ライブ・オンチェーン市場", h2_market_w:"ライブ", h2_market_r:"マーケットデータ",
-      market_sub:"$SYNERGIX の価格・流動性・値動きをリアルタイムで表示。アクセスのたびに BNB チェーンから直接取得。データ提供：DexScreener。",
-      market_disc:"市場データは公開ソースからライブで取得しており、ご利用の取引所と異なる場合があります。投資助言ではありません。" },
+      market_sub:"$SYNERGIX の価格・流動性・ローソク足をリアルタイムで表示。アクセスのたびに BNB チェーンから直接取得。チャートデータ：GeckoTerminal。",
+      market_disc:"市場データは GeckoTerminal（CoinGecko）からライブで取得しており、ご利用の取引所と異なる場合があります。投資助言ではありません。" },
     ko:{ nav_market:"마켓", market_eye:"실시간 온체인 마켓", h2_market_w:"실시간", h2_market_r:"마켓 데이터",
-      market_sub:"$SYNERGIX 가격, 유동성, 가격 변동을 실시간으로 — 방문할 때마다 BNB 체인에서 직접 가져옵니다. 데이터: DexScreener.",
-      market_disc:"시장 데이터는 공개 소스에서 실시간으로 가져오며 거래소와 다를 수 있습니다. 투자 조언이 아닙니다." },
+      market_sub:"$SYNERGIX 가격, 유동성, 캔들을 실시간으로 — 방문할 때마다 BNB 체인에서 직접 가져옵니다. 차트 데이터: GeckoTerminal.",
+      market_disc:"시장 데이터는 GeckoTerminal(CoinGecko)에서 실시간으로 가져오며 거래소와 다를 수 있습니다. 투자 조언이 아닙니다." },
     zh:{ nav_market:"行情", market_eye:"实时链上行情", h2_market_w:"实时", h2_market_r:"市场数据",
-      market_sub:"$SYNERGIX 的价格、流动性和价格走势实时更新 — 每次访问都直接来自 BNB 链。数据来自 DexScreener。",
-      market_disc:"市场数据从公开来源实时获取，可能与您的交易所不同。本内容不构成投资建议。" },
+      market_sub:"$SYNERGIX 的价格、流动性和 K 线实时更新 — 每次访问都直接来自 BNB 链。图表数据来自 GeckoTerminal。",
+      market_disc:"市场数据从 GeckoTerminal（CoinGecko）实时获取，可能与您的交易所不同。本内容不构成投资建议。" },
     zht:{ nav_market:"行情", market_eye:"即時鏈上行情", h2_market_w:"即時", h2_market_r:"市場數據",
-      market_sub:"$SYNERGIX 的價格、流動性與價格走勢即時更新 — 每次造訪都直接來自 BNB 鏈。資料來自 DexScreener。",
-      market_disc:"市場資料從公開來源即時取得，可能與您的交易所不同。本內容不構成投資建議。" }
+      market_sub:"$SYNERGIX 的價格、流動性與 K 線即時更新 — 每次造訪都直接來自 BNB 鏈。圖表資料來自 GeckoTerminal。",
+      market_disc:"市場資料從 GeckoTerminal（CoinGecko）即時取得，可能與您的交易所不同。本內容不構成投資建議。" }
   };
   try{
     if(typeof T!=="undefined"){ Object.keys(MKT_T).forEach(l=>{ if(T[l]) Object.assign(T[l], MKT_T[l]); }); }
   }catch(e){}
 
   // ── config ──
-  const CA    = "0x6485907278c389e70c572f441ce7052da58effff";
-  const CHAIN = "bsc";
-  const API   = "https://api.dexscreener.com/latest/dex/tokens/" + CA;
+  const CA       = "0x6485907278c389e70c572f441ce7052da58effff";
+  const NET      = "bsc";
+  const GT       = "https://api.geckoterminal.com/api/v2";
   const FOURMEME = "https://four.meme/token/" + CA;
+  const LIB      = "https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js";
   const $ = id => document.getElementById(id);
+
+  // Timeframe map → GeckoTerminal resolution/aggregate (+ client-side grouping)
+  const TF = {
+    "15m":{ res:"minute", agg:15, group:1, limit:200 },
+    "2h" :{ res:"hour",   agg:1,  group:2, limit:300 },
+    "4h" :{ res:"hour",   agg:4,  group:1, limit:200 },
+    "1d" :{ res:"day",    agg:1,  group:1, limit:200 },
+    "1w" :{ res:"day",    agg:1,  group:7, limit:365 }
+  };
+  let curTf = "1d";
 
   // ── formatters ──
   function fmtUsd(n){
@@ -3135,97 +3164,182 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
   }
 
   function setStatus(txt, state){
-    const el = $("mktStatus"); const t = $("mktStatusTxt");
+    const el = $("mktStatus"), t = $("mktStatusTxt");
     if(t) t.textContent = txt;
     if(el) el.className = "mkt-status reveal vis" + (state ? " "+state : "");
   }
+  function showPh(txt){
+    const ph = $("mktChartPh"); if(!ph) return;
+    ph.style.display = "flex";
+    ph.innerHTML = '<div class="mkt-spinner"></div><div>'+txt+'</div>';
+  }
+  function hidePh(){ const ph = $("mktChartPh"); if(ph) ph.style.display = "none"; }
 
-  // Choose the deepest-liquidity BSC pair
-  function pickPair(pairs){
-    const bsc = pairs.filter(p => (p.chainId||"").toLowerCase() === CHAIN);
-    const list = bsc.length ? bsc : pairs;
-    return list.slice().sort((a,b)=>(b.liquidity?.usd||0)-(a.liquidity?.usd||0))[0];
+  // ── data (GeckoTerminal) ──
+  let pool = null, isBase = true;
+
+  async function gjson(url){
+    const r = await fetch(url, { cache:"no-store", headers:{ Accept:"application/json" } });
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    return r.json();
   }
 
-  let chartLoaded = false;
-  function loadChart(pair){
-    if(chartLoaded || !pair?.pairAddress) return;
-    const wrap = $("mktChartWrap");
-    const ifr = document.createElement("iframe");
-    ifr.src = "https://dexscreener.com/" + (pair.chainId||CHAIN) + "/" + pair.pairAddress +
-              "?embed=1&theme=dark&info=0&trades=0";
-    ifr.loading = "lazy";
-    ifr.title = "SYNERGIX live price chart";
-    ifr.allow = "clipboard-write";
-    wrap.innerHTML = "";
-    wrap.appendChild(ifr);
-    chartLoaded = true;
+  async function ensurePool(){
+    try{
+      const j = await gjson(GT+"/networks/"+NET+"/tokens/"+CA+"/pools");
+      const pools = Array.isArray(j.data) ? j.data : [];
+      if(!pools.length) return false;
+      pool = pools.slice().sort((a,b)=>parseFloat(b.attributes.reserve_in_usd||0)-parseFloat(a.attributes.reserve_in_usd||0))[0];
+      const baseId = (pool.relationships && pool.relationships.base_token && pool.relationships.base_token.data && pool.relationships.base_token.data.id) || "";
+      isBase = baseId.toLowerCase().indexOf(CA.toLowerCase()) >= 0;
+      renderStats(pool.attributes);
+      if(pool.attributes.name) $("mktPairLbl").textContent = pool.attributes.name;
+      return true;
+    }catch(e){ return false; }
   }
 
-  function render(pair){
-    const price = parseFloat(pair.priceUsd);
+  function renderStats(a){
+    const price = parseFloat(isBase ? a.base_token_price_usd : a.quote_token_price_usd);
     $("mkPrice").textContent = isFinite(price) ? "$"+fmtPrice(price) : "—";
-    if(pair.priceNative && pair.quoteToken?.symbol){
-      $("mkPriceNative").textContent = (+pair.priceNative).toPrecision(4)+" "+pair.quoteToken.symbol;
-    }
-    const ch = pair.priceChange?.h24;
+    const ch = parseFloat(a.price_change_percentage && a.price_change_percentage.h24);
     const chEl = $("mkChange");
-    if(ch != null && isFinite(ch)){
-      chEl.textContent = (ch>0?"+":"")+Number(ch).toFixed(2)+"%";
+    if(isFinite(ch)){
+      chEl.textContent = (ch>0?"+":"")+ch.toFixed(2)+"%";
       chEl.style.color = ch >= 0 ? "var(--gr)" : "var(--r2)";
     }
-    $("mkLiq").textContent = pair.liquidity?.usd != null ? "$"+fmtUsd(pair.liquidity.usd) : "—";
-    const mc = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
-    $("mkMcap").textContent = mc != null ? "$"+fmtUsd(mc) : "—";
-    if(pair.marketCap != null){ $("mkMcapLbl").textContent = "Market Cap"; $("mkMcapSub").textContent = "on-chain"; }
-    else { $("mkMcapLbl").textContent = "Market Cap"; $("mkMcapSub").textContent = "fully diluted"; }
-    $("mkVol").textContent = pair.volume?.h24 != null ? "$"+fmtUsd(pair.volume.h24) : "—";
-    const dex = $("mktDex"); if(dex) dex.href = pair.url || ("https://dexscreener.com/"+CHAIN+"/"+pair.pairAddress);
-    loadChart(pair);
+    $("mkLiq").textContent = a.reserve_in_usd != null ? "$"+fmtUsd(a.reserve_in_usd) : "—";
+    const hasMc = a.market_cap_usd != null && a.market_cap_usd !== "";
+    const mc = hasMc ? a.market_cap_usd : a.fdv_usd;
+    $("mkMcap").textContent   = mc != null ? "$"+fmtUsd(mc) : "—";
+    $("mkMcapSub").textContent = hasMc ? "market cap" : "fully diluted";
+    const vol = a.volume_usd && a.volume_usd.h24;
+    $("mkVol").textContent = vol != null ? "$"+fmtUsd(vol) : "—";
   }
 
-  function showBondingFallback(){
+  // ── chart (lightweight-charts) ──
+  let chart = null, series = null, libPromise = null;
+
+  function ensureLib(){
+    if(window.LightweightCharts) return Promise.resolve(true);
+    if(libPromise) return libPromise;
+    libPromise = new Promise(res=>{
+      const s = document.createElement("script");
+      s.src = LIB; s.async = true;
+      s.onload = ()=>res(true);
+      s.onerror = ()=>res(false);
+      document.head.appendChild(s);
+    });
+    return libPromise;
+  }
+
+  function buildChart(){
+    if(chart || !window.LightweightCharts) return;
+    const el = $("mktChart");
+    chart = LightweightCharts.createChart(el, {
+      width: el.clientWidth, height: el.clientHeight,
+      layout:{ background:{ type:"solid", color:"transparent" }, textColor:"rgba(242,240,236,.5)", fontFamily:"ui-monospace, monospace" },
+      grid:{ vertLines:{ color:"rgba(255,255,255,.04)" }, horzLines:{ color:"rgba(255,255,255,.04)" } },
+      rightPriceScale:{ borderColor:"rgba(255,255,255,.08)" },
+      timeScale:{ borderColor:"rgba(255,255,255,.08)", timeVisible:true, secondsVisible:false },
+      crosshair:{ mode:0 }
+    });
+    series = chart.addCandlestickSeries({
+      upColor:"#00D2A0", downColor:"#C0392B",
+      borderUpColor:"#00D2A0", borderDownColor:"#C0392B",
+      wickUpColor:"#00D2A0", wickDownColor:"#C0392B",
+      priceFormat:{ type:"custom", minMove:0.0000000001, formatter:p=>"$"+fmtPrice(p) }
+    });
+    if(window.ResizeObserver){
+      new ResizeObserver(()=>{ if(chart) chart.applyOptions({ width:el.clientWidth, height:el.clientHeight }); }).observe(el);
+    }
+  }
+
+  // Group consecutive candles (e.g. 1h→2h, 1d→1w)
+  function aggregate(c, f){
+    if(f <= 1) return c;
+    const out = [];
+    for(let i=0; i<c.length; i+=f){
+      const s = c.slice(i, i+f);
+      if(!s.length) break;
+      out.push({
+        time:  s[0].time,
+        open:  s[0].open,
+        high:  Math.max.apply(null, s.map(x=>x.high)),
+        low:   Math.min.apply(null, s.map(x=>x.low)),
+        close: s[s.length-1].close
+      });
+    }
+    return out;
+  }
+
+  async function loadOhlcv(tf){
+    const cfg = TF[tf]; if(!pool) return;
+    const url = GT+"/networks/"+NET+"/pools/"+pool.attributes.address+"/ohlcv/"+cfg.res+
+                "?aggregate="+cfg.agg+"&limit="+cfg.limit+"&currency=usd&token="+(isBase?"base":"quote");
+    const j = await gjson(url);
+    const list = (j.data && j.data.attributes && j.data.attributes.ohlcv_list) || [];
+    let candles = list.map(r=>({ time:+r[0], open:+r[1], high:+r[2], low:+r[3], close:+r[4] }))
+                      .sort((a,b)=>a.time-b.time)
+                      .filter((c,i,arr)=> i===0 || c.time>arr[i-1].time);
+    candles = aggregate(candles, cfg.group);
+    if(!candles.length) throw new Error("no candles");
+    if(series) series.setData(candles);
+    if(chart)  chart.timeScale().fitContent();
+  }
+
+  async function selectTf(tf){
+    curTf = tf;
+    document.querySelectorAll(".mkt-tf").forEach(b=>b.classList.toggle("on", b.dataset.tf===tf));
+    showPh("Loading "+tf.toUpperCase()+" chart…");
+    try{
+      const ok = await ensureLib();
+      if(!ok){ showPh("Chart library unavailable — check your connection."); return; }
+      buildChart();
+      if(!chart){ showPh("Chart unavailable right now."); return; }
+      await loadOhlcv(tf);
+      hidePh();
+    }catch(e){
+      showPh("Chart data unavailable for this timeframe yet.");
+    }
+  }
+
+  function bondingFallback(){
+    setStatus("Not yet on a DEX — trading on the four.meme bonding curve", "wait");
     const ph = $("mktChartPh");
     if(ph){
+      ph.style.display = "flex";
       ph.innerHTML =
-        '<div style="font-family:var(--D);font-size:1.6rem;letter-spacing:2px;color:var(--w)">ON THE BONDING CURVE</div>'+
-        '<div style="max-width:420px;line-height:1.7">$SYNERGIX has not migrated to a DEX yet — live trading and the bonding curve run on four.meme. The full chart appears here automatically once a liquidity pool exists.</div>'+
+        '<div style="font-family:var(--D);font-size:1.5rem;letter-spacing:2px;color:var(--w)">ON THE BONDING CURVE</div>'+
+        '<div style="max-width:430px;line-height:1.7">$SYNERGIX hasn\'t migrated to a DEX yet — live trading runs on four.meme. The candlestick chart appears here automatically once a liquidity pool exists.</div>'+
         '<a class="btn-p" href="'+FOURMEME+'" target="_blank" rel="noopener" style="margin-top:6px">🚀 Trade on four.meme</a>';
     }
   }
 
-  async function refresh(){
-    try{
-      const r = await fetch(API, { cache:"no-store" });
-      if(!r.ok) throw new Error("HTTP "+r.status);
-      const j = await r.json();
-      const pairs = Array.isArray(j.pairs) ? j.pairs : [];
-      if(!pairs.length){
-        setStatus("Not yet on a DEX — trading on the four.meme bonding curve", "wait");
-        showBondingFallback();
-        return;
-      }
-      render(pickPair(pairs));
-      setStatus("Live · BNB Chain · updated "+new Date().toLocaleTimeString(), "live");
-    }catch(e){
-      setStatus("Live data unavailable right now — open DexScreener or four.meme", "err");
-    }
+  // ── boot ──
+  let started = false, statsTimer = null;
+  async function init(){
+    if(started) return; started = true;
+    setStatus("Connecting to BNB Chain…", "");
+    const ok = await ensurePool();
+    if(!ok){ bondingFallback(); return; }
+    await selectTf(curTf);
+    setStatus("Live · BNB Chain · "+new Date().toLocaleTimeString(), "live");
+    document.querySelectorAll(".mkt-tf").forEach(b=>{
+      b.addEventListener("click", ()=>{ if(b.dataset.tf !== curTf) selectTf(b.dataset.tf); });
+    });
+    statsTimer = setInterval(async ()=>{
+      if(document.hidden) return;
+      if(await ensurePool()) setStatus("Live · BNB Chain · "+new Date().toLocaleTimeString(), "live");
+    }, 45000);
   }
 
-  // Start only when the section is near the viewport, then poll every 30s
   const sec = $("market");
-  let started = false, timer = null;
-  function start(){ if(started) return; started = true; refresh(); timer = setInterval(refresh, 30000); }
   if(sec && "IntersectionObserver" in window){
-    const io = new IntersectionObserver(es=>{ if(es[0].isIntersecting){ start(); io.disconnect(); } }, { threshold:.05 });
+    const io = new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); init(); } }, { threshold:.05 });
     io.observe(sec);
   } else {
-    start();
+    init();
   }
-  document.addEventListener("visibilitychange", ()=>{
-    if(document.hidden){ if(timer){ clearInterval(timer); timer=null; } }
-    else if(started && !timer){ refresh(); timer = setInterval(refresh, 30000); }
-  });
 })();
 </script>
 </body>
