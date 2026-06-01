@@ -2947,10 +2947,14 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
   // Respect reduced motion & skip if WebGL isn't supported
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduced){ canvas.style.display='none'; return; }
-  const testCtx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if(!testCtx){ canvas.style.display='none'; return; }
-  // Release the test context (THREE will make its own)
-  try{ testCtx.getExtension('WEBGL_lose_context') && testCtx.getExtension('WEBGL_lose_context').loseContext(); }catch(e){}
+  // Test WebGL support on a THROWAWAY canvas — never touch #threeCanvas's own
+  // context. Previously a test context was created on #threeCanvas and then
+  // destroyed via loseContext(); Three.js then reused that lost context, which
+  // left the canvas painted opaque/WHITE on some desktop GPUs (the white hero bug).
+  try{
+    const probe = document.createElement('canvas');
+    if(!(probe.getContext('webgl') || probe.getContext('experimental-webgl'))){ canvas.style.display='none'; return; }
+  }catch(e){ canvas.style.display='none'; return; }
 
   // Lazy-load Three.js from a CDN (module script, no bundler needed)
   const s = document.createElement('script');
@@ -2962,17 +2966,18 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
 
   function initThree(){
     const THREE = window.THREE;
-    if(!THREE) return;
+    if(!THREE){ canvas.style.display='none'; return; }
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const DPR = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({
-      canvas, antialias:!isMobile, alpha:true, powerPreference:'low-power'
+      canvas, antialias:!isMobile, alpha:true, premultipliedAlpha:false, powerPreference:'low-power'
     });
     renderer.setPixelRatio(DPR);
     renderer.setClearColor(0x000000, 0);
+    renderer.setClearAlpha(0);
 
     // Scene + camera
     const scene = new THREE.Scene();
