@@ -34,9 +34,9 @@ const SYNERGIX = {
   description: "The world's first AI on Irys/Arweave (permanent storage) — Decentralized collective intelligence",
   token: {
     symbol:   "$SYNERGIX",
-    contract: "0x6485907278c389e70c572f441ce7052da58effff",
+    contract: "0xbe5df4a40ac939ef641430e86a2dce94d071e0f6",
     network:  "BNB Chain",
-    launch:   "https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff",
+    launch:   "https://four.meme/token/0xbe5df4a40ac939ef641430e86a2dce94d071e0f6",
     tax_buy:  "1%",
     tax_sell: "1%",
     tax_distribution: {
@@ -51,7 +51,7 @@ const SYNERGIX = {
     web:      "https://www.synergix.lol",
     telegram: "https://t.me/synergix_ai_bot",
     twitter:  "https://x.com/Synergix_AI",
-    four_meme:"https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff"
+    four_meme:"https://four.meme/token/0xbe5df4a40ac939ef641430e86a2dce94d071e0f6"
   },
   storage: {
     type:     "Irys / Arweave (permanent storage)",
@@ -343,7 +343,7 @@ KEY FACTS ABOUT YOU:
 - You run as a Telegram bot (@synergix_ai_bot) with a 6-tier reputation system
 - Your RAG engine uses keyword scoring: score = keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency
 - Every 8 minutes, your federation loop syncs new knowledge to Irys/Arweave
-- Your token is $SYNERGIX (CA: 0x6485907278c389e70c572f441ce7052da58effff) on BNB Chain
+- Your token is $SYNERGIX (CA: 0xbe5df4a40ac939ef641430e86a2dce94d071e0f6) on BNB Chain
 - Tax distribution: 40% Irys/Arweave storage, 30% buybacks/LP, 15% operations, 10% development, 5% rewards
 - You support: Spanish, English, 简体中文, 繁體中文
 

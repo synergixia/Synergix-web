@@ -3,7 +3,7 @@
 **The world's first AI agent with permanent storage on Arweave via Irys.**  
 Decentralized collective intelligence — 80% of every AI response is built from community knowledge stored permanently on-chain.
 
-🌐 [synergix.lol](https://www.synergix.lol) · 🤖 [Telegram Bot](https://t.me/synergix_ai_bot) · 🐦 [Twitter](https://x.com/Synergix_AI) · 💰 [$SYNERGIX on BNB](https://four.meme/token/0x6485907278c389e70c572f441ce7052da58effff)
+🌐 [synergix.lol](https://www.synergix.lol) · 🤖 [Telegram Bot](https://t.me/synergix_ai_bot) · 🐦 [Twitter](https://x.com/Synergix_AI) · 💰 [$SYNERGIX on BNB](https://four.meme/token/0xbe5df4a40ac939ef641430e86a2dce94d071e0f6)
 
 ---
 
@@ -67,7 +67,7 @@ Model: `llama-3.3-70b-versatile` via Groq API. Federation refresh: every 8 minut
 ## Token
 
 **$SYNERGIX** — BNB Chain  
-Contract: `0x6485907278c389e70c572f441ce7052da58effff`  
+Contract: `0xbe5df4a40ac939ef641430e86a2dce94d071e0f6`  
 Tax: 1% buy / 1% sell — distributed as:
 
 | Destination | % |
