@@ -25,7 +25,7 @@
 const SYNERGIX = {
   name:     "Synergix",
   version:  "2.0.0",
-  token_ca: "0x6485907278c389e70c572f441ce7052da58effff",
+  token_ca: "0xbe5df4a40ac939ef641430e86a2dce94d071e0f6",
   storage: {
     type:     "Irys / Arweave (permanent storage)",
     app_name: "Synergix",
