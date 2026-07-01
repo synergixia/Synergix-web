@@ -955,6 +955,31 @@ body::before{
   font-size:.8rem;line-height:1.85;color:var(--w2);
 }
 
+/* Completed milestone */
+.rm2026-item.done .rm2026-dot{
+  background:#2ecc71;
+  box-shadow:0 0 0 4px rgba(46,204,113,.15),0 0 16px rgba(46,204,113,.4);
+}
+.rm2026-item.done:hover .rm2026-dot{
+  box-shadow:0 0 0 6px rgba(46,204,113,.25),0 0 24px rgba(46,204,113,.6);
+}
+.rm2026-item.done .rm2026-dot::after{
+  content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;color:#04110a;line-height:1;
+}
+.rm2026-item.done .rm2026-card::before{
+  background:linear-gradient(90deg,#2ecc71,transparent);opacity:1;
+}
+.rm2026-item.done:hover .rm2026-card{ border-color:rgba(46,204,113,.4); }
+.rm2026-item.done .rm2026-month{
+  color:#2ecc71;background:rgba(46,204,113,.08);border-color:rgba(46,204,113,.3);
+}
+.rm2026-done-badge{
+  font-family:var(--M);font-size:.56rem;letter-spacing:2px;text-transform:uppercase;
+  color:#04110a;background:#2ecc71;padding:3px 9px;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:5px;
+}
+
 /* ── TABLET (≤900px): single column with left-rail ── */
 @media(max-width:900px){
   .rm2026-timeline::before{
@@ -1536,10 +1561,11 @@ body::before{
     <div class="rm2026-timeline">
 
       <!-- Jun 2026 -->
-      <div class="rm2026-item reveal">
+      <div class="rm2026-item reveal done">
         <div class="rm2026-card">
           <div class="rm2026-header">
             <span class="rm2026-month">Jun 2026</span>
+            <span class="rm2026-done-badge t" data-key="rm26_done">✓ Completed</span>
             <span class="rm2026-icon">🌐</span>
           </div>
           <div class="rm2026-title t" data-key="rm26_t1">Global Connectivity &amp; Infrastructure Scaling</div>
@@ -1879,6 +1905,7 @@ en:{
   h2_road2026_w:"ROADMAP",h2_road2026_r:"2026",
   road2026_sub:"Synergix's technical roadmap for 2026 — from global infrastructure to the sovereign AI.",
   rm26_tag1:"Jun 2026",rm26_tag2:"Jul 2026",rm26_tag3:"Aug 2026",rm26_tag4:"Sep 2026",rm26_tag5:"Oct 2026",rm26_tag6:"Nov 2026",rm26_tag7:"Dec 2026",rm26_tag8:"Vision 2027",
+  rm26_done:"✓ Completed",
   rm26_t1:"Global Connectivity & Infrastructure Scaling",
   rm26_t2:"Governance & Rewards System",
   rm26_t3:"Web Platform Launch",
@@ -2092,6 +2119,7 @@ es:{
   h2_road2026_w:"HOJA DE RUTA DE SYNERGIX",h2_road2026_r:"2026",
   road2026_sub:"La hoja de ruta oficial de Synergix para 2026 — conectividad global, gobernanza, plataforma web, minería de nodos, almacenamiento descentralizado, evolución cognitiva y ecosistema móvil open source.",
   rm26_tag1:"Jun 2026",rm26_tag2:"Jul 2026",rm26_tag3:"Ago 2026",rm26_tag4:"Sep 2026",rm26_tag5:"Oct 2026",rm26_tag6:"Nov 2026",rm26_tag7:"Dic 2026",rm26_tag8:"Visión 2027",
+  rm26_done:"✓ Completado",
   rm26_t1:"Conectividad Global y Escalamiento de Infraestructura",
   rm26_t2:"Gobernanza y Sistema de Recompensas",
   rm26_t3:"Lanzamiento de la Plataforma Web",
@@ -2305,7 +2333,7 @@ zh:{
   h2_road2026_w:"路线图",h2_road2026_r:"2026",
   road2026_sub:"Synergix 2026年技术路线图 — 从全球基础设施到主权AI。",
   rm26_tag1:"2026年6月",rm26_tag2:"2026年7月",rm26_tag3:"2026年8月",rm26_tag4:"2026年9月",rm26_tag5:"2026年10月",rm26_tag6:"2026年11月",rm26_tag7:"2026年12月",rm26_tag8:"2027年愿景",
-  rm26_t1:"全球连接与基础设施扩展",rm26_t2:"游戏化与竞争生态系统",rm26_t3:"主权核心v2与开发者API",rm26_t4:"DePIN挖矿与贡献经济",rm26_t5:"零知识证明与隐私层",rm26_t6:"自主AI代理网络",rm26_t7:"移动应用与跨平台发布",rm26_t8:"主权AI — 完全自主",
+  rm26_done:"✓ 已完成",rm26_t1:"全球连接与基础设施扩展",rm26_t2:"游戏化与竞争生态系统",rm26_t3:"主权核心v2与开发者API",rm26_t4:"DePIN挖矿与贡献经济",rm26_t5:"零知识证明与隐私层",rm26_t6:"自主AI代理网络",rm26_t7:"移动应用与跨平台发布",rm26_t8:"主权AI — 完全自主",
   rm26_d1:"多区域节点扩展，全球响应延迟低于50ms，10种语言的99.99%可用性SLA。",rm26_d2:"赛季制锦标赛，顶级贡献者NFT徽章，以及每月$SYNERGIX奖励的实时排行榜。",rm26_d3:"第三方集成公共REST API，SDK发布，以及支持高级多模态RAG的主权核心v2。",rm26_d4:"自动化贡献挖矿奖励，实时残余积分流，以及DePIN节点质押获得被动收益。",rm26_d5:"贡献的ZK证明验证，匿名参与模式，以及Irys上的隐私保护RAG查询。",rm26_d6:"多代理协调层，Synergix AI代理协作、委托任务并通过链上共识自我改进。",rm26_d7:"原生iOS和Android应用，本地缓存的离线RAG模式，以及通过链上档案实现跨设备无缝身份。",rm26_d8:"Synergix完全自主：自治、自筹资金、自我进化 — 首个在Irys上拥有不朽记忆的AI DAO。"
 },
 zht:{
