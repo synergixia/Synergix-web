@@ -3,7 +3,7 @@
 **The world's first AI agent with permanent storage on Arweave via Irys.**  
 Decentralized collective intelligence — 80% of every AI response is built from community knowledge stored permanently on-chain.
 
-🌐 [synergix.lol](https://www.synergix.lol) · 🤖 [Telegram Bot](https://t.me/synergix_ai_bot) · 🐦 [Twitter](https://x.com/Synergix_AI) · 💰 [$SYNERGIX on BNB](https://four.meme/token/0xbe5df4a40ac939ef641430e86a2dce94d071e0f6)
+🌐 [synergix.lol](https://www.synergix.lol) · 🤖 [Telegram Bot](https://t.me/synergix_ai_bot) · 🐦 [Twitter](https://x.com/synergix_lol) · 💰 [$SYNERGIX on BNB](https://four.meme/token/0xbe5df4a40ac939ef641430e86a2dce94d071e0f6)
 
 ---
 
