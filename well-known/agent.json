@@ -1,6 +1,6 @@
 {
   "name": "Synergix",
-  "description": "The world's first AI on BNB Greenfield DCellar. Decentralized collective intelligence — every answer is grounded in community knowledge stored permanently on-chain. Ask questions, explore on-chain knowledge, get token info, and interact with the Synergix reputation system.",
+  "description": "The world's first AI on Irys/Arweave (permanent storage). Decentralized collective intelligence — every answer is grounded in community knowledge stored permanently on-chain via Irys (BNB payments). Ask questions, explore on-chain knowledge, get token info, and interact with the Synergix reputation system.",
   "version": "2.0.0",
   "url": "https://www.synergix.lol",
   "documentationUrl": "https://www.synergix.lol",
@@ -26,10 +26,10 @@
     {
       "id": "synergix_ask",
       "name": "Ask Synergix",
-      "description": "Ask a question to Synergix's RAG engine backed by BNB Greenfield collective knowledge. Returns AI-generated answers grounded in community contributions stored on-chain.",
-      "tags": ["rag", "collective-intelligence", "blockchain", "BNB-Greenfield", "knowledge"],
+      "description": "Ask a question to Synergix's RAG engine backed by Irys/Arweave permanent collective knowledge. Returns AI-generated answers grounded in community contributions stored on-chain forever.",
+      "tags": ["rag", "collective-intelligence", "blockchain", "Irys", "Arweave", "permaweb", "knowledge"],
       "examples": [
-        "What is BNB Greenfield DCellar?",
+        "What is Irys and how does Synergix use it?",
         "How does the Synergix rank system work?",
         "What makes Synergix unique among AI agents?"
       ],
@@ -52,7 +52,7 @@
     {
       "id": "synergix_token",
       "name": "Token Info",
-      "description": "Get $SYNERGIX token details: contract address on BNB Chain, tax structure, and how 1% buy/sell tax funds Greenfield storage.",
+      "description": "Get $SYNERGIX token details: contract address on BNB Chain, tax structure, and how 1% buy/sell tax funds Irys/Arweave permanent storage.",
       "tags": ["token", "BNB-Chain", "tokenomics", "crypto", "DeFi"],
       "examples": [
         "What is the $SYNERGIX contract address?",
@@ -64,13 +64,13 @@
     },
     {
       "id": "synergix_bucket",
-      "name": "Greenfield Bucket Info",
-      "description": "Explore the Synergix BNB Greenfield bucket (synergix-v2) — the on-chain storage powering the AI. Shows bucket structure, paths, and the RAG engine architecture.",
-      "tags": ["greenfield", "DCellar", "storage", "decentralized", "bucket"],
+      "name": "Irys Storage Info",
+      "description": "Explore the Synergix permanent storage architecture on Irys/Arweave — the on-chain brain powering the AI. Shows tag structure, gateway, and RAG engine architecture.",
+      "tags": ["irys", "arweave", "storage", "decentralized", "permaweb"],
       "examples": [
-        "What is in the Synergix Greenfield bucket?",
-        "How does Synergix store knowledge on-chain?",
-        "Explain the synergix-v2 bucket structure"
+        "How does Synergix store knowledge on Irys?",
+        "What is the Synergix Arweave tag structure?",
+        "Explain the Synergix permanent storage architecture"
       ],
       "inputModes": ["text/plain"],
       "outputModes": ["application/json"]

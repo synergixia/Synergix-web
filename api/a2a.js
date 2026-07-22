@@ -25,9 +25,13 @@
 const SYNERGIX = {
   name:     "Synergix",
   version:  "2.0.0",
-  token_ca: "0x6485907278c389e70c572f441ce7052da58effff",
-  bucket:   "synergix-v2",
-  sp:       "https://greenfield-sp.bnbchain.org",
+  token_ca: "0xbe5df4a40ac939ef641430e86a2dce94d071e0f6",
+  storage: {
+    type:     "Irys / Arweave (permanent storage)",
+    app_name: "Synergix",
+    payment:  "BNB (via Irys)",
+    gateway:  "https://gateway.irys.xyz"
+  },
   links: {
     web:      "https://www.synergix.lol",
     telegram: "https://t.me/synergix_ai_bot",
@@ -190,7 +194,7 @@ async function handleMessageSend(rpcId, params) {
       version: SYNERGIX.version,
       skill:   skillId,
       lang,
-      storage: `BNB Greenfield bucket: ${SYNERGIX.bucket}`,
+      storage: `Irys/Arweave · App-Name: ${SYNERGIX.storage.app_name}`,
       protocol:"A2A"
     }
   };
@@ -252,16 +256,16 @@ async function skillAsk(query, lang = "es") {
   const langNames = { es: "Spanish", en: "English", zh: "Chinese (Simplified)" };
   const langName  = langNames[lang] || "Spanish";
 
-  const systemPrompt = `You are Synergix, the world's first AI deployed on BNB Greenfield DCellar — a decentralized collective intelligence system accessed via the A2A protocol.
+  const systemPrompt = `You are Synergix, the world's first AI deployed on Irys / Arweave — a decentralized collective intelligence system with permanent on-chain storage, accessed via the A2A protocol.
 
-Your knowledge comes from community contributions stored permanently on BNB Greenfield blockchain (bucket: "synergix-v2"). You are a specialized agent that answers based on collective on-chain knowledge.
+Your knowledge comes from community contributions stored permanently on Arweave via Irys (paid in BNB), tagged under App-Name "Synergix". You are a specialized agent that answers based on collective on-chain knowledge.
 
 IDENTITY:
 - Telegram bot: @synergix_ai_bot | Web: synergix.lol | Token: $SYNERGIX (BNB Chain)
 - Contract: ${SYNERGIX.token_ca}
 - RAG scoring: keyword_match × quality × fusion_weight × impact_boost × lang_boost × recency
-- Federation sync: every 8 minutes to Greenfield
-- Tax: 1% buy + 1% sell → 40% Greenfield storage, 30% buybacks/LP, 15% ops, 10% dev, 5% rewards
+- Federation sync: every 8 minutes to Irys/Arweave
+- Tax: 1% buy + 1% sell → 40% Irys/Arweave storage, 30% buybacks/LP, 15% ops, 10% dev, 5% rewards
 
 RANKS: 🌱 Iniciado(0) → 📈 Activo(100) → 🧬 Sincronizado(500) → 🏗️ Arquitecto(1500) → 🧠 Mente Colmena(5000) → 🔮 Oráculo(15000, ×5.0, unlimited)
 
@@ -305,7 +309,7 @@ Respond in ${langName}. Be concise and direct. You are communicating via A2A pro
     source:   "groq+rag",
     lang,
     model:    GROQ_MODEL,
-    storage:  `BNB Greenfield bucket: ${SYNERGIX.bucket}`,
+    storage:  `Irys/Arweave · App-Name: ${SYNERGIX.storage.app_name}`,
     protocol: "A2A"
   };
 }
@@ -341,13 +345,13 @@ function skillToken() {
       sell: "1%"
     },
     tax_distribution: {
-      greenfield_storage: "40%",
-      buybacks_lp:        "30% (manual by team)",
-      operations:         "15%",
-      development:        "10%",
-      rewards:            "5%"
+      irys_storage: "40%",
+      buybacks_lp:  "30% (manual by team)",
+      operations:   "15%",
+      development:  "10%",
+      rewards:      "5%"
     },
-    unique_value: "First token whose tax directly funds on-chain AI storage on BNB Greenfield DCellar",
+    unique_value: "First token whose tax directly funds permanent on-chain AI storage on Irys/Arweave",
     links: {
       launch:   `https://four.meme/token/${SYNERGIX.token_ca}`,
       bscscan:  `https://bscscan.com/token/${SYNERGIX.token_ca}`,
@@ -361,26 +365,29 @@ function skillToken() {
 // ── SKILL: synergix_bucket ────────────────────────────────────────────────────
 function skillBucket() {
   return {
-    bucket_name: SYNERGIX.bucket,
-    network:     "BNB Greenfield Mainnet",
-    chain_id:    1017,
-    sp_endpoint: SYNERGIX.sp,
-    protocol:    "A2A",
-    structure: {
-      "SYNERGIXAI/":              "Versioned AI brain (JSON) — collective knowledge, never deleted",
-      "aportes/YYYY-MM/":         "Community contributions by month — RAG source",
-      "users/{uid}":              "User profiles with rank/points tags",
-      "data/synergix_db_*.json":  "Full DB snapshot, synced every 8 min",
-      "logs/YYYY-MM-DD.log":      "Audit trail, flushed at midnight UTC",
-      "backups/snapshot_*.bak":   "Weekly snapshots"
+    storage_type: SYNERGIX.storage.type,
+    app_name:     SYNERGIX.storage.app_name,
+    payment:      SYNERGIX.storage.payment,
+    gateway:      SYNERGIX.storage.gateway,
+    graphql:      "https://uploader.irys.xyz/graphql",
+    protocol:     "A2A",
+    tag_structure: {
+      "Type=brain":         "Versioned AI brain — collective knowledge, never deleted",
+      "Type=aporte":        "Community contributions (Year-Month=YYYY-MM, User-Id={uid}) — RAG source",
+      "Type=user":          "User profiles with rank/points tags (User-Id={uid})",
+      "Type=db-snapshot":   "Full DB snapshot, synced every 8 min",
+      "Type=log":           "Audit trail (Date=YYYY-MM-DD), flushed at midnight UTC",
+      "Type=backup":        "Weekly snapshots",
+      "Type=global-stats":  "Network statistics",
+      "Type=leaderboard":   "Top contributors"
     },
     rag: {
-      mode_a:   "80% Greenfield data + 20% Groq (when on-chain data available)",
+      mode_a:   "80% Irys/Arweave data + 20% Groq (when on-chain data available)",
       mode_b:   "100% Groq (no data yet)",
       sync:     "every 8 minutes via federation_loop",
       scoring:  "keyword × quality × fusion_weight × impact × lang_boost × recency"
     },
-    unique_fact: "The bucket IS the AI brain. Full state restored from Greenfield on server restart — zero data loss, 100% decentralized."
+    unique_fact: "The Irys/Arweave storage IS the AI brain. Full state restored on server restart — zero data loss, 100% decentralized and permanent."
   };
 }
 
@@ -393,10 +400,10 @@ function skillStats() {
     protocol: "A2A",
     protocols_supported: ["A2A", "MCP"],
     storage: {
-      type:    "BNB Greenfield DCellar",
-      bucket:  SYNERGIX.bucket,
-      network: "Mainnet",
-      chain_id: 1017
+      type:     SYNERGIX.storage.type,
+      app_name: SYNERGIX.storage.app_name,
+      payment:  SYNERGIX.storage.payment,
+      gateway:  SYNERGIX.storage.gateway
     },
     rag_engine: {
       type:       "keyword-scoring (ARM-compatible, no vectors)",
@@ -422,7 +429,7 @@ function detectSkill(text) {
   const t = text.toLowerCase();
   if (/rank|tier|level|rang|nivel|puntos|points|mult/i.test(t)) return "synergix_ranks";
   if (/token|contract|tax|buy|sell|price|precio|0x|bnb|bsc/i.test(t)) return "synergix_token";
-  if (/bucket|greenfield|dcellar|storage|almacenamiento|brain|cerebro/i.test(t)) return "synergix_bucket";
+  if (/irys|arweave|permaweb|storage|almacenamiento|brain|cerebro|bucket/i.test(t)) return "synergix_bucket";
   if (/stats|statistics|status|estado|network|health|usuarios|users/i.test(t)) return "synergix_stats";
   return "synergix_ask"; // default
 }
