@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dashboard · Synergix</title>
+<link rel="stylesheet" href="/app/app.css">
+</head>
+<body>
+
+<!-- ── Boot / loading ───────────────────────────────────────── -->
+<div class="center" id="viewBoot">
+  <div class="panel">
+    <div class="brand"><span class="brand-n">SYNERGIX</span><span class="brand-b">APP</span></div>
+    <div class="skel" style="width:70%;margin-bottom:10px"></div>
+    <div class="skel" style="width:45%"></div>
+  </div>
+</div>
+
+<!-- ── Sign in ──────────────────────────────────────────────── -->
+<div class="center" id="viewLogin" hidden>
+  <div class="panel">
+    <div class="brand"><span class="brand-n">SYNERGIX</span><span class="brand-b">APP</span></div>
+    <h1>Sign in</h1>
+    <p>Your points and rank live under your Telegram identity, so the bot hands you the key.</p>
+
+    <div id="loginMsg"></div>
+
+    <form id="loginForm" autocomplete="off">
+      <label class="field">
+        <span>Code from the bot</span>
+        <input type="text" id="code" maxlength="12" placeholder="K7M2XQ4P"
+               inputmode="latin" autocapitalize="characters" spellcheck="false" required>
+      </label>
+      <button class="btn" type="submit" id="loginBtn">Sign in</button>
+    </form>
+
+    <p class="hint">
+      Open the Synergix bot on Telegram and send <code>/web</code>. It replies with a
+      single-use code that expires in a few minutes.<br><br>
+      <a href="https://t.me/synergix_ai_bot" target="_blank" rel="noopener">Open the bot ↗</a>
+      &nbsp;·&nbsp;
+      <a href="/">Back to the site</a>
+    </p>
+  </div>
+</div>
+
+<!-- ── Not connected yet (bot API missing) ──────────────────── -->
+<div class="center" id="viewSetup" hidden>
+  <div class="panel">
+    <div class="brand"><span class="brand-n">SYNERGIX</span><span class="brand-b">APP</span></div>
+    <h1>Not connected yet</h1>
+    <div class="msg msg-warn" id="setupMsg">The dashboard is not connected to the bot yet.</div>
+    <p>
+      The web side is ready. What is still missing is the bot exposing its
+      authenticated API, so the site can read points, ranks and quotas from the
+      one place that owns them.
+    </p>
+    <p class="hint">
+      Required on the server: <code>BOT_API_URL</code>, <code>BOT_API_TOKEN</code>
+      and <code>APP_SESSION_SECRET</code>.<br><br>
+      <a href="/">Back to the site</a>
+    </p>
+  </div>
+</div>
+
+<!-- ── Dashboard ────────────────────────────────────────────── -->
+<div class="shell" id="viewApp" hidden>
+  <aside class="side">
+    <div class="brand"><span class="brand-n">SYNERGIX</span><span class="brand-b">APP</span></div>
+    <nav class="nav" id="nav">
+      <div class="nav-g">My account</div>
+      <button data-view="home" class="on">Overview</button>
+      <button data-view="contrib">Contributions</button>
+      <button data-view="passport">Passport</button>
+      <button data-view="wallet">Wallet</button>
+    </nav>
+    <div class="side-f">
+      <div class="who" id="who">—</div>
+      <button class="btn btn-ghost" id="logout">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div id="appMsg"></div>
+
+    <!-- Overview -->
+    <section data-panel="home">
+      <div class="head"><h2>Overview</h2><span class="ro">Read-only</span></div>
+      <div class="grid">
+        <div class="card">
+          <span class="card-l">Points</span>
+          <span class="card-v" id="mPoints">—</span>
+          <span class="card-s" id="mStreak"></span>
+        </div>
+        <div class="card">
+          <span class="card-l">Rank</span>
+          <span class="card-v" id="mRank" style="font-size:1.3rem">—</span>
+          <span class="card-s" id="mMult"></span>
+        </div>
+        <div class="card">
+          <span class="card-l">Daily quota</span>
+          <span class="card-v" id="mQuota">—</span>
+          <div class="bar"><i id="mQuotaBar" style="width:0%"></i></div>
+          <span class="card-s" id="mQuotaReset"></span>
+        </div>
+      </div>
+      <div class="block">
+        <h3>Progress to next rank</h3>
+        <div class="bar" style="height:8px"><i id="mProgBar" style="width:0%"></i></div>
+        <span class="card-s" id="mProg">—</span>
+      </div>
+    </section>
+
+    <!-- Contributions -->
+    <section data-panel="contrib" hidden>
+      <div class="head"><h2>Contributions</h2><span class="ro">Read-only</span></div>
+      <div class="block">
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr><th>Aporte</th><th>Judges</th><th>Status</th><th style="text-align:right">Points</th><th>Proof</th></tr>
+            </thead>
+            <tbody id="cRows">
+              <tr><td colspan="5"><div class="skel" style="width:60%"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:16px" hidden id="cMoreWrap">
+          <button class="btn btn-ghost" id="cMore" style="width:auto;padding:9px 20px">Load more</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Passport -->
+    <section data-panel="passport" hidden>
+      <div class="head"><h2>Passport</h2><span class="ro">Read-only</span></div>
+      <div class="grid">
+        <div class="card"><span class="card-l">Citations</span><span class="card-v" id="pCit">—</span></div>
+        <div class="card"><span class="card-l">Royalties accrued</span><span class="card-v" id="pRoy">—</span></div>
+        <div class="card"><span class="card-l">Impact score</span><span class="card-v" id="pImp">—</span></div>
+      </div>
+      <div class="block">
+        <h3>Real Impact Proof</h3>
+        <p style="color:var(--w2);font-size:.87rem;margin:0">
+          Every time the AI cites your contribution you earn perpetual royalties.
+          Each accepted aporte is written to Irys, so this history can be audited
+          without taking anyone's word for it.
+        </p>
+      </div>
+    </section>
+
+    <!-- Wallet -->
+    <section data-panel="wallet" hidden>
+      <div class="head"><h2>Wallet</h2><span class="ro">Read-only</span></div>
+      <div class="grid">
+        <div class="card">
+          <span class="card-l">SYNX · accounting on Irys</span>
+          <span class="card-v" id="wSynx">—</span>
+        </div>
+        <div class="card">
+          <span class="card-l">SYNERGIX · ERC-20 on BSC</span>
+          <span class="card-v" id="wSyn">—</span>
+        </div>
+        <div class="card">
+          <span class="card-l">Membership</span>
+          <span class="card-v" id="wTier" style="font-size:1.3rem">—</span>
+          <span class="card-s" id="wNext"></span>
+        </div>
+      </div>
+      <div class="block">
+        <h3>Moving funds</h3>
+        <p style="color:var(--w2);font-size:.87rem;margin:0 0 14px">
+          Deposits and withdrawals stay in the bot for now. When they arrive here
+          every transfer will be confirmed inside Telegram, showing the amount and
+          destination address — so a stolen web session still cannot move your funds.
+        </p>
+        <a class="tx" href="https://t.me/synergix_ai_bot" target="_blank" rel="noopener">Manage funds in the bot ↗</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="/app/app.js"></script>
+</body>
+</html>
