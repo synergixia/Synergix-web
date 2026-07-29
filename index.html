@@ -369,6 +369,45 @@ strong{font-weight:700;color:var(--w)}
 .rk-m{font-family:var(--D);font-size:2rem;color:var(--g);display:block}
 .rk-ml{font-family:var(--M);font-size:.5rem;color:var(--w2);letter-spacing:1px;display:block}
 .rk-d{font-family:var(--M);font-size:.54rem;color:var(--w3);margin-top:10px;display:block}
+/* ── Live leaderboard (Phase 0 · fed by /api/mcp) ── */
+.lb-wrap{margin-top:2px;background:var(--card);border:1px solid var(--bdr2);padding:30px 26px}
+.lb-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;margin-bottom:20px}
+.lb-t{font-family:var(--D);font-size:1.25rem;letter-spacing:2px;color:var(--w)}
+.lb-dot{width:6px;height:6px;border-radius:50%;background:var(--w3);flex:none;align-self:center}
+.lb-dot.on{background:#2ECC71;box-shadow:0 0 8px rgba(46,204,113,.7);animation:lb-pulse 2.4s ease infinite}
+@keyframes lb-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.lb-meta{font-family:var(--M);font-size:.55rem;letter-spacing:1px;color:var(--w3);text-transform:uppercase;margin-left:auto}
+.lb-counts{display:flex;flex-wrap:wrap;gap:2px;margin-bottom:20px}
+.lb-counts[hidden]{display:none} /* class selector would otherwise beat the UA [hidden] rule */
+.lb-c{background:var(--card2);border:1px solid var(--bdr2);padding:12px 18px;min-width:120px;flex:1 1 120px}
+.lb-c-n{font-family:var(--D);font-size:1.5rem;color:var(--g);display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.lb-c-l{font-family:var(--M);font-size:.5rem;letter-spacing:1px;color:var(--w3);text-transform:uppercase;display:block;margin-top:3px}
+.lb-tbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.lb-tbl th{font-family:var(--M);font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--w3);text-align:left;padding:0 10px 9px;border-bottom:1px solid var(--bdr2);font-weight:400}
+.lb-tbl td{padding:11px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--w2);vertical-align:middle}
+.lb-tbl tr:last-child td{border-bottom:none}
+.lb-pos{font-family:var(--D);font-size:1rem;color:var(--w3);width:44px;font-variant-numeric:tabular-nums}
+.lb-tbl tr:nth-child(1) .lb-pos{color:var(--g)}
+.lb-tbl tr:nth-child(2) .lb-pos{color:#C0C0C0}
+.lb-tbl tr:nth-child(3) .lb-pos{color:#CD7F32}
+.lb-who{color:var(--w);font-weight:500}
+.lb-rk{font-family:var(--M);font-size:.55rem;letter-spacing:1px;color:var(--w3);display:block;margin-top:2px}
+.lb-pts{font-family:var(--D);font-size:1.05rem;color:var(--g);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lb-num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--M);font-size:.7rem;color:var(--w3);white-space:nowrap}
+.lb-msg{text-align:center;padding:26px 10px;color:var(--w2);font-size:.86rem;line-height:1.8}
+.lb-msg .lb-msg-t{font-family:var(--D);font-size:1.1rem;letter-spacing:2px;color:var(--w);display:block;margin-bottom:10px}
+.lb-verify{display:inline-block;margin-top:16px;font-family:var(--M);font-size:.55rem;letter-spacing:1px;color:var(--w3);text-decoration:none;border-bottom:1px solid var(--bdr2);padding-bottom:2px}
+.lb-verify:hover{color:var(--g);border-color:var(--g)}
+.lb-skel{height:11px;background:linear-gradient(90deg,var(--card2),rgba(255,255,255,.07),var(--card2));background-size:200% 100%;animation:lb-sk 1.3s ease infinite}
+@keyframes lb-sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media(max-width:600px){
+  .lb-wrap{padding:22px 16px}
+  .lb-hide-sm{display:none}
+  .lb-tbl td,.lb-tbl th{padding-left:6px;padding-right:6px}
+}
+@media (prefers-reduced-motion: reduce){
+  .lb-dot.on,.lb-skel{animation:none}
+}
 
 /* ════════════════════════════════════════════════════════
    DEPIN & BURN
@@ -1291,12 +1330,31 @@ body::before{
       <p class="sh-sub t" data-key="ranks_sub"></p>
     </div>
     <div class="ranks-grid">
-      <div class="rk reveal"><div class="rk-top"></div><span class="rk-e">🌱</span><span class="rk-n">INITIATED</span><span class="rk-p">0 pts</span><span class="rk-m">×1.0</span><span class="rk-ml">Multiplier</span><span class="rk-d">5/day</span></div>
-      <div class="rk reveal" style="transition-delay:.06s"><div class="rk-top"></div><span class="rk-e">📈</span><span class="rk-n">ACTIVE</span><span class="rk-p">100 pts</span><span class="rk-m">×1.1</span><span class="rk-ml">Multiplier</span><span class="rk-d">12/day</span></div>
-      <div class="rk reveal" style="transition-delay:.12s"><div class="rk-top"></div><span class="rk-e">🧬</span><span class="rk-n">SYNCED</span><span class="rk-p">500 pts</span><span class="rk-m">×1.5</span><span class="rk-ml">Multiplier</span><span class="rk-d">25/day</span></div>
-      <div class="rk reveal" style="transition-delay:.18s"><div class="rk-top"></div><span class="rk-e">🏗️</span><span class="rk-n">ARCHITECT</span><span class="rk-p">1,500 pts</span><span class="rk-m">×2.5</span><span class="rk-ml">Multiplier</span><span class="rk-d">40/day</span></div>
-      <div class="rk reveal" style="transition-delay:.24s"><div class="rk-top"></div><span class="rk-e">🧠</span><span class="rk-n">HIVE MIND</span><span class="rk-p">5,000 pts</span><span class="rk-m">×3.0</span><span class="rk-ml">Multiplier</span><span class="rk-d">60 · validates</span></div>
-      <div class="rk oracle reveal" style="transition-delay:.3s"><div class="rk-top"></div><span class="rk-e">🔮</span><span class="rk-n">ORACLE</span><span class="rk-p">15,000 pts</span><span class="rk-m">×5.0</span><span class="rk-ml">Multiplier</span><span class="rk-d">∞ · full control</span></div>
+      <div class="rk reveal"><div class="rk-top"></div><span class="rk-e">🌱</span><span class="rk-n">INITIATED</span><span class="rk-p">0 pts</span><span class="rk-m">×1.0</span><span class="rk-ml">Multiplier</span><span class="rk-d" data-suffix="/day">5/day</span></div>
+      <div class="rk reveal" style="transition-delay:.06s"><div class="rk-top"></div><span class="rk-e">📈</span><span class="rk-n">ACTIVE</span><span class="rk-p">100 pts</span><span class="rk-m">×1.1</span><span class="rk-ml">Multiplier</span><span class="rk-d" data-suffix="/day">12/day</span></div>
+      <div class="rk reveal" style="transition-delay:.12s"><div class="rk-top"></div><span class="rk-e">🧬</span><span class="rk-n">SYNCED</span><span class="rk-p">500 pts</span><span class="rk-m">×1.5</span><span class="rk-ml">Multiplier</span><span class="rk-d" data-suffix="/day">25/day</span></div>
+      <div class="rk reveal" style="transition-delay:.18s"><div class="rk-top"></div><span class="rk-e">🏗️</span><span class="rk-n">ARCHITECT</span><span class="rk-p">1,500 pts</span><span class="rk-m">×2.5</span><span class="rk-ml">Multiplier</span><span class="rk-d" data-suffix="/day">40/day</span></div>
+      <div class="rk reveal" style="transition-delay:.24s"><div class="rk-top"></div><span class="rk-e">🧠</span><span class="rk-n">HIVE MIND</span><span class="rk-p">5,000 pts</span><span class="rk-m">×3.0</span><span class="rk-ml">Multiplier</span><span class="rk-d" data-suffix=" · validates">60 · validates</span></div>
+      <div class="rk oracle reveal" style="transition-delay:.3s"><div class="rk-top"></div><span class="rk-e">🔮</span><span class="rk-n">ORACLE</span><span class="rk-p">15,000 pts</span><span class="rk-m">×5.0</span><span class="rk-ml">Multiplier</span><span class="rk-d" data-suffix=" · full control">∞ · full control</span></div>
+    </div>
+
+    <!-- Live network · fed by /api/mcp (synergix_stats + synergix_top) -->
+    <div class="lb-wrap reveal" id="lbWrap">
+      <div class="lb-head">
+        <span class="lb-dot" id="lbDot"></span>
+        <span class="lb-t t" data-key="lb_title">Weekly Leaderboard</span>
+        <span class="lb-meta" id="lbMeta"></span>
+      </div>
+      <div class="lb-counts" id="lbCounts" hidden>
+        <div class="lb-c"><span class="lb-c-n" id="lbUsers">—</span><span class="lb-c-l t" data-key="lb_users">Contributors</span></div>
+        <div class="lb-c"><span class="lb-c-n" id="lbContribs">—</span><span class="lb-c-l t" data-key="lb_contribs">Contributions</span></div>
+      </div>
+      <div id="lbBody">
+        <div class="lb-msg">
+          <div class="lb-skel" style="width:60%;margin:0 auto 12px"></div>
+          <div class="lb-skel" style="width:40%;margin:0 auto"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -3578,6 +3636,309 @@ document.querySelectorAll('.btn-p,.btn-s,.nav-cta').forEach(btn=>{
   const sec = $("market");
   if(sec && "IntersectionObserver" in window){
     const io = new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); init(); } }, { threshold:.05 });
+    io.observe(sec);
+  } else {
+    init();
+  }
+})();
+</script>
+<script>
+// ═══════════════════════════════════════════════════════════
+//  LIVE NETWORK — Phase 0
+//  Feeds the rank numbers and the weekly leaderboard from the
+//  public MCP endpoint (/api/mcp), which is already live.
+//  Tools: synergix_ranks · synergix_stats · synergix_top
+//  Never throws: on any failure the static markup stays as-is.
+// ═══════════════════════════════════════════════════════════
+(function(){
+  // ── i18n (merged into T before setLang('en') runs on DOMContentLoaded) ──
+  const LIVE_T = {
+    en:{ lb_title:"Weekly Leaderboard", lb_users:"Contributors", lb_contribs:"Contributions",
+      lb_h_pos:"#", lb_h_who:"Contributor", lb_h_pts:"Points", lb_h_cnt:"Aportes",
+      lb_live:"Live · Irys", lb_loading:"Loading live data…", lb_off:"Live data unavailable",
+      lb_empty_t:"The leaderboard is being built",
+      lb_empty_d:"Contributions are ranked every week. Send knowledge to the Telegram bot — an AI judge scores it, and accepted aportes earn points that show up right here.",
+      lb_cta:"Contribute on Telegram", lb_verify:"Verify on Irys ↗" },
+    es:{ lb_title:"Ranking Semanal", lb_users:"Contribuidores", lb_contribs:"Aportes",
+      lb_h_pos:"#", lb_h_who:"Contribuidor", lb_h_pts:"Puntos", lb_h_cnt:"Aportes",
+      lb_live:"En vivo · Irys", lb_loading:"Cargando datos en vivo…", lb_off:"Datos en vivo no disponibles",
+      lb_empty_t:"El ranking se está construyendo",
+      lb_empty_d:"Los aportes se rankean cada semana. Envía conocimiento al bot de Telegram — un juez IA lo evalúa, y los aportes aceptados ganan puntos que aparecen justo acá.",
+      lb_cta:"Contribuir en Telegram", lb_verify:"Verificar en Irys ↗" },
+    zh:{ lb_title:"每周排行榜", lb_users:"贡献者", lb_contribs:"贡献数",
+      lb_h_pos:"#", lb_h_who:"贡献者", lb_h_pts:"积分", lb_h_cnt:"贡献",
+      lb_live:"实时 · Irys", lb_loading:"正在加载实时数据…", lb_off:"暂无实时数据",
+      lb_empty_t:"排行榜正在构建中",
+      lb_empty_d:"贡献每周排名。向Telegram机器人发送知识——AI评审会打分，被接受的贡献将获得积分并显示在这里。",
+      lb_cta:"在Telegram贡献", lb_verify:"在Irys上验证 ↗" },
+    zht:{ lb_title:"每週排行榜", lb_users:"貢獻者", lb_contribs:"貢獻數",
+      lb_h_pos:"#", lb_h_who:"貢獻者", lb_h_pts:"積分", lb_h_cnt:"貢獻",
+      lb_live:"即時 · Irys", lb_loading:"正在載入即時資料…", lb_off:"暫無即時資料",
+      lb_empty_t:"排行榜正在建立中",
+      lb_empty_d:"貢獻每週排名。向Telegram機器人發送知識——AI評審會評分，被接受的貢獻將獲得積分並顯示在這裡。",
+      lb_cta:"在Telegram貢獻", lb_verify:"在Irys上驗證 ↗" },
+    pt:{ lb_title:"Ranking Semanal", lb_users:"Contribuidores", lb_contribs:"Contribuições",
+      lb_h_pos:"#", lb_h_who:"Contribuidor", lb_h_pts:"Pontos", lb_h_cnt:"Aportes",
+      lb_live:"Ao vivo · Irys", lb_loading:"Carregando dados ao vivo…", lb_off:"Dados ao vivo indisponíveis",
+      lb_empty_t:"O ranking está sendo construído",
+      lb_empty_d:"As contribuições são ranqueadas toda semana. Envie conhecimento ao bot do Telegram — um juiz IA avalia, e os aportes aceitos ganham pontos que aparecem bem aqui.",
+      lb_cta:"Contribuir no Telegram", lb_verify:"Verificar no Irys ↗" },
+    fr:{ lb_title:"Classement Hebdomadaire", lb_users:"Contributeurs", lb_contribs:"Contributions",
+      lb_h_pos:"#", lb_h_who:"Contributeur", lb_h_pts:"Points", lb_h_cnt:"Apports",
+      lb_live:"En direct · Irys", lb_loading:"Chargement des données en direct…", lb_off:"Données en direct indisponibles",
+      lb_empty_t:"Le classement est en construction",
+      lb_empty_d:"Les contributions sont classées chaque semaine. Envoyez du savoir au bot Telegram — un juge IA l'évalue, et les apports acceptés gagnent des points qui apparaissent ici.",
+      lb_cta:"Contribuer sur Telegram", lb_verify:"Vérifier sur Irys ↗" },
+    de:{ lb_title:"Wöchentliche Rangliste", lb_users:"Beitragende", lb_contribs:"Beiträge",
+      lb_h_pos:"#", lb_h_who:"Beitragende:r", lb_h_pts:"Punkte", lb_h_cnt:"Beiträge",
+      lb_live:"Live · Irys", lb_loading:"Live-Daten werden geladen…", lb_off:"Live-Daten nicht verfügbar",
+      lb_empty_t:"Die Rangliste wird aufgebaut",
+      lb_empty_d:"Beiträge werden wöchentlich bewertet. Sende Wissen an den Telegram-Bot — ein KI-Richter bewertet es, und akzeptierte Beiträge verdienen Punkte, die genau hier erscheinen.",
+      lb_cta:"Auf Telegram beitragen", lb_verify:"Auf Irys verifizieren ↗" },
+    ru:{ lb_title:"Недельный рейтинг", lb_users:"Участники", lb_contribs:"Вклады",
+      lb_h_pos:"#", lb_h_who:"Участник", lb_h_pts:"Очки", lb_h_cnt:"Вклады",
+      lb_live:"В эфире · Irys", lb_loading:"Загрузка данных…", lb_off:"Данные недоступны",
+      lb_empty_t:"Рейтинг формируется",
+      lb_empty_d:"Вклады ранжируются каждую неделю. Отправьте знания боту в Telegram — ИИ-судья оценит их, и принятые вклады принесут очки, которые появятся здесь.",
+      lb_cta:"Внести вклад в Telegram", lb_verify:"Проверить в Irys ↗" },
+    ja:{ lb_title:"週間ランキング", lb_users:"貢献者", lb_contribs:"貢献数",
+      lb_h_pos:"#", lb_h_who:"貢献者", lb_h_pts:"ポイント", lb_h_cnt:"貢献",
+      lb_live:"ライブ · Irys", lb_loading:"ライブデータを読み込み中…", lb_off:"ライブデータは利用できません",
+      lb_empty_t:"ランキングを構築中です",
+      lb_empty_d:"貢献は毎週ランク付けされます。Telegramボットに知識を送ってください — AI審査員が評価し、承認された貢献はポイントを獲得してここに表示されます。",
+      lb_cta:"Telegramで貢献", lb_verify:"Irysで検証 ↗" },
+    ko:{ lb_title:"주간 랭킹", lb_users:"기여자", lb_contribs:"기여 수",
+      lb_h_pos:"#", lb_h_who:"기여자", lb_h_pts:"포인트", lb_h_cnt:"기여",
+      lb_live:"실시간 · Irys", lb_loading:"실시간 데이터 로딩 중…", lb_off:"실시간 데이터를 사용할 수 없습니다",
+      lb_empty_t:"랭킹을 구축하는 중입니다",
+      lb_empty_d:"기여는 매주 순위가 매겨집니다. Telegram 봇에 지식을 보내세요 — AI 심판이 평가하고, 승인된 기여는 포인트를 얻어 바로 여기에 표시됩니다.",
+      lb_cta:"Telegram에서 기여하기", lb_verify:"Irys에서 검증 ↗" }
+  };
+  try{
+    if(typeof T!=="undefined"){ Object.keys(LIVE_T).forEach(l=>{ if(T[l]) Object.assign(T[l], LIVE_T[l]); }); }
+  }catch(e){}
+
+  // ── config ──
+  const MCP      = "/api/mcp";
+  const GATEWAY  = "https://gateway.irys.xyz/";
+  const TELEGRAM = "https://t.me/synergix_ai_bot";
+  const TTL_MS   = 60000;
+
+  // Module state — repaint() rebuilds the UI from this on language change.
+  const STATE = { status:"loading", stats:null, top:null };
+
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c =>
+    ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  const t = k => {
+    try{
+      const l = (typeof LANG !== "undefined" && LANG) ? LANG : "en";
+      return (T[l] && T[l][k]) || (T.en && T.en[k]) || k;
+    }catch(e){ return (LIVE_T.en[k] || k); }
+  };
+  const nfmt = n => {
+    const v = typeof n === "number" ? n : parseFloat(String(n).replace(/[^0-9.\-]/g,""));
+    return isFinite(v) ? v.toLocaleString("en-US") : null;
+  };
+  // Reads the first present key — the leaderboard shape is written by the bot
+  // to Irys, so tolerate the common field-name variants.
+  const pick = (o, keys) => {
+    for (let i=0;i<keys.length;i++){
+      const v = o ? o[keys[i]] : undefined;
+      if (v !== undefined && v !== null && v !== "") return v;
+    }
+    return null;
+  };
+
+  // ── transport ──
+  async function callTool(tool, parameters){
+    const ck = "sx_live_" + tool;
+    try{
+      const hit = JSON.parse(sessionStorage.getItem(ck) || "null");
+      if (hit && Date.now() - hit.at < TTL_MS) return hit.v;
+    }catch(e){}
+
+    const ctl = new AbortController();
+    const timer = setTimeout(()=>ctl.abort(), 12000);
+    try{
+      const r = await fetch(MCP, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", Accept:"application/json" },
+        body: JSON.stringify({ tool, parameters: parameters || {} }),
+        signal: ctl.signal,
+        cache:"no-store"
+      });
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      const j = await r.json();
+      const v = j && j.result ? j.result : null;
+      try{ sessionStorage.setItem(ck, JSON.stringify({ at:Date.now(), v })); }catch(e){}
+      return v;
+    } finally { clearTimeout(timer); }
+  }
+
+  // ── 1. rank numbers ──────────────────────────────────────
+  // Points / multiplier / daily limit come from the API so the site can never
+  // drift from the bot. Names and colours stay in the markup.
+  async function paintRanks(){
+    let res;
+    try{ res = await callTool("synergix_ranks", { lang:"en" }); }catch(e){ return; }
+    const rows = res && Array.isArray(res.ranks) ? res.ranks : null;
+    if(!rows) return;
+
+    const cards = document.querySelectorAll("#ranks .ranks-grid .rk");
+    if(cards.length !== rows.length) return; // shape changed — leave static markup
+
+    cards.forEach((card, i) => {
+      const row = rows[i] || {};
+      const pts  = nfmt(row["Min Points"]);
+      const mult = row["Multiplier"];
+      const lim  = row["Daily Limit"];
+
+      const elP = card.querySelector(".rk-p");
+      const elM = card.querySelector(".rk-m");
+      const elD = card.querySelector(".rk-d");
+
+      if (elP && pts !== null) elP.textContent = pts + " pts";
+      // The API interpolates the raw number, so 1.0 arrives as "×1". Normalise to
+      // one decimal so the tier cards stay visually consistent (×1.0 … ×5.0).
+      if (elM && mult){
+        const mv = parseFloat(String(mult).replace(/[^0-9.]/g, ""));
+        elM.textContent = isFinite(mv) ? "×" + mv.toFixed(1) : String(mult);
+      }
+      if (elD && lim !== undefined && lim !== null){
+        const isUnlimited = typeof lim === "string" && !/^\d/.test(lim);
+        const shown = isUnlimited ? "∞" : (nfmt(lim) || lim);
+        elD.textContent = shown + (elD.dataset.suffix || "");
+      }
+    });
+  }
+
+  // ── 2. live counters + leaderboard ───────────────────────
+  function renderCounts(){
+    const live = STATE.stats && STATE.stats.live;
+    const box  = $("lbCounts");
+    if(!box) return;
+    const users    = live ? nfmt(live.total_users)    : null;
+    const contribs = live ? nfmt(live.total_contribs) : null;
+    if (users === null && contribs === null){ box.hidden = true; return; }
+    box.hidden = false;
+    if ($("lbUsers"))    $("lbUsers").textContent    = users    !== null ? users    : "—";
+    if ($("lbContribs")) $("lbContribs").textContent = contribs !== null ? contribs : "—";
+  }
+
+  function rowsFrom(top){
+    if (!top || top.source !== "irys_live") return null;
+    const arr = Array.isArray(top.leaderboard) ? top.leaderboard : null;
+    return (arr && arr.length) ? arr : null;
+  }
+
+  function renderBoard(){
+    const body = $("lbBody");
+    const dot  = $("lbDot");
+    const meta = $("lbMeta");
+    if(!body) return;
+
+    if (STATE.status === "loading"){
+      body.innerHTML =
+        '<div class="lb-msg">' +
+        '<div class="lb-skel" style="width:60%;margin:0 auto 12px"></div>' +
+        '<div class="lb-skel" style="width:40%;margin:0 auto"></div>' +
+        '</div>';
+      if (meta) meta.textContent = t("lb_loading");
+      return;
+    }
+
+    const rows = rowsFrom(STATE.top);
+
+    if (!rows){
+      // Designed empty state — not an error. This is the path that renders
+      // until the bot publishes Type=leaderboard transactions to Irys.
+      if (dot) dot.classList.remove("on");
+      if (meta) meta.textContent = STATE.status === "error" ? t("lb_off") : "";
+      body.innerHTML =
+        '<div class="lb-msg">' +
+          '<span class="lb-msg-t">' + esc(t("lb_empty_t")) + '</span>' +
+          esc(t("lb_empty_d")) +
+          '<div><a class="btn-s" style="margin-top:18px;display:inline-block" href="' +
+            TELEGRAM + '" target="_blank" rel="noopener">💬 ' + esc(t("lb_cta")) + '</a></div>' +
+        '</div>';
+      return;
+    }
+
+    if (dot) dot.classList.add("on");
+    if (meta) meta.textContent = t("lb_live");
+
+    let html =
+      '<div style="overflow-x:auto"><table class="lb-tbl"><thead><tr>' +
+      '<th>' + esc(t("lb_h_pos")) + '</th>' +
+      '<th>' + esc(t("lb_h_who")) + '</th>' +
+      '<th class="lb-hide-sm" style="text-align:right">' + esc(t("lb_h_cnt")) + '</th>' +
+      '<th style="text-align:right">' + esc(t("lb_h_pts")) + '</th>' +
+      '</tr></thead><tbody>';
+
+    rows.slice(0,10).forEach((r, i) => {
+      const who  = pick(r, ["handle","username","user","name","alias","user_id","uid"]);
+      const pts  = pick(r, ["points","pts","score","total_points"]);
+      const rank = pick(r, ["rank","tier","rank_name"]);
+      const cnt  = pick(r, ["contributions","contribs","aportes","count","total_contribs"]);
+      html +=
+        '<tr>' +
+          '<td class="lb-pos">' + (i+1) + '</td>' +
+          '<td><span class="lb-who">' + esc(who !== null ? who : "—") + '</span>' +
+            (rank ? '<span class="lb-rk">' + esc(rank) + '</span>' : '') + '</td>' +
+          '<td class="lb-num lb-hide-sm">' + (cnt !== null ? esc(nfmt(cnt) || cnt) : "—") + '</td>' +
+          '<td class="lb-pts">' + (pts !== null ? esc(nfmt(pts) || pts) : "—") + '</td>' +
+        '</tr>';
+    });
+    html += '</tbody></table></div>';
+
+    const tx = STATE.top && STATE.top.tx_id;
+    if (tx){
+      html += '<a class="lb-verify" href="' + GATEWAY + encodeURIComponent(tx) +
+              '" target="_blank" rel="noopener">' + esc(t("lb_verify")) + '</a>';
+    }
+    body.innerHTML = html;
+  }
+
+  function repaint(){ renderCounts(); renderBoard(); }
+
+  // Language switches re-render dynamic content without wiping it: setLang only
+  // replaces [data-key] nodes, so anything built here needs its own repaint.
+  try{
+    if (typeof window.setLang === "function"){
+      const orig = window.setLang;
+      window.setLang = function(){
+        const out = orig.apply(this, arguments);
+        try{ repaint(); }catch(e){}
+        return out;
+      };
+    }
+  }catch(e){}
+
+  // ── boot ─────────────────────────────────────────────────
+  let started = false;
+  async function init(){
+    if (started) return; started = true;
+
+    paintRanks().catch(()=>{});
+
+    const settle = (p) => p.then(v => v).catch(() => null);
+    const [stats, top] = await Promise.all([
+      settle(callTool("synergix_stats", {})),
+      settle(callTool("synergix_top", { limit: 10 }))
+    ]);
+
+    STATE.stats  = stats;
+    STATE.top    = top;
+    STATE.status = (stats || top) ? "ready" : "error";
+    repaint();
+  }
+
+  const sec = $("ranks");
+  if (sec && "IntersectionObserver" in window){
+    const io = new IntersectionObserver(es => {
+      if (es[0].isIntersecting){ io.disconnect(); init(); }
+    }, { threshold:.05 });
     io.observe(sec);
   } else {
     init();
