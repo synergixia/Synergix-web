@@ -1,7 +1,7 @@
 # Synergix
 
-**The world's first AI agent with permanent storage on Arweave via Irys.**  
-Decentralized collective intelligence — 80% of every AI response is built from community knowledge stored permanently on-chain.
+**The world's first AI agent running on pure local AI, with its immortal memory sealed on Arweave via Irys.**  
+Decentralized collective intelligence — 80% of every AI response is built from community knowledge that Irys seals permanently on-chain. No third-party AI APIs: Synergix thinks on a self-hosted local model.
 
 🌐 [synergix.lol](https://www.synergix.lol) · 🤖 [Telegram Bot](https://t.me/synergix_ai_bot) · 🐦 [Twitter](https://x.com/synergix_lol) · 💰 [$SYNERGIX on BNB](https://four.meme/token/0xbe5df4a40ac939ef641430e86a2dce94d071e0f6)
 
@@ -15,7 +15,7 @@ synergix-web/
 │   ├── mcp.js          # MCP server (Model Context Protocol 2025-06-18)
 │   ├── a2a.js          # A2A server (Agent2Agent Protocol, JSON-RPC 2.0)
 │   └── _lib/
-│       └── irys.js     # Irys/Arweave permanent storage client
+│       └── irys.js     # Irys client — seals the immortal memory onto Arweave
 ├── well-known/
 │   └── agent.json      # A2A agent discovery card
 ├── index.html          # Landing page
@@ -37,21 +37,21 @@ synergix-web/
 
 | Tool | Description |
 |---|---|
-| `synergix_ask` | Query the collective brain via RAG + Groq (es / en / zh) |
+| `synergix_ask` | Query the collective brain via RAG + local AI (es / en / zh) |
 | `synergix_ranks` | Full 6-tier rank table with multipliers and daily limits |
 | `synergix_token` | $SYNERGIX contract info and tax distribution |
-| `synergix_bucket` | Irys/Arweave bucket structure and live stats |
+| `synergix_bucket` | Irys/Arweave sealed-memory structure and live stats |
 | `synergix_stats` | Global network statistics and RAG engine health |
 | `synergix_top` | Weekly top contributors leaderboard |
 
-## RAG Engine
+## AI Engine & Immortal Memory
 
-Every response from `synergix_ask` is built in two modes:
+Synergix runs on a **self-hosted local AI model** — no third-party AI APIs (no Groq, no OpenAI). Every response from `synergix_ask` is built in two modes:
 
-- **Mode A** — 80% on-chain community data (Irys/Arweave) + 20% Groq base knowledge
-- **Mode B** — 100% Groq (fallback when no on-chain data matches the query)
+- **Mode A** — 80% on-chain community knowledge (sealed on Irys/Arweave) + 20% local-model reasoning
+- **Mode B** — 100% local model (fallback when no on-chain data matches the query)
 
-Model: `llama-3.3-70b-versatile` via Groq API. Federation refresh: every 8 minutes.
+**Irys is the sealer of Synergix's immortal memory:** every accepted contribution, fused brain version and database snapshot is sealed onto Arweave through Irys — permanent, immutable and impossible to erase. If the server dies, the entire state is restored from Irys on the next boot. Federation refresh: every 8 minutes.
 
 ## Rank System
 
@@ -88,10 +88,11 @@ Set these in **Vercel → Project → Settings → Environment Variables**:
 
 | Variable | Required | Description |
 |---|---|---|
-| `GROQ_API_KEY` | Yes | Groq API key — powers `synergix_ask` |
-| `IRYS_PRIVATE_KEY` | Yes | BNB-funded wallet private key for Arweave writes |
+| `IRYS_PRIVATE_KEY` | Yes | BNB-funded wallet private key — Irys uses it to **seal** memory onto Arweave |
 | `IRYS_GATEWAY` | No | Override Irys gateway (default: `https://gateway.irys.xyz`) |
 | `MCP_SECRET` | No | Bearer token to restrict MCP access |
+
+> Synergix's AI runs on a **self-hosted local model**, so no external AI API key (Groq/OpenAI) is required.
 
 ### Local development
 
